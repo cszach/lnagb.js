@@ -18,11 +18,13 @@ all, I'll be very surprised.
 [gh yc]: https://github.com/you-create
 [gh pylnagb]: https://github.com/vecma-org/pylnagb
 
-TODO
-----
+:pushpin: TODO
+--------------
 
-License
--------
+Will update soon.
+
+:page_with_curl: License
+------------------------
 
 Licensed under [The Unlicense](https://unlicense.org/). Basically, you can do
 anything with it, and taking credits is not compulsory.
