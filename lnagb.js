@@ -80,6 +80,28 @@
 
 
     /**
+     Create a zero matrix with row rows and column columns and return it.
+
+     @param {number} row Number of rows for the output zero matrix
+     @param {number} column Number of columns for the output zero matrix
+     @return {object} A zero matrix with row rows and column columns
+     */
+    function zeroMatrix(row, column) {
+        let zeroRow = [];
+        while (column-- > 0) {
+            zeroRow.push(0);
+        }
+
+        let output = [];
+        while (row-- > 0) {
+            output.push(zeroRow);
+        }
+
+        return output;
+    }
+
+
+    /**
     * Given 2 matrices matrixA and matrixB, add them if they are of equal
     * dimensions. Otherwise return matrixA.
     *
@@ -118,6 +140,11 @@
 
 
     function addMatrices() {
+        if (equalDimension(...arguments)) {
 
+        }
+        else {
+            return arguments[0];
+        }
     }
 })();
