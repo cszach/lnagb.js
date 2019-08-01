@@ -8,8 +8,6 @@
 (function() {
     "use strict";
 
-    console.clear();
-
     /**
     * Given an object, check if it's a (mathematical) matrix.
     * A matrix is this sense is represented by a JavaScript 2-dimensional array.
@@ -63,10 +61,21 @@
     * Check if the given matrices are equal in dimensions. Any number of
     * matrices can be given.
     *
-    * @return {boolean} true if matrixA and matrixB have the same dimension,
+    * @return {boolean} true if all given matrices have the same dimension,
     * false otherwise.
     */
     function equalDimension() {
+        let baseNumOfRows = arguments[0].length;
+        let baseNumOfElements = getNumberOfElements(arguments[0]);
+
+        for (let matrix of arguments) {
+            if (matrix.length !== baseNumOfRows
+                || getNumberOfElements(matrix) !== baseNumOfElements) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 
