@@ -8,6 +8,8 @@
 (function() {
     "use strict";
 
+    console.clear();
+
     /**
     * Given an object, check if it's a (mathematical) matrix.
     * A matrix is this sense is represented by a JavaScript 2-dimensional array.
@@ -50,11 +52,9 @@
     * @param {object} matrix Input matrix
     * @return {integer} Number of elements in matrix
     */
-    function getNumberOfElements(matrix) {
-        return matrix.reduce(function(numberOfElements, row) {
-            return numberOfElements + row.length;
-        }, 0);
-    }
+    var getNumberOfElements = (matrix) => matrix.reduce(
+        (numberOfElements, row) => numberOfElements + row.length
+    , 0);
 
 
     /**
@@ -80,71 +80,51 @@
 
 
     /**
-     Create a zero matrix with row rows and column columns and return it.
-
-     @param {number} row Number of rows for the output zero matrix
-     @param {number} column Number of columns for the output zero matrix
-     @return {object} A zero matrix with row rows and column columns
+     * Create a zero matrix with row rows and column columns and return it.
+     *
+     * @param {number} row Number of rows for the output zero matrix
+     * @param {number} column Number of columns for the output zero matrix
+     * @return {object} A zero matrix with row rows and column columns
      */
-    function zeroMatrix(row, column) {
-        let zeroRow = [];
-        while (column-- > 0) {
-            zeroRow.push(0);
-        }
-
-        let output = [];
-        while (row-- > 0) {
-            output.push(zeroRow);
-        }
-
-        return output;
-    }
+    var zeroMatrix = (row, column) => new Array(row).fill(0).map(
+        () => new Array(column).fill(0).slice()
+    );
 
 
     /**
-    * Given 2 matrices matrixA and matrixB, add them if they are of equal
-    * dimensions. Otherwise return matrixA.
-    *
-    * @param {object} matrixA A matrix
-    * @param {object} matrixB Another matrix of the same size as matrixA
-    * @return {object} matrixA + matrixB, but if the two matrices aren't equal
-    * in dimension, then matrixA
-    */
-    function addTwoMatrices(matrixA, matrixB) {
-
-        if (equalDimension(matrixA, matrixB)) {
-            var resultMatrix = [];
-
-            // Use matrixA as a reference
-            var numberOfRows = matrixA.length;
-            var numberOfColumns = matrixA[0].length;
-
-            // Do the math
-            for (var rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
-                var emptyRow = [];
-                for (var colIndex = 0; colIndex < numberOfColumns; colIndex++) {
-                    emptyRow.push(
-                        matrixA[rowIndex][colIndex] + matrixB[rowIndex][colIndex]
-                    );
-                }
-
-                resultMatrix.push(emptyRow);
-            }
-
-            return resultMatrix;
-        }
-        else {
-            return matrixA;
-        }
-    }
+     * Create a dimension x dimension identity matrix
+     *
+     * @param {number} dimension Number of row/column for the output matrix
+     * @return {object} A dimension x dimension identity matrix
+     */
+    var identityMatrix = (dimension) => zeroMatrix(dimension, dimension).map(
+        // Manipulate each row from the initial zero matrix by inserting 1 at
+        // the right position
+        (row, iter) => row.fill(1, iter, iter + 1)
+    );
 
 
+    /**
+     * Add matrices given as arguments. Input matrices must be equal in size.
+     * If they aren't equal in size, return a zero matrix that has the same size
+     * as the first matrix given in the arguments.
+     *
+     * @return Sum of the matrices given as arguments, if the given matrices
+     * aren't of equal size, return a zero matrix that has the same size as the
+     * first matrix in the arguments
+     */
     function addMatrices() {
         if (equalDimension(...arguments)) {
-
+            return zeroMatrix(arguments[0].length, arguments[0][0].length).map(
+                (row, rowIter) => row.map(
+                    (rowElement, colIter) => Array.from(arguments).reduce(
+                        (sum, matrix) => sum + matrix[rowIter][colIter], 0
+                    ),
+                )
+            );
         }
         else {
-            return arguments[0];
+            return zeroMatrix(arguments[0].length, arguments[0][0].length);
         }
     }
 })();
