@@ -8,8 +8,6 @@
 (function() {
     "use strict";
 
-    console.clear();
-
     /**
     * Given an object, check if it's a (mathematical) matrix.
     * A matrix is this sense is represented by a JavaScript 2-dimensional array.
@@ -126,5 +124,17 @@
         else {
             return zeroMatrix(arguments[0].length, arguments[0][0].length);
         }
+    }
+
+
+    /**
+     * Given a matrix A, return -A.
+     * @param {object} matrix Input matrix
+     * @return {object} The input matrix multiplied by the scalar -1
+     */
+    function negateMatrix(matrix) {
+        return matrix.map(
+            row => row.map(element => element * -1)
+        );
     }
 })();
