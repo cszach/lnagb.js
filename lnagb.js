@@ -137,4 +137,18 @@
             row => row.map(element => element * -1)
         );
     }
+
+
+    /**
+     * Return the transpose of the given matrix matrix
+     * @param {object} matrix Input matrix
+     * @return {object} Transpose of the input matrix
+     */
+    function transpose(matrix) {
+        return zeroMatrix(matrix[0].length, matrix.length).map(
+            (row, rowIter) => row.map(
+                (element, columnIter) => matrix[columnIter][rowIter]
+            )
+        );
+    }
 })();
