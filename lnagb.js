@@ -56,14 +56,26 @@
 
 
     /**
+     * Multiply a matrix by a scalar.
+     *
+     * @param {object} matrix A matrix to multiply with
+     * @param {number} scalar A scalar to multiply with the matrix
+     * @return {object} The given matrix multipled by the given scalar
+     */
+    function multiplyByScalar(matrix, scalar) {
+        return matrix.map(
+            row => row.map(element => element * scalar)
+        )
+    }
+
+
+    /**
      * Given a matrix A, return -A.
      * @param {object} matrix Input matrix
      * @return {object} The input matrix multiplied by the scalar -1
      */
     function negateMatrix(matrix) {
-        return matrix.map(
-            row => row.map(element => element * -1)
-        );
+        return multiplyByScalar(matrix, -1);
     }
 
 
