@@ -48,11 +48,37 @@
     * Get the number of elements of a given matrix
     *
     * @param {object} matrix Input matrix
-    * @return {integer} Number of elements in matrix
+    * @return {integer} Number of elements in *matrix*
     */
     var getNumberOfElements = (matrix) => matrix.reduce(
         (numberOfElements, row) => numberOfElements + row.length
     , 0);
+
+
+    /**
+     * Given a matrix A, return -A.
+     * @param {object} matrix Input matrix
+     * @return {object} The input matrix multiplied by the scalar -1
+     */
+    function negateMatrix(matrix) {
+        return matrix.map(
+            row => row.map(element => element * -1)
+        );
+    }
+
+
+    /**
+     * Return the transpose of a given matrix *matrix*
+     * @param {object} matrix Input matrix
+     * @return {object} Transpose of the input matrix
+     */
+    function transpose(matrix) {
+        return zeroMatrix(matrix[0].length, matrix.length).map(
+            (row, rowIter) => row.map(
+                (element, columnIter) => matrix[columnIter][rowIter]
+            )
+        );
+    }
 
 
     /**
@@ -78,11 +104,11 @@
 
 
     /**
-     * Create a zero matrix with row rows and column columns and return it.
+     * Create a zero matrix with *row* rows and *column* columns and return it.
      *
      * @param {number} row Number of rows for the output zero matrix
      * @param {number} column Number of columns for the output zero matrix
-     * @return {object} A zero matrix with row rows and column columns
+     * @return {object} A zero matrix with *row* rows and *column* columns
      */
     var zeroMatrix = (row, column) => new Array(row).fill(0).map(
         () => new Array(column).fill(0).slice()
@@ -90,10 +116,10 @@
 
 
     /**
-     * Create a dimension x dimension identity matrix
+     * Create a *dimension* x *dimension* identity matrix
      *
      * @param {number} dimension Number of row/column for the output matrix
-     * @return {object} A dimension x dimension identity matrix
+     * @return {object} A *dimension* x *dimension* identity matrix
      */
     var identityMatrix = (dimension) => zeroMatrix(dimension, dimension).map(
         // Manipulate each row from the initial zero matrix by inserting 1 at
@@ -128,27 +154,23 @@
 
 
     /**
-     * Given a matrix A, return -A.
-     * @param {object} matrix Input matrix
-     * @return {object} The input matrix multiplied by the scalar -1
+     * Subtract matrices given as arguments. Input matrices must be equal in
+     * size. If they aren't equal in size, return a zero matrix that has the
+     * same dimension as the first matrix given in the arguments.
+     *
+     * @return A matrix that is received by computing A1 - A2 - ... - An
+     * assuming the matrices (given as arguments) are A1, A2, ..., An, and that
+     * the matrices are of equal size. If they are not of equal size, return a
+     * zero matrix that has the same size as the first matrix in the arguments.
      */
-    function negateMatrix(matrix) {
-        return matrix.map(
-            row => row.map(element => element * -1)
-        );
-    }
-
-
-    /**
-     * Return the transpose of the given matrix matrix
-     * @param {object} matrix Input matrix
-     * @return {object} Transpose of the input matrix
-     */
-    function transpose(matrix) {
-        return zeroMatrix(matrix[0].length, matrix.length).map(
-            (row, rowIter) => row.map(
-                (element, columnIter) => matrix[columnIter][rowIter]
-            )
-        );
+    function subtractMatrices() {
+        if (equalDimension(...arguments)) {
+            return addMatrices(arguments[0], ...Array.from(arguments).slice(1).map(
+                (matrix) => negateMatrix(matrix)
+            ));
+        }
+        else {
+            return zeroMatrix(arguments[0].length, arguments[0][0].length);
+        }
     }
 })();
