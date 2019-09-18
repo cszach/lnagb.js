@@ -50,9 +50,11 @@
     * @param {object} matrix Input matrix
     * @return {integer} Number of elements in *matrix*
     */
-    var getNumberOfElements = (matrix) => matrix.reduce(
-        (numberOfElements, row) => numberOfElements + row.length
-    , 0);
+    function getNumberOfElements(matrix) {
+        return matrix.reduce(
+            (numberOfElements, row) => (numberOfElements + row.length), 0
+        );
+    }
 
 
     /**
@@ -122,9 +124,11 @@
      * @param {number} column Number of columns for the output zero matrix
      * @return {object} A zero matrix with *row* rows and *column* columns
      */
-    var zeroMatrix = (row, column) => new Array(row).fill(0).map(
-        () => new Array(column).fill(0).slice()
-    );
+    function zeroMatrix(row, column) {
+        return new Array(row).fill(0).map(
+            () => new Array(column).fill(0).slice()
+        );
+    }
 
 
     /**
@@ -133,11 +137,13 @@
      * @param {number} dimension Number of row/column for the output matrix
      * @return {object} A *dimension* x *dimension* identity matrix
      */
-    var identityMatrix = (dimension) => zeroMatrix(dimension, dimension).map(
-        // Manipulate each row from the initial zero matrix by inserting 1 at
-        // the right position
-        (row, iter) => row.fill(1, iter, iter + 1)
-    );
+    function identityMatrix(dimension) {
+        return zeroMatrix(dimension, dimension).map(
+            // Manipulate each row from the initial zero matrix by inserting 1
+            // at the right position
+            (row, iter) => row.fill(1, iter, iter + 1)
+        )
+    }
 
 
     /**
