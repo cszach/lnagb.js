@@ -191,4 +191,28 @@
             return zeroMatrix(arguments[0].length, arguments[0][0].length);
         }
     }
+
+
+    /**
+     * Create an augmented matrix from the matrices given in the arguments.
+     * Augmented matrices in this project are Set objects.
+     *
+     * @return {object} A Set object that stores all of the matrices given in
+     * the arguments in the exact same order as they are given as arguments.
+     * However, if the given matrices don't have the same number of rows, a zero
+     * matrix that has the same size as the first matrix in the arguments is
+     * returned. If only one matrix is given in the arguments, the same matrix
+     * is returned and no new Set object is be created.
+     */
+    function augmentedMatrix() {
+        if (arguments.length == 1 && isValidMatrix(arguments[0])) {
+            return arguments[0];
+        }
+
+        return (Array.from(arguments).every(
+            // Check if every matrix in the args have the same number of rows
+            (matrix) => (matrix.length == arguments[0].length))
+        ) ? new Set(arguments)
+          : zeroMatrix(arguments[0].length, arguments[0][0].length);
+    }
 })();
