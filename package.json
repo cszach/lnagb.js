@@ -1,0 +1,27 @@
+{
+  "name": "lnagb",
+  "version": "1.0.0",
+  "description": "Linear Algebra operations implemented in JavaScript",
+  "main": "lnagb.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vecma-org/lnagb.js.git"
+  },
+  "keywords": [
+    "linear-algebra",
+    "javascript",
+    "educational"
+  ],
+  "author": "Nguyen Hoang Duong",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/vecma-org/lnagb.js/issues"
+  },
+  "homepage": "https://github.com/vecma-org/lnagb.js#readme",
+  "devDependencies": {
+    "eslint-config-mdcs": "^4.2.3"
+  }
+}
