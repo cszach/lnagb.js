@@ -424,6 +424,19 @@ class Matrix {
 
 	}
 
+	/**
+	 * (mutable) Substract *matrix* from this matrix and return the result, or
+	 * return the original matrix if the two matrices don't have the same size
+	 *
+	 * @param {object} matrix The matrix to subtract this matrix to
+	 * @return {object} The result of the subtraction
+	 */
+	subtract( matrix ) {
+
+		return this.add( matrix.clone().negate() );
+
+	}
+
 }
 
 export { Matrix };
