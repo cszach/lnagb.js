@@ -1,218 +1,382 @@
 /**
  * lnagb.js
  *
- * Linear Algebra operations implemented in JavaScript.
- * @author Nguyen Hoang Duong (@you-create)
+ * Linear Algebra operations implemented in JavaScript
+ *
+ * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
  * @license https://unlicense.org/
  */
-(function() {
-    "use strict";
 
-    /**
-    * Given an object, check if it's a (mathematical) matrix.
-    * A matrix is this sense is represented by a JavaScript 2-dimensional array.
-    * Basically, each matrix is an array of arrays. Each array in that whole
-    * array represents the corresponding row (in terms of order) of the matrix.
-    * Of course, every row must have the same number of elements and every
-    * element must be a number.
-    *
-    * @param {object} matrix An object to test
-    * @return {boolean} true if it's a valid matrix, false otherwise
-    */
-    function isValidMatrix(matrix) {
-        // First, check if matrix is an array
-        if (!matrix.constructor == Array)
-          return false;
+const _ROW = 1; // Used by the Matrix class's methods, simply means "row-major"
+const _COLUMN = 0; // Used by the Matrix class's methods, simply means "column-major"
 
-        // Next, check if matrix is an array of arrays and if every array inside
-        // matrix has the same length. Here we're using the first array inside
-        // matrix as a reference
-        let baseArrayLength = matrix[0].length;
-        if (!matrix.every(function(row) {
-            return row.constructor == Array && row.length === baseArrayLength;
-        })) return false;
+/**
+ * Extension of the Number class: Create a loop that runs from 0 to this number
+ * (exclusive), executing a given function every iteration
+ *
+ * @param {function} userDefinedFunction The function to run for every iteration
+ */
+Number.prototype.toLoop = function ( userDefinedFunction ) {
 
-        // Finally, check if every element is a number,
-        // let it be integer or float
-        if (!matrix.every(function(row) {
-            return row.every(function(elementInRow) {
-            return typeof elementInRow == "number";
-          });
-        })) return false;
+	for ( let i = 0; i < this; i ++ ) {
 
-        return true;
-    }
+		userDefinedFunction( i );
 
+	}
 
-    /**
-    * Get the number of elements of a given matrix
-    *
-    * @param {object} matrix Input matrix
-    * @return {integer} Number of elements in *matrix*
-    */
-    function getNumberOfElements(matrix) {
-        return matrix.reduce(
-            (numberOfElements, row) => (numberOfElements + row.length), 0
-        );
-    }
+};
 
+/**
+ *
+ * Class for a matrix of any type in Linear Algebra (excluding augmented matrix)
+ *
+ * Parameters are required to create a new matrix. The matrix can then be
+ * transformed (e.g. have its elements or its size change) via methods.
+ *
+ * The first two parameters set the number of rows and columns for the matrix,
+ * respectively. The rest of the parameters are assumed to be the matrix's
+ * elements given in ROW-MAJOR order.
+ *
+ * @param {number} row The number of rows of the matrix
+ * @param {number} column The number of columns of the matrix
+ * @param {number} * Elements of the matrix in row-major order
+ *
+ */
+class Matrix {
 
-    /**
-     * Multiply a matrix by a scalar.
+	// Constructor
+
+	constructor( row, column ) {
+
+		this.name = "Matrix";
+		this.size = {
+	        row,
+	        column,
+	    }; // The size of the matrix
+	    this.numberOfElements = this.size.row * this.size.column; // The number of elements in this matrix
+	    this.major = Matrix.ROW; // How this.elements (an array) stores elements
+	    this.elements = Array.from( arguments ).slice( 2 ); // The array that contains the elements of the matrix
+
+	}
+
+	// Class Static Properties / Methods
+
+	static get ROW() {
+
+		return _ROW;
+
+	}
+	static get COLUMN() {
+
+		return _COLUMN;
+
+	}
+
+	/**
+	 * Create and return a *row* x *column* zero matrix
+	 *
+	 * A zero matrix is a matrix with all of its elements being 0
+	 *
+	 * @param {number} row The number of rows for the zero matrix
+	 * @param {number} column The number of columns for the zero matrix
+	 * @return {object} A Matrix instance that represents the desired matrix
+	 */
+	static ZeroMatrix( row, column ) {
+
+		let zero = new Matrix( row, column );
+
+		zero.elements = new Array();
+		zero.numberOfElements.toLoop( function () {
+
+			zero.elements.push( 0 );
+
+		} );
+
+		return zero.clone();
+
+	}
+
+	/**
+	 * Create and return a *size* x *size* identity matrix
+	 *
+	 * An identity matrix is a square matrix where the elements on its main
+	 * diagonal are all 1 and the rest are all 0.
+	 *
+	 * @param {number} size The size of the identity matrix
+	 * @return {object} A Matrix instance that represents the desired matrix
+	 */
+	static IdentityMatrix( size ) {
+
+		let identity = Matrix.ZeroMatrix( size, size );
+
+		size.toLoop( function ( i ) {
+
+			// Make the element at row i and column i (i.e. on the main
+			// diagonal) one
+			identity.elements[ identity.elementIndex( i + 1, i + 1 ) ] = 1;
+
+		} );
+
+		return identity.clone();
+
+	}
+
+	// Class Methods
+
+	/**
+     * Copy all properties of a given Matrix instance into this matrix instance
      *
-     * @param {object} matrix A matrix to multiply with
-     * @param {number} scalar A scalar to multiply with the matrix
-     * @return {object} The given matrix multipled by the given scalar
+     * @param {object} matrix The Matrix instance to copy from
      */
-    function multiplyByScalar(matrix, scalar) {
-        return matrix.map(
-            row => row.map(element => element * scalar)
-        )
-    }
+	copy( matrix ) {
 
+		this.name = matrix.name;
+		this.size.row = matrix.size.row;
+		this.size.column = matrix.size.column;
+		this.numberOfElements = matrix.numberOfElements;
+		this.major = matrix.major;
+		this.elements = matrix.elements.slice();
 
-    /**
-     * Given a matrix A, return -A.
-     * @param {object} matrix Input matrix
-     * @return {object} The input matrix multiplied by the scalar -1
-     */
-    function negateMatrix(matrix) {
-        return multiplyByScalar(matrix, -1);
-    }
+	}
 
-
-    /**
-     * Return the transpose of a given matrix *matrix*
-     * @param {object} matrix Input matrix
-     * @return {object} Transpose of the input matrix
-     */
-    function transpose(matrix) {
-        return zeroMatrix(matrix[0].length, matrix.length).map(
-            (row, rowIter) => row.map(
-                (element, columnIter) => matrix[columnIter][rowIter]
-            )
-        );
-    }
-
-
-    /**
-    * Check if the given matrices are equal in dimensions. Any number of
-    * matrices can be given.
-    *
-    * @return {boolean} true if all given matrices have the same dimension,
-    * false otherwise.
-    */
-    function equalDimension() {
-        let baseNumOfRows = arguments[0].length;
-        let baseNumOfElements = getNumberOfElements(arguments[0]);
-
-        for (let matrix of arguments) {
-            if (matrix.length !== baseNumOfRows
-                || getNumberOfElements(matrix) !== baseNumOfElements) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-
-    /**
-     * Create a zero matrix with *row* rows and *column* columns and return it.
+	/**
+     * Mathematically speaking, make this matrix the same as a given matrix
      *
-     * @param {number} row Number of rows for the output zero matrix
-     * @param {number} column Number of columns for the output zero matrix
-     * @return {object} A zero matrix with *row* rows and *column* columns
-     */
-    function zeroMatrix(row, column) {
-        return new Array(row).fill(0).map(
-            () => new Array(column).fill(0).slice()
-        );
-    }
-
-
-    /**
-     * Create a *dimension* x *dimension* identity matrix
+     * This means the .size and .elements attributes are copied, but other
+     * properties like .major remain intact
      *
-     * @param {number} dimension Number of row/column for the output matrix
-     * @return {object} A *dimension* x *dimension* identity matrix
+     * @param {object} matrix The Matrix instance to copy from
      */
-    function identityMatrix(dimension) {
-        return zeroMatrix(dimension, dimension).map(
-            // Manipulate each row from the initial zero matrix by inserting 1
-            // at the right position
-            (row, iter) => row.fill(1, iter, iter + 1)
-        )
-    }
+	shallowCopy( matrix ) {
 
+		this.size.row = matrix.size.row;
+		this.size.column = matrix.size.column;
+		this.elements = matrix.elements.slice();
 
-    /**
-     * Add matrices given as arguments. Input matrices must be equal in size.
-     * If they aren't equal in size, return a zero matrix that has the same size
-     * as the first matrix given in the arguments.
+	}
+
+	/**
+     * Create and return a clone of this matrix instance
+     */
+	clone() {
+
+		let clone = new Matrix( 1, 1 );
+		clone.copy( this );
+
+		return clone;
+
+	}
+
+	/**
+     * Compare this matrix and a given matrix to see if they are mathematically
+	 * the same (i.e. this function does not compare properties like .major)
+     * The given matrix must be an instance of the Matrix class
      *
-     * @return Sum of the matrices given as arguments, if the given matrices
-     * aren't of equal size, return a zero matrix that has the same size as the
-     * first matrix in the arguments
+     * @param {object} matrix The matrix to compare this matrix to
+     * @return {boolean} true if the two matrices are the same, false otherwise
      */
-    function addMatrices() {
-        if (equalDimension(...arguments)) {
-            return zeroMatrix(arguments[0].length, arguments[0][0].length).map(
-                (row, rowIter) => row.map(
-                    (rowElement, colIter) => Array.from(arguments).reduce(
-                        (sum, matrix) => sum + matrix[rowIter][colIter], 0
-                    ),
-                )
-            );
-        }
-        else {
-            return zeroMatrix(arguments[0].length, arguments[0][0].length);
-        }
-    }
+	equal( matrix ) {
 
+		return this.size.row === matrix.size.row
+            && this.size.column === matrix.size.column
+            && this.elements.every( function ( element, index ) {
 
-    /**
-     * Subtract matrices given as arguments. Input matrices must be equal in
-     * size. If they aren't equal in size, return a zero matrix that has the
-     * same dimension as the first matrix given in the arguments.
+            	return element === matrix.elements[ index ];
+
+            } );
+
+	}
+
+	/**
+	 * Access the element at the given position in this matrix
+	 *
+	 * @param {number} row The row that contains the element (1-indexed)
+	 * @param {number} column The column that contains the element (1-indexed)
+	 * @return {number} The element in row *row* and column *column*
+	 */
+	element( row, column ) {
+
+		return this.elements[ this.elementIndex( row, column ) ];
+
+	}
+
+	/**
+	 * Similar to element() but return the index of the element within .elements
+	 * instead of the element itself
+	 *
+	 * @param {number} row The row that contains the element (1-indexed)
+	 * @param {number} column The column that contains the element (1-indexed)
+	 * @return {number} The index of the element in row *row* and column *column*
+	 */
+	elementIndex( row, column ) {
+
+		return ( this.major == Matrix.ROW )
+			? row * this.size.column + column - this.size.column - 1
+			: column * this.size.row + row - this.size.row - 1;
+
+	}
+
+	/**
+	 * Get a row in this matrix as an array
+	 *
+	 * @param {number} row The position of the row (1-indexed, top-to-bottom)
+	 * @return {object} The array that contains the elements in the specified row
+	 */
+	row( row ) {
+
+		let sizeRow = this.size.row;
+
+		return ( this.major == Matrix.ROW )
+			? this.elements.slice(
+
+				row * this.size.column - this.size.column,
+				row * this.size.column
+
+			)
+			: this.elements.filter( function ( element, index ) {
+
+				return ( index - row + 1 ) % sizeRow === 0;
+
+			} );
+
+	}
+
+	/**
+	 * Get a column in this matrix as an array
+	 *
+	 * @param {number} column The position of the column (1-indexed, left-to-right)
+	 * @return {object} The array that contains the elements in the specified column
+	 */
+	column( column ) {
+
+		let sizeColumn = this.size.column;
+
+		return ( this.major == Matrix.ROW )
+			? this.elements.filter( function ( element, index ) {
+
+				return ( index - column + 1 ) % sizeColumn === 0;
+
+			} )
+			: this.elements.slice(
+
+				column * this.size.row - this.size.row,
+				column * this.size.row
+
+			);
+
+	}
+
+	/**
+	 * Return the diagonal in this matrix that contains the element in the
+	 * specified row and column
+	 *
+	 * @param {number} row The row that contains the element (1-indexed)
+	 * @param {number} column The column that contains the element (1-indexed)
+	 * @return {object} The diagonal (as an array) that contains the element
+	 */
+	diagonal( row, column ) {
+
+		let diagonal = new Array();
+
+		while ( row > 1 && column > 1 ) {
+
+			row --;
+			column --;
+
+		}
+
+		while ( row <= this.size.row && column <= this.size.column ) {
+
+			diagonal.push( this.element( row, column ) );
+			row ++;
+			column ++;
+
+		}
+
+		return diagonal.slice();
+
+	}
+
+	/**
+	 * Return the main diagonal of this matrix
+	 *
+	 * @return {object} The main diagonal (as an array) of this matrix
+	 */
+	mainDiagonal() {
+
+		return this.diagonal( 1, 1 );
+
+	}
+
+	/**
+	 * (mutable) Swap the values of .size.row and .size.column
+	 */
+	sizeSwap() {
+
+		this.size.row += this.size.column;
+		this.size.column = this.size.row - this.size.column;
+		this.size.row -= this.size.column;
+
+	}
+
+	/**
+     * (mutable) Transpose this matrix in place and return the tranposed matrix
+     */
+	transpose() {
+
+		let org = this.clone();
+		this.elements = new Array();
+
+		switch ( this.major ) {
+
+			case Matrix.ROW:
+				for ( let column = 0; column < org.size.column; column ++ ) {
+
+					this.elements = this.elements.concat( org.column( column + 1 ) );
+
+				}
+				break;
+			case Matrix.COLUMN:
+				for ( let row = 0; row < org.size.column; row ++ ) {
+
+					this.elements = this.elements.concat( org.column( row + 1 ) );
+
+				}
+				break;
+
+		}
+
+		this.sizeSwap();
+		return this.clone();
+
+	}
+
+	/**
+     * (mutable) Multiply every element of this matrix by a given scalar and
+     * return a copy of this matrix after the multiplication is done
      *
-     * @return A matrix that is received by computing A1 - A2 - ... - An
-     * assuming the matrices (given as arguments) are A1, A2, ..., An, and that
-     * the matrices are of equal size. If they are not of equal size, return a
-     * zero matrix that has the same size as the first matrix in the arguments.
+     * @param {number} scalar The scalar to multiply this matrix by
+     * @return {object} A copy of the instance of the matrix after multiplying
      */
-    function subtractMatrices() {
-        if (equalDimension(...arguments)) {
-            return addMatrices(arguments[0], ...Array.from(arguments).slice(1).map(
-                (matrix) => negateMatrix(matrix)
-            ));
-        }
-        else {
-            return zeroMatrix(arguments[0].length, arguments[0][0].length);
-        }
-    }
+	multiplyScalar( scalar ) {
 
+		this.elements = this.elements.map( element => element * scalar ).slice();
+		return this.clone();
 
-    /**
-     * Create an augmented matrix from the matrices given in the arguments.
-     * Augmented matrices in this project are Set objects.
+	}
+
+	/**
+     * (mutable) Multiply every element of this matrix by -1 and return a copy
+     * of this matrix after the multiplication is done
      *
-     * @return {object} A Set object that stores all of the matrices given in
-     * the arguments in the exact same order as they are given as arguments.
-     * However, if the given matrices don't have the same number of rows, a zero
-     * matrix that has the same size as the first matrix in the arguments is
-     * returned. If only one matrix is given in the arguments, the same matrix
-     * is returned and no new Set object is be created.
+     * @return {object} A copy of the instance of the matrix after negating
      */
-    function augmentedMatrix() {
-        if (arguments.length == 1 && isValidMatrix(arguments[0])) {
-            return arguments[0];
-        }
+	negate() {
 
-        return (Array.from(arguments).every(
-            // Check if every matrix in the args have the same number of rows
-            (matrix) => (matrix.length == arguments[0].length))
-        ) ? new Set(arguments)
-          : zeroMatrix(arguments[0].length, arguments[0][0].length);
-    }
-})();
+		return this.multiplyScalar( - 1 );
+
+	}
+
+}
+
+export { Matrix };
