@@ -44,21 +44,6 @@ Number.prototype.toLoop = function ( userDefinedFunction ) {
  */
 class Matrix {
 
-	// Constructor
-
-	constructor( row, column ) {
-
-		this.name = "Matrix";
-		this.size = {
-	        row,
-	        column,
-	    }; // The size of the matrix
-	    this.numberOfElements = this.size.row * this.size.column; // The number of elements in this matrix
-	    this.major = Matrix.ROW; // How this.elements (an array) stores elements
-	    this.elements = Array.from( arguments ).slice( 2 ); // The array that contains the elements of the matrix
-
-	}
-
 	// Class Static Properties / Methods
 
 	static get ROW() {
@@ -121,6 +106,21 @@ class Matrix {
 
 	}
 
+	// Constructor
+
+	constructor( row, column ) {
+
+		this.name = "Matrix";
+		this.size = {
+	        row,
+	        column,
+	    }; // The size of the matrix
+	    this.numberOfElements = this.size.row * this.size.column; // The number of elements in this matrix
+	    this.major = Matrix.ROW; // How this.elements (an array) stores elements
+	    this.elements = Array.from( arguments ).slice( 2 ); // The array that contains the elements of the matrix
+
+	}
+
 	// Class Methods
 
 	/**
@@ -168,22 +168,35 @@ class Matrix {
 	}
 
 	/**
-     * Compare this matrix and a given matrix to see if they are mathematically
-	 * the same (i.e. this function does not compare properties like .major)
-     * The given matrix must be an instance of the Matrix class
+	 * Check if this matrix has the same size as a given matrix and return true
+	 * if it does
+	 *
+	 * @param {object} matrix The matrix to check the size of this matrix against
+	 * @return {boolean} true if the two matrices have the same size, false otherwise
+	 */
+	sameSize( matrix ) {
+
+		return this.size.row === matrix.size.row && this.size.column === matrix.size.column;
+
+	}
+
+	/**
+     * Return true if this matrix and the given matrix *matrix* are equal
+	 *
+	 * Being "equal" here is mathematical; this function does not check
+	 * properties like .major
      *
      * @param {object} matrix The matrix to compare this matrix to
      * @return {boolean} true if the two matrices are the same, false otherwise
      */
-	equal( matrix ) {
+	equals( matrix ) {
 
-		return this.size.row === matrix.size.row
-            && this.size.column === matrix.size.column
-            && this.elements.every( function ( element, index ) {
+		return this.sameSize( matrix )
+			&& this.elements.every( function ( element, index ) {
 
             	return element === matrix.elements[ index ];
 
-            } );
+			} );
 
 	}
 
@@ -320,6 +333,16 @@ class Matrix {
 	}
 
 	/**
+	 * (mutable) Safely switch this matrix's ordering mode to row-major if it
+	 * is column-major and vice-versa
+	 */
+	majorSwap() {
+
+		this.transpose().sizeSwap();
+
+	}
+
+	/**
      * (mutable) Transpose this matrix in place and return the tranposed matrix
      */
 	transpose() {
@@ -374,6 +397,30 @@ class Matrix {
 	negate() {
 
 		return this.multiplyScalar( - 1 );
+
+	}
+
+	/**
+	 * (mutable) Add *matrix* to this matrix and return the result, or return
+	 * the original matrix if the two matrices don't have the same size
+	 *
+	 * @param {object} matrix The matrix to add to this matrix
+	 * @return {object} The result of the addition
+	 */
+	add( matrix ) {
+
+		let m = matrix.clone();
+
+		if ( ! this.sameSize( matrix ) ) return this.clone();
+		if ( this.major !== matrix.major ) m.majorSwap();
+
+		this.elements = this.elements.map(
+
+			( element, index ) => element += m.elements[ index ]
+
+		);
+
+		return this.clone();
 
 	}
 
