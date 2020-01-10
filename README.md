@@ -22,7 +22,12 @@ all, I'll be very surprised.
 :pushpin: TODO
 --------------
 
-Will update soon.
+- [ ] Create the `lnagb.js` library (currently `lnagb.js` is only available as
+  a JavaScript module)
+- [ ] Create `lnagb.opt.js` - basically an optimized version of `lnagb.js`,
+  where only row-major ordering is supported and class functions are independent
+  of each other
+- [ ] Produce `lnagb.min.js` (minified `lnagb.js`)
 
 :page_with_curl: License
 ------------------------
