@@ -30,17 +30,9 @@ Number.prototype.toLoop = function ( userDefinedFunction ) {
  *
  * Class for a matrix of any type in Linear Algebra (excluding augmented matrix)
  *
- * Parameters are required to create a new matrix. The matrix can then be
- * transformed (e.g. have its elements or its size change) via methods.
- *
- * The first two parameters set the number of rows and columns for the matrix,
- * respectively. The rest of the parameters are assumed to be the matrix's
- * elements given in ROW-MAJOR order.
- *
- * @param {number} row The number of rows of the matrix
- * @param {number} column The number of columns of the matrix
- * @param {number} * Elements of the matrix in row-major order
- *
+ * Parameters are required to create a new matrix using the class's constructor.
+ * The matrix can then be transformed (e.g. have its elements or its size
+ * changed) via methods.
  */
 class Matrix {
 
@@ -51,6 +43,7 @@ class Matrix {
 		return _ROW;
 
 	}
+
 	static get COLUMN() {
 
 		return _COLUMN;
@@ -58,7 +51,7 @@ class Matrix {
 	}
 
 	/**
-	 * Create and return a *row* x *column* zero matrix
+	 * Create and return a zero matrix
 	 *
 	 * A zero matrix is a matrix with all of its elements being 0
 	 *
@@ -82,7 +75,7 @@ class Matrix {
 	}
 
 	/**
-	 * Create and return a *size* x *size* identity matrix
+	 * Create and return an identity matrix
 	 *
 	 * An identity matrix is a square matrix where the elements on its main
 	 * diagonal are all 1 and the rest are all 0.
@@ -106,8 +99,16 @@ class Matrix {
 
 	}
 
-	// Constructor
-
+	/**
+	 * Constructor of the Matrix class, used to create matrices' instances
+	 *
+	 * The first 2 parameters set the size of the matrix, the rest of the
+	 * parameters are perceived as elements of the new matrix given in ROW-MAJOR
+	 * order. Only the first 2 parameters are required.
+	 *
+	 * @param {number} row The number of rows for the new matrix
+	 * @param {number} column The number of columns for the new matrix
+	 */
 	constructor( row, column ) {
 
 		this.name = "Matrix";
@@ -126,32 +127,32 @@ class Matrix {
 	/**
      * Copy all properties of a given Matrix instance into this matrix instance
      *
-     * @param {object} matrix The Matrix instance to copy from
+     * @param {object} m The Matrix instance to copy from
      */
-	copy( matrix ) {
+	copy( m ) {
 
-		this.name = matrix.name;
-		this.size.row = matrix.size.row;
-		this.size.column = matrix.size.column;
-		this.numberOfElements = matrix.numberOfElements;
-		this.major = matrix.major;
-		this.elements = matrix.elements.slice();
+		this.name = m.name;
+		this.size.row = m.size.row;
+		this.size.column = m.size.column;
+		this.numberOfElements = m.numberOfElements;
+		this.major = m.major;
+		this.elements = m.elements.slice();
 
 	}
 
 	/**
-     * Mathematically speaking, make this matrix the same as a given matrix
+     * Mathematically speaking, make this matrix the same as matrix *m*
      *
      * This means the .size and .elements attributes are copied, but other
      * properties like .major remain intact
      *
-     * @param {object} matrix The Matrix instance to copy from
+     * @param {object} m The Matrix instance to copy from
      */
-	shallowCopy( matrix ) {
+	shallowCopy( m ) {
 
-		this.size.row = matrix.size.row;
-		this.size.column = matrix.size.column;
-		this.elements = matrix.elements.slice();
+		this.size.row = m.size.row;
+		this.size.column = m.size.column;
+		this.elements = m.elements.slice();
 
 	}
 
@@ -168,33 +169,32 @@ class Matrix {
 	}
 
 	/**
-	 * Check if this matrix has the same size as a given matrix and return true
-	 * if it does
+	 * Check if this matrix has the same size as *m* and return true if it does
 	 *
-	 * @param {object} matrix The matrix to check the size of this matrix against
+	 * @param {object} m The matrix to check the size of this matrix against
 	 * @return {boolean} true if the two matrices have the same size, false otherwise
 	 */
-	sameSize( matrix ) {
+	sameSize( m ) {
 
-		return this.size.row === matrix.size.row && this.size.column === matrix.size.column;
+		return this.size.row === m.size.row && this.size.column === m.size.column;
 
 	}
 
 	/**
-     * Return true if this matrix and the given matrix *matrix* are equal
+     * Return true if this matrix and the given matrix *m* are equal
 	 *
 	 * Being "equal" here is mathematical; this function does not check
 	 * properties like .major
      *
-     * @param {object} matrix The matrix to compare this matrix to
+     * @param {object} m The matrix to compare this matrix to
      * @return {boolean} true if the two matrices are the same, false otherwise
      */
-	equals( matrix ) {
+	equals( m ) {
 
-		return this.sameSize( matrix )
+		return this.sameSize( m )
 			&& this.elements.every( function ( element, index ) {
 
-            	return element === matrix.elements[ index ];
+            	return element === m.elements[ index ];
 
 			} );
 
@@ -291,6 +291,7 @@ class Matrix {
 
 		let diagonal = new Array();
 
+		// Travel to where the first element of the diagonal is
 		while ( row > 1 && column > 1 ) {
 
 			row --;
@@ -298,6 +299,8 @@ class Matrix {
 
 		}
 
+		// Iterate through the diagonal, increasing *row* and *column* by one
+		// at each iteration since that is the pattern of elements in diagonals
 		while ( row <= this.size.row && column <= this.size.column ) {
 
 			diagonal.push( this.element( row, column ) );
@@ -313,6 +316,9 @@ class Matrix {
 	/**
 	 * Return the main diagonal of this matrix
 	 *
+	 * The main diagonal of a matrix is the diagonal that contains the element
+	 * at row 1 and column 1 of that matrix
+	 *
 	 * @return {object} The main diagonal (as an array) of this matrix
 	 */
 	mainDiagonal() {
@@ -322,7 +328,7 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Swap the values of .size.row and .size.column
+	 * (mutable) Swap the values of .size.row and .size.column in this matrix
 	 */
 	sizeSwap() {
 
@@ -375,15 +381,15 @@ class Matrix {
 	}
 
 	/**
-     * (mutable) Multiply every element of this matrix by a given scalar and
+     * (mutable) Multiply every element of this matrix by scalar *s* and
      * return a copy of this matrix after the multiplication is done
      *
-     * @param {number} scalar The scalar to multiply this matrix by
+     * @param {number} s The scalar to multiply this matrix by
      * @return {object} A copy of the instance of the matrix after multiplying
      */
-	multiplyScalar( scalar ) {
+	multiplyScalar( s ) {
 
-		this.elements = this.elements.map( element => element * scalar ).slice();
+		this.elements = this.elements.map( element => element * s ).slice();
 		return this.clone();
 
 	}
@@ -401,22 +407,22 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Add *matrix* to this matrix and return the result, or return
-	 * the original matrix if the two matrices don't have the same size
+	 * (mutable) Add *m* to this matrix and return the result, or return the
+	 * original matrix if the two matrices don't have the same size
 	 *
 	 * @param {object} matrix The matrix to add to this matrix
 	 * @return {object} The result of the addition
 	 */
-	add( matrix ) {
+	add( m ) {
 
-		let m = matrix.clone();
+		let mClone = m.clone();
 
-		if ( ! this.sameSize( matrix ) ) return this.clone();
-		if ( this.major !== matrix.major ) m.majorSwap();
+		if ( ! this.sameSize( m ) ) return this.clone();
+		if ( this.major !== m.major ) mClone.majorSwap();
 
 		this.elements = this.elements.map(
 
-			( element, index ) => element += m.elements[ index ]
+			( element, index ) => element += mClone.elements[ index ]
 
 		);
 
@@ -425,15 +431,15 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Substract *matrix* from this matrix and return the result, or
-	 * return the original matrix if the two matrices don't have the same size
+	 * (mutable) Substract *m* from this matrix and return the result, or return
+	 * the original matrix if the two matrices don't have the same size
 	 *
-	 * @param {object} matrix The matrix to subtract this matrix to
+	 * @param {object} m The matrix to subtract this matrix to
 	 * @return {object} The result of the subtraction
 	 */
-	subtract( matrix ) {
+	subtract( m ) {
 
-		return this.add( matrix.clone().negate() );
+		return this.add( m.clone().negate() );
 
 	}
 
