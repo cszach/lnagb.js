@@ -7,9 +7,6 @@
  * @license https://unlicense.org/
  */
 
-const _ROW = 1; // Used by the Matrix class's methods, simply means "row-major"
-const _COLUMN = 0; // Used by the Matrix class's methods, simply means "column-major"
-
 /**
  * Extension of the Number class: Create a loop that runs from 0 to this number
  * (exclusive), executing a given function every iteration
@@ -23,6 +20,30 @@ Number.prototype.toLoop = function ( userDefinedFunction ) {
 		userDefinedFunction( i );
 
 	}
+
+};
+
+const _ROW = 1; // Used by the Matrix class's methods, simply means "row-major"
+const _COLUMN = 0; // Used by the Matrix class's methods, simply means "column-major"
+
+/**
+ * Compute and return the result of the linear combination of *p* and *q*,
+ * two sequences of numbers
+ *
+ * The sequences must have the same number of numbers
+ *
+ * This is useful in multiplying matrices
+ *
+ * @param {object} p First sequence of numbers as a JS array
+ * @param {object} q Second sequence of numbers as a JS array
+ */
+let linearCombination = function ( p, q ) {
+
+	return p.reduce( function ( accumulator, value, index ) {
+
+		return accumulator + p[ index ] * q[ index ];
+
+	}, 0 );
 
 };
 
@@ -376,29 +397,30 @@ class Matrix {
 		}
 
 		this.sizeSwap();
-		return this.clone();
+		return this;
 
 	}
 
 	/**
-     * (mutable) Multiply every element of this matrix by scalar *s* and
-     * return a copy of this matrix after the multiplication is done
+     * (mutable) Multiply this matrix by scalar *s* and return the result
+	 *
+	 * Multiplying a matrix by a scalar means multiplying every element in that
+	 * matrix by the scalar
      *
      * @param {number} s The scalar to multiply this matrix by
-     * @return {object} A copy of the instance of the matrix after multiplying
+     * @return {object} The result of the multiplication
      */
 	multiplyScalar( s ) {
 
 		this.elements = this.elements.map( element => element * s ).slice();
-		return this.clone();
+		return this;
 
 	}
 
 	/**
-     * (mutable) Multiply every element of this matrix by -1 and return a copy
-     * of this matrix after the multiplication is done
+     * (mutable) Multiply this matrix by -1 and return the result
      *
-     * @return {object} A copy of the instance of the matrix after negating
+     * @return {object} The result of the multiplication
      */
 	negate() {
 
@@ -407,8 +429,10 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Add *m* to this matrix and return the result, or return the
-	 * original matrix if the two matrices don't have the same size
+	 * (mutable) Add *m* to this matrix and return the result
+	 *
+	 * If this matrix and *m* aren't of the same size, perform no addition and
+	 * simply return the original matrix
 	 *
 	 * @param {object} matrix The matrix to add to this matrix
 	 * @return {object} The result of the addition
@@ -417,7 +441,7 @@ class Matrix {
 
 		let mClone = m.clone();
 
-		if ( ! this.sameSize( m ) ) return this.clone();
+		if ( ! this.sameSize( m ) ) return this;
 		if ( this.major !== m.major ) mClone.majorSwap();
 
 		this.elements = this.elements.map(
@@ -426,13 +450,15 @@ class Matrix {
 
 		);
 
-		return this.clone();
+		return this;
 
 	}
 
 	/**
-	 * (mutable) Substract *m* from this matrix and return the result, or return
-	 * the original matrix if the two matrices don't have the same size
+	 * (mutable) Substract *m* from this matrix and return the result
+	 *
+	 * If this matrix and *m* aren't of the same size, perform no substraction
+	 * and simply return the original matrix
 	 *
 	 * @param {object} m The matrix to subtract this matrix to
 	 * @return {object} The result of the subtraction
@@ -443,6 +469,17 @@ class Matrix {
 
 	}
 
+	/**
+	 * (mutable) Post-multiply this matrix by *m* and return the result
+	 *
+	 *
+	 */
+	multiply( m ) {
+
+
+
+	}
+
 }
 
-export { Matrix };
+export { linearCombination, Matrix };
