@@ -1,5 +1,5 @@
 /**
- * lnagb.js
+ * lnagb.module.js
  *
  * Linear Algebra operations implemented in JavaScript
  *
@@ -23,9 +23,6 @@ Number.prototype.toLoop = function ( userDefinedFunction ) {
 
 };
 
-const _ROW = 1; // Used by the Matrix class's methods, simply means "row-major"
-const _COLUMN = 0; // Used by the Matrix class's methods, simply means "column-major"
-
 /**
  * Compute and return the result of the linear combination of *p* and *q*,
  * two sequences of numbers
@@ -39,11 +36,7 @@ const _COLUMN = 0; // Used by the Matrix class's methods, simply means "column-m
  */
 let linearCombination = function ( p, q ) {
 
-	return p.reduce( function ( accumulator, value, index ) {
-
-		return accumulator + p[ index ] * q[ index ];
-
-	}, 0 );
+	return p.reduce( ( result, v, i ) => result + p[ i ] * q[ i ], 0 );
 
 };
 
@@ -58,18 +51,6 @@ let linearCombination = function ( p, q ) {
 class Matrix {
 
 	// Class Static Properties / Methods
-
-	static get ROW() {
-
-		return _ROW;
-
-	}
-
-	static get COLUMN() {
-
-		return _COLUMN;
-
-	}
 
 	/**
 	 * Create and return a zero matrix
@@ -134,22 +115,21 @@ class Matrix {
 
 		this.name = "Matrix";
 		this.size = {
-	        row,
-	        column,
-	    }; // The size of the matrix
-	    this.numberOfElements = this.size.row * this.size.column; // The number of elements in this matrix
-	    this.major = Matrix.ROW; // How this.elements (an array) stores elements
-	    this.elements = Array.from( arguments ).slice( 2 ); // The array that contains the elements of the matrix
+			row,
+			column,
+		}; // The size of the matrix
+		this.numberOfElements = this.size.row * this.size.column; // The number of elements in this matrix
+		this.elements = Array.from( arguments ).slice( 2 ); // The array that contains the elements of the matrix
 
 	}
 
 	// Class Methods
 
 	/**
-     * Copy all properties of a given Matrix instance into this matrix instance
-     *
-     * @param {object} m The Matrix instance to copy from
-     */
+	 * Copy all properties of a given Matrix instance into this matrix instance
+	 *
+	 * @param {object} m The Matrix instance to copy from
+	 */
 	copy( m ) {
 
 		this.name = m.name;
@@ -162,13 +142,13 @@ class Matrix {
 	}
 
 	/**
-     * Mathematically speaking, make this matrix the same as matrix *m*
-     *
-     * This means the .size and .elements attributes are copied, but other
-     * properties like .major remain intact
-     *
-     * @param {object} m The Matrix instance to copy from
-     */
+	 * Mathematically speaking, make this matrix the same as matrix *m*
+	 *
+	 * This means the .size and .elements attributes are copied, but other
+	 * properties like .major remain intact
+	 *
+	 * @param {object} m The Matrix instance to copy from
+	 */
 	shallowCopy( m ) {
 
 		this.size.row = m.size.row;
@@ -178,8 +158,8 @@ class Matrix {
 	}
 
 	/**
-     * Create and return a clone of this matrix instance
-     */
+	 * Create and return a clone of this matrix instance
+	 */
 	clone() {
 
 		let clone = new Matrix( 1, 1 );
@@ -202,20 +182,20 @@ class Matrix {
 	}
 
 	/**
-     * Return true if this matrix and the given matrix *m* are equal
+	 * Return true if this matrix and the given matrix *m* are equal
 	 *
 	 * Being "equal" here is mathematical; this function does not check
 	 * properties like .major
-     *
-     * @param {object} m The matrix to compare this matrix to
-     * @return {boolean} true if the two matrices are the same, false otherwise
-     */
+	 *
+	 * @param {object} m The matrix to compare this matrix to
+	 * @return {boolean} true if the two matrices are the same, false otherwise
+	 */
 	equals( m ) {
 
 		return this.sameSize( m )
 			&& this.elements.every( function ( element, index ) {
 
-            	return element === m.elements[ index ];
+				return element === m.elements[ index ];
 
 			} );
 
@@ -244,9 +224,7 @@ class Matrix {
 	 */
 	elementIndex( row, column ) {
 
-		return ( this.major == Matrix.ROW )
-			? row * this.size.column + column - this.size.column - 1
-			: column * this.size.row + row - this.size.row - 1;
+		return row * this.size.column + column - this.size.column - 1;
 
 	}
 
@@ -260,18 +238,12 @@ class Matrix {
 
 		let sizeRow = this.size.row;
 
-		return ( this.major == Matrix.ROW )
-			? this.elements.slice(
+		return this.elements.slice(
 
-				row * this.size.column - this.size.column,
-				row * this.size.column
+			row * this.size.column - this.size.column,
+			row * this.size.column
 
-			)
-			: this.elements.filter( function ( element, index ) {
-
-				return ( index - row + 1 ) % sizeRow === 0;
-
-			} );
+		);
 
 	}
 
@@ -285,18 +257,11 @@ class Matrix {
 
 		let sizeColumn = this.size.column;
 
-		return ( this.major == Matrix.ROW )
-			? this.elements.filter( function ( element, index ) {
+		return this.elements.filter( function ( element, index ) {
 
-				return ( index - column + 1 ) % sizeColumn === 0;
+			return ( index - column + 1 ) % sizeColumn === 0;
 
-			} )
-			: this.elements.slice(
-
-				column * this.size.row - this.size.row,
-				column * this.size.row
-
-			);
+		} );
 
 	}
 
@@ -370,29 +335,16 @@ class Matrix {
 	}
 
 	/**
-     * (mutable) Transpose this matrix in place and return the tranposed matrix
-     */
+	 * (mutable) Transpose this matrix in place and return the tranposed matrix
+	 */
 	transpose() {
 
 		let org = this.clone();
 		this.elements = new Array();
 
-		switch ( this.major ) {
+		for ( let column = 0; column < org.size.column; column ++ ) {
 
-			case Matrix.ROW:
-				for ( let column = 0; column < org.size.column; column ++ ) {
-
-					this.elements = this.elements.concat( org.column( column + 1 ) );
-
-				}
-				break;
-			case Matrix.COLUMN:
-				for ( let row = 0; row < org.size.column; row ++ ) {
-
-					this.elements = this.elements.concat( org.column( row + 1 ) );
-
-				}
-				break;
+			this.elements = this.elements.concat( org.column( column + 1 ) );
 
 		}
 
@@ -402,14 +354,14 @@ class Matrix {
 	}
 
 	/**
-     * (mutable) Multiply this matrix by scalar *s* and return the result
+	 * (mutable) Multiply this matrix by scalar *s* and return the result
 	 *
 	 * Multiplying a matrix by a scalar means multiplying every element in that
 	 * matrix by the scalar
-     *
-     * @param {number} s The scalar to multiply this matrix by
-     * @return {object} The result of the multiplication
-     */
+	 *
+	 * @param {number} s The scalar to multiply this matrix by
+	 * @return {object} The result of the multiplication
+	 */
 	multiplyScalar( s ) {
 
 		this.elements = this.elements.map( element => element * s ).slice();
@@ -418,10 +370,10 @@ class Matrix {
 	}
 
 	/**
-     * (mutable) Multiply this matrix by -1 and return the result
-     *
-     * @return {object} The result of the multiplication
-     */
+	 * (mutable) Multiply this matrix by -1 and return the result
+	 *
+	 * @return {object} The result of the multiplication
+	 */
 	negate() {
 
 		return this.multiplyScalar( - 1 );
@@ -482,4 +434,8 @@ class Matrix {
 
 }
 
-export { linearCombination, Matrix };
+class AugmentedMatrix {
+
+}
+
+export { linearCombination, Matrix, AugmentedMatrix };
