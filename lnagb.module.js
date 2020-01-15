@@ -7,6 +7,27 @@
  * @license https://unlicense.org/
  */
 
+/*
+ * DEVELOPER NOTES
+ *
+ * o This is a JavaScript module, which means it has to be imported using the
+ *   keyword 'import'
+ * o For shorter and concise code, many parameters and variables are named after
+ *   single letters, specifically...
+ *   - i : Index of an element in a JavaScript array
+ *   - o : A JavaScript object
+ *   - a : A JavaScript array
+ *   - e : A JavaScript array element
+ *   - m : A Matrix class's instance
+ *   - r : (matrix) A row's position
+ *   - c : (matrix) A column's position
+ *   - a, b : A pair of arbitrary scalar
+ *   - p, q : A pair of arbitrary matrices
+ * o Matrix class:
+ *   - Row-major ordering is used, column-major ordering is not supported
+ *   - Positions of rows and columns are 1-indexed
+ */
+
 /**
  * Extension of the Number class: Create a loop that runs from 0 to this number
  * (exclusive), executing a given function every iteration
@@ -20,6 +41,23 @@ Number.prototype.toLoop = function ( userDefinedFunction ) {
 		userDefinedFunction( i );
 
 	}
+
+};
+
+/**
+ * Extension of the Array class: Check if this array is the same as array *a*
+ *
+ * Two arrays are the same when...
+ *   o they have the same number of elements; and
+ *   o every element of this array is strictly the same as the element of the
+ *     other array at the same index
+ *
+ * @param {object} a The array to compare this array against
+ * @return {boolean} true if the two arrays are the same, false otherwise
+ */
+Array.prototype.sameAs = function ( a ) {
+
+	return this.length === a.length && this.every( ( e, i ) => e === a[ i ] );
 
 };
 
@@ -50,7 +88,66 @@ let linearCombination = function ( p, q ) {
  */
 class Matrix {
 
-	// Class Static Properties / Methods
+	// CONSTRUCTOR
+
+	/**
+	 * Constructor of the Matrix class, used to create matrices' instances
+	 *
+	 * The first 2 parameters set the size of the matrix, the rest of the
+	 * parameters are perceived as elements of the new matrix given in ROW-MAJOR
+	 * order. Only the first 2 parameters are required.
+	 *
+	 * @param {number} row The number of rows for the new matrix
+	 * @param {number} column The number of columns for the new matrix
+	 */
+	constructor( row, column ) {
+
+		/*
+		 * These are the properties that every Matrix instance has.
+		 *
+		 * .name: A string that is set to "Matrix" and should not be changed
+		 * .size.row: The number of rows in this matrix
+		 * .size.column: The number of columns in this matrix
+		 * .elements: Row-major-ordered array of elements in this matrix
+		 */
+
+		this.name = "Matrix";
+		this.size = {
+			row,
+			column,
+		};
+		this.elements = Array.from( arguments ).slice( 2 );
+
+	}
+
+	// STATIC PROPERTIES / METHODS
+
+	/**
+	 * Check if object *o* is a valid Matrix instance and return true if it is
+	 *
+	 * Note that methods inside the Matrix class do not check if their
+	 * parameters are valid (including matrices)
+	 *
+	 * Criteria for being "valid":
+	 *   o The constructor is Matrix
+	 *   o Has the 'name' property and it is set to the string "Matrix"
+	 *   o Has the 'size' property that has
+	 *     o the 'row' property being a positive integer
+	 *     o the 'column' property also being a positive integer
+	 *   o Has the 'elements' property and it is a JavaScript array of numbers
+	 *     and the number of elements must equal to the product of .size.row and
+	 *     .size.column
+	 *
+	 * @param {object} o The object to check
+	 * @return {boolean} true if *o* is a Matrix instance, false otherwise
+	 */
+	static isMatrix( o ) {
+
+		return o.constructor.name === "Matrix" && o.name === "Matrix"
+			&& o.elements.every( ( e ) => Number.isFinite( e ) )
+			&& o.elements.length === o.size.row * o.size.column;
+
+	}
 
 	/**
 	 * Create and return a zero matrix
@@ -66,7 +163,7 @@ class Matrix {
 		let zero = new Matrix( row, column );
 
 		zero.elements = new Array();
-		zero.numberOfElements.toLoop( function () {
+		zero.numberOfElements().toLoop( function () {
 
 			zero.elements.push( 0 );
 
@@ -101,55 +198,14 @@ class Matrix {
 
 	}
 
-	/**
-	 * Constructor of the Matrix class, used to create matrices' instances
-	 *
-	 * The first 2 parameters set the size of the matrix, the rest of the
-	 * parameters are perceived as elements of the new matrix given in ROW-MAJOR
-	 * order. Only the first 2 parameters are required.
-	 *
-	 * @param {number} row The number of rows for the new matrix
-	 * @param {number} column The number of columns for the new matrix
-	 */
-	constructor( row, column ) {
-
-		this.name = "Matrix";
-		this.size = {
-			row,
-			column,
-		}; // The size of the matrix
-		this.numberOfElements = this.size.row * this.size.column; // The number of elements in this matrix
-		this.elements = Array.from( arguments ).slice( 2 ); // The array that contains the elements of the matrix
-
-	}
-
-	// Class Methods
+	// METHODS
 
 	/**
-	 * Copy all properties of a given Matrix instance into this matrix instance
+	 * Make this matrix the same as matrix *m*
 	 *
 	 * @param {object} m The Matrix instance to copy from
 	 */
 	copy( m ) {
-
-		this.name = m.name;
-		this.size.row = m.size.row;
-		this.size.column = m.size.column;
-		this.numberOfElements = m.numberOfElements;
-		this.major = m.major;
-		this.elements = m.elements.slice();
-
-	}
-
-	/**
-	 * Mathematically speaking, make this matrix the same as matrix *m*
-	 *
-	 * This means the .size and .elements attributes are copied, but other
-	 * properties like .major remain intact
-	 *
-	 * @param {object} m The Matrix instance to copy from
-	 */
-	shallowCopy( m ) {
 
 		this.size.row = m.size.row;
 		this.size.column = m.size.column;
@@ -170,6 +226,15 @@ class Matrix {
 	}
 
 	/**
+	 * Compute and return the number of elements in this matrix
+	 */
+	numberOfElements() {
+
+		return this.size.row * this.size.column;
+
+	}
+
+	/**
 	 * Check if this matrix has the same size as *m* and return true if it does
 	 *
 	 * @param {object} m The matrix to check the size of this matrix against
@@ -184,84 +249,72 @@ class Matrix {
 	/**
 	 * Return true if this matrix and the given matrix *m* are equal
 	 *
-	 * Being "equal" here is mathematical; this function does not check
-	 * properties like .major
-	 *
 	 * @param {object} m The matrix to compare this matrix to
 	 * @return {boolean} true if the two matrices are the same, false otherwise
 	 */
 	equals( m ) {
 
-		return this.sameSize( m )
-			&& this.elements.every( function ( element, index ) {
-
-				return element === m.elements[ index ];
-
-			} );
+		return this.sameSize( m ) && this.elements.sameAs( m.elements );
 
 	}
 
 	/**
-	 * Access the element at the given position in this matrix
+	 * Return the element in row *r* and column *c* in this matrix
 	 *
-	 * @param {number} row The row that contains the element (1-indexed)
-	 * @param {number} column The column that contains the element (1-indexed)
-	 * @return {number} The element in row *row* and column *column*
+	 * @param {number} r The row that contains the element (1-indexed)
+	 * @param {number} c The column that contains the element (1-indexed)
+	 * @return {number} The element in row *r* and column *c*
 	 */
-	element( row, column ) {
+	element( r, c ) {
 
-		return this.elements[ this.elementIndex( row, column ) ];
+		return this.elements[ this.elementIndex( r, c ) ];
 
 	}
 
 	/**
-	 * Similar to element() but return the index of the element within .elements
-	 * instead of the element itself
+	 * Return the 0-indexed position of the element in row *r* and column *c*
+	 * within .elements
 	 *
-	 * @param {number} row The row that contains the element (1-indexed)
-	 * @param {number} column The column that contains the element (1-indexed)
-	 * @return {number} The index of the element in row *row* and column *column*
+	 * @param {number} r The row that contains the element (1-indexed)
+	 * @param {number} c The column that contains the element (1-indexed)
+	 * @return {number} The index of the element in row *r* and column *c*
 	 */
-	elementIndex( row, column ) {
+	elementIndex( r, c ) {
 
-		return row * this.size.column + column - this.size.column - 1;
+		return r * this.size.column + c - this.size.column - 1;
 
 	}
 
 	/**
-	 * Get a row in this matrix as an array
+	 * Return a row in this matrix as a JavaScript array
 	 *
-	 * @param {number} row The position of the row (1-indexed, top-to-bottom)
+	 * @param {number} r The position of the row (1-indexed, top-to-bottom)
 	 * @return {object} The array that contains the elements in the specified row
 	 */
-	row( row ) {
-
-		let sizeRow = this.size.row;
+	row( r ) {
 
 		return this.elements.slice(
 
-			row * this.size.column - this.size.column,
-			row * this.size.column
+			r * this.size.column - this.size.column,
+			r * this.size.column
 
 		);
 
 	}
 
 	/**
-	 * Get a column in this matrix as an array
+	 * Return a column in this matrix as a JavaScript array
 	 *
-	 * @param {number} column The position of the column (1-indexed, left-to-right)
+	 * @param {number} c The position of the column (1-indexed, left-to-right)
 	 * @return {object} The array that contains the elements in the specified column
 	 */
-	column( column ) {
+	column( c ) {
 
-		let sizeColumn = this.size.column;
+		return this.elements.filter( function ( e, i ) {
 
-		return this.elements.filter( function ( element, index ) {
+			return ( i - c + 1 ) % this.size.column === 0;
 
-			return ( index - column + 1 ) % sizeColumn === 0;
-
-		} );
+		}, this );
 
 	}
 
@@ -269,29 +322,29 @@ class Matrix {
 	 * Return the diagonal in this matrix that contains the element in the
 	 * specified row and column
 	 *
-	 * @param {number} row The row that contains the element (1-indexed)
-	 * @param {number} column The column that contains the element (1-indexed)
+	 * @param {number} r The row that contains the element (1-indexed)
+	 * @param {number} c The column that contains the element (1-indexed)
 	 * @return {object} The diagonal (as an array) that contains the element
 	 */
-	diagonal( row, column ) {
+	diagonal( r, c ) {
 
 		let diagonal = new Array();
 
 		// Travel to where the first element of the diagonal is
-		while ( row > 1 && column > 1 ) {
+		while ( r > 1 && c > 1 ) {
 
-			row --;
-			column --;
+			r --;
+			c --;
 
 		}
 
 		// Iterate through the diagonal, increasing *row* and *column* by one
 		// at each iteration since that is the pattern of elements in diagonals
-		while ( row <= this.size.row && column <= this.size.column ) {
+		while ( r <= this.size.row && c <= this.size.column ) {
 
-			diagonal.push( this.element( row, column ) );
-			row ++;
-			column ++;
+			diagonal.push( this.element( r, c ) );
+			r ++;
+			c ++;
 
 		}
 
@@ -325,26 +378,16 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Safely switch this matrix's ordering mode to row-major if it
-	 * is column-major and vice-versa
-	 */
-	majorSwap() {
-
-		this.transpose().sizeSwap();
-
-	}
-
-	/**
-	 * (mutable) Transpose this matrix in place and return the tranposed matrix
+	 * (mutable) Transpose this matrix in place and return this matrix
 	 */
 	transpose() {
 
 		let org = this.clone();
 		this.elements = new Array();
 
-		for ( let column = 0; column < org.size.column; column ++ ) {
+		for ( let c = 1; c < org.size.column + 1; c ++ ) {
 
-			this.elements = this.elements.concat( org.column( column + 1 ) );
+			this.elements = this.elements.concat( org.column( c ) );
 
 		}
 
@@ -354,7 +397,7 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Multiply this matrix by scalar *s* and return the result
+	 * (mutable) Multiply this matrix by scalar *s* and return this matrix
 	 *
 	 * Multiplying a matrix by a scalar means multiplying every element in that
 	 * matrix by the scalar
@@ -364,7 +407,7 @@ class Matrix {
 	 */
 	multiplyScalar( s ) {
 
-		this.elements = this.elements.map( element => element * s ).slice();
+		this.elements = this.elements.map( e => e * s ).slice();
 		return this;
 
 	}
@@ -394,11 +437,10 @@ class Matrix {
 		let mClone = m.clone();
 
 		if ( ! this.sameSize( m ) ) return this;
-		if ( this.major !== m.major ) mClone.majorSwap();
 
 		this.elements = this.elements.map(
 
-			( element, index ) => element += mClone.elements[ index ]
+			( e, i ) => e += mClone.elements[ i ]
 
 		);
 
@@ -427,8 +469,6 @@ class Matrix {
 	 *
 	 */
 	multiply( m ) {
-
-
 
 	}
 
