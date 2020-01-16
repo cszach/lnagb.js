@@ -66,12 +66,12 @@ Array.prototype.sameAs = function ( a ) {
  * Compute and return the result of the linear combination of *p* and *q*,
  * two sequences of numbers
  *
- * The sequences must have the same number of numbers
+ * The sequences must have the same number of numbers.
  *
- * This is useful in multiplying matrices
+ * This is useful in multiplying matrices.
  *
- * @param {object} p First sequence of numbers as a JS array
- * @param {object} q Second sequence of numbers as a JS array
+ * @param {object} p First sequence of numbers (as a JS array)
+ * @param {object} q Second sequence of numbers (as a JS array)
  */
 let linearCombination = function ( p, q ) {
 
@@ -110,6 +110,9 @@ class Matrix {
 		 * .size.row: The number of rows in this matrix
 		 * .size.column: The number of columns in this matrix
 		 * .elements: Row-major-ordered array of elements in this matrix
+		 *
+		 * On the user-end, all of these properties should not be changed
+		 * directly, but using methods.
 		 */
 
 		this.name = "Matrix";
@@ -127,7 +130,7 @@ class Matrix {
 	 * Check if object *o* is a valid Matrix instance and return true if it is
 	 *
 	 * Note that methods inside the Matrix class do not check if their
-	 * parameters are valid (including matrices)
+	 * parameters are valid (including matrices).
 	 *
 	 * Criteria for being "valid":
 	 *   o The constructor is Matrix
@@ -153,7 +156,7 @@ class Matrix {
 	/**
 	 * Create and return a zero matrix
 	 *
-	 * A zero matrix is a matrix with all of its elements being 0
+	 * A zero matrix is a matrix with all of its elements being 0.
 	 *
 	 * @param {number} row The number of rows for the zero matrix
 	 * @param {number} column The number of columns for the zero matrix
@@ -257,6 +260,8 @@ class Matrix {
 
 	/**
 	 * Create and return a clone of this matrix instance
+	 *
+	 * @return {object} A clone of this matrix
 	 */
 	clone() {
 
@@ -269,6 +274,8 @@ class Matrix {
 
 	/**
 	 * Compute and return the number of elements in this matrix
+	 *
+	 * @return {number} The number of elements in this matrix
 	 */
 	numberOfElements() {
 
@@ -319,7 +326,7 @@ class Matrix {
 	 *
 	 * @param {number} r The row that contains the element (1-indexed)
 	 * @param {number} c The column that contains the element (1-indexed)
-	 * @return {number} The index of the element in row *r* and column *c*
+	 * @return {number} The position of the element in .elements (0-indexed)
 	 */
 	elementIndex( r, c ) {
 
@@ -330,8 +337,8 @@ class Matrix {
 	/**
 	 * Return a row in this matrix as a JavaScript array
 	 *
-	 * @param {number} r The position of the row (1-indexed, top-to-bottom)
-	 * @return {object} The array that contains the elements in the specified row
+	 * @param {number} r The position of the row (1-indexed)
+	 * @return {object} The array that contains the elements in the row
 	 */
 	row( r ) {
 
@@ -347,8 +354,8 @@ class Matrix {
 	/**
 	 * Return a column in this matrix as a JavaScript array
 	 *
-	 * @param {number} c The position of the column (1-indexed, left-to-right)
-	 * @return {object} The array that contains the elements in the specified column
+	 * @param {number} c The position of the column (1-indexed)
+	 * @return {object} The array that contains the elements in the column
 	 */
 	column( c ) {
 
@@ -361,8 +368,8 @@ class Matrix {
 	}
 
 	/**
-	 * Return the diagonal in this matrix that contains the element in the
-	 * specified row and column
+	 * Return the diagonal in this matrix that contains the element in row *r*
+	 * and column *c*
 	 *
 	 * @param {number} r The row that contains the element (1-indexed)
 	 * @param {number} c The column that contains the element (1-indexed)
@@ -398,7 +405,7 @@ class Matrix {
 	 * Return the main diagonal of this matrix
 	 *
 	 * The main diagonal of a matrix is the diagonal that contains the element
-	 * at row 1 and column 1 of that matrix
+	 * at row 1 and column 1 of that matrix.
 	 *
 	 * @return {object} The main diagonal (as an array) of this matrix
 	 */
@@ -442,10 +449,10 @@ class Matrix {
 	 * (mutable) Multiply this matrix by scalar *s* and return this matrix
 	 *
 	 * Multiplying a matrix by a scalar means multiplying every element in that
-	 * matrix by the scalar
+	 * matrix by the scalar.
 	 *
 	 * @param {number} s The scalar to multiply this matrix by
-	 * @return {object} The result of the multiplication
+	 * @return {object} This matrix
 	 */
 	multiplyScalar( s ) {
 
@@ -457,7 +464,7 @@ class Matrix {
 	/**
 	 * (mutable) Multiply this matrix by -1 and return the result
 	 *
-	 * @return {object} The result of the multiplication
+	 * @return {object} This matrix
 	 */
 	negate() {
 
@@ -466,38 +473,38 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Add *m* to this matrix and return the result
+	 * (mutable) Add *m* to this matrix and return this matrix
 	 *
-	 * If this matrix and *m* aren't of the same size, perform no addition and
-	 * simply return the original matrix
+	 * If this matrix and *m* aren't of the same size, perform no addition.
 	 *
 	 * @param {object} matrix The matrix to add to this matrix
-	 * @return {object} The result of the addition
+	 * @return {object} This matrix
 	 */
 	add( m ) {
 
 		let mClone = m.clone();
 
-		if ( ! this.sameSize( m ) ) return this;
+		if ( this.sameSize( m ) ) {
 
-		this.elements = this.elements.map(
+			this.elements = this.elements.map(
 
-			( e, i ) => e += mClone.elements[ i ]
+				( e, i ) => e += mClone.elements[ i ]
 
-		);
+			);
+
+		}
 
 		return this;
 
 	}
 
 	/**
-	 * (mutable) Substract *m* from this matrix and return the result
+	 * (mutable) Substract *m* from this matrix and return this matrix
 	 *
-	 * If this matrix and *m* aren't of the same size, perform no substraction
-	 * and simply return the original matrix
+	 * If this matrix and *m* aren't of the same size, perform no substraction.
 	 *
 	 * @param {object} m The matrix to subtract this matrix to
-	 * @return {object} The result of the subtraction
+	 * @return {object} This matrix
 	 */
 	subtract( m ) {
 
@@ -507,6 +514,9 @@ class Matrix {
 
 	/**
 	 * (mutable) Post-multiply this matrix by *m* and return this matrix
+	 *
+	 * @param {object} m The matrix to post-multiply this matrix to
+	 * @return {object} This matrix
 	 */
 	multiply( m ) {
 
@@ -517,6 +527,9 @@ class Matrix {
 
 	/**
 	 * (mutable) Pre-multiply this matrix by *m* and return this matrix
+	 *
+	 * @param {object} m The matrix to pre-multiply this matrix to
+	 * @return {object} This matrix
 	 */
 	premultiply( m ) {
 
