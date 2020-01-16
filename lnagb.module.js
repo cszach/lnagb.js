@@ -22,21 +22,22 @@
  *   - r : (matrix) A row's position
  *   - c : (matrix) A column's position
  *   - a, b : A pair of arbitrary scalar
- *   - p, q : A pair of arbitrary matrices
+ *   - m, n : A pair of arbitrary matrices
+ *   - p, q : A pair of arbitrary number sequences
  * o Matrix class:
  *   - Row-major ordering is used, column-major ordering is not supported
  *   - Positions of rows and columns are 1-indexed
  */
 
 /**
- * Extension of the Number class: Create a loop that runs from 0 to this number
- * (exclusive), executing a given function every iteration
+ * Extension of the Number class: Create a loop that runs from 1 to this number
+ * (inclusive), executing a given function every iteration
  *
  * @param {function} userDefinedFunction The function to run for every iteration
  */
 Number.prototype.toLoop = function ( userDefinedFunction ) {
 
-	for ( let i = 0; i < this; i ++ ) {
+	for ( let i = 1; i < this + 1; i ++ ) {
 
 		userDefinedFunction( i );
 
@@ -190,11 +191,52 @@ class Matrix {
 
 			// Make the element at row i and column i (i.e. on the main
 			// diagonal) one
-			identity.elements[ identity.elementIndex( i + 1, i + 1 ) ] = 1;
+			identity.elements[ identity.elementIndex( i, i ) ] = 1;
 
 		} );
 
 		return identity.clone();
+
+	}
+
+	/**
+	 * Multiply matrices *m* and *n* in that order and return the result
+	 *
+	 * Multiplying 2 matrices require that the number of columns in the matrix
+	 * on the left must equal to the number of rows in the matrix on the right.
+	 * If *m* and *n* are not valid for their multiplication, return a clone of
+	 * *m*.
+	 *
+	 * @param {object} m The matrix on the left of the multiplication
+	 * @param {object} n The matrix on the right of the multiplication
+	 * @return {object} The result of the multiplication
+	 */
+	static multiplyMatrices( m, n ) {
+
+		let result = m.clone();
+
+		if ( m.size.column === n.size.row ) {
+
+			result.size.column = n.size.column;
+			result.elements = new Array();
+
+			m.size.row.toLoop( function ( r ) {
+
+				n.size.column.toLoop( function ( c ) {
+
+					result.elements.push(
+
+						linearCombination( m.row( r ), n.column( c ) )
+
+					);
+
+				} );
+
+			} );
+
+		}
+
+		return result;
 
 	}
 
@@ -464,11 +506,22 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Post-multiply this matrix by *m* and return the result
-	 *
-	 *
+	 * (mutable) Post-multiply this matrix by *m* and return this matrix
 	 */
 	multiply( m ) {
+
+		this.copy( Matrix.multiplyMatrices( this, m ) );
+		return this;
+
+	}
+
+	/**
+	 * (mutable) Pre-multiply this matrix by *m* and return this matrix
+	 */
+	premultiply( m ) {
+
+		this.copy( Matrix.multiplyMatrices( m, this ) );
+		return this;
 
 	}
 
