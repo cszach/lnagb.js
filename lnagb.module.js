@@ -80,7 +80,32 @@ let linearCombination = function ( p, q ) {
 };
 
 /**
+ * Class for a linear equation in mathematics
  *
+ * A linear equation has the form ax + by + ... + cz = d where:
+ *   o a, b, ..., c are the coefficients
+ *   o x, y, ..., z are the variables
+ *   o d is the constant term
+ *
+ * Every variable on the left side of the linear equation is accompanied with a
+ * coefficient. Coefficients are known values. This governs how the
+ * LinearEquation class is designed. Specifically, an instance of this class
+ * contains these information:
+ *   o The coefficients (stored in an array); and
+ *   o The constant term
+ */
+class LinearEquation {
+
+	constructor( coefficients, constant ) {
+
+		this.coefficients = coefficients.slice();
+		this.constant = constant;
+
+	}
+
+}
+
+/**
  * Class for a matrix of any type in Linear Algebra (excluding augmented matrix)
  *
  * Parameters are required to create a new matrix using the class's constructor.
@@ -598,4 +623,4 @@ class AugmentedMatrix {
 
 }
 
-export { linearCombination, Matrix, AugmentedMatrix };
+export { linearCombination, LinearEquation, Matrix, AugmentedMatrix };
