@@ -676,6 +676,9 @@ class Matrix {
 
 }
 
+/**
+ * Class for augmented matrices
+ */
 class AugmentedMatrix {
 
 	// CONSTRUCTOR
@@ -701,7 +704,10 @@ class AugmentedMatrix {
 		 */
 
 		this.name = "AugmentedMatrix";
-		this.elements = new Array( m, n );
+		this.elements = new Array( 2 );
+
+		this.elements[ 0 ] = m.clone();
+		this.elements[ 1 ] = n.clone();
 
 	}
 
