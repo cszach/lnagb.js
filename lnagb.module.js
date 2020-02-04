@@ -23,6 +23,8 @@
  *   - c : (matrix) A column's position
  *   - a, b : A pair of arbitrary scalar
  *   - m, n : A pair of arbitrary matrices
+ *   - r, s: A pair of arbitrary rows in a matrix
+ *   - c, d: A pair of arbitrary columns in a matrix
  *   - p, q : A pair of arbitrary number sequences
  * o Matrix class:
  *   - Row-major ordering is used, column-major ordering is not supported
@@ -98,6 +100,7 @@ class LinearEquation {
 
 	constructor( coefficients, constant ) {
 
+		this.name = "LinearEquation";
 		this.coefficients = coefficients.slice();
 		this.constant = constant;
 
@@ -448,6 +451,114 @@ class Matrix {
 		this.size.row += this.size.column;
 		this.size.column = this.size.row - this.size.column;
 		this.size.row -= this.size.column;
+
+	}
+
+	// Elementary row operations
+
+	/**
+	 * ( mutable ) Intercharge row r with row s in place and return this matrix
+	 *
+	 * @param {number} r (1-indexed)
+	 * @param {number} s (1-indexed)
+	 * @return {object} This matrix
+	 */
+	interchargeRows( r, s ) {
+
+		if ( r > this.size.row || r < 1 || s > this.size.row || s < 1 ) {
+
+			console.error( "Input row number is invalid" );
+			return this;
+
+		}
+
+		let self = this; // To use in a callback function later
+
+		// Save the original rows
+
+		let rowR = this.row( r );
+		let rowS = this.row( s );
+
+		// Intercharge two rows by recalling elements from the original rows
+
+		this.size.column.toLoop( function ( i ) {
+
+			self.elements[ self.elementIndex( r, i ) ] = rowS[ i - 1 ];
+			self.elements[ self.elementIndex( s, i ) ] = rowR[ i - 1 ];
+
+		} );
+
+		return this;
+
+	}
+
+	/**
+	 * (mutable) Multiply row r by a scalar a in place and return this matrix
+	 *
+	 * @param {number} r The row to multiply the scalar by (1-indexed)
+	 * @param {number} a How much the row is multiplied by
+	 * @return {object} This matrix
+	 */
+	multiplyRowByScalar( r, a ) {
+
+		if ( r > this.size.row || r < 1 ) {
+
+			console.error( "Input row number is invalid" );
+			return this;
+
+		}
+
+		if ( a === 0 ) {
+
+			console.error( "Input scalar must not be zero" );
+			return this;
+
+		}
+
+		let self = this; // To use in a callback function later
+		let elementIndex; // Cache
+
+		this.size.column.toLoop( function ( i ) {
+
+			elementIndex = self.elementIndex( r, i );
+			self.elements[ elementIndex ] = self.elements[ elementIndex ] * a;
+
+		} );
+
+		return this;
+
+	}
+
+	/**
+	 * (mutable) Add a times row s to row r in place and return this matrix
+	 *
+	 * @param {number} r The row that gets added (1-indexed)
+	 * @param {number} s The row to multiply the scalar by and then add to row r
+	 * @param {number} a The scalar to multiply s by
+	 */
+	addRowTimesScalarToRow( r, s, a = 1 ) {
+
+		if ( r > this.size.row || r < 1 || s > this.size.row || s < 1 ) {
+
+			console.error( "Input row number is invalid" );
+			return this;
+
+		}
+
+		let self = this; // To use in a callback function later
+		let rowS = this.row( s );
+		let elementIndex;
+
+		this.size.column.toLoop( function ( i ) {
+
+			elementIndex = self.elementIndex( r, i );
+			self.elements[
+				elementIndex
+			] = self.elements[ elementIndex ] + rowS[ i - 1 ] * a;
+
+		} );
+
+		return this;
 
 	}
 
