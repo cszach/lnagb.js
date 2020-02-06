@@ -1,112 +1,9 @@
+import { loop, sameArrays } from '../utils.js';
+import { linearCombination } from '../math/Core.js';
+
 /**
- * lnagb.module.js
- *
- * Linear Algebra operations implemented in JavaScript
- *
  * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
- * @license https://unlicense.org/
  */
-
-/*
- * DEVELOPER NOTES
- *
- * o This is a JavaScript module, which means it has to be imported using the
- *   keyword 'import'
- * o For shorter and concise code, many parameters and variables are named after
- *   single letters, specifically...
- *   - i : Index of an element in a JavaScript array
- *   - o : A JavaScript object
- *   - a : A JavaScript array
- *   - e : A JavaScript array element
- *   - m : A Matrix class's instance
- *   - r : (matrix) A row's position
- *   - c : (matrix) A column's position
- *   - a, b : A pair of arbitrary scalar
- *   - m, n : A pair of arbitrary matrices
- *   - r, s: A pair of arbitrary rows in a matrix
- *   - c, d: A pair of arbitrary columns in a matrix
- *   - p, q : A pair of arbitrary number sequences
- * o Matrix class:
- *   - Row-major ordering is used, column-major ordering is not supported
- *   - Positions of rows and columns are 1-indexed
- */
-
-/**
- * Extension of the Number class: Create a loop that runs from 1 to this number
- * (inclusive), executing a given function every iteration
- *
- * @param {function} userDefinedFunction The function to run for every iteration
- */
-Number.prototype.toLoop = function ( userDefinedFunction ) {
-
-	for ( let i = 1; i < this + 1; i ++ ) {
-
-		userDefinedFunction( i );
-
-	}
-
-};
-
-/**
- * Extension of the Array class: Check if this array is the same as array *a*
- *
- * Two arrays are the same when...
- *   o they have the same number of elements; and
- *   o every element of this array is strictly the same as the element of the
- *     other array at the same index
- *
- * @param {object} a The array to compare this array against
- * @return {boolean} true if the two arrays are the same, false otherwise
- */
-Array.prototype.sameAs = function ( a ) {
-
-	return this.length === a.length && this.every( ( e, i ) => e === a[ i ] );
-
-};
-
-/**
- * Compute and return the result of the linear combination of *p* and *q*,
- * two sequences of numbers
- *
- * The sequences must have the same number of numbers.
- *
- * This is useful in multiplying matrices.
- *
- * @param {object} p First sequence of numbers (as a JS array)
- * @param {object} q Second sequence of numbers (as a JS array)
- */
-let linearCombination = function ( p, q ) {
-
-	return p.reduce( ( result, v, i ) => result + p[ i ] * q[ i ], 0 );
-
-};
-
-/**
- * Class for a linear equation in mathematics
- *
- * A linear equation has the form ax + by + ... + cz = d where:
- *   o a, b, ..., c are the coefficients
- *   o x, y, ..., z are the variables
- *   o d is the constant term
- *
- * Every variable on the left side of the linear equation is accompanied with a
- * coefficient. Coefficients are known values. This governs how the
- * LinearEquation class is designed. Specifically, an instance of this class
- * contains these information:
- *   o The coefficients (stored in an array); and
- *   o The constant term
- */
-class LinearEquation {
-
-	constructor( coefficients, constant ) {
-
-		this.name = "LinearEquation";
-		this.coefficients = coefficients.slice();
-		this.constant = constant;
-
-	}
-
-}
 
 /**
  * Class for a matrix of any type in Linear Algebra (excluding augmented matrix)
@@ -195,7 +92,7 @@ class Matrix {
 		let zero = new Matrix( row, column );
 
 		zero.elements = new Array();
-		zero.numberOfElements().toLoop( function () {
+		loop( zero.numberOfElements(), function () {
 
 			zero.elements.push( 0 );
 
@@ -218,7 +115,7 @@ class Matrix {
 
 		let identity = Matrix.ZeroMatrix( size, size );
 
-		size.toLoop( function ( i ) {
+		loop( size, function ( i ) {
 
 			// Make the element at row i and column i (i.e. on the main
 			// diagonal) one
@@ -251,19 +148,21 @@ class Matrix {
 			result.size.column = n.size.column;
 			result.elements = new Array();
 
-			m.size.row.toLoop( function ( r ) {
+			loop( m.size.row, function ( r ) {
 
-				n.size.column.toLoop( function ( c ) {
+				loop( n.size.column, function ( c ) {
 
 					result.elements.push(
-
 						linearCombination( m.row( r ), n.column( c ) )
-
 					);
 
 				} );
 
 			} );
+
+		} else {
+
+			console.warn( "Input matrices cannot be multiplied" );
 
 		}
 
@@ -331,7 +230,7 @@ class Matrix {
 	 */
 	equals( m ) {
 
-		return this.sameSize( m ) && this.elements.sameAs( m.elements );
+		return this.sameSize( m ) && sameArrays( this.elements, m.elements );
 
 	}
 
@@ -352,13 +251,23 @@ class Matrix {
 	 * Return the 0-indexed position of the element in row *r* and column *c*
 	 * within .elements
 	 *
+	 * If r and c are not within the dimensions of this matrix, return -1.
+	 *
 	 * @param {number} r The row that contains the element (1-indexed)
 	 * @param {number} c The column that contains the element (1-indexed)
 	 * @return {number} The position of the element in .elements (0-indexed)
 	 */
 	elementIndex( r, c ) {
 
-		return r * this.size.column + c - this.size.column - 1;
+		if ( 1 <= r && r <= this.size.row && 1 <= c && c <= this.size.column ) {
+
+			return r * this.size.column + c - this.size.column - 1;
+
+		} else {
+
+			return - 1;
+
+		}
 
 	}
 
@@ -399,6 +308,9 @@ class Matrix {
 	 * Return the diagonal in this matrix that contains the element in row *r*
 	 * and column *c*
 	 *
+	 * If r and c are not within the dimensions of this matrix, return an empty
+	 * array.
+	 *
 	 * @param {number} r The row that contains the element (1-indexed)
 	 * @param {number} c The column that contains the element (1-indexed)
 	 * @return {object} The diagonal (as an array) that contains the element
@@ -407,21 +319,26 @@ class Matrix {
 
 		let diagonal = new Array();
 
-		// Travel to where the first element of the diagonal is
-		while ( r > 1 && c > 1 ) {
+		if ( 1 <= r && r <= this.size.row && 1 <= c && c <= this.size.column ) {
 
-			r --;
-			c --;
+			// Travel to where the first element of the diagonal is
+			while ( r > 1 && c > 1 ) {
 
-		}
+				r --;
+				c --;
 
-		// Iterate through the diagonal, increasing *row* and *column* by one
-		// at each iteration since that is the pattern of elements in diagonals
-		while ( r <= this.size.row && c <= this.size.column ) {
+			}
 
-			diagonal.push( this.element( r, c ) );
-			r ++;
-			c ++;
+			// Iterate through the diagonal, increasing *row* and *column* by
+			// one at each iteration since that is the pattern of elements in
+			// diagonals
+			while ( r <= this.size.row && c <= this.size.column ) {
+
+				diagonal.push( this.element( r, c ) );
+				r ++;
+				c ++;
+
+			}
 
 		}
 
@@ -472,8 +389,6 @@ class Matrix {
 
 		}
 
-		let self = this; // To use in a callback function later
-
 		// Save the original rows
 
 		let rowR = this.row( r );
@@ -481,12 +396,12 @@ class Matrix {
 
 		// Intercharge two rows by recalling elements from the original rows
 
-		this.size.column.toLoop( function ( i ) {
+		loop( this.size.column, function ( i ) {
 
-			self.elements[ self.elementIndex( r, i ) ] = rowS[ i - 1 ];
-			self.elements[ self.elementIndex( s, i ) ] = rowR[ i - 1 ];
+			this.elements[ this.elementIndex( r, i ) ] = rowS[ i - 1 ];
+			this.elements[ this.elementIndex( s, i ) ] = rowR[ i - 1 ];
 
-		} );
+		}, this );
 
 		return this;
 
@@ -515,15 +430,14 @@ class Matrix {
 
 		}
 
-		let self = this; // To use in a callback function later
 		let elementIndex; // Cache
 
-		this.size.column.toLoop( function ( i ) {
+		loop( this.size.column, function ( i ) {
 
-			elementIndex = self.elementIndex( r, i );
-			self.elements[ elementIndex ] = self.elements[ elementIndex ] * a;
+			elementIndex = this.elementIndex( r, i );
+			this.elements[ elementIndex ] = this.elements[ elementIndex ] * a;
 
-		} );
+		}, this );
 
 		return this;
 
@@ -545,18 +459,17 @@ class Matrix {
 
 		}
 
-		let self = this; // To use in a callback function later
 		let rowS = this.row( s );
 		let elementIndex;
 
-		this.size.column.toLoop( function ( i ) {
+		loop( this.size.column, function ( i ) {
 
-			elementIndex = self.elementIndex( r, i );
-			self.elements[
+			elementIndex = this.elementIndex( r, i );
+			this.elements[
 				elementIndex
-			] = self.elements[ elementIndex ] + rowS[ i - 1 ] * a;
+			] = this.elements[ elementIndex ] + rowS[ i - 1 ] * a;
 
-		} );
+		}, this );
 
 		return this;
 
@@ -676,68 +589,4 @@ class Matrix {
 
 }
 
-/**
- * Class for augmented matrices
- */
-class AugmentedMatrix {
-
-	// CONSTRUCTOR
-
-	/**
-	 * Construct an AugmentedMatrix instance
-	 *
-	 * An AugmentedMatrix instance is used to represent an augmented matrix.
-	 * An augmented matrix is a matrix obtained by appending the columns of two
-	 * matrices.
-	 *
-	 * @param {number} row The number of rows for the new augmented matrix
-	 * @param {object} m The matrix on the left side of the augmented matrix
-	 * @param {object} n The matrix on the right side of the augmented matrix
-	 */
-	constructor( row, m, n ) {
-
-		/*
-		 * These are the properties that every AugmentedMatrix instance has.
-		 *
-		 * .name: The name of this matrix, default to "AugmentedMatrix"
-		 * .elements: Array of matrices that this matrix is obtained from
-		 */
-
-		this.name = "AugmentedMatrix";
-		this.elements = new Array( 2 );
-
-		this.elements[ 0 ] = m.clone();
-		this.elements[ 1 ] = n.clone();
-
-	}
-
-	// STATIC PROPERTIES / METHODS
-
-	/**
-	 * Check if object *o* is a valid AugmentedMatrix instance
-	 *
-	 * Note that methods inside the AugmentedMatrix do not check if their
-	 * parameters are valid (including matrices).
-	 *
-	 * Criteria for being "valid":
-	 *   o The constructor is AugmentedMatrix
-	 *   o Has the 'name' property
-	 *   o Has the 'elements' property and it is a JavaScript array that...
-	 *     o has a length of 2; and
-	 *     o every element of it is a valid Matrix instance that has the same
-	 *       number of rows as the other matrix
-	 *
-	 * @param {object} o The object to check
-	 * @return {boolean} true if *o* is an AugmentedMatrix instance, false otherwise
-	 */
-	static isAugmentedMatrix( o ) {
-
-		return o.constructor.name === "AugmentedMatrix" && o.name
-			&& o.elements.every( ( e ) => Matrix.isMatrix( e ) )
-			&& o.elements[ 0 ].size.row === o.elements[ 1 ].size.row;
-
-	}
-
-}
-
-export { linearCombination, LinearEquation, Matrix, AugmentedMatrix };
+export { Matrix };
