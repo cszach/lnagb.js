@@ -3,22 +3,29 @@
  */
 
 /**
- * Class for a linear equation in mathematics
+ * Class for linear equations in mathematics.
  *
- * A linear equation has the form ax + by + ... + cz = d where:
- *   o a, b, ..., c are the coefficients
- *   o x, y, ..., z are the variables
- *   o d is the constant term
+ * A linear equation has the form *ax + by + ... + cz = d* where:
+ * - *a*, *b*, ..., *c* are the coefficients
+ * - *x*, *y*, ..., *z* are the variables
+ * - *d* is the constant term
  *
  * Every variable on the left side of the linear equation is accompanied with a
  * coefficient. Coefficients are known values. This governs how the
- * LinearEquation class is designed. Specifically, an instance of this class
+ * `LinearEquation` class is designed. Specifically, an instance of this class
  * contains these information:
- *   o The coefficients (stored in an array); and
- *   o The constant term
+ * - The coefficients (stored in an array); and
+ * - The constant term
  */
 class LinearEquation {
 
+	/**
+	 * Constructs a `LinearEquation` instance.
+	 *
+	 * @param {object} coefficients A JS array that contains the coefficients
+	 * in order
+	 * @param {number} constant The constant term of the linear equation
+	 */
 	constructor( coefficients, constant ) {
 
 		this.name = "LinearEquation";

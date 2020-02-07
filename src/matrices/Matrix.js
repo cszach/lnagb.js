@@ -6,22 +6,20 @@ import { linearCombination } from '../math/Core.js';
  */
 
 /**
- * Class for a matrix of any type in Linear Algebra (excluding augmented matrix)
+ * Class for matrices in Linear Algebra (excluding augmented matrices).
  *
- * Parameters are required to create a new matrix using the class's constructor.
- * The matrix can then be transformed (e.g. have its elements or its size
- * changed) via methods.
+ * A matrix is a set of numbers arranged in rows and columns.
  */
 class Matrix {
 
 	// CONSTRUCTOR
 
 	/**
-	 * Constructor of the Matrix class, used to create matrices' instances
+	 * Constructs a new `Matrix` instance.
 	 *
 	 * The first 2 parameters set the size of the matrix, the rest of the
-	 * parameters are perceived as elements of the new matrix given in ROW-MAJOR
-	 * order. Only the first 2 parameters are required.
+	 * parameters are perceived as elements of the new matrix given in
+	 * **row-major** order. Only the first 2 parameters are required.
 	 *
 	 * @param {number} row The number of rows for the new matrix
 	 * @param {number} column The number of columns for the new matrix
@@ -52,23 +50,24 @@ class Matrix {
 	// STATIC PROPERTIES / METHODS
 
 	/**
-	 * Check if object *o* is a valid Matrix instance and return true if it is
+	 * Checks if object *o* is a valid `Matrix` instance and return `true`
+	 * if it is.
 	 *
-	 * Note that methods inside the Matrix class do not check if their
+	 * Note that methods inside the `Matrix` class do not check if their
 	 * parameters are valid (including matrices).
 	 *
 	 * Criteria for being "valid":
-	 *   o The constructor is Matrix
-	 *   o Has the 'name' property
-	 *   o Has the 'size' property that has
-	 *     o the 'row' property being a positive integer
-	 *     o the 'column' property also being a positive integer
-	 *   o Has the 'elements' property and it is a JavaScript array of numbers
-	 *     and the number of elements must equal to the product of .size.row and
-	 *     .size.column
+	 * - The constructor is `Matrix`
+	 * - Has the `name` property
+	 * - Has the `size` property that has
+	 *     - the `row` property being a positive integer
+	 *     - the `column` property also being a positive integer
+	 * - Has the `elements` property and it is a JavaScript array of numbers
+	 *   and the number of elements must equal to the product of `.size.row` and
+	 *   `.size.column`
 	 *
 	 * @param {object} o The object to check
-	 * @return {boolean} true if *o* is a Matrix instance, false otherwise
+	 * @return {boolean} `true` if *o* is a `Matrix` instance, `false` otherwise
 	 */
 	static isMatrix( o ) {
 
@@ -79,7 +78,7 @@ class Matrix {
 	}
 
 	/**
-	 * Create and return a zero matrix
+	 * Creates and returns a zero matrix.
 	 *
 	 * A zero matrix is a matrix with all of its elements being 0.
 	 *
@@ -103,7 +102,7 @@ class Matrix {
 	}
 
 	/**
-	 * Create and return an identity matrix
+	 * Creates and returns an identity matrix.
 	 *
 	 * An identity matrix is a square matrix where the elements on its main
 	 * diagonal are all 1 and the rest are all 0.
@@ -128,7 +127,7 @@ class Matrix {
 	}
 
 	/**
-	 * Multiply matrices *m* and *n* in that order and return the result
+	 * Multiplies matrices *m* and *n* in that order and returns the result.
 	 *
 	 * Multiplying 2 matrices require that the number of columns in the matrix
 	 * on the left must equal to the number of rows in the matrix on the right.
@@ -173,9 +172,9 @@ class Matrix {
 	// METHODS
 
 	/**
-	 * Make this matrix the same as matrix *m*
+	 * Makes this matrix the same as matrix *m*.
 	 *
-	 * @param {object} m The Matrix instance to copy from
+	 * @param {object} m The `Matrix` instance to copy from
 	 */
 	copy( m ) {
 
@@ -186,7 +185,7 @@ class Matrix {
 	}
 
 	/**
-	 * Create and return a clone of this matrix instance
+	 * Creates and returns a clone of this matrix instance.
 	 *
 	 * @return {object} A clone of this matrix
 	 */
@@ -200,7 +199,7 @@ class Matrix {
 	}
 
 	/**
-	 * Compute and return the number of elements in this matrix
+	 * Computes and returns the number of elements in this matrix.
 	 *
 	 * @return {number} The number of elements in this matrix
 	 */
@@ -211,10 +210,11 @@ class Matrix {
 	}
 
 	/**
-	 * Check if this matrix has the same size as *m* and return true if it does
+	 * Checks if this matrix has the same size as *m*.
 	 *
 	 * @param {object} m The matrix to check the size of this matrix against
-	 * @return {boolean} true if the two matrices have the same size, false otherwise
+	 * @return {boolean} `true` if the two matrices have the same size, `false`
+	 * otherwise
 	 */
 	sameSize( m ) {
 
@@ -223,10 +223,11 @@ class Matrix {
 	}
 
 	/**
-	 * Return true if this matrix and the given matrix *m* are equal
+	 * Checks if this matrix and the given matrix *m* are equal.
 	 *
 	 * @param {object} m The matrix to compare this matrix to
-	 * @return {boolean} true if the two matrices are the same, false otherwise
+	 * @return {boolean} `true` if the two matrices are the same, `false`
+	 * otherwise
 	 */
 	equals( m ) {
 
@@ -235,7 +236,7 @@ class Matrix {
 	}
 
 	/**
-	 * Return the element in row *r* and column *c* in this matrix
+	 * Returns the element in row *r* and column *c* in this matrix.
 	 *
 	 * @param {number} r The row that contains the element (1-indexed)
 	 * @param {number} c The column that contains the element (1-indexed)
@@ -248,14 +249,14 @@ class Matrix {
 	}
 
 	/**
-	 * Return the 0-indexed position of the element in row *r* and column *c*
-	 * within .elements
+	 * Returns the 0-indexed position of the element in row *r* and column *c*
+	 * within `.elements`.
 	 *
-	 * If r and c are not within the dimensions of this matrix, return -1.
+	 * If *r* and *c* are not within the dimensions of this matrix, returns -1.
 	 *
 	 * @param {number} r The row that contains the element (1-indexed)
 	 * @param {number} c The column that contains the element (1-indexed)
-	 * @return {number} The position of the element in .elements (0-indexed)
+	 * @return {number} The position of the element in `.elements` (0-indexed)
 	 */
 	elementIndex( r, c ) {
 
@@ -272,7 +273,7 @@ class Matrix {
 	}
 
 	/**
-	 * Return a row in this matrix as a JavaScript array
+	 * Returns a row in this matrix as a JavaScript array.
 	 *
 	 * @param {number} r The position of the row (1-indexed)
 	 * @return {object} The array that contains the elements in the row
@@ -289,7 +290,7 @@ class Matrix {
 	}
 
 	/**
-	 * Return a column in this matrix as a JavaScript array
+	 * Returns a column in this matrix as a JavaScript array.
 	 *
 	 * @param {number} c The position of the column (1-indexed)
 	 * @return {object} The array that contains the elements in the column
@@ -305,11 +306,11 @@ class Matrix {
 	}
 
 	/**
-	 * Return the diagonal in this matrix that contains the element in row *r*
-	 * and column *c*
+	 * Returns the diagonal in this matrix that contains the element in row *r*
+	 * and column *c*.
 	 *
-	 * If r and c are not within the dimensions of this matrix, return an empty
-	 * array.
+	 * If *r* and *c* are not within the dimensions of this matrix, returns an
+	 * empty array.
 	 *
 	 * @param {number} r The row that contains the element (1-indexed)
 	 * @param {number} c The column that contains the element (1-indexed)
@@ -347,7 +348,7 @@ class Matrix {
 	}
 
 	/**
-	 * Return the main diagonal of this matrix
+	 * Returns the main diagonal of this matrix.
 	 *
 	 * The main diagonal of a matrix is the diagonal that contains the element
 	 * at row 1 and column 1 of that matrix.
@@ -361,7 +362,7 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Swap the values of .size.row and .size.column in this matrix
+	 * Swaps the values of `.size.row` and `.size.column` in this matrix.
 	 */
 	sizeSwap() {
 
@@ -374,10 +375,10 @@ class Matrix {
 	// Elementary row operations
 
 	/**
-	 * ( mutable ) Intercharge row r with row s in place and return this matrix
+	 * Intercharges row *r* with row *s* in place and returns this matrix.
 	 *
-	 * @param {number} r (1-indexed)
-	 * @param {number} s (1-indexed)
+	 * @param {number} r The row to intercharge with *s* (1-indexed)
+	 * @param {number} s The row to intercharge with *r* (1-indexed)
 	 * @return {object} This matrix
 	 */
 	interchargeRows( r, s ) {
@@ -408,10 +409,11 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Multiply row r by a scalar a in place and return this matrix
+	 * Multiplies row *r* by a non-zero scalar *a* in place and returns this
+	 * matrix.
 	 *
 	 * @param {number} r The row to multiply the scalar by (1-indexed)
-	 * @param {number} a How much the row is multiplied by
+	 * @param {number} a The scalar to multiply the row by
 	 * @return {object} This matrix
 	 */
 	multiplyRowByScalar( r, a ) {
@@ -444,11 +446,12 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Add a times row s to row r in place and return this matrix
+	 * Adds *a* times row *s* to row *r* in place and returns this matrix.
 	 *
 	 * @param {number} r The row that gets added (1-indexed)
-	 * @param {number} s The row to multiply the scalar by and then add to row r
-	 * @param {number} a The scalar to multiply s by
+	 * @param {number} s The row to multiply the scalar by and then add to row *r*
+	 * @param {number} a The scalar to multiply row *s* by
+	 * @return {object} This matrix
 	 */
 	addRowTimesScalarToRow( r, s, a = 1 ) {
 
@@ -476,7 +479,7 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Transpose this matrix in place and return this matrix
+	 * Transposes this matrix in place and returns this matrix.
 	 */
 	transpose() {
 
@@ -495,7 +498,7 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Multiply this matrix by scalar *s* and return this matrix
+	 * Multiplies this matrix by scalar *s* and returns this matrix.
 	 *
 	 * Multiplying a matrix by a scalar means multiplying every element in that
 	 * matrix by the scalar.
@@ -511,7 +514,7 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Multiply this matrix by -1 and return the result
+	 * Multiplies this matrix by -1 and returns this matrix.
 	 *
 	 * @return {object} This matrix
 	 */
@@ -522,7 +525,7 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Add *m* to this matrix and return this matrix
+	 * Adds *m* to this matrix and returns this matrix
 	 *
 	 * If this matrix and *m* aren't of the same size, perform no addition.
 	 *
@@ -548,7 +551,7 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Substract *m* from this matrix and return this matrix
+	 * Substracts *m* from this matrix and returns this matrix.
 	 *
 	 * If this matrix and *m* aren't of the same size, perform no substraction.
 	 *
@@ -562,7 +565,7 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Post-multiply this matrix by *m* and return this matrix
+	 * Post-multiplies this matrix by *m* and returns this matrix.
 	 *
 	 * @param {object} m The matrix to post-multiply this matrix to
 	 * @return {object} This matrix
@@ -575,7 +578,7 @@ class Matrix {
 	}
 
 	/**
-	 * (mutable) Pre-multiply this matrix by *m* and return this matrix
+	 * Pre-multiplies this matrix by *m* and returns this matrix.
 	 *
 	 * @param {object} m The matrix to pre-multiply this matrix to
 	 * @return {object} This matrix
