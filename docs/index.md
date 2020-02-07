@@ -19,7 +19,7 @@ itself and get to use `lnagb.js` as a tool to help you check your work.
 `lnagb.js` is free software. Its source code can be browsed [here][gh lnagbjs].
 
 [gh yc]: https://github.com/you-create/
-[docs]: ./lnagb.js/
+[docs]: ./docs/
 [learn]: ./learn/
 [gh lnagbjs]: https://github.com/vecma-org/lnagb.js
 
@@ -29,10 +29,10 @@ itself and get to use `lnagb.js` as a tool to help you check your work.
 
 - **[Globals](./lnagb.js/Globals)**
 - **Math**
-	- [LinearEquation](./lnagb.js/math/LinearEquation)
+	- [LinearEquation](./docs/math/LinearEquation)
 - **Matrices**
-	- [Matrix](./lnagb.js/matrices/Matrix)
-	- [AugmentedMatrix](./lnagb.js/matrices/AugmentedMatrix)
+	- [Matrix](./docs/matrices/Matrix)
+	- [AugmentedMatrix](./docs/matrices/AugmentedMatrix)
 
 ### [Learning Area][learn]
 

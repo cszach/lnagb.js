@@ -1,6 +1,14 @@
 lnagb.js
 ========
 
+[www]: https://vecma-org.github.io/lnagb.js/
+[src]: ./src/
+[lic]: ./LICENSE
+
+[**Source code**][src] &mdash; [**Website**][www] &mdash;
+[**Documentation**][docs] &mdash; [**Learning Area**][learn] &mdash;
+[**License**][lic]
+
 This repository contains Linear Algebra operations implemented in JavaScript,
 such as adding vectors, reducing matrices, matrix transformations, etc. APIs are
 named similarly to those of matrix classes in [three.js](https://threejs.org).
@@ -23,7 +31,7 @@ writing the math in the form of code as well, and you will learn a lot too.
 - [**Browse the docs**][docs]
 - [**Learn Linear Algebra**][learn] (work in progress, not yet available)
 
-[docs]: https://vecma-org.github.io/lnagb.js/lnagb.js/
+[docs]: https://vecma-org.github.io/lnagb.js/docs/
 [learn]: https://vecma-org.github.io/lnagb.js/learn/
 
 :pushpin: TODO
