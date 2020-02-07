@@ -26,10 +26,10 @@ itself and get to use `lnagb.js` as a tool to help you check your work.
 
 - [Globals](./lnagb.js/Globals)
 - Math
-	- [LinearEquation](./lnagb.js/LinearEquation)
+	- [LinearEquation](./lnagb.js/math/LinearEquation)
 - Matrices
-	- [Matrix](./lnagb.js/Matrix)
-	- [AugmentedMatrix](./lnagb.js/AugmentedMatrix)
+	- [Matrix](./lnagb.js/matrices/Matrix)
+	- [AugmentedMatrix](./lnagb.js/matrices/AugmentedMatrix)
 
 ### [Learning Area][learn]
 
@@ -43,3 +43,7 @@ The code, the documents, and the materials are all licensed under
 You are free to do anything with it, and taking credits is not compulsory.
 
 [lic]: https://unlicense.org/
+
+## About this website
+
+This website is generated thanks to GitHub Pages.
