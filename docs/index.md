@@ -16,9 +16,12 @@ so expect the documentation to be something formal. Whereas if you choose to
 learn Linear Algebra, you will start with the basic concepts of the subject
 itself and get to use `lnagb.js` as a tool to help you check your work.
 
+`lnagb.js` is free software. Its source code can be browsed [here][gh lnagbjs].
+
 [gh yc]: https://github.com/you-create/
 [docs]: ./lnagb.js/
 [learn]: ./learn/
+[gh lnagbjs]: https://github.com/vecma-org/lnagb.js
 
 ## Index
 
@@ -46,4 +49,7 @@ You are free to do anything with it, and taking credits is not compulsory.
 
 ## About this website
 
-This website is generated thanks to GitHub Pages.
+This website is generated thanks to GitHub Pages. Files that are used to compile
+this website can be browsed [here][gh lnagbjs docs].
+
+[gh lnagbjs docs]: https://github.com/vecma-org/lnagb.js/tree/master/docs
