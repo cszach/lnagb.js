@@ -24,6 +24,8 @@ let loop = function ( count, func, thisArg ) {
  * - every element of this array is *strictly* the same as the element of the
  *   other array at the same index
  *
+ * @param {object} p A JavaScript array
+ * @param {object} q Another JavaScript array
  * @return {boolean} `true` if arrays *p* and *q* are the same, `false`
  * otherwise
  */

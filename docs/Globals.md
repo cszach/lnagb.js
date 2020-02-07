@@ -5,7 +5,7 @@
 <dd><p>Creates a loop that runs from 1 to <em>count</em>, executing a given function for
 every iteration.</p>
 </dd>
-<dt><a href="#sameArrays">sameArrays()</a> ⇒ <code>boolean</code></dt>
+<dt><a href="#sameArrays">sameArrays(p, q)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Checks if arrays <code>p</code> and <code>q</code> are the same and returns <code>true</code> if they are</p>
 <p>Two arrays are the same when...</p>
 <ul>
@@ -38,7 +38,7 @@ every iteration.
 
 <a name="sameArrays"></a>
 
-## sameArrays() ⇒ <code>boolean</code>
+## sameArrays(p, q) ⇒ <code>boolean</code>
 Checks if arrays `p` and `q` are the same and returns `true` if they are
 
 Two arrays are the same when...
@@ -49,6 +49,12 @@ Two arrays are the same when...
 **Kind**: global function  
 **Returns**: <code>boolean</code> - `true` if arrays *p* and *q* are the same, `false`
 otherwise  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| p | <code>object</code> | A JavaScript array |
+| q | <code>object</code> | Another JavaScript array |
+
 <a name="linearCombination"></a>
 
 ## linearCombination(p, q) ⇒ <code>number</code>
