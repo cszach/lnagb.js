@@ -5,8 +5,9 @@ lnagb.js
 [src]: ./src/
 [lic]: ./LICENSE
 
-[Source code][src] &mdash; [Website][www] &mdash; [Documentation][docs] &mdash;
-[Learning Area][learn] &mdash; [License][lic]
+[**Source code**][src] &mdash; [**Website**][www] &mdash;
+[**Documentation**][docs] &mdash; [**Learning Area**][learn] &mdash;
+[**License**][lic]
 
 This repository contains Linear Algebra operations implemented in JavaScript,
 such as adding vectors, reducing matrices, matrix transformations, etc. APIs are
