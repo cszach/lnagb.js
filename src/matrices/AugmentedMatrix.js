@@ -5,18 +5,19 @@ import { Matrix } from './Matrix.js';
  */
 
 /**
- * Class for augmented matrices
+ * Class for augmented matrices in Linear Algebra.
+ *
+ * An augmented matrix is a matrix obtained by appending the columns of two
+ * matrices.
  */
 class AugmentedMatrix {
 
 	// CONSTRUCTOR
 
 	/**
-	 * Construct an AugmentedMatrix instance
+	 * Constructs an `AugmentedMatrix` instance.
 	 *
-	 * An AugmentedMatrix instance is used to represent an augmented matrix.
-	 * An augmented matrix is a matrix obtained by appending the columns of two
-	 * matrices.
+	 * An `AugmentedMatrix` instance is used to represent an augmented matrix.
 	 *
 	 * @param {number} row The number of rows for the new augmented matrix
 	 * @param {object} m The matrix on the left side of the augmented matrix
@@ -42,21 +43,22 @@ class AugmentedMatrix {
 	// STATIC PROPERTIES / METHODS
 
 	/**
-	 * Check if object *o* is a valid AugmentedMatrix instance
+	 * Checks if object *o* is a valid `AugmentedMatrix` instance
 	 *
-	 * Note that methods inside the AugmentedMatrix do not check if their
-	 * parameters are valid (including matrices).
+	 * Note that methods inside the `AugmentedMatrix` class do not check if
+	 * their parameters are valid (including matrices).
 	 *
 	 * Criteria for being "valid":
-	 *   o The constructor is AugmentedMatrix
-	 *   o Has the 'name' property
-	 *   o Has the 'elements' property and it is a JavaScript array that...
-	 *     o has a length of 2; and
-	 *     o every element of it is a valid Matrix instance that has the same
+	 * - The constructor is `AugmentedMatrix`
+	 * - Has the `name` property
+	 * - Has the `elements` property and it is a JavaScript array that...
+	 *     - has a length of 2; and
+	 *     - every element of it is a valid `Matrix` instance that has the same
 	 *       number of rows as the other matrix
 	 *
 	 * @param {object} o The object to check
-	 * @return {boolean} true if *o* is an AugmentedMatrix instance, false otherwise
+	 * @return {boolean} `true` if *o* is an `AugmentedMatrix` instance,
+	 * `false` otherwise
 	 */
 	static isAugmentedMatrix( o ) {
 

@@ -1,10 +1,10 @@
 /**
- * Create a loop that runs from 1 to count and execute a given function for
- * every iteration
+ * Creates a loop that runs from 1 to *count*, executing a given function for
+ * every iteration.
  *
  * @param {number} count How many times the function is executed
  * @param {function} func The function to execute in each iteration
- * @param {object} thisArg What to use as 'this' inside func
+ * @param {object} thisArg What to use as `this` inside `func`
  */
 let loop = function ( count, func, thisArg ) {
 
@@ -17,12 +17,15 @@ let loop = function ( count, func, thisArg ) {
 };
 
 /**
- * Check if arrays p and q are the same and return true if they are
+ * Checks if arrays `p` and `q` are the same and returns `true` if they are
  *
  * Two arrays are the same when...
- *   o they have the same number of elements; and
- *   o every element of this array is strictly the same as the element of the
- *     other array at the same index
+ * - they have the same number of elements; and
+ * - every element of this array is *strictly* the same as the element of the
+ *   other array at the same index
+ *
+ * @return {boolean} `true` if arrays *p* and *q* are the same, `false`
+ * otherwise
  */
 let sameArrays = function ( p, q ) {
 
