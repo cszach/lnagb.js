@@ -27,10 +27,10 @@ itself and get to use `lnagb.js` as a tool to help you check your work.
 
 ### [Docs][docs]
 
-- [Globals](./lnagb.js/Globals)
-- Math
+- **[Globals](./lnagb.js/Globals)**
+- **Math**
 	- [LinearEquation](./lnagb.js/math/LinearEquation)
-- Matrices
+- **Matrices**
 	- [Matrix](./lnagb.js/matrices/Matrix)
 	- [AugmentedMatrix](./lnagb.js/matrices/AugmentedMatrix)
 
