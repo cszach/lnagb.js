@@ -9,10 +9,10 @@ source code of `lnagb.js` itself using `jsdoc2md`.
 
 - **[Globals](./lnagb.js/Globals)**
 - **Math**
-	- [LinearEquation](./lnagb.js/math/LinearEquation)
+	- [LinearEquation](./math/LinearEquation)
 - **Matrices**
-	- [Matrix](./lnagb.js/matrices/Matrix)
-	- [AugmentedMatrix](./lnagb.js/matrices/AugmentedMatrix)
+	- [Matrix](./matrices/Matrix)
+	- [AugmentedMatrix](./matrices/AugmentedMatrix)
 
 ## Report
 
