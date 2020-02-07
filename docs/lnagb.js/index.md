@@ -7,7 +7,7 @@ source code of `lnagb.js` itself using `jsdoc2md`.
 
 ## Index
 
-- **[Globals](./lnagb.js/Globals)**
+- **[Globals](./Globals)**
 - **Math**
 	- [LinearEquation](./math/LinearEquation)
 - **Matrices**
