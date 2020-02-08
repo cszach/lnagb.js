@@ -1,9 +1,11 @@
-Welcome to the `lnagb.js` documentation!
+**Welcome to the lnagb.js documentation!**
 
 The goal of the documentation is to provide (in great details) information on
-how to use all of `lnagb.js`'s functions, classes, and their methods. The pages
+how to use all of lnagb.js's functions, classes, and their methods. The pages
 in this documentation are generated from the docstrings placed along with the
-source code of `lnagb.js` itself using `jsdoc2md`.
+source code of lnagb.js itself using [`jsdoc2md`][gh jsdoc2md].
+
+[gh jsdoc2md]: https://github.com/jsdoc2md/jsdoc-to-markdown
 
 ## Index
 
