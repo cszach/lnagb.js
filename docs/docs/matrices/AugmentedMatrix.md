@@ -1,5 +1,3 @@
-<a name="AugmentedMatrix"></a>
-
 ## AugmentedMatrix
 Class for augmented matrices in Linear Algebra.
 
@@ -49,4 +47,3 @@ Criteria for being "valid":
 | Param | Type | Description |
 | --- | --- | --- |
 | o | <code>object</code> | The object to check |
-

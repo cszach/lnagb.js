@@ -1,5 +1,3 @@
-<a name="LinearEquation"></a>
-
 ## LinearEquation
 Class for linear equations in mathematics.
 
@@ -26,4 +24,3 @@ Constructs a `LinearEquation` instance.
 | --- | --- | --- |
 | coefficients | <code>object</code> | A JS array that contains the coefficients in order |
 | constant | <code>number</code> | The constant term of the linear equation |
-

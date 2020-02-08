@@ -29,7 +29,7 @@ itself and get to use lnagb.js as a tool to help you check your work.
 
 ### [Docs][docs]
 
-- **[Globals](./lnagb.js/Globals)**
+- **[Globals](./docs/Globals)**
 - **Math**
 	- [LinearEquation](./docs/math/LinearEquation)
 - **Matrices**

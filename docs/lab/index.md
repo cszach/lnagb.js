@@ -1,16 +1,31 @@
----
----
+## Lab
 
-<h2 id="title">Loading lnagb.js...</h2>
-<p id="description" hidden>
+**Welcome to the lnagb.js Lab!**
+
+<p>
+	This is where you can try lnagb.js directly in your browser console.
+	<span id="no-js">
+		However, it seems that JavaScript has been disabled in your browser,
+		which makes it impossible to load a JavaScript-based library like
+		lnagb.js. Please enable JavaScript and then try again.
+	</span>
+</p>
+<p id="success" hidden>
 	lnagb.js has been loaded and is currently available on this web page under
 	the namespace <code>lnagbjs</code>. <br/>
 	Go ahead and play around with it in the browser console.
 </p>
 
+Thanks are due to [jsDelivr](https://www.jsdelivr.com/).
+
+<script>
+
+	document.getElementById( 'no-js' ).setAttribute( 'hidden', '' );
+
+</script>
 <script type="module">
 
-	import * as lnagbjs from '../../src/index.js';
+	import * as lnagbjs from 'https://cdn.jsdelivr.net/gh/vecma-org/lnagb.js/src/index.js';
 
 	window.lnagbjs = lnagbjs;
 	window.a = new lnagbjs.Matrix( 2, 3, 3, 9, - 3, 10, 9, - 8 );
@@ -40,10 +55,6 @@
 		Math.floor( Math.random() * suggestions.length )
 	]}'.` );
 
-	let title = document.querySelector( '#title' );
-	let description = document.querySelector( '#description' );
-
-	title.innerHTML = "lnagb.js has been loaded!";
-	description.removeAttribute( 'hidden' );
+	document.getElementById( 'success' ).removeAttribute( 'hidden' );
 
 </script>

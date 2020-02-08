@@ -1,5 +1,3 @@
-<a name="Matrix"></a>
-
 ## Matrix
 Class for matrices in Linear Algebra (excluding augmented matrices).
 
@@ -384,4 +382,3 @@ If *m* and *n* are not valid for their multiplication, return a clone of
 | --- | --- | --- |
 | m | <code>object</code> | The matrix on the left of the multiplication |
 | n | <code>object</code> | The matrix on the right of the multiplication |
-

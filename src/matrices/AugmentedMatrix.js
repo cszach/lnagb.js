@@ -1,3 +1,4 @@
+import { loop } from '../utils.js';
 import { Matrix } from './Matrix.js';
 
 /**
@@ -10,7 +11,7 @@ import { Matrix } from './Matrix.js';
  * An augmented matrix is a matrix obtained by appending the columns of two
  * matrices.
  */
-class AugmentedMatrix {
+class AugmentedMatrix extends Matrix {
 
 	// CONSTRUCTOR
 
@@ -29,14 +30,30 @@ class AugmentedMatrix {
 		 * These are the properties that every AugmentedMatrix instance has.
 		 *
 		 * .name: The name of this matrix, default to "AugmentedMatrix"
-		 * .elements: Array of matrices that this matrix is obtained from
+		 * .size: The size of the matrix
+		 * .elements: Elements of the matrix in row-major ordering
 		 */
 
 		this.name = "AugmentedMatrix";
-		this.elements = new Array( 2 );
+		this.elements = new Array();
 
-		this.elements[ 0 ] = m.clone();
-		this.elements[ 1 ] = n.clone();
+		if ( m.size.row !== n.size.row ) {
+
+			console.error( "Matrices are not valid to construct an augmented matrix" );
+			return;
+
+		}
+
+		this.size = {
+			row: m.size.row,
+			column: m.size.column + n.size.column
+		};
+
+		loop( this.size.row, function ( i ) {
+
+			this.elements.push( ...m.row( i ), ...n.row( i ) );
+
+		} );
 
 	}
 
