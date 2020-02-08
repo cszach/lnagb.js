@@ -10,6 +10,7 @@ Algebra, I suggest writing your own code, and you will be learning a lot.
 On this website, you can:
 - **[Browse the docs][docs]** to know how to use `lnagb.js`
 - **[Learn Linear Algebra][learn]**, and also learn how to use `lnagb.js` along the way
+- **[Try `lnagb.js`][lab]** in your browser console
 
 The docs are generated from the docstrings placed along with the source code,
 so expect the documentation to be something formal. Whereas if you choose to
@@ -21,6 +22,7 @@ itself and get to use `lnagb.js` as a tool to help you check your work.
 [gh yc]: https://github.com/you-create/
 [docs]: ./docs/
 [learn]: ./learn/
+[lab]: ./lab/
 [gh lnagbjs]: https://github.com/vecma-org/lnagb.js
 
 ## Index
