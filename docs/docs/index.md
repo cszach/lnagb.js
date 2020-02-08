@@ -1,5 +1,5 @@
 ---
-title: lnagb.js Docs
+title: Docs
 ---
 
 **Welcome to the lnagb.js documentation!**
