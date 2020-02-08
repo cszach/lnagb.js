@@ -16,6 +16,8 @@
 	Go ahead and play around with it in the browser console.
 </p>
 
+Thanks are due to [jsDelivr](https://www.jsdelivr.com/).
+
 <script>
 
 	document.getElementById( 'no-js' ).setAttribute( 'hidden', '' );
