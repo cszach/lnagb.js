@@ -2,6 +2,8 @@
 title: Docs
 ---
 
+## Docs
+
 **Welcome to the lnagb.js documentation!**
 
 The goal of the documentation is to provide (in great details) information on

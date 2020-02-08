@@ -2,6 +2,8 @@
 title: Lab
 ---
 
+## Lab
+
 **Welcome to the lnagb.js Lab!**
 
 <p>

@@ -2,6 +2,8 @@
 title: Learning Area
 ---
 
+## Learning Area
+
 **Welcome to the Learning Area.**
 
 This is where you can learn Linear Algebra from its basics and use lnagb.js
