@@ -1,6 +1,6 @@
-Welcome to the Learning Area.
+**Welcome to the Learning Area.**
 
-This is where you can learn Linear Algebra from its basics and use `lnagb.js`
+This is where you can learn Linear Algebra from its basics and use lnagb.js
 along the way. Unfortunately, it is currently a work in progress, so there is
 nothing to see in here right now. Soon, there will be exciting content for you
 to learn from, so stay tuned!
