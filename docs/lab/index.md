@@ -1,10 +1,5 @@
----
-layout: default
----
+**Welcome to the lnagb.js Lab!**
 
-<p>
-	<strong>Welcome to The lnagb.js Lab!</strong>
-</p>
 <p>
 	This is where you can try lnagb.js directly in your browser console.
 	<span id="no-js">
