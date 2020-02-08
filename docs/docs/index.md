@@ -1,7 +1,3 @@
----
-title: Docs
----
-
 ## Docs
 
 **Welcome to the lnagb.js documentation!**

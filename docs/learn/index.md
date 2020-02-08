@@ -1,7 +1,3 @@
----
-title: Learning Area
----
-
 ## Learning Area
 
 **Welcome to the Learning Area.**
