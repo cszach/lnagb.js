@@ -1,4 +1,4 @@
-**Welcome to the lnagb.js project's homepage!**
+**Welcome to the lnagb.js project's home page!**
 
 **lnagb.js** is a JavaScript library created by [you-create][gh yc] to learn how
 mathematical operations in Linear Algebra can be implemented using code. The
