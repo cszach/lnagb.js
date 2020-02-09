@@ -38,6 +38,10 @@ writing the math in the form of code as well, and you will learn a lot too.
 :pushpin: TODO
 --------------
 
+See the [Projects][gh projects] for detailed progression.
+
+[gh projects]: https://github.com/vecma-org/lnagb.js/projects
+
 ### Code
 
 - [ ] `LinearEquation`
