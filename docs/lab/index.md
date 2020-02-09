@@ -14,16 +14,20 @@
 		troubleshooting steps below to resolve this problem.
 	</span>
 </p>
+
 <p id="success" hidden>
 	lnagb.js has been loaded and is currently available on this web page under
-	the namespace <code id="namespace"></code>.<br/>
-	Go ahead and play around with it in the browser console.<br/>
-	<form action="" method="get">
-		<label for="namespace">Use a different name for the namespace:</label>
-		<input type="text" id="namespace-input" name="namespace" size="15" required />
-		<button type="submit">Go!</button>
-	</form>
+	the namespace <code id="namespace"></code>.<br />
+	Go ahead and play around with it in the browser console.<br />
 </p>
+
+<form id="form" action="" method="get" hidden>
+	<label for="namespace">Use a different name for the namespace:</label>
+	<input type="text" id="namespace-input" name="namespace" size="15" required />
+	<button type="submit">Go!</button>
+</form>
+
+<p></p>
 
 Thanks are due to [jsDelivr](https://www.jsdelivr.com/).
 
@@ -49,6 +53,11 @@ Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
 [gh new issue]: https://github.com/vecma-org/lnagb.js/issues/new
 [e-mail]: mailto:you_create@protonmail.com
 
+<script>
+
+	document.getElementById( 'load-failed' ).removeAttribute( 'hidden' );
+
+</script>
 <script type="module">
 
 	window.a = null;
@@ -104,12 +113,10 @@ Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
 			Math.floor( Math.random() * suggestions.length )
 		] }'.` );
 
+		document.getElementById( 'load-failed' ).setAttribute( 'hidden', '' );
 		document.getElementById( 'success' ).removeAttribute( 'hidden' );
+		document.getElementById( 'form' ).removeAttribute( 'hidden' );
 
-	} else {
-
-		document.getElementById( 'load-failed' ).removeAttribute( 'hidden' );
-	
 	}
 
 </script>
