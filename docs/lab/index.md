@@ -9,6 +9,10 @@
 		which makes it impossible to load a JavaScript-based library like
 		lnagb.js. Please enable JavaScript and then try again.
 	</span>
+	<span id="load-failed" hidden>
+		However, it seems that lnagb.js could not be loaded. Please follow the
+		troubleshooting steps below to resolve this problem.
+	</span>
 </p>
 <p id="success" hidden>
 	lnagb.js has been loaded and is currently available on this web page under
@@ -18,43 +22,69 @@
 
 Thanks are due to [jsDelivr](https://www.jsdelivr.com/).
 
-<script>
+## Troubleshooting
 
-	document.getElementById( 'no-js' ).setAttribute( 'hidden', '' );
+lnagb.js is not available in the browser console? Try these troubleshooting
+steps before reporting.
 
-</script>
+- Make sure that you type "lnagbjs" correctly. Try typing "lnagbjs" (exclude
+  the double quotes). If you see an object as an output, try to access
+  `lnagbjs`'s methods (e.g. try typing "lnagbjs.Matrix.IdentityMatrix( 3 )").
+- If JavaScript is disabled in your browser, you have to enable it in order to
+  play with lnagb.js in your browser console. Consult the web if you don't know
+  how to enable JavaScript. Additionally, check if any of your browser's add-ons
+  is disabling JavaScript (globally or site-specific).
+- If JavaScript is enabled yet lnagb.js could not be loaded, it is possible that
+  your browser or one of your browser's add-ons is blocking requests from and to
+  <https://cdn.jsdelivr.net>. Be sure to resolve this.
+
+## Report
+
+Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
+[send an e-mail][e-mail].
+
+[gh new issue]: https://github.com/vecma-org/lnagb.js/issues/new
+[e-mail]: mailto:you_create@protonmail.com
+
 <script type="module">
 
 	import * as lnagbjs from 'https://cdn.jsdelivr.net/gh/vecma-org/lnagb.js/src/index.js';
 
-	window.lnagbjs = lnagbjs;
-	window.a = new lnagbjs.Matrix( 2, 3, 3, 9, - 3, 10, 9, - 8 );
-	window.b = new lnagbjs.Matrix( 3, 2, 2, - 1, - 9, 4, - 7, 6 );
+	document.getElementById( 'no-js' ).setAttribute( 'hidden', '' );
 
-	window.a.name = "A";
-	window.b.name = "B";
+	if ( lnagbjs ) {
 
-</script>
-<script>
+		window.lnagbjs = lnagbjs;
+		window.a = new lnagbjs.Matrix( 2, 3, 3, 9, - 3, 10, 9, - 8 );
+		window.b = new lnagbjs.Matrix( 3, 2, 2, - 1, - 9, 4, - 7, 6 );
 
-	let suggestions = [
+		window.a.name = "A";
+		window.b.name = "B";
 
-		"lnagbjs.Matrix.ZeroMatrix( 4, 5 )",
-		"a.transpose()",
-		"lnagbjs.Matrix.IdentityMatrix( 3 )",
-		"b.multiply( a )",
-		"new lnagbjs.Matrix( 3, 3, 4, 1, - 9, 7, 7, - 6 )",
-		"a.multiplyScalar( - 1.5 )",
-		"b.addRowTimesScalarToRow( 1, 2, 3 )"
+		let suggestions = [
 
-	]
+			"lnagbjs.Matrix.ZeroMatrix( 4, 5 )",
+			"a.transpose()",
+			"lnagbjs.Matrix.IdentityMatrix( 3 )",
+			"b.multiply( a )",
+			"new lnagbjs.Matrix( 3, 3, 4, 1, - 9, 7, 7, - 6 )",
+			"a.multiplyScalar( - 1.5 )",
+			"b.addRowTimesScalarToRow( 1, 2, 3 )"
 
-	console.log( "lnagb.js has been loaded as 'lnagbjs'." );
-	console.log( "Two example matrices are available as variables a and b." );
-	console.log( `Try typing '${suggestions[
-		Math.floor( Math.random() * suggestions.length )
-	]}'.` );
+		];
 
-	document.getElementById( 'success' ).removeAttribute( 'hidden' );
+		console.log( "lnagb.js has been loaded as 'lnagbjs'." );
+		console.log( "Two example matrices are available as variables a and b." );
+		console.log( `Try typing '${suggestions[
+			Math.floor( Math.random() * suggestions.length )
+		]}'.` );
+
+		document.getElementById( 'success' ).removeAttribute( 'hidden' );
+
+	} else {
+
+		document.getElementById( 'load-failed' ).removeAttribute( 'hidden' );
+	
+	}
 
 </script>
