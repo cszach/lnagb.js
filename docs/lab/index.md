@@ -4,11 +4,11 @@
 
 <p>
 	This is where you can try lnagb.js directly in your browser console.
-	<span id="no-js">
+	<noscript>
 		However, it seems that JavaScript has been disabled in your browser,
 		which makes it impossible to load a JavaScript-based library like
 		lnagb.js. Please enable JavaScript and then try again.
-	</span>
+	</noscript>
 	<span id="load-failed" hidden>
 		However, it seems that lnagb.js could not be loaded. Please follow the
 		troubleshooting steps below to resolve this problem.
@@ -16,8 +16,13 @@
 </p>
 <p id="success" hidden>
 	lnagb.js has been loaded and is currently available on this web page under
-	the namespace <code>lnagbjs</code>. <br/>
-	Go ahead and play around with it in the browser console.
+	the namespace <code id="namespace"></code>.<br/>
+	Go ahead and play around with it in the browser console.<br/>
+	<form action="" method="get">
+		<label for="namespace">Use a different name for the namespace:</label>
+		<input type="text" id="namespace-input" name="namespace" size="15" required />
+		<button type="submit">Go!</button>
+	</form>
 </p>
 
 Thanks are due to [jsDelivr](https://www.jsdelivr.com/).
@@ -27,9 +32,7 @@ Thanks are due to [jsDelivr](https://www.jsdelivr.com/).
 lnagb.js is not available in the browser console? Try these troubleshooting
 steps before reporting.
 
-- Make sure that you type "lnagbjs" correctly. Try typing "lnagbjs" (exclude
-  the double quotes). If you see an object as an output, try to access
-  `lnagbjs`'s methods (e.g. try typing "lnagbjs.Matrix.IdentityMatrix( 3 )").
+- Make sure that you've typed the namespace's name correctly.
 - If JavaScript is disabled in your browser, you have to enable it in order to
   play with lnagb.js in your browser console. Consult the web if you don't know
   how to enable JavaScript. Additionally, check if any of your browser's add-ons
@@ -48,36 +51,58 @@ Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
 
 <script type="module">
 
-	import * as lnagbjs from 'https://cdn.jsdelivr.net/gh/vecma-org/lnagb.js/src/index.js';
+	window.a = null;
+	window.b = null;
 
-	document.getElementById( 'no-js' ).setAttribute( 'hidden', '' );
+	const DEFAULT_NAMESPACE_NAME = 'lnagbjs';
+
+	let url = new URL( window.location.href );
+	let namespaceName = url.searchParams.get( 'namespace' ) || DEFAULT_NAMESPACE_NAME;
+	let matchResult = namespaceName.match( /[a-zA-Z_][0-9a-zA-Z_]*/ );
+
+	// Namespace's name validity
+
+	if ( ! matchResult || matchResult[ 0 ].length !== namespaceName.length
+		|| Object.keys( window ).some( ( key ) => key === namespaceName ) ) {
+
+		console.error( "Invalid custom name for the namespace" );
+		console.info( "Falling back to the default name..." );
+
+		namespaceName = DEFAULT_NAMESPACE_NAME;
+
+	}
+
+	import * as lnagbjs from 'https://cdn.jsdelivr.net/gh/vecma-org/lnagb.js/src/index.js';
 
 	if ( lnagbjs ) {
 
-		window.lnagbjs = lnagbjs;
+		window[ namespaceName ] = lnagbjs;
+
 		window.a = new lnagbjs.Matrix( 2, 3, 3, 9, - 3, 10, 9, - 8 );
 		window.b = new lnagbjs.Matrix( 3, 2, 2, - 1, - 9, 4, - 7, 6 );
 
 		window.a.name = "A";
 		window.b.name = "B";
 
+		document.getElementById( 'namespace' ).innerHTML = namespaceName;
+
 		let suggestions = [
 
-			"lnagbjs.Matrix.ZeroMatrix( 4, 5 )",
+			`${ namespaceName }.Matrix.ZeroMatrix( 4, 5 )`,
 			"a.transpose()",
-			"lnagbjs.Matrix.IdentityMatrix( 3 )",
+			`${ namespaceName }.Matrix.IdentityMatrix( 3 )`,
 			"b.multiply( a )",
-			"new lnagbjs.Matrix( 3, 3, 4, 1, - 9, 7, 7, - 6 )",
+			`new ${ namespaceName }.Matrix( 3, 3, 4, 1, - 9, 7, 7, - 6 )`,
 			"a.multiplyScalar( - 1.5 )",
 			"b.addRowTimesScalarToRow( 1, 2, 3 )"
 
 		];
 
-		console.log( "lnagb.js has been loaded as 'lnagbjs'." );
+		console.log( `lnagb.js has been loaded as '${ namespaceName }'.` );
 		console.log( "Two example matrices are available as variables a and b." );
-		console.log( `Try typing '${suggestions[
+		console.log( `Try typing '${ suggestions[
 			Math.floor( Math.random() * suggestions.length )
-		]}'.` );
+		] }'.` );
 
 		document.getElementById( 'success' ).removeAttribute( 'hidden' );
 
