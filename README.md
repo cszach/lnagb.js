@@ -58,6 +58,8 @@ See the [Projects][gh projects] for detailed progression.
 
 - [x] Make a dedicated website
 - [ ] Automate page listing and linking in the website
+- [ ] Lab 2.0
+- [ ] Initiate the Learning Area
 
 :page_with_curl: License
 ------------------------
