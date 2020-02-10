@@ -48,6 +48,8 @@ See the [Projects][gh projects] for detailed progression.
 - [ ] `SystemOfLinearEquation`
 - [ ] `Vector`
 - [x] `Matrix`
+- [ ] `ZeroMatrix` (as a separate class)
+- [ ] `IdentityMatrix` (as a separate class)
 - [ ] `AugmentedMatrix`
 
 ### Production
