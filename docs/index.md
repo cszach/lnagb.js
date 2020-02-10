@@ -55,8 +55,10 @@ You are free to do anything with it, and taking credits is not compulsory.
 
 ## About this website
 
-This website is generated thanks to [GitHub Pages][gh pages]. Files that are
-used to compile this website can be browsed [here][gh lnagbjs docs].
+This website is generated thanks to [GitHub Pages][gh pages] and
+[Jekyll][jekyll]. Files that are used to compile this website can be browsed
+[here][gh lnagbjs docs].
 
 [gh pages]: https://pages.github.com/
+[jekyll]: https://jekyllrb.com/
 [gh lnagbjs docs]: https://github.com/vecma-org/lnagb.js/tree/master/docs
