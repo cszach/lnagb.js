@@ -1,10 +1,10 @@
 import { Matrix } from './Matrix.js';
 
 /**
- * Class for zero matrices in Linear Algebra.
+ * Class for creating matrices that start off being zero matrices.
  *
  * Note that this class is very similar to the class `Matrix`, the only
- * different is that the constructor of this class requires exactly 2 arguments
+ * difference is that the constructor of this class requires exactly 2 arguments
  * and the new instance starts off being a zero matrix.
  */
 class ZeroMatrix extends Matrix {
