@@ -57,7 +57,7 @@ class Matrix {
 	 * parameters are valid (including matrices).
 	 *
 	 * Criteria for being "valid":
-	 * - The constructor is `Matrix`
+	 * - The constructor or the constructor's proto is `Matrix`
 	 * - Has the `name` property
 	 * - Has the `size` property that has
 	 *     - the `row` property being a positive integer
@@ -71,7 +71,10 @@ class Matrix {
 	 */
 	static isMatrix( o ) {
 
-		return o.constructor.name === "Matrix" && o.name
+		return ( o.constructor.name === "Matrix"
+			|| o.constructor.name === "ZeroMatrix"
+			|| o.constructor.name === "IdentityMatrix" )
+			&& o.name
 			&& o.elements.every( ( e ) => Number.isFinite( e ) )
 			&& o.elements.length === o.size.row * o.size.column;
 
