@@ -1,8 +1,7 @@
 {
   "name": "lnagb",
-  "version": "1.0.0",
-  "description": "Linear Algebra operations implemented in JavaScript",
-  "main": "lnagb.js",
+  "description": "Linear Algebra in a JavaScript library",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
