@@ -81,7 +81,7 @@ Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
 
 	}
 
-	import * as lnagbjs from 'https://cdn.jsdelivr.net/gh/vecma-org/lnagb.js/src/index.js';
+	import * as lnagbjs from 'https://cdn.jsdelivr.net/gh/vecma-org/lnagb.js@dev/src/index.js';
 
 	if ( lnagbjs ) {
 
