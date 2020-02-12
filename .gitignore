@@ -5,6 +5,10 @@ node_modules/
 
 # Jekyll stuff
 
-docs/_site
-docs/bundle
+/docs/_site
+/docs/bundle
 Gemfile.lock
+
+# Media stuff
+
+/media/**/inkscape-svg
