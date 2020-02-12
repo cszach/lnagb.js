@@ -30,7 +30,7 @@
                      rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
                 <dc:title>The Logo of lnagb.js</dc:title>
                 <cc:license
-                     rdf:resource="http://creativecommons.org/licenses/by-nc-nd/4.0/" />
+                     rdf:resource="" />
                 <dc:date>12 Feb 2020</dc:date>
                 <dc:creator>
                     <cc:Agent>
@@ -43,19 +43,6 @@
                     </cc:Agent>
                 </dc:publisher>
             </cc:Work>
-            <cc:License
-                 rdf:about="http://creativecommons.org/licenses/by-nc-nd/4.0/">
-                <cc:permits
-                     rdf:resource="http://creativecommons.org/ns#Reproduction" />
-                <cc:permits
-                     rdf:resource="http://creativecommons.org/ns#Distribution" />
-                <cc:requires
-                     rdf:resource="http://creativecommons.org/ns#Notice" />
-                <cc:requires
-                     rdf:resource="http://creativecommons.org/ns#Attribution" />
-                <cc:prohibits
-                     rdf:resource="http://creativecommons.org/ns#CommercialUse" />
-            </cc:License>
         </rdf:RDF>
     </metadata>
     <g
