@@ -11,4 +11,5 @@ Gemfile.lock
 
 # Media stuff
 
+/media/**/breakpoints
 /media/**/inkscape-svg
