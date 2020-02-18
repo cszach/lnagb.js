@@ -8,7 +8,15 @@ import { linearCombination } from '../math/Core.js';
 /**
  * Class for matrices in Linear Algebra (excluding augmented matrices).
  *
- * A matrix is a set of numbers arranged in rows and columns.
+ * A matrix is a set of numbers arranged in rows and columns. This class encodes
+ * a matrix by storing the elements of that matrix in **row-major** order. Every
+ * instance of this class is an object that has the following properties:
+ * - `name`: The matrix's (optional) name, defaults to "_Matrix_"
+ * - `size`: An object that has the following properties:
+ *     - `row`: The number of rows in the encoded matrix
+ *     - `column`: The number of columns in the encoded matrix
+ * - `elements`: A JavaScript array that stores the elements of the encoded
+ *   matrix in **row-major** order
  */
 class Matrix {
 
@@ -20,6 +28,18 @@ class Matrix {
 	 * The first 2 parameters set the size of the matrix, the rest of the
 	 * parameters are perceived as elements of the new matrix given in
 	 * **row-major** order. Only the first 2 parameters are required.
+	 *
+	 * @example
+	 * let a = new Matrix( 2, 3, 3, 9, - 3, 10, 9, - 8 );
+	 * let b = new Matrix( 3, 2, 2, - 1, - 9, 4, - 7, 6 );
+	 *
+	 * a.elements
+	 * // -> [ 3, 9, -3,
+	 * //      10, 9, -8 ]
+	 * b.elements
+	 * // -> [ 2, -1,
+	 * //     -9, 4,
+	 * //     -7, 6 ]
 	 *
 	 * @param {number} row The number of rows for the new matrix
 	 * @param {number} column The number of columns for the new matrix
@@ -65,6 +85,16 @@ class Matrix {
 	 * - Has the `elements` property and it is a JavaScript array of numbers
 	 *   and the number of elements must equal to the product of `.size.row` and
 	 *   `.size.column`
+	 *
+	 * @example
+	 * Matrix.isMatrix( a )
+	 * // -> true
+	 * Matrix.isMatrix( 5 )
+	 * // -> false
+	 * Matrix.isMatrix( [ 1, 1, 2, 0, - 1, 7 ] )
+	 * // -> false
+	 * Matrix.isMatrix( { name: "FakeMatrix", elements: [ 1, 1, 2, 0 ] } )
+	 * // -> false
 	 *
 	 * @param {object} o The object to check
 	 * @return {boolean} `true` if *o* is a `Matrix` instance, `false` otherwise
@@ -137,6 +167,15 @@ class Matrix {
 	 * If *m* and *n* are not valid for their multiplication, return a clone of
 	 * *m*.
 	 *
+	 * @example
+	 * Matrix.multiplyMatrices( a, b )
+	 * // -> {
+	 * // ...
+	 * //   elements: [ -54, 15,
+	 * //               -5, -22 ],
+	 * // ...
+ 	 * // }
+	 *
 	 * @param {object} m The matrix on the left of the multiplication
 	 * @param {object} n The matrix on the right of the multiplication
 	 * @return {object} The result of the multiplication
@@ -177,6 +216,13 @@ class Matrix {
 	/**
 	 * Makes this matrix the same as matrix *m*.
 	 *
+	 * @example
+	 * let c = new Matrix( 3, 3 ); // Create a 3 x 3 empty matrix
+	 * c.copy( a ); // Copy from a
+	 * c.elements
+	 * // -> [ 3, 9, -3,
+	 * //      10, 9, -8 ]
+	 *
 	 * @param {object} m The `Matrix` instance to copy from
 	 */
 	copy( m ) {
@@ -189,6 +235,17 @@ class Matrix {
 
 	/**
 	 * Creates and returns a clone of this matrix instance.
+	 *
+	 * @example
+	 * b.clone()
+	 * // -> {
+	 * //   name: "Matrix",
+	 * //   size: { row: 3, column: 2 },
+	 * //   elements: [ 2, -1,
+	 * //              -9, 4,
+ 	 * //              -7, 6 ],
+	 * //   <prototype>
+ 	 * // }
 	 *
 	 * @return {object} A clone of this matrix
 	 */
@@ -204,6 +261,10 @@ class Matrix {
 	/**
 	 * Computes and returns the number of elements in this matrix.
 	 *
+	 * @example
+	 * a.numberOfElements()
+	 * // -> 6
+	 *
 	 * @return {number} The number of elements in this matrix
 	 */
 	numberOfElements() {
@@ -214,6 +275,14 @@ class Matrix {
 
 	/**
 	 * Checks if this matrix has the same size as *m*.
+	 *
+	 * @example
+	 * a.sameSize( c )
+	 * // -> true
+	 * b.sameSize( a )
+	 * // -> false
+	 * b.sameSize( new Matrix( 3, 2 ) )
+	 * // -> true
 	 *
 	 * @param {object} m The matrix to check the size of this matrix against
 	 * @return {boolean} `true` if the two matrices have the same size, `false`
@@ -228,6 +297,12 @@ class Matrix {
 	/**
 	 * Checks if this matrix and the given matrix *m* are equal.
 	 *
+	 * @example
+	 * a.equals( c )
+	 * // -> true
+	 * b.equals( c )
+	 * // -> false
+	 *
 	 * @param {object} m The matrix to compare this matrix to
 	 * @return {boolean} `true` if the two matrices are the same, `false`
 	 * otherwise
@@ -240,6 +315,18 @@ class Matrix {
 
 	/**
 	 * Returns the element in row *r* and column *c* in this matrix.
+	 *
+	 * @example
+	 * a.element( 1, 2 )
+	 * // -> 9
+	 * a.element( 2, 2 )
+	 * // -> 9
+	 * a.element( 2, 3 )
+	 * // -> -8
+	 * b.element( 3, 1 )
+	 * // -> -7
+	 * b.element( 3, 3 )
+	 * // -> undefined
 	 *
 	 * @param {number} r The row that contains the element (1-indexed)
 	 * @param {number} c The column that contains the element (1-indexed)
@@ -256,6 +343,16 @@ class Matrix {
 	 * within `.elements`.
 	 *
 	 * If *r* and *c* are not within the dimensions of this matrix, returns -1.
+	 *
+	 * @example
+	 * a.elementIndex( 1, 1 )
+	 * // -> 0
+	 * a.elementIndex( 1, 3 )
+	 * // -> 2
+	 * b.elementIndex( 2, 2 )
+	 * // -> 3
+	 * b.elementIndex( 4, 1 ) // Non-existent element
+	 * // -> -1
 	 *
 	 * @param {number} r The row that contains the element (1-indexed)
 	 * @param {number} c The column that contains the element (1-indexed)
@@ -278,6 +375,16 @@ class Matrix {
 	/**
 	 * Returns a row in this matrix as a JavaScript array.
 	 *
+	 * @example
+	 * a.row( 1 )
+	 * // -> [ 3, 9, -3 ]
+	 * a.row( 3 ) // Non-existent row
+	 * // -> []
+	 * b.row( 2 )
+	 * // -> [ -9, 4 ]
+	 * b.row( 3 )
+	 * // -> [ -7, 6 ]
+	 *
 	 * @param {number} r The position of the row (1-indexed)
 	 * @return {object} The array that contains the elements in the row
 	 */
@@ -294,6 +401,14 @@ class Matrix {
 
 	/**
 	 * Returns a column in this matrix as a JavaScript array.
+	 *
+	 * @example
+	 * b.column( 1 )
+	 * // -> [ 2, -9, -7 ]
+	 * b.column( 2 )
+	 * // -> [ -1, 4, 6 ]
+	 * a.column( 0 ) // Non-existent column, works backwards
+	 * // -> [ -3, -8 ]
 	 *
 	 * @param {number} c The position of the column (1-indexed)
 	 * @return {object} The array that contains the elements in the column
@@ -314,6 +429,14 @@ class Matrix {
 	 *
 	 * If *r* and *c* are not within the dimensions of this matrix, returns an
 	 * empty array.
+	 *
+	 * @example
+	 * a.diagonal( 2, 3 )
+	 * // -> [ 9, -8 ]
+	 * b.diagonal( 2, 1 )
+	 * // -> [ -9, 6 ]
+	 * b.diagonal( 1, 3 ) // Non-existent element at row 1 and column 3
+	 * // -> []
 	 *
 	 * @param {number} r The row that contains the element (1-indexed)
 	 * @param {number} c The column that contains the element (1-indexed)
@@ -356,6 +479,10 @@ class Matrix {
 	 * The main diagonal of a matrix is the diagonal that contains the element
 	 * at row 1 and column 1 of that matrix.
 	 *
+	 * @example
+	 * c.mainDiagonal()
+	 * // -> [ 3, 9 ]
+	 *
 	 * @return {object} The main diagonal (as an array) of this matrix
 	 */
 	mainDiagonal() {
@@ -366,6 +493,9 @@ class Matrix {
 
 	/**
 	 * Swaps the values of `.size.row` and `.size.column` in this matrix.
+	 *
+	 * **Note**: This may be used by this class's other methods such as
+	 * [`transpose`](#Matrix+transpose), but it should not be called manually.
 	 */
 	sizeSwap() {
 
@@ -379,6 +509,22 @@ class Matrix {
 
 	/**
 	 * Intercharges row *r* with row *s* in place and returns this matrix.
+	 *
+	 * @example
+	 * a.elements
+	 * // -> [ 3, 9, -3,
+	 * //     10, 9, -8 ]
+	 * a.interchargeRows( 1, 2 ); // Intercharge row 1 and row 2
+	 * // -> {
+	 * //   name: "Matrix",
+	 * //   size: { row: 2, column: 3 },
+	 * //   elements: [ 10, 9, -8,
+  	 * //                3, 9, -3 ],
+	 * //   <prototype>
+	 * // }
+	 * a.elements
+	 * // -> [ 10, 9, -8,
+	 * //       3, 9, -3 ]
 	 *
 	 * @param {number} r The row to intercharge with *s* (1-indexed)
 	 * @param {number} s The row to intercharge with *r* (1-indexed)
@@ -414,6 +560,17 @@ class Matrix {
 	/**
 	 * Multiplies row *r* by a non-zero scalar *a* in place and returns this
 	 * matrix.
+	 *
+	 * @example
+	 * b.elements
+	 * // -> [ 2, -1,
+	 * //     -9, 4,
+	 * //     -7, 6 ]
+	 * b.multiplyRowByScalar( 1, 3 ); // Multiply row 1 by 3
+	 * b.elements
+	 * // -> [ 6, -3,
+	 * //     -9, 4,
+	 * //     -7, 6 ]
 	 *
 	 * @param {number} r The row to multiply the scalar by (1-indexed)
 	 * @param {number} a The scalar to multiply the row by
@@ -451,6 +608,17 @@ class Matrix {
 	/**
 	 * Adds *a* times row *s* to row *r* in place and returns this matrix.
 	 *
+	 * @example
+	 * b.elements
+	 * // -> [ 6, -3,
+	 * //     -9, 4,
+	 * //     -7, 6 ]
+	 * b.addRowTimesScalarToRow( 3, 1, 2 ); // Add 2 times row 1 to row 3
+	 * b.elements
+	 * // -> [ 6, -3,
+	 * //     -9, 4,
+	 * //      5, 0 ]
+	 *
 	 * @param {number} r The row that gets added (1-indexed)
 	 * @param {number} s The row to multiply the scalar by and then add to row *r*
 	 * @param {number} a The scalar to multiply row *s* by
@@ -483,6 +651,20 @@ class Matrix {
 
 	/**
 	 * Transposes this matrix in place and returns this matrix.
+	 *
+	 * @example
+	 * a.size
+	 * // -> { row: 2, column: 3 }
+	 * a.elements
+	 * // -> [ 10, 9, -8,
+	 * //       3, 9, -3 ]
+	 * a.transpose();
+	 * a.size
+	 * // -> { row: 3, column: 2 }
+	 * a.elements
+	 * // -> [ 10, 3,
+ 	 * //       9, 9,
+ 	 * //     -8, -3 ]
 	 */
 	transpose() {
 
@@ -506,6 +688,15 @@ class Matrix {
 	 * Multiplying a matrix by a scalar means multiplying every element in that
 	 * matrix by the scalar.
 	 *
+	 * @example
+	 * c.elements
+	 * // -> [ 3, 9, -3,
+ 	 * //     10, 9, -8 ]
+	 * c.multiplyScalar( - 1.5 );
+	 * c.elements
+	 * // -> [ -4.5, -13.5, 4.5,
+ 	 * //       -15, -13.5, 12 ]
+	 *
 	 * @param {number} s The scalar to multiply this matrix by
 	 * @return {object} This matrix
 	 */
@@ -519,6 +710,15 @@ class Matrix {
 	/**
 	 * Multiplies this matrix by -1 and returns this matrix.
 	 *
+	 * @example
+	 * c.elements
+	 * // -> [ -4.5, -13.5, 4.5,
+ 	 * //       -15, -13.5, 12 ]
+	 * c.negate();
+	 * c.elements
+	 * // -> [ 4.5, 13.5, -4.5,
+ 	 * //       15, 13.5, -12 ]
+	 *
 	 * @return {object} This matrix
 	 */
 	negate() {
@@ -531,6 +731,15 @@ class Matrix {
 	 * Adds *m* to this matrix and returns this matrix
 	 *
 	 * If this matrix and *m* aren't of the same size, perform no addition.
+	 *
+	 * @example
+	 * a.sameSize( b ); // Check if b can be added to a
+	 * // -> true
+	 * a.add( b ); // Add b to a
+	 * a.elements
+	 * // -> [ 16, 0,
+ 	 * //      0, 13,
+ 	 * //     -3, -3 ]
 	 *
 	 * @param {object} matrix The matrix to add to this matrix
 	 * @return {object} This matrix
@@ -558,6 +767,17 @@ class Matrix {
 	 *
 	 * If this matrix and *m* aren't of the same size, perform no substraction.
 	 *
+	 * @example
+	 * b.elements
+	 * // -> [ 6, -3,
+ 	 * //     -9, 4,
+ 	 * //      5, 0 ]
+	 * b.subtract( a ); // Subtract a from b
+	 * b.elements
+	 * // -> [ -10, -3,
+ 	 * //      -9, -9,
+ 	 * //       8, 3 ]
+	 *
 	 * @param {object} m The matrix to subtract this matrix to
 	 * @return {object} This matrix
 	 */
@@ -569,6 +789,15 @@ class Matrix {
 
 	/**
 	 * Post-multiplies this matrix by *m* and returns this matrix.
+	 *
+	 * @example
+	 * a.multiply( b ); // Attempt to multiply 2 3x2 matrices
+	 * // warning: Input matrices cannot be multiplied
+	 * a.transpose(); // Tranpose a so that it becomes a 2x3 matrix
+	 * a.multiply( b ); // Multiply a 2x3 matrix by a 3x2 matrix
+	 * a.elements
+	 * // -> [ -184, -57,
+ 	 * //      -141, -126 ]
 	 *
 	 * @param {object} m The matrix to post-multiply this matrix to
 	 * @return {object} This matrix
@@ -582,6 +811,12 @@ class Matrix {
 
 	/**
 	 * Pre-multiplies this matrix by *m* and returns this matrix.
+	 *
+	 * @example
+	 * a.premultiply( b ); // Compute b x a and then make a the result
+	 * a.elements
+	 * // -> [ 41893, 17670,
+	 * //      43710, 23913 ]
 	 *
 	 * @param {object} m The matrix to pre-multiply this matrix to
 	 * @return {object} This matrix
