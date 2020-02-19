@@ -111,55 +111,6 @@ class Matrix {
 	}
 
 	/**
-	 * Creates and returns a zero matrix.
-	 *
-	 * A zero matrix is a matrix with all of its elements being 0.
-	 *
-	 * @param {number} row The number of rows for the zero matrix
-	 * @param {number} column The number of columns for the zero matrix
-	 * @return {object} A Matrix instance that represents the desired matrix
-	 */
-	static ZeroMatrix( row, column ) {
-
-		let zero = new Matrix( row, column );
-
-		zero.elements = new Array();
-		loop( zero.numberOfElements(), function () {
-
-			zero.elements.push( 0 );
-
-		} );
-
-		return zero.clone();
-
-	}
-
-	/**
-	 * Creates and returns an identity matrix.
-	 *
-	 * An identity matrix is a square matrix where the elements on its main
-	 * diagonal are all 1 and the rest are all 0.
-	 *
-	 * @param {number} size The size of the identity matrix
-	 * @return {object} A Matrix instance that represents the desired matrix
-	 */
-	static IdentityMatrix( size ) {
-
-		let identity = Matrix.ZeroMatrix( size, size );
-
-		loop( size, function ( i ) {
-
-			// Make the element at row i and column i (i.e. on the main
-			// diagonal) one
-			identity.elements[ identity.elementIndex( i, i ) ] = 1;
-
-		} );
-
-		return identity.clone();
-
-	}
-
-	/**
 	 * Multiplies matrices *m* and *n* in that order and returns the result.
 	 *
 	 * Multiplying 2 matrices require that the number of columns in the matrix
