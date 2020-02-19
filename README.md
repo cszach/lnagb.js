@@ -66,5 +66,11 @@ See the [Projects][gh projects] for detailed progression.
 :page_with_curl: License
 ------------------------
 
-Licensed under [The Unlicense](https://unlicense.org/). Basically, you can do
+Everything (except for the exceptions noted below) is licensed under
+[The Unlicense](https://unlicense.org/). Basically, you can do
 anything with it, and taking credits is not compulsory.
+
+### Exceptions
+
+- `LICENSE`: This is the copy of The Unlicense itself
+- The logo: The logo of lnagb.js and its variants are not licensed
