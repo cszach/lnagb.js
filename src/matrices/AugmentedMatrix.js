@@ -16,6 +16,9 @@ import { Matrix } from './Matrix.js';
  *     - `l`: The number of columns of the matrix on the left
  *     - `r`: The number of columns of the matrix on the right
  *
+ * This class is a child class of `Matrix`. See the base [`Matrix`](./Matrix)
+ * class for common properties and methods.
+ *
  * **Note**: You can freely change the value of the `name` property, but `size`
  * and `elements` should only be changed using this class's methods.
  */
