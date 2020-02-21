@@ -42,8 +42,6 @@ instance of this class is an object that has the following properties:
         * [.premultiply(m)](#Matrix+premultiply) ⇒ <code>object</code>
     * _static_
         * [.isMatrix(o)](#Matrix.isMatrix) ⇒ <code>boolean</code>
-        * [.ZeroMatrix(row, column)](#Matrix.ZeroMatrix) ⇒ <code>object</code>
-        * [.IdentityMatrix(size)](#Matrix.IdentityMatrix) ⇒ <code>object</code>
         * [.multiplyMatrices(m, n)](#Matrix.multiplyMatrices) ⇒ <code>object</code>
 
 <a name="new_Matrix_new"></a>
@@ -586,36 +584,6 @@ Matrix.isMatrix( [ 1, 1, 2, 0, - 1, 7 ] )
 Matrix.isMatrix( { name: "FakeMatrix", elements: [ 1, 1, 2, 0 ] } )
 // -> false
 ```
-<a name="Matrix.ZeroMatrix"></a>
-
-### Matrix.ZeroMatrix(row, column) ⇒ <code>object</code>
-Creates and returns a zero matrix.
-
-A zero matrix is a matrix with all of its elements being 0.
-
-**Kind**: static method of [<code>Matrix</code>](#Matrix)  
-**Returns**: <code>object</code> - A Matrix instance that represents the desired matrix  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| row | <code>number</code> | The number of rows for the zero matrix |
-| column | <code>number</code> | The number of columns for the zero matrix |
-
-<a name="Matrix.IdentityMatrix"></a>
-
-### Matrix.IdentityMatrix(size) ⇒ <code>object</code>
-Creates and returns an identity matrix.
-
-An identity matrix is a square matrix where the elements on its main
-diagonal are all 1 and the rest are all 0.
-
-**Kind**: static method of [<code>Matrix</code>](#Matrix)  
-**Returns**: <code>object</code> - A Matrix instance that represents the desired matrix  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| size | <code>number</code> | The size of the identity matrix |
-
 <a name="Matrix.multiplyMatrices"></a>
 
 ### Matrix.multiplyMatrices(m, n) ⇒ <code>object</code>
