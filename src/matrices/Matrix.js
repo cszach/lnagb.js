@@ -17,6 +17,9 @@ import { linearCombination } from '../math/Core.js';
  *     - `column`: The number of columns in the encoded matrix
  * - `elements`: A JavaScript array that stores the elements of the encoded
  *   matrix in **row-major** order
+ *
+ * **Note**: You can freely change the value of the `name` property, but `size`
+ * and `elements` should only be changed using this class's methods.
  */
 class Matrix {
 
@@ -63,7 +66,16 @@ class Matrix {
 			row,
 			column,
 		};
-		this.elements = Array.from( arguments ).slice( 2 );
+		this.elements = Array.from( arguments ).slice(
+			2,
+			2 + this.size.row * this.size.column
+		);
+
+		if ( this.elements.length < this.size.row * this.size.column ) {
+
+			console.warn( "Not enough arguments were provided for the elements of this matrix" );
+
+		}
 
 	}
 
@@ -162,6 +174,23 @@ class Matrix {
 
 	}
 
+	// GETTERS
+
+	/**
+	 * Computes and returns the number of elements in this matrix.
+	 *
+	 * @example
+	 * a.numberOfElements
+	 * // -> 6
+	 *
+	 * @return {number} The number of elements in this matrix
+	 */
+	get numberOfElements() {
+
+		return this.size.row * this.size.column;
+
+	}
+
 	// METHODS
 
 	/**
@@ -206,21 +235,6 @@ class Matrix {
 		clone.copy( this );
 
 		return clone;
-
-	}
-
-	/**
-	 * Computes and returns the number of elements in this matrix.
-	 *
-	 * @example
-	 * a.numberOfElements()
-	 * // -> 6
-	 *
-	 * @return {number} The number of elements in this matrix
-	 */
-	numberOfElements() {
-
-		return this.size.row * this.size.column;
 
 	}
 
