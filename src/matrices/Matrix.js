@@ -30,7 +30,7 @@ class Matrix {
 	 *
 	 * The first 2 parameters set the size of the matrix, the rest of the
 	 * parameters are perceived as elements of the new matrix given in
-	 * **row-major** order. Only the first 2 parameters are required.
+	 * **row-major** order.
 	 *
 	 * @example
 	 * let a = new Matrix( 2, 3, 3, 9, - 3, 10, 9, - 8 );
@@ -82,8 +82,8 @@ class Matrix {
 	// STATIC PROPERTIES / METHODS
 
 	/**
-	 * Checks if object *o* is a valid `Matrix` instance and return `true`
-	 * if it is.
+	 * Checks if object *o* properly encodes the information of a normal matrix
+	 * and returns `true` if it does.
 	 *
 	 * Note that methods inside the `Matrix` class do not check if their
 	 * parameters are valid (including matrices).
@@ -109,16 +109,17 @@ class Matrix {
 	 * // -> false
 	 *
 	 * @param {object} o The object to check
-	 * @return {boolean} `true` if *o* is a `Matrix` instance, `false` otherwise
+	 * @return {boolean} `true` if *o* encodes a matrix, `false` otherwise
 	 */
 	static isMatrix( o ) {
 
 		return ( o.constructor.name === "Matrix"
 			|| o.constructor.name === "ZeroMatrix"
-			|| o.constructor.name === "IdentityMatrix" )
+			|| o.constructor.name === "IdentityMatrix"
+			|| o.constructor.name === "SquareMatrix" )
 			&& o.name
 			&& o.elements.every( ( e ) => Number.isFinite( e ) )
-			&& o.elements.length === o.size.row * o.size.column;
+			&& o.elements.length === o.numberOfElements;
 
 	}
 
