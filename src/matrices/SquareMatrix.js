@@ -23,7 +23,7 @@ class SquareMatrix extends Matrix {
 	 */
 	constructor( size ) {
 
-		super( size, size, Array.from( arguments ).slice(
+		super( size, size, ...Array.from( arguments ).slice(
 			1,
 			1 + size * size
 		) );
