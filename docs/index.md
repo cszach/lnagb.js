@@ -31,10 +31,13 @@ itself and get to use lnagb.js as a tool to help you check your work.
 
 - **[Globals](./docs/Globals)**
 - **Math**
-	- [LinearEquation](./docs/math/LinearEquation)
+	- [`LinearEquation`](./docs/math/LinearEquation)
 - **Matrices**
-	- [Matrix](./docs/matrices/Matrix)
-	- [AugmentedMatrix](./docs/matrices/AugmentedMatrix)
+	- [`Matrix`](./docs/matrices/Matrix)
+	- [`ZeroMatrix`](./docs/matrices/ZeroMatrix)
+	- [`SquareMatrix`](./docs/matrices/SquareMatrix)
+	- [`IdentityMatrix`](./docs/matrices/IdentityMatrix)
+	- [`AugmentedMatrix`](./docs/matrices/AugmentedMatrix)
 
 ### [Learning Area][learn]
 
