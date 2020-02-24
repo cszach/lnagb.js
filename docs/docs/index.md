@@ -13,10 +13,13 @@ source code of lnagb.js itself using [`jsdoc2md`][gh jsdoc2md].
 
 - **[Globals](./Globals)**
 - **Math**
-	- [LinearEquation](./math/LinearEquation)
+	- [`LinearEquation`](./math/LinearEquation)
 - **Matrices**
-	- [Matrix](./matrices/Matrix)
-	- [AugmentedMatrix](./matrices/AugmentedMatrix)
+	- [`Matrix`](./matrices/Matrix)
+	- [`ZeroMatrix`](./matrices/ZeroMatrix)
+	- [`SquareMatrix`](./matrices/SquareMatrix)
+	- [`IdentityMatrix`](./matrices/IdentityMatrix)
+	- [`AugmentedMatrix`](./matrices/AugmentedMatrix)
 
 ## Report
 
