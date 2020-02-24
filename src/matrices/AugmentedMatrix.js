@@ -72,10 +72,13 @@ class AugmentedMatrix extends Matrix {
 	 * Criteria for being "valid":
 	 * - The constructor is `AugmentedMatrix`
 	 * - Has the `name` property
-	 * - Has the `elements` property and it is a JavaScript array that...
-	 *     - has a length of 2; and
-	 *     - every element of it is a valid `Matrix` instance that has the same
-	 *       number of rows as the other matrix
+	 * - Has the `size` property that has
+	 *     - the `row` property being a positive integer
+	 *     - the `column` property also being a positive integer
+	 *     - the `l` and `r` properties that sum to the `column` property
+	 * - Has the `elements` property and it is a JavaScript array of numbers
+	 *   and the number of elements must equal to the product of `.size.row` and
+	 *   `.size.column`
 	 *
 	 * @param {object} o The object to check
 	 * @return {boolean} `true` if *o* is an `AugmentedMatrix` instance,
@@ -84,8 +87,9 @@ class AugmentedMatrix extends Matrix {
 	static isAugmentedMatrix( o ) {
 
 		return o.constructor.name === "AugmentedMatrix" && o.name
-			&& o.elements.every( ( e ) => Matrix.isMatrix( e ) )
-			&& o.elements[ 0 ].size.row === o.elements[ 1 ].size.row;
+			&& o.elements.every( ( e ) => Number.isFinite( e ) )
+			&& o.elements.length === o.numberOfElements
+			&& o.size.column === o.size.l + o.size.r;
 
 	}
 
