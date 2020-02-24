@@ -12,14 +12,14 @@ class IdentityMatrix extends Matrix {
 
 	constructor( size ) {
 
-		super( size, size );
-
-		this.elements = new Array( size * size ).fill( 0 );
+		let elements = new Array( size * size ).fill( 0 );
 		loop( size, function ( i ) {
 
-			this.elements[ this.elementIndex( i, i ) ] = 1;
+			elements[ i * size + i - size - 1 ] = 1;
 
-		}, this );
+		} );
+
+		super( size, size, ...elements );
 
 	}
 
