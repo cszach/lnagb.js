@@ -1,4 +1,4 @@
-import { Matrix } from './Matrix.js';
+import { SquareMatrix } from './SquareMatrix.js';
 import { loop } from '../utils.js';
 
 /**
@@ -8,10 +8,10 @@ import { loop } from '../utils.js';
  * They can be transformed into trivial matrices using methods inherited from
  * the base `Matrix` class.
  *
- * This class is a child class of `Matrix`. See the base [`Matrix`](./Matrix)
- * class for common properties and methods.
+ * This class is a child class of `SquareMatrix`. See the base
+ * [`SquareMatrix`](./SquareMatrix) class for common properties and methods.
  */
-class IdentityMatrix extends Matrix {
+class IdentityMatrix extends SquareMatrix {
 
 	/**
 	 * Constructs an `IdentityMatrix` instance.
@@ -29,7 +29,7 @@ class IdentityMatrix extends Matrix {
 
 		} );
 
-		super( size, size, ...elements );
+		super( size, ...elements );
 
 	}
 
@@ -41,12 +41,13 @@ class IdentityMatrix extends Matrix {
 	 */
 	static isIdentityMatrix( o ) {
 
-		return Matrix.isMatrix( o ) && o.elements.every( function ( e, i ) {
+		return SquareMatrix.isSquareMatrix( o )
+			&& o.elements.every( function ( e, i ) {
 
-			let r = Math.floor( i / this.size.row ) + 1;
-			return e === ( ( i === this.elementIndex( r, r ) ) ? 1 : 0 );
+				let r = Math.floor( i / this.size.row ) + 1;
+				return e === ( ( i === this.elementIndex( r, r ) ) ? 1 : 0 );
 
-		}, o );
+			}, o );
 
 	}
 
