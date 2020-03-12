@@ -1,9 +1,13 @@
 {
-  "name": "lnagb",
+  "name": "lnagb.js",
   "description": "Linear Algebra in a JavaScript library",
   "main": "src/index.js",
+  "files": [
+    "build/lnagb.js",
+    "build/lnagb.module.js"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c rollup.config.js"
   },
   "repository": {
     "type": "git",
@@ -14,13 +18,18 @@
     "javascript",
     "educational"
   ],
-  "author": "Nguyen Hoang Duong",
+  "author": {
+    "name": "Nguyen Hoang Duong",
+    "email": "you_create@protonmail.com"
+  },
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/vecma-org/lnagb.js/issues"
+    "url": "https://github.com/vecma-org/lnagb.js/issues",
+    "email": "you_create@protonmail.com"
   },
-  "homepage": "https://github.com/vecma-org/lnagb.js#readme",
+  "homepage": "https://vecma-org.github.io/lnagb.js",
   "devDependencies": {
-    "eslint-config-mdcs": "^4.2.3"
+    "eslint-config-mdcs": "^4.2.3",
+    "rollup": "^2.0.5"
   }
 }
