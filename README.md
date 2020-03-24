@@ -77,13 +77,13 @@ Here's a little template for you.
     <body>
         <script src="build/lnagb.js"></script>
         <script>
-			let matrix = new lnagbjs.IdentityMatrix( 3 );
+            let matrix = new lnagbjs.IdentityMatrix( 3 );
 
-			matrix.elements.forEach( function ( element ) {
+            matrix.elements.forEach( function ( element ) {
 
-				console.log( element );
+                console.log( element );
 
-			} );
+            } );
         </script>
     </body>
 </html>
@@ -100,15 +100,15 @@ Here's the same code but lnagb.js is loaded as a JavaScript module.
     </head>
     <body>
         <script type="module">
-			import * as lnagbjs from './build/lnagb.module.js';
+            import * as lnagbjs from './build/lnagb.module.js';
 
-			let matrix = new lnagbjs.IdentityMatrix( 3 );
+            let matrix = new lnagbjs.IdentityMatrix( 3 );
 
-			matrix.elements.forEach( function ( element ) {
+            matrix.elements.forEach( function ( element ) {
 
-				console.log( element );
+                console.log( element );
 
-			} );
+            } );
         </script>
     </body>
 </html>
