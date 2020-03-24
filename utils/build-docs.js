@@ -11,9 +11,7 @@ const OUTPUT_DIR = process.argv[ 3 ].replace( /\/*$/gi, '' ); // Where to export
 // |                                                                         |
 // | - It generates docs from files in INPUT_DIR and writes output to        |
 // | OUTPUT_DIR.                                                             |
-// | - JS files at the root of INPUT_DIR (INPUT_DIR/*.js) are assumed to     |
-// | contain declarations of global variables and functions, thus these      |
-// | files' docstrings are exported to a Markdown file named "Globals.md".   |
+// | - JS files at the root of INPUT_DIR (INPUT_DIR/*.js) are ignored.       |
 // | - For other JS files, each will be exported to a Markdown file with the |
 // | same name, only the format differs (e.g. test.js -> test.md).           |
 // | - Directory structure is kept. For example, if INPUT_DIR is 'src' and   |
@@ -30,11 +28,6 @@ const OUTPUT_DIR = process.argv[ 3 ].replace( /\/*$/gi, '' ); // Where to export
 // Create output directory
 
 fs.mkdirSync( OUTPUT_DIR, { recursive: true } );
-
-// Process root files
-// These files are assumed to define global variables and functions
-
-writeMd( "utils.js", "Globals.md", "." );
 
 // Process direct sub-directories of INPUT_DIR
 
