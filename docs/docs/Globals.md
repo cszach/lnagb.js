@@ -14,12 +14,6 @@ every iteration.</p>
 other array at the same index</li>
 </ul>
 </dd>
-<dt><a href="#linearCombination">linearCombination(p, q)</a> ⇒ <code>number</code></dt>
-<dd><p>Computes and returns the result of the <a href="https://en.wikipedia.org/wiki/Linear_combination">linear combination</a> of <em>p</em>
-and <em>q</em>, two sequences of numbers. The sequences must have the same number of
-terms.</p>
-<p>This is useful in multiplying matrices.</p>
-</dd>
 </dl>
 
 <a name="loop"></a>
@@ -54,23 +48,4 @@ otherwise
 | --- | --- | --- |
 | p | <code>object</code> | A JavaScript array |
 | q | <code>object</code> | Another JavaScript array |
-
-<a name="linearCombination"></a>
-
-## linearCombination(p, q) ⇒ <code>number</code>
-Computes and returns the result of the [linear combination][lncmb] of *p*
-and *q*, two sequences of numbers. The sequences must have the same number of
-terms.
-
-This is useful in multiplying matrices.
-
-[lncmb]: https://en.wikipedia.org/wiki/Linear_combination
-
-**Kind**: global function  
-**Returns**: <code>number</code> - The result of the linear combination of *p* and *q*  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| p | <code>object</code> | First sequence of numbers (as a JS array) |
-| q | <code>object</code> | Second sequence of numbers (as a JS array) |
 
