@@ -1,0 +1,10 @@
+- name: AugmentedMatrix
+  description: Class for dealing with augmented matrices. Child class of `Matrix`.
+- name: IdentityMatrix
+  description: Class for matrices that start as identity matrices. Child class of `SquareMatrix`.
+- name: Matrix
+  description: Class that encodes matrices in general and provides most of its operations.
+- name: SquareMatrix
+  description: Class for square matrices. Child class of `Matrix`.
+- name: ZeroMatrix
+  description: Class for matrices that start as zero matrices. Child class of `Matrix`.
