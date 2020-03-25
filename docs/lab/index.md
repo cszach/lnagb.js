@@ -1,5 +1,3 @@
-## Lab
-
 **Welcome to the lnagb.js Lab!**
 
 <p>
