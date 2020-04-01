@@ -2,6 +2,10 @@ import { SquareMatrix } from './SquareMatrix.js';
 import { loop } from '../utils.js';
 
 /**
+ * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
+ */
+
+/**
  * Class for creating matrices that start off being identity matrices.
  *
  * Note that, as said above, instances of this class start as identity matrices.

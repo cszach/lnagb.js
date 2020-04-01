@@ -13,14 +13,17 @@ instance of this class is an object that has the following properties:
 - `elements`: A JavaScript array that stores the elements of the encoded
   matrix in **row-major** order
 
+**Note**: You can freely change the value of the `name` property, but `size`
+and `elements` should only be changed using this class's methods.
+
 **Kind**: global class  
 
 * [Matrix](#Matrix)
     * [new Matrix(row, column)](#new_Matrix_new)
     * _instance_
+        * [.numberOfElements](#Matrix+numberOfElements) ⇒ <code>number</code>
         * [.copy(m)](#Matrix+copy)
         * [.clone()](#Matrix+clone) ⇒ <code>object</code>
-        * [.numberOfElements()](#Matrix+numberOfElements) ⇒ <code>number</code>
         * [.sameSize(m)](#Matrix+sameSize) ⇒ <code>boolean</code>
         * [.equals(m)](#Matrix+equals) ⇒ <code>boolean</code>
         * [.element(r, c)](#Matrix+element) ⇒ <code>number</code>
@@ -51,7 +54,7 @@ Constructs a new `Matrix` instance.
 
 The first 2 parameters set the size of the matrix, the rest of the
 parameters are perceived as elements of the new matrix given in
-**row-major** order. Only the first 2 parameters are required.
+**row-major** order.
 
 
 | Param | Type | Description |
@@ -71,6 +74,18 @@ b.elements
 // -> [ 2, -1,
 //     -9, 4,
 //     -7, 6 ]
+```
+<a name="Matrix+numberOfElements"></a>
+
+### matrix.numberOfElements ⇒ <code>number</code>
+Computes and returns the number of elements in this matrix.
+
+**Kind**: instance property of [<code>Matrix</code>](#Matrix)  
+**Returns**: <code>number</code> - The number of elements in this matrix  
+**Example**  
+```js
+a.numberOfElements
+// -> 6
 ```
 <a name="Matrix+copy"></a>
 
@@ -109,18 +124,6 @@ b.clone()
 //              -7, 6 ],
 //   <prototype>
 // }
-```
-<a name="Matrix+numberOfElements"></a>
-
-### matrix.numberOfElements() ⇒ <code>number</code>
-Computes and returns the number of elements in this matrix.
-
-**Kind**: instance method of [<code>Matrix</code>](#Matrix)  
-**Returns**: <code>number</code> - The number of elements in this matrix  
-**Example**  
-```js
-a.numberOfElements()
-// -> 6
 ```
 <a name="Matrix+sameSize"></a>
 
@@ -550,8 +553,8 @@ a.elements
 <a name="Matrix.isMatrix"></a>
 
 ### Matrix.isMatrix(o) ⇒ <code>boolean</code>
-Checks if object *o* is a valid `Matrix` instance and return `true`
-if it is.
+Checks if object *o* properly encodes the information of a normal matrix
+and returns `true` if it does.
 
 Note that methods inside the `Matrix` class do not check if their
 parameters are valid (including matrices).
@@ -567,7 +570,7 @@ Criteria for being "valid":
   `.size.column`
 
 **Kind**: static method of [<code>Matrix</code>](#Matrix)  
-**Returns**: <code>boolean</code> - `true` if *o* is a `Matrix` instance, `false` otherwise  
+**Returns**: <code>boolean</code> - `true` if *o* encodes a matrix, `false` otherwise  
 
 | Param | Type | Description |
 | --- | --- | --- |

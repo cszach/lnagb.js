@@ -1,6 +1,10 @@
 import { Matrix } from './Matrix.js';
 
 /**
+ * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
+ */
+
+/**
  * Class for creating matrices that start off being zero matrices.
  *
  * Note that, as said above, instances of this class start as zero matrices.
