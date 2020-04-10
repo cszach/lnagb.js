@@ -1,7 +1,7 @@
 <a name="LinearEquation"></a>
 
 ## LinearEquation
-Class for linear equations in mathematics.
+Encodes linear equations in mathematics.
 
 If you only need to deal with linear equations with 3 variables or fewer,
 see [`LinearEquations`](./LinearEquations).
@@ -31,7 +31,7 @@ Constructs a `LinearEquation` instance.
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| name | <code>string</code> | <code>&quot;LinearEquation&quot;</code> | The name for the new instance (optional) |
+| name | <code>string</code> | <code>&quot;LinearEquation&quot;</code> | The name for the new instance |
 
 <a name="LinearEquation+numberOfVariables"></a>
 

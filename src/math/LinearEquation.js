@@ -3,7 +3,7 @@
  */
 
 /**
- * Class for linear equations in mathematics.
+ * Encodes linear equations in mathematics.
  *
  * If you only need to deal with linear equations with 3 variables or fewer,
  * see [`LinearEquations`](./LinearEquations).
@@ -13,7 +13,7 @@ class LinearEquation {
 	/**
 	 * Constructs a `LinearEquation` instance.
 	 *
-	 * @param {string} name The name for the new instance (optional)
+	 * @param {string} name The name for the new instance
 	 */
 	constructor( name = "LinearEquation" ) {
 
