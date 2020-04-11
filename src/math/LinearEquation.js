@@ -181,6 +181,19 @@ class LinearEquation {
 
 	}
 
+	/**
+	 * Writes the coefficients and the constant term of this equation to a new
+	 * array in that order.
+	 *
+	 * @return {number[]} The array containing the coefficients and the constant
+	 * of this matrix
+	 */
+	toArray() {
+
+		return [ ...this.coefficients, this.constant ];
+
+	}
+
 }
 
 export { LinearEquation };
