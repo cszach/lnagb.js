@@ -228,6 +228,17 @@ class Matrix {
 	}
 
 	/**
+	 * Makes this matrix a zero matrix.
+	 *
+	 * @return {Matrix} This matrix
+	 */
+	zero() {
+
+		return this.setDimensions( this.size.rows, this.size.columns );
+
+	}
+
+	/**
 	 * Checks if this matrix and the given matrix *m* are equal.
 	 *
 	 * @param {Matrix} m The matrix to compare this matrix to
@@ -574,7 +585,7 @@ class Matrix {
 	}
 
 	/**
-	 * Substracts *m* from this matrix.
+	 * Subtracts *m* from this matrix.
 	 *
 	 * If this matrix and *m* aren't of the same size, perform no substraction.
 	 *
