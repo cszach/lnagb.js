@@ -1,5 +1,4 @@
 import { SquareMatrix } from './SquareMatrix.js';
-import { loop } from '../utils.js';
 
 /**
  * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
