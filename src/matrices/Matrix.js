@@ -11,7 +11,7 @@ import { linearCombination } from '../math/Core.js';
  * This class encodes a matrix by storing the elements of that matrix in
  * **row-major** order. Every instance of this class is an object that has the
  * following properties:
- * - `name`: The matrix's (optional) name, defaults to "_Matrix_"
+ * - `name`: The matrix's (optional) denotation, defaults to null (no name)
  * - `size`: An object that has the following properties:
  *     - `rows`: The number of rows in the encoded matrix
  *     - `columns`: The number of columns in the encoded matrix
@@ -29,14 +29,14 @@ class Matrix {
 	 * The default new matrix is a 2 x 3 zero matrix. Change its dimensions
 	 * by using `setDimensions` and set elements for it by using `set`.
 	 *
-	 * @param {string} name The name for the new instance
+	 * @param {string} name The denotation for the new matrix
 	 */
-	constructor( name = "Matrix" ) {
+	constructor( name = null ) {
 
 		/*
 		 * These are the properties that every Matrix instance has.
 		 *
-		 * .name: The name of this matrix, default to "Matrix"
+		 * .name: The denotation of this matrix (default to null)
 		 * .size.rows: The number of rows in this matrix
 		 * .size.columns: The number of columns in this matrix
 		 * .elements: Row-major-ordered array of elements in this matrix
@@ -52,8 +52,7 @@ class Matrix {
 	}
 
 	/**
-	 * Checks if object *o* properly encodes the information of a normal matrix
-	 * and returns `true` if it does.
+	 * Checks if object *o* is a valid `Matrix` instance.
 	 *
 	 * Note that methods inside the `Matrix` class do not check if their
 	 * parameters are valid (including matrices).
@@ -147,7 +146,7 @@ class Matrix {
 	 * Makes this matrix the same as matrix *m*.
 	 *
 	 * @param {Matrix} m The instance to copy from
-	 * @param {boolean} copyName Set to `true` to copy the name of *m* also
+	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
 	 * @return {Matrix} This matrix
 	 */
 	copy( m, copyName = false ) {
@@ -169,7 +168,7 @@ class Matrix {
 	 */
 	clone() {
 
-		return new Matrix().clone( this, true );
+		return new Matrix().copy( this, true );
 
 	}
 
