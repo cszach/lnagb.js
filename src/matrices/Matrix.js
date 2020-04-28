@@ -1,12 +1,12 @@
 import { loop, sameArrays } from '../utils.js';
-import { linearCombination } from '../math/Core.js';
+import { MathUtils } from '../math/MathUtils.js';
 
 /**
  * @author Nguyen Hoang Duong / you_create@protonmail.com
  */
 
 /**
- * Encodes matrices in Linear Algebra.
+ * Encodes matrices *and* their operations.
  *
  * This class encodes a matrix by storing the elements of that matrix in
  * **row-major** order. Every instance of this class is an object that has the
@@ -36,7 +36,7 @@ class Matrix {
 		/*
 		 * These are the properties that every Matrix instance has.
 		 *
-		 * .name: The denotation of this matrix (default to null)
+		 * .name: The denotation of this matrix (default: null)
 		 * .size.rows: The number of rows in this matrix
 		 * .size.columns: The number of columns in this matrix
 		 * .elements: Row-major-ordered array of elements in this matrix
@@ -52,7 +52,8 @@ class Matrix {
 	}
 
 	/**
-	 * Checks if object *o* is a valid `Matrix` instance.
+	 * Checks if object *o* is an instance of `Matrix` or a child class of
+	 * `Matrix`.
 	 *
 	 * Note that methods inside the `Matrix` class do not check if their
 	 * parameters are valid (including matrices).
@@ -85,7 +86,8 @@ class Matrix {
 			"Matrix",
 			"ZeroMatrix",
 			"IdentityMatrix",
-			"SquareMatrix"
+			"SquareMatrix",
+			"AugmentedMatrix"
 		].indexOf( o.constructor.name ) !== - 1
 		&& o.elements.every( ( e ) => Number.isFinite( e ) )
 		&& o.elements.length === o.numberOfElements;
@@ -118,7 +120,7 @@ class Matrix {
 		result.setDimensions( result.size.rows, n.size.columns );
 		result.elements = result.elements.map( ( e, i ) => {
 
-			return linearCombination(
+			return MathUtils.linearCombination(
 				m.row( i + 1 ),
 				n.column( Math.ceil( ( i + 1 ) / m.size.rows ) )
 			);
@@ -134,9 +136,27 @@ class Matrix {
 	/**
 	 * @return {number} The number of elements in this matrix
 	 */
-	get numberOfElements() {
+	// get numberOfElements() {
+	//
+	// 	return this.size.rows * this.size.columns;
+	//
+	// }
 
-		return this.size.rows * this.size.columns;
+	/**
+	 * @return {boolean} `true` if this matrix is in row-echolon form, `false`
+	 * otherwise
+	 */
+	// get isInRowEchelonForm() {
+	//
+	//
+	//
+	// }
+
+	/**
+	 * @return {boolean} `true` if this matrix is in reduced row-echolon form,
+	 * `false` otherwise
+	 */
+	get isInReducedRowEchelonForm() {
 
 	}
 
@@ -363,11 +383,24 @@ class Matrix {
 	}
 
 	/**
+	 * Returns the leading coefficient of a row
+	 *
+	 * @param {number} r The row to consider (1-indexed)
+	 * @return {number} The leading coefficient of the row, or undefined if it
+	 * does not have one
+	 */
+	leadingCoefficient( r ) {
+
+		return this.row( r ).filter( ( e ) => e !== 0 )[ 0 ];
+
+	}
+
+	/**
 	 * Executes a function for each element in this matrix.
 	 *
 	 * The function accepts any of the following arguments (in order):
-	 * 1. `element` (`number`) The current element in the matrix being processed
-	 * 2. `index` (`number`) The position of `element` in this matrix
+	 * 1. `e` (`number`): The current element in the matrix being processed
+	 * 2. `i` (`number`): The position of `element` in this matrix
 	 *
 	 * @param {function} callback The function to execute per iteration
 	 * @param {object} thisArg The argument to use as `this` in the function
@@ -379,6 +412,46 @@ class Matrix {
 			callback.bind( thisArg )( e, i );
 
 		} );
+
+	}
+
+	/**
+	 * Executes a function for each row in this matrix.
+	 *
+	 * The function accepts any of the following arguments (in order):
+	 * 1. (`Array.<number>`) The current row in the matrix being processed
+	 * 2. `r` (`number`) The position of the row in this matrix (1-indexed)
+	 *
+	 * @param {function} callback The function to execute per iteration
+	 * @param {object} thisArg The argument to use as `this` in the function
+	 */
+	forEachRow( callback, thisArg ) {
+
+		loop( this.size.rows, ( r ) => {
+
+			callback.bind( thisArg )( this.row( r ), r );
+
+		}, this );
+
+	}
+
+	/**
+	 * Executes a function for each column in this matrix.
+	 *
+	 * The function accepts any of the following arguments (in order):
+	 * 1. (`Array.<number>`) The current column in the matrix being processed
+	 * 2. `r` (`number`) The position of the column in this matrix (1-indexed)
+	 *
+	 * @param {function} callback The function to execute per iteration
+	 * @param {object} thisArg The argument to use as `this` in the function
+	 */
+	forEachColumn( callback, thisArg ) {
+
+		loop( this.size.columns, ( c ) => {
+
+			callback.bind( thisArg )( this.row( c ), c );
+
+		}, this );
 
 	}
 
@@ -622,6 +695,55 @@ class Matrix {
 		return this;
 
 	}
+
+	// Matrix reduction
+
+	/**
+	 * Checks if a row in this matrix is zero (contains only 0s)
+	 *
+	 * @param {number} r The row to consider (1-indexed)
+	 * @return {boolean} `true` if the row is zero, `false` otherwise
+	 */
+	isZeroRow( r ) {
+
+		return this.row( r ).reduce( ( sum, e ) => sum + e, 0 ) === 0;
+
+	}
+
+	/**
+	 * Reduces this matrix to its row-echelon form in place using Gaussian
+	 * algorithm.
+	 *
+	 * @param {boolean} canonical Set to `true` to reduce to reduced row-echelon
+	 * @return {Matrix} This matrix
+	 */
+	// reduce( canonical = false ) {
+	//
+	// 	/*
+	// 	 * Gaussian algorithm:
+	// 	 *
+	// 	 *   1. Find a non-zero row.
+	// 	 *   2. Multiply it by 1 over the leading coefficient of that row.
+	// 	 *   3. Swap the row with another row (if necessary) such that the
+	// 	 *      leading coefficient of the row is strictly on the right of the
+	// 	 *      leading coefficient of the row above it and the same but on the
+	// 	 *      left for the row below it.
+	// 	 *   4. Check for other rows with the leading coefficients being in the
+	// 	 *      same column as the current row. Use elementary row operation
+	// 	 *      III to eliminate them.
+	// 	 *   5. Check if the matrix is in row-echelon form, if not then repeat
+	// 	 *      steps 1 to 5.
+	// 	 *
+	// 	 * In addition, if canonical = true:
+	// 	 *
+	// 	 *   5. For each row, subtract it from the rows above it such that the
+	// 	 *      column containing its leading coefficient has the coefficient as
+	// 	 *      the column's only non-zero element.
+	// 	 *   6. Check if the matrix is in reduced row-echelon form, if not then
+	// 	 *      repeat steps 5 and 6.
+	// 	 */
+	//
+	// }
 
 }
 
