@@ -18,19 +18,19 @@ class IdentityMatrix extends SquareMatrix {
 	 *
 	 * The instance initially encodes a 2 x 2 identity matrix.
 	 *
-	 * @param {string} name The name for the new instance
+	 * @param {string} name The denotation for the new matrix
 	 */
-	constructor( name ) {
+	constructor( name = null ) {
 
 		super( name );
 
 	}
 
 	/**
-	 * Checks if `o` encodes an identity matrix and returns `true` if it does.
+	 * Checks if *o* encodes an identity matrix and returns `true` if it does.
 	 *
 	 * @param {object} o The object to check
-	 * @return {boolean} `true` if `o` is an identity matrix, false otherwise
+	 * @return {boolean} `true` if *o* is an identity matrix, false otherwise
 	 */
 	static isIt( o ) {
 
@@ -49,7 +49,7 @@ class IdentityMatrix extends SquareMatrix {
 	 * only identity matrices are allowed to be the first argument.
 	 *
 	 * @param {Matrix} m An identity matrix to copy from
-	 * @param {boolean} copyName Set to `true` to copy the name of *m* also
+	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
 	 * @return {Matrix} This matrix
 	 */
 	copy( m, copyName = false ) {

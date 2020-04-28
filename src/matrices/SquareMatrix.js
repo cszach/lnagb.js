@@ -17,9 +17,9 @@ class SquareMatrix extends Matrix {
 	 *
 	 * The default instance starts as a 2 x 2 square identity matrix.
 	 *
-	 * @param {string} name The name for the new instance
+	 * @param {string} name The denotation for the new matrix
 	 */
-	constructor( name ) {
+	constructor( name = null ) {
 
 		super( name );
 		this.setDimensions( 2 );
@@ -30,7 +30,7 @@ class SquareMatrix extends Matrix {
 	 * Checks if *o* is a square matrix and returns `true` if it is.
 	 *
 	 * @param {object} o The object to check
-	 * @return {boolean} `true` if `o` encodes a square matrix, `false` otherwise
+	 * @return {boolean} `true` if *o* encodes a square matrix, `false` otherwise
 	 */
 	static isIt( o ) {
 
@@ -43,7 +43,7 @@ class SquareMatrix extends Matrix {
 	 * only square matrices are allowed to be the first argument.
 	 *
 	 * @param {Matrix} m A square matrix to copy from
-	 * @param {boolean} copyName Set to `true` to copy the name of *m* also
+	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
 	 * @return {Matrix} This matrix
 	 */
 	copy( m, copyName = false ) {

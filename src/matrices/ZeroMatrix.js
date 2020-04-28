@@ -17,9 +17,9 @@ class ZeroMatrix extends Matrix {
 	/**
 	 * Constructs a `ZeroMatrix` instance.
 	 *
-	 * @param {string} name The name for the new instance
+	 * @param {string} name The denotation for the new matrix
 	 */
-	constructor( name ) {
+	constructor( name = null ) {
 
 		super( name );
 
@@ -43,7 +43,7 @@ class ZeroMatrix extends Matrix {
 	 * only zero matrices are allowed to be the first argument.
 	 *
 	 * @param {Matrix} m A zero matrix to copy from
-	 * @param {boolean} copyName Set to `true` to copy the name of *m* also
+	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
 	 * @return {Matrix} This matrix
 	 */
 	copy( m, copyName ) {
