@@ -72,7 +72,7 @@ class AugmentedMatrix extends Matrix {
 	 * @return {boolean} `true` if *o* is an `AugmentedMatrix` instance,
 	 * `false` otherwise
 	 */
-	static isAugmentedMatrix( o ) {
+	static isIt( o ) {
 
 		return o.constructor.name === "AugmentedMatrix"
 			&& o.elements.every( ( e ) => Number.isFinite( e ) )
