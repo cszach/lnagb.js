@@ -1,5 +1,3 @@
-## Lab
-
 **Welcome to the lnagb.js Lab!**
 
 <p>
@@ -81,7 +79,7 @@ Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
 
 	}
 
-	import * as lnagbjs from 'https://cdn.jsdelivr.net/gh/vecma-org/lnagb.js/src/index.js';
+	import * as lnagbjs from 'https://cdn.jsdelivr.net/gh/vecma-org/lnagb.js@dev/src/index.js';
 
 	if ( lnagbjs ) {
 
@@ -97,11 +95,11 @@ Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
 
 		let suggestions = [
 
-			`${ namespaceName }.Matrix.ZeroMatrix( 4, 5 )`,
+			`new ${ namespaceName }.ZeroMatrix( 4, 5 )`,
 			"a.transpose()",
-			`${ namespaceName }.Matrix.IdentityMatrix( 3 )`,
+			`new ${ namespaceName }.IdentityMatrix( 3 )`,
 			"b.multiply( a )",
-			`new ${ namespaceName }.Matrix( 3, 3, 4, 1, - 9, 7, 7, - 6 )`,
+			`new ${ namespaceName }.Matrix( 2, 3, 4, 1, - 9, 7, 7, - 6 )`,
 			"a.multiplyScalar( - 1.5 )",
 			"b.addRowTimesScalarToRow( 1, 2, 3 )"
 

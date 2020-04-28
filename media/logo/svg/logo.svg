@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     id="svg8"
+     version="1.1"
+     viewBox="0 0 66.145833 58.208345"
+     height="220"
+     width="250">
+    <title
+         id="title1029">The Logo of lnagb.js</title>
+    <defs
+         id="defs2">
+        <color-profile
+             xlink:href="file:///usr/share/color/icc/colord/sRGB.icc"
+             name="sRGB"
+             id="color-profile4" />
+    </defs>
+    <metadata
+         id="metadata5">
+        <rdf:RDF>
+            <cc:Work
+                 rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type
+                     rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+                <dc:title>The Logo of lnagb.js</dc:title>
+                <cc:license
+                     rdf:resource="" />
+                <dc:date>12 Feb 2020</dc:date>
+                <dc:creator>
+                    <cc:Agent>
+                        <dc:title>Nguyen Hoang Duong &lt;you_create@protonmail.com&gt;</dc:title>
+                    </cc:Agent>
+                </dc:creator>
+                <dc:publisher>
+                    <cc:Agent>
+                        <dc:title>Vecma &lt;@vecma-org&gt;</dc:title>
+                    </cc:Agent>
+                </dc:publisher>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <g
+         id="layer1">
+        <rect
+             y="8.8817842e-16"
+             x="0"
+             height="58.208336"
+             width="66.145836"
+             id="rect1067"
+             style="fill:#ffffff;fill-opacity:0.05108572;stroke-width:0.1" />
+    </g>
+    <g
+         style="display:inline"
+         id="layer2">
+        <path
+             d="M 6.6145845,58.20834 C 2.9501049,58.20834 0,55.612248 0,52.387506 V 29.10417 h 9.2604181 v 23.283336 c 0,2.293961 1.0755749,4.268797 2.6458339,5.218287 0.114744,0.06625 0.264951,0.602547 0,0.602547 z M 6.614584,0 C 2.9501045,0 0,2.596092 0,5.8208339 V 29.10417 H 9.2604176 V 5.8208339 c 0,-2.293961 1.0755754,-4.268797 2.6458334,-5.21828663 C 12.020996,0.53629936 12.171202,0 11.906251,0 Z"
+             style="fill:#2196f3;fill-opacity:1;stroke-width:0.0999995"
+             id="path1006" />
+        <path
+             id="path1027"
+             style="fill:#2196f3;fill-opacity:1;stroke-width:0.0999995"
+             d="m 59.531255,58.20834 c 3.66448,0 6.614585,-2.596092 6.614585,-5.820834 V 29.10417 h -9.260418 v 23.283336 c 0,2.293961 -1.075575,4.268797 -2.645834,5.218287 -0.114744,0.06625 -0.264951,0.602547 0,0.602547 z M 59.531256,0 c 3.664479,0 6.614584,2.596092 6.614584,5.8208339 V 29.10417 H 56.885422 V 5.8208339 c 0,-2.293961 -1.075575,-4.268797 -2.645833,-5.21828663 C 54.124844,0.53629936 53.974638,0 54.239589,0 Z" />
+    </g>
+    <g
+         style="display:none"
+         id="layer4">
+        <text
+             xml:space="preserve"
+             style="font-style:normal;font-weight:normal;font-size:50.8px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#999999;fill-opacity:1;stroke:none;stroke-width:0.264583"
+             x="32.336296"
+             y="41.77877"
+             id="text1071"><tspan
+                 id="tspan1069"
+                 x="32.336296"
+                 y="41.77877"
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Galada;-inkscape-font-specification:Galada;text-align:center;text-anchor:middle;fill:#999999;stroke-width:0.264583">a</tspan></text>
+    </g>
+    <g
+         id="layer3">
+        <text
+             id="text903"
+             y="41.77877"
+             x="32.865463"
+             style="font-style:normal;font-weight:normal;font-size:50.8px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+             xml:space="preserve"><tspan
+                 style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Galada;-inkscape-font-specification:Galada;text-align:center;text-anchor:middle;stroke-width:0.264583"
+                 y="41.77877"
+                 x="32.865463"
+                 id="tspan901">a</tspan></text>
+    </g>
+</svg>

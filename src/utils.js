@@ -1,4 +1,8 @@
 /**
+ * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
+ */
+
+/**
  * Creates a loop that runs from 1 to *count*, executing a given function for
  * every iteration.
  *
