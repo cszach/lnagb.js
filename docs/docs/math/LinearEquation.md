@@ -20,6 +20,7 @@ see [`LinearEquations`](./LinearEquations).
         * [.add(equ)](#LinearEquation+add) ⇒ [<code>LinearEquation</code>](#LinearEquation)
         * [.subtract(equ)](#LinearEquation+subtract) ⇒ [<code>LinearEquation</code>](#LinearEquation)
         * [.multiplyScalar(s)](#LinearEquation+multiplyScalar) ⇒ [<code>LinearEquation</code>](#LinearEquation)
+        * [.toArray()](#LinearEquation+toArray) ⇒ <code>Array.&lt;number&gt;</code>
     * _static_
         * [.isIt(o)](#LinearEquation.isIt) ⇒ <code>boolean</code>
 
@@ -127,6 +128,15 @@ Multiplies this linear equation with a scalar.
 | --- | --- | --- |
 | s | <code>number</code> | The scalar to multiply this equation by |
 
+<a name="LinearEquation+toArray"></a>
+
+### linearEquation.toArray() ⇒ <code>Array.&lt;number&gt;</code>
+Writes the coefficients and the constant term of this equation to a new
+array in that order.
+
+**Kind**: instance method of [<code>LinearEquation</code>](#LinearEquation)  
+**Returns**: <code>Array.&lt;number&gt;</code> - The array containing the coefficients and the constant
+of this matrix  
 <a name="LinearEquation.isIt"></a>
 
 ### LinearEquation.isIt(o) ⇒ <code>boolean</code>
