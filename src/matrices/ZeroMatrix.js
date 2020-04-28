@@ -1,44 +1,145 @@
-import { Matrix } from './Matrix.js';
+import { Matrix } from "./Matrix.js";
 
 /**
- * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
+ * @author Nguyen Hoang Duong / you_create@protonmail.com
  */
 
 /**
- * Class for creating matrices that start off being zero matrices.
+ * Encodes read-only (in some sense) zero matrices.
  *
- * Note that, as said above, instances of this class start as zero matrices.
- * They can be transformed into non-zero matrices using methods inherited from
- * the base `Matrix` class.
- *
- * This class is a child class of `Matrix`. See the base [`Matrix`](./Matrix)
- * class for common properties and methods.
+ * Matrices instanced from this class are meant to be zero matrices at all
+ * times. Mutable methods inherited from `Matrix` no longer work on instances
+ * of `ZeroMatrix` (except for `setDimensions`, `zero`, `sizeSwap`,
+ * `transpose`).
  */
 class ZeroMatrix extends Matrix {
 
 	/**
 	 * Constructs a `ZeroMatrix` instance.
 	 *
-	 * The instance initially encodes a zero matrix.
-	 *
-	 * @param {number} row The number of rows for the new matrix
-	 * @param {number} column The number of columns for the new matrix
+	 * @param {string} name The denotation for the new matrix
 	 */
-	constructor( row, column ) {
+	constructor( name = null ) {
 
-		super( row, column, ...( new Array( row * column ).fill( 0 ) ) );
+		super( name );
 
 	}
 
 	/**
-	 * Checks if `o` encodes a zero matrix and returns `true` if it does.
+	 * Checks if *o* encodes a zero matrix. An instance of `Matrix` carrying
+	 * only zeros are also considered to be encoding a zero matrix.
 	 *
 	 * @param {object} o The object to check
-	 * @return {boolean} `true` if `o` is a zero matrix, `false` otherwise
+	 * @return {boolean} `true` if *o* is a zero matrix, `false` otherwise
 	 */
-	static isZeroMatrix( o ) {
+	static isIt( o ) {
 
-		return Matrix.isMatrix( o ) && o.elements.every( ( e ) => e === 0 );
+		return Matrix.isIt( o ) && o.elements.every( ( e ) => e === 0 );
+
+	}
+
+	/**
+	 * Same as the `copy` method in the base class, the only difference is that
+	 * only zero matrices are allowed to be the first argument.
+	 *
+	 * @param {Matrix} m A zero matrix to copy from
+	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
+	 * @return {Matrix} This matrix
+	 */
+	copy( m, copyName ) {
+
+		if ( ! ZeroMatrix.isIt( m ) ) return this;
+
+		this.size.rows = m.size.rows;
+		this.size.columns = m.size.columns;
+		this.elements = m.elements.slice();
+
+		this.name = ( copyName ) ? m.name : this.name;
+
+		return this;
+
+	}
+
+	set() {
+
+		console.warn( "You cannot set elements for instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	zero() {
+
+		return this;
+
+	}
+
+	interchargeRows() {
+
+		console.warn( "Elementary operations are either useless or not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	multiplyRowByScalar() {
+
+		console.warn( "Elementary operations are either useless or not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	addRowTimesScalarToRow() {
+
+		console.warn( "Elementary operations are either useless or not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	transpose() {
+
+		this.sizeSwap();
+		return this;
+
+	}
+
+	multiplyScalar() {
+
+		console.warn( "Scalar multiplication is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	negate() {
+
+		console.warn( "Negation is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	add() {
+
+		console.warn( "Addition is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	subtract() {
+
+		console.warn( "Subtraction is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	multiply() {
+
+		console.warn( "Multiplication is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	multiply() {
+
+		console.warn( "Pre-multiplication is not allowed on instances of ZeroMatrix" );
+		return this;
 
 	}
 

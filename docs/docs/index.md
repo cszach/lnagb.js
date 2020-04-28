@@ -1,25 +1,33 @@
-## Docs
-
 **Welcome to the lnagb.js documentation!**
 
 The goal of the documentation is to provide (in great details) information on
 how to use all of lnagb.js's functions, classes, and their methods. The pages
 in this documentation are generated from the docstrings placed along with the
-source code of lnagb.js itself using [`jsdoc2md`][gh jsdoc2md].
+source code of lnagb.js itself using [`jsdoc-to-markdown`][gh jsdoc2md]. The
+documentation can be generated with
+
+```bash
+npm install # Install dependencies
+npm run build-docs # Build the documentation
+```
 
 [gh jsdoc2md]: https://github.com/jsdoc2md/jsdoc-to-markdown
 
 ## Index
 
-- **[Globals](./Globals)**
-- **Math**
-	- [`LinearEquation`](./math/LinearEquation)
-- **Matrices**
-	- [`Matrix`](./matrices/Matrix)
-	- [`ZeroMatrix`](./matrices/ZeroMatrix)
-	- [`SquareMatrix`](./matrices/SquareMatrix)
-	- [`IdentityMatrix`](./matrices/IdentityMatrix)
-	- [`AugmentedMatrix`](./matrices/AugmentedMatrix)
+### [Math](./math)
+
+Concepts and operations found in Math and Linear Algebra, implemented in
+JavaScript. These are not bound to matrices and vectors, however some of them
+are used in the operations of these quantities.
+
+{% include math-index.html %}
+
+### [Matrices](./matrices)
+
+JavaScript classes that encode matrices and their operations.
+
+{% include matrices-index.html %}
 
 ## Report
 
