@@ -2,7 +2,7 @@
 
 // math
 
-export * from './math/Core.js';
+export { MathUtils } from './math/MathUtils.js';
 export { LinearEquation } from './math/LinearEquation.js';
 
 // matrices
