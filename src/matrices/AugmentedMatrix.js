@@ -6,18 +6,12 @@ import { Matrix } from './Matrix.js';
  */
 
 /**
- * Class for augmented matrices in Linear Algebra.
+ * Encodes augmented matrices in Linear Algebra.
  *
- * An augmented matrix is a matrix obtained by appending the columns of two
- * matrices. This class constructs instances similar to those of the `Matrix`
- * class, with 2 differences:
- * - The `name` property defaults to "_AugmentedMatrix_"
- * - The `size` property has two additional properties:
- *     - `l`: The number of columns of the matrix on the left
- *     - `r`: The number of columns of the matrix on the right
- *
- * This class is a child class of `Matrix`. See the base [`Matrix`](./Matrix)
- * class for common properties and methods.
+ * This class constructs instances similar to those of the `Matrix` class, with
+ * one difference: The `size` property has two additional properties:
+ *   - `l`: The number of columns of the matrix on the left
+ *   - `r`: The number of columns of the matrix on the right
  *
  * **Note**: You can freely change the value of the `name` property, but `size`
  * and `elements` should only be changed using this class's methods.
@@ -27,33 +21,28 @@ class AugmentedMatrix extends Matrix {
 	// CONSTRUCTOR
 
 	/**
-	 * Constructs an `AugmentedMatrix` instance.
+	 * Constructs an `AugmentedMatrix` instance, which encodes an augmented
+	 * matrix.
 	 *
-	 * An `AugmentedMatrix` instance is used to represent an augmented matrix.
-	 *
-	 * @param {number} row The number of rows for the new augmented matrix
-	 * @param {object} m The matrix on the left side of the augmented matrix
-	 * @param {object} n The matrix on the right side of the augmented matrix
+	 * @param {Matrix} m The matrix on the left side of the augmented matrix
+	 * @param {Matrix} n The matrix on the right side of the augmented matrix
+	 * @param {string} name The denotation for the new matrix
 	 */
-	constructor( row, m, n ) {
+	constructor( m, n, name = null ) {
 
-		if ( m.size.row !== n.size.row || m.size.row !== row ) {
+		if ( m.size.rows !== n.size.rows ) {
 
  			console.error( "Matrices are not valid to construct an augmented matrix" );
  			return;
 
  		}
 
-		// (cache) Number of columns in this augmented matrix
-		let numberOfColumns = m.size.column + n.size.column;
+		super( name );
 
-		super( row, numberOfColumns );
+		this.size.l = m.size.columns;
+		this.size.r = n.size.columns;
 
-		this.name = "AugmentedMatrix";
-		this.size.l = m.size.column;
-		this.size.r = n.size.column;
-
-		loop( this.size.row, function ( i ) {
+		loop( this.size.rows, function ( i ) {
 
 			this.elements.push( ...m.row( i ), ...n.row( i ) );
 
@@ -64,47 +53,46 @@ class AugmentedMatrix extends Matrix {
 	// STATIC PROPERTIES / METHODS
 
 	/**
-	 * Checks if object *o* is a valid `AugmentedMatrix` instance
+	 * Checks if object *o* is a valid `AugmentedMatrix` instance.
 	 *
 	 * Note that methods inside the `AugmentedMatrix` class do not check if
 	 * their parameters are valid (including matrices).
 	 *
 	 * Criteria for being "valid":
 	 * - The constructor is `AugmentedMatrix`
-	 * - Has the `name` property
 	 * - Has the `size` property that has
 	 *     - the `row` property being a positive integer
 	 *     - the `column` property also being a positive integer
 	 *     - the `l` and `r` properties that sum to the `column` property
 	 * - Has the `elements` property and it is a JavaScript array of numbers
-	 *   and the number of elements must equal to the product of `.size.row` and
-	 *   `.size.column`
+	 *   and the number of elements must equal to the product of `.size.rows`
+	 *   and `.size.columns`
 	 *
 	 * @param {object} o The object to check
 	 * @return {boolean} `true` if *o* is an `AugmentedMatrix` instance,
 	 * `false` otherwise
 	 */
-	static isAugmentedMatrix( o ) {
+	static isIt( o ) {
 
-		return o.constructor.name === "AugmentedMatrix" && o.name
+		return o.constructor.name === "AugmentedMatrix"
 			&& o.elements.every( ( e ) => Number.isFinite( e ) )
 			&& o.elements.length === o.numberOfElements
-			&& o.size.column === o.size.l + o.size.r;
+			&& o.size.columns === o.size.l + o.size.r;
 
 	}
 
 	// GETTERS
 
 	/**
-	 * Obtain the matrix on the left side of this augmented matrix.
+	 * Obtains the matrix on the left side of this augmented matrix.
 	 *
-	 * @return {object} The matrix on the left as an instance of `Matrix`
+	 * @return {Matrix} The matrix on the left of this augmented matrix
 	 */
 	get leftMatrix() {
 
-		let result = new Matrix( this.size.row, this.size.l );
+		let result = new Matrix( this.size.rows, this.size.l );
 
-		loop( this.size.row, function ( i ) {
+		loop( this.size.rows, function ( i ) {
 
 			result.elements.push( ...this.row( i ).slice( 0, this.size.l ) );
 
@@ -115,15 +103,15 @@ class AugmentedMatrix extends Matrix {
 	}
 
 	/**
-	 * Obtain the matrix on the right side of this augmented matrix.
+	 * Obtains the matrix on the right side of this augmented matrix.
 	 *
-	 * @return {object} The matrix on the right as an instance of `Matrix`
+	 * @return {Matrix} The matrix on the right of this augmented matrix
 	 */
 	get rightMatrix() {
 
-		let result = new Matrix( this.size.row, this.size.r );
+		let result = new Matrix( this.size.rows, this.size.r );
 
-		loop( this.size.row, function ( i ) {
+		loop( this.size.rows, function ( i ) {
 
 			result.elements.push( ...this.row( i ).slice( this.size.l ) );
 
@@ -139,34 +127,32 @@ class AugmentedMatrix extends Matrix {
 	/**
 	 * Makes this augmented matrix the same as augmented matrix *m*.
 	 *
-	 * @param {object} m The `AugmentedMatrix` instance to copy from
+	 * @param {AugmentedMatrix} m The instance to copy from
+	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
+	 * @return {AugmentedMatrix} This matrix
 	 */
-	copy( m ) {
+	copy( m, copyName = false ) {
 
-		this.size.row = m.size.row;
-		this.size.column = m.size.column;
+		this.size.rows = m.size.rows;
+		this.size.columns = m.size.columns;
 		this.size.l = m.size.l;
 		this.size.r = m.size.r;
 		this.elements = m.elements.slice();
+
+		this.name = ( copyName ) ? m.name : this.name;
+
+		return this;
 
 	}
 
  	/**
 	 * Creates and returns a clone of this instance.
 	 *
-	 * @return {object} A clone of this matrix
+	 * @return {AugmentedMatrix} A clone of this matrix
 	 */
 	clone() {
 
-		let clone = new AugmentedMatrix(
-			this.size.row,
-			this.leftMatrix,
-			this.rightMatrix
-		);
-
-		clone.name = this.name;
-
-		return clone;
+		return new AugmentedMatrix().copy( this, true );
 
 	}
 
