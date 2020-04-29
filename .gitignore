@@ -5,7 +5,6 @@
 
 # npm stuff
 
-package-lock.json
 node_modules/
 
 # Jekyll stuff
