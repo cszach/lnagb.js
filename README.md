@@ -1,17 +1,20 @@
-lnagb.js
-========
+<h1 align="center">lnagb.js</h1>
 
-[www]: https://vecma-org.github.io/lnagb.js/
-[src]: ./src/
-[lic]: ./LICENSE
+<p align="center">
+    <a href="https://vecma-org.github.io/lnagb.js/"><b>Website</b></a>
+    &mdash;
+    <a href="https://vecma-org.github.io/lnagb.js/docs/"><b>Documentation</b></a>
+    &mdash;
+    <a href="https://vecma-org.github.io/lnagb.js/lab/"><b>Lab</b></a>
+    &mdash;
+    <a href="https://vecma-org.github.io/lnagb.js/learn/"><b>Learning Area</b></a>
+</p>
 
-[**Source code**][src] &mdash; [**Website**][www] &mdash;
-[**Documentation**][docs] &mdash; [**Learning Area**][learn] &mdash;
-[**Lab**][lab] &mdash; [**License**][lic]
+![](media/wordmark/png/wordmark-pad.png)
 
 This repository contains Linear Algebra operations implemented in JavaScript,
-such as adding vectors, reducing matrices, matrix transformations, etc. APIs are
-named similarly to those of matrix classes in [three.js](https://threejs.org).
+such as solving systems of linear equations, adding vectors, reducing matrices,
+matrix transformations, etc.
 
 **lnagb.js** evolves as I ([@you-create][gh yc]) learn Linear Algebra. There was
 a similar project that I worked on called [**pylnagb**][gh pylnagb], but I've
@@ -77,7 +80,7 @@ Here's a little template for you.
     <body>
         <script src="build/lnagb.js"></script>
         <script>
-            let matrix = new lnagbjs.IdentityMatrix( 3 );
+            let matrix = new lnagbjs.IdentityMatrix( "I" );
 
             matrix.elements.forEach( function ( element ) {
 
@@ -102,7 +105,7 @@ Here's the same code but lnagb.js is loaded as a JavaScript module.
         <script type="module">
             import * as lnagbjs from './build/lnagb.module.js';
 
-            let matrix = new lnagbjs.IdentityMatrix( 3 );
+            let matrix = new lnagbjs.IdentityMatrix( "I" );
 
             matrix.elements.forEach( function ( element ) {
 
@@ -124,7 +127,17 @@ Be sure to [read the docs][docs] to know how to use lnagb.js. :wink:
 
 [docs]: https://vecma-org.github.io/lnagb.js/docs/
 [learn]: https://vecma-org.github.io/lnagb.js/learn/
-[lab]: https://vecma-org.github.io/lnagb.js/lab/
+
+:open_file_folder: Directory structure
+--------------------------------------
+
+- `docs/`: Contains source files for the lnagb.js website
+    - `docs/`: Contains Markdown files for the Documentation
+    - `lab/`: Contains files for the Lab
+    - `learn/`: Contains files for the Learning Area
+- `media/`: Contains images such as the lnagb.js logo
+- `src/`: Contains the source code of lnagb.js
+- `utils/`: Contains scripts useful in production
 
 :pushpin: TODO
 --------------
@@ -135,12 +148,12 @@ See the [Projects][gh projects] for detailed progression.
 
 ### Code
 
-- [ ] `LinearEquation`
-- [ ] `SystemOfLinearEquation`
+- [x] `LinearEquation`
+- [x] `SystemOfLinearEquation`
 - [ ] `Vector`
 - [x] `Matrix`
-- [x] `ZeroMatrix` (as a separate class)
-- [x] `IdentityMatrix` (as a separate class)
+- [x] `ZeroMatrix`
+- [x] `IdentityMatrix`
 - [x] `AugmentedMatrix`
 
 ### Production
@@ -151,7 +164,7 @@ See the [Projects][gh projects] for detailed progression.
 ### Website
 
 - [x] Make a dedicated website
-- [ ] Automate page listing and linking in the website
+- [x] Automate page listing and linking in the website
 - [ ] Lab 2.0
 - [ ] Initiate the Learning Area
 
