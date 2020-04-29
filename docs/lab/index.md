@@ -25,10 +25,6 @@
 	<button type="submit">Go!</button>
 </form>
 
-<p></p>
-
-Thanks are due to [jsDelivr](https://www.jsdelivr.com/).
-
 ## Troubleshooting
 
 lnagb.js is not available in the browser console? Try these troubleshooting
@@ -39,9 +35,6 @@ steps before reporting.
   play with lnagb.js in your browser console. Consult the web if you don't know
   how to enable JavaScript. Additionally, check if any of your browser's add-ons
   is disabling JavaScript (globally or site-specific).
-- If JavaScript is enabled yet lnagb.js could not be loaded, it is possible that
-  your browser or one of your browser's add-ons is blocking requests from and to
-  <https://cdn.jsdelivr.net>. Be sure to resolve this.
 
 ## Report
 
@@ -79,7 +72,7 @@ Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
 
 	}
 
-	import * as lnagbjs from 'https://cdn.jsdelivr.net/gh/vecma-org/lnagb.js@master/src/index.js';
+	import * as lnagbjs from './lnagb.module.js';
 
 	if ( lnagbjs ) {
 

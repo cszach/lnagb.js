@@ -9,7 +9,8 @@
   "scripts": {
     "build": "rollup -c utils/rollup.config.js",
     "build-components": "rollup -c utils/rollup-components.config.js",
-    "build-docs": "node utils/build-docs.js 'src' 'docs/docs'"
+    "build-docs": "node utils/build-docs.js 'src' 'docs/docs'",
+    "build-lab": "rollup -c utils/rollup-lab.config.js"
   },
   "repository": {
     "type": "git",
