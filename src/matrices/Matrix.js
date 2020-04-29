@@ -136,29 +136,23 @@ class Matrix {
 	/**
 	 * @return {number} The number of elements in this matrix
 	 */
-	// get numberOfElements() {
-	//
-	// 	return this.size.rows * this.size.columns;
-	//
-	// }
+	get numberOfElements() {
+
+		return this.size.rows * this.size.columns;
+
+	}
 
 	/**
 	 * @return {boolean} `true` if this matrix is in row-echolon form, `false`
 	 * otherwise
 	 */
-	// get isInRowEchelonForm() {
-	//
-	//
-	//
-	// }
+	// get isInRowEchelonForm() {}
 
 	/**
 	 * @return {boolean} `true` if this matrix is in reduced row-echolon form,
 	 * `false` otherwise
 	 */
-	get isInReducedRowEchelonForm() {
-
-	}
+	// get isInReducedRowEchelonForm() {}
 
 	// METHODS
 
