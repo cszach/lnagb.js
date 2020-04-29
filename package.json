@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "build": "rollup -c rollup.config.js",
+    "build-components": "rollup -c rollup-components.config.js",
     "build-docs": "node utils/build-docs.js 'src' 'docs/docs'"
   },
   "repository": {
