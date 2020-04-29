@@ -1,9 +1,9 @@
 // index.js
 
-// math
+// algebra
 
-export * from './math/Core.js';
-export { LinearEquation } from './math/LinearEquation.js';
+export { MathUtils } from './algebra/MathUtils.js';
+export { LinearEquation } from './algebra/LinearEquation.js';
 
 // matrices
 

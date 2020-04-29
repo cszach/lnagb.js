@@ -1,5 +1,5 @@
 import { loop, sameArrays } from '../utils.js';
-import { MathUtils } from '../math/MathUtils.js';
+import { MathUtils } from '../algebra/MathUtils.js';
 
 /**
  * @author Nguyen Hoang Duong / you_create@protonmail.com

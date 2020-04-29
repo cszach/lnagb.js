@@ -1,8 +1,9 @@
+<a name="Matrices"></a>
+
 ## Matrices
-
-Here you can find documentation for lnagb.js's JavaScript source files and
-classes that encode matrices and their operations.
-
-## Index
+This particular component of lnagb.js concerns with encoding matrices and
+their operations.
 
 {% include matrices-index.html %}
+
+**Kind**: global exports  

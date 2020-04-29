@@ -1,18 +1,12 @@
 <a name="AugmentedMatrix"></a>
 
 ## AugmentedMatrix
-Class for augmented matrices in Linear Algebra.
+Encodes augmented matrices in Linear Algebra.
 
-An augmented matrix is a matrix obtained by appending the columns of two
-matrices. This class constructs instances similar to those of the `Matrix`
-class, with 2 differences:
-- The `name` property defaults to "_AugmentedMatrix_"
-- The `size` property has two additional properties:
-    - `l`: The number of columns of the matrix on the left
-    - `r`: The number of columns of the matrix on the right
-
-This class is a child class of `Matrix`. See the base [`Matrix`](./Matrix)
-class for common properties and methods.
+This class constructs instances similar to those of the `Matrix` class, with
+one difference: The `size` property has two additional properties:
+  - `l`: The number of columns of the matrix on the left
+  - `r`: The number of columns of the matrix on the right
 
 **Note**: You can freely change the value of the `name` property, but `size`
 and `elements` should only be changed using this class's methods.
@@ -20,79 +14,79 @@ and `elements` should only be changed using this class's methods.
 **Kind**: global class  
 
 * [AugmentedMatrix](#AugmentedMatrix)
-    * [new AugmentedMatrix(row, m, n)](#new_AugmentedMatrix_new)
+    * [new AugmentedMatrix(m, n, name)](#new_AugmentedMatrix_new)
     * _instance_
-        * [.leftMatrix](#AugmentedMatrix+leftMatrix) ⇒ <code>object</code>
-        * [.rightMatrix](#AugmentedMatrix+rightMatrix) ⇒ <code>object</code>
-        * [.copy(m)](#AugmentedMatrix+copy)
-        * [.clone()](#AugmentedMatrix+clone) ⇒ <code>object</code>
+        * [.leftMatrix](#AugmentedMatrix+leftMatrix) ⇒ <code>Matrix</code>
+        * [.rightMatrix](#AugmentedMatrix+rightMatrix) ⇒ <code>Matrix</code>
+        * [.copy(m, copyName)](#AugmentedMatrix+copy) ⇒ [<code>AugmentedMatrix</code>](#AugmentedMatrix)
+        * [.clone()](#AugmentedMatrix+clone) ⇒ [<code>AugmentedMatrix</code>](#AugmentedMatrix)
     * _static_
-        * [.isAugmentedMatrix(o)](#AugmentedMatrix.isAugmentedMatrix) ⇒ <code>boolean</code>
+        * [.isIt(o)](#AugmentedMatrix.isIt) ⇒ <code>boolean</code>
 
 <a name="new_AugmentedMatrix_new"></a>
 
-### new AugmentedMatrix(row, m, n)
-Constructs an `AugmentedMatrix` instance.
+### new AugmentedMatrix(m, n, name)
+Constructs an `AugmentedMatrix` instance, which encodes an augmented
+matrix.
 
-An `AugmentedMatrix` instance is used to represent an augmented matrix.
 
-
-| Param | Type | Description |
-| --- | --- | --- |
-| row | <code>number</code> | The number of rows for the new augmented matrix |
-| m | <code>object</code> | The matrix on the left side of the augmented matrix |
-| n | <code>object</code> | The matrix on the right side of the augmented matrix |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| m | <code>Matrix</code> |  | The matrix on the left side of the augmented matrix |
+| n | <code>Matrix</code> |  | The matrix on the right side of the augmented matrix |
+| name | <code>string</code> | <code>null</code> | The denotation for the new matrix |
 
 <a name="AugmentedMatrix+leftMatrix"></a>
 
-### augmentedMatrix.leftMatrix ⇒ <code>object</code>
-Obtain the matrix on the left side of this augmented matrix.
+### augmentedMatrix.leftMatrix ⇒ <code>Matrix</code>
+Obtains the matrix on the left side of this augmented matrix.
 
 **Kind**: instance property of [<code>AugmentedMatrix</code>](#AugmentedMatrix)  
-**Returns**: <code>object</code> - The matrix on the left as an instance of `Matrix`  
+**Returns**: <code>Matrix</code> - The matrix on the left of this augmented matrix  
 <a name="AugmentedMatrix+rightMatrix"></a>
 
-### augmentedMatrix.rightMatrix ⇒ <code>object</code>
-Obtain the matrix on the right side of this augmented matrix.
+### augmentedMatrix.rightMatrix ⇒ <code>Matrix</code>
+Obtains the matrix on the right side of this augmented matrix.
 
 **Kind**: instance property of [<code>AugmentedMatrix</code>](#AugmentedMatrix)  
-**Returns**: <code>object</code> - The matrix on the right as an instance of `Matrix`  
+**Returns**: <code>Matrix</code> - The matrix on the right of this augmented matrix  
 <a name="AugmentedMatrix+copy"></a>
 
-### augmentedMatrix.copy(m)
+### augmentedMatrix.copy(m, copyName) ⇒ [<code>AugmentedMatrix</code>](#AugmentedMatrix)
 Makes this augmented matrix the same as augmented matrix *m*.
 
 **Kind**: instance method of [<code>AugmentedMatrix</code>](#AugmentedMatrix)  
+**Returns**: [<code>AugmentedMatrix</code>](#AugmentedMatrix) - This matrix  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| m | <code>object</code> | The `AugmentedMatrix` instance to copy from |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| m | [<code>AugmentedMatrix</code>](#AugmentedMatrix) |  | The instance to copy from |
+| copyName | <code>boolean</code> | <code>false</code> | Set to `true` to copy the denotation of *m* |
 
 <a name="AugmentedMatrix+clone"></a>
 
-### augmentedMatrix.clone() ⇒ <code>object</code>
+### augmentedMatrix.clone() ⇒ [<code>AugmentedMatrix</code>](#AugmentedMatrix)
 Creates and returns a clone of this instance.
 
 **Kind**: instance method of [<code>AugmentedMatrix</code>](#AugmentedMatrix)  
-**Returns**: <code>object</code> - A clone of this matrix  
-<a name="AugmentedMatrix.isAugmentedMatrix"></a>
+**Returns**: [<code>AugmentedMatrix</code>](#AugmentedMatrix) - A clone of this matrix  
+<a name="AugmentedMatrix.isIt"></a>
 
-### AugmentedMatrix.isAugmentedMatrix(o) ⇒ <code>boolean</code>
-Checks if object *o* is a valid `AugmentedMatrix` instance
+### AugmentedMatrix.isIt(o) ⇒ <code>boolean</code>
+Checks if object *o* is a valid `AugmentedMatrix` instance.
 
 Note that methods inside the `AugmentedMatrix` class do not check if
 their parameters are valid (including matrices).
 
 Criteria for being "valid":
 - The constructor is `AugmentedMatrix`
-- Has the `name` property
 - Has the `size` property that has
     - the `row` property being a positive integer
     - the `column` property also being a positive integer
     - the `l` and `r` properties that sum to the `column` property
 - Has the `elements` property and it is a JavaScript array of numbers
-  and the number of elements must equal to the product of `.size.row` and
-  `.size.column`
+  and the number of elements must equal to the product of `.size.rows`
+  and `.size.columns`
 
 **Kind**: static method of [<code>AugmentedMatrix</code>](#AugmentedMatrix)  
 **Returns**: <code>boolean</code> - `true` if *o* is an `AugmentedMatrix` instance,

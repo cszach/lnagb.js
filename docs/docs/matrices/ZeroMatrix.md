@@ -1,41 +1,54 @@
 <a name="ZeroMatrix"></a>
 
 ## ZeroMatrix
-Class for creating matrices that start off being zero matrices.
+Encodes read-only (in some sense) zero matrices.
 
-Note that, as said above, instances of this class start as zero matrices.
-They can be transformed into non-zero matrices using methods inherited from
-the base `Matrix` class.
-
-This class is a child class of `Matrix`. See the base [`Matrix`](./Matrix)
-class for common properties and methods.
+Matrices instanced from this class are meant to be zero matrices at all
+times. Mutable methods inherited from `Matrix` no longer work on instances
+of `ZeroMatrix` (except for `setDimensions`, `zero`, `sizeSwap`,
+`transpose`).
 
 **Kind**: global class  
 
 * [ZeroMatrix](#ZeroMatrix)
-    * [new ZeroMatrix(row, column)](#new_ZeroMatrix_new)
-    * [.isZeroMatrix(o)](#ZeroMatrix.isZeroMatrix) ⇒ <code>boolean</code>
+    * [new ZeroMatrix(name)](#new_ZeroMatrix_new)
+    * _instance_
+        * [.copy(m, copyName)](#ZeroMatrix+copy) ⇒ <code>Matrix</code>
+    * _static_
+        * [.isIt(o)](#ZeroMatrix.isIt) ⇒ <code>boolean</code>
 
 <a name="new_ZeroMatrix_new"></a>
 
-### new ZeroMatrix(row, column)
+### new ZeroMatrix(name)
 Constructs a `ZeroMatrix` instance.
 
-The instance initially encodes a zero matrix.
 
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| name | <code>string</code> | <code>null</code> | The denotation for the new matrix |
+
+<a name="ZeroMatrix+copy"></a>
+
+### zeroMatrix.copy(m, copyName) ⇒ <code>Matrix</code>
+Same as the `copy` method in the base class, the only difference is that
+only zero matrices are allowed to be the first argument.
+
+**Kind**: instance method of [<code>ZeroMatrix</code>](#ZeroMatrix)  
+**Returns**: <code>Matrix</code> - This matrix  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| row | <code>number</code> | The number of rows for the new matrix |
-| column | <code>number</code> | The number of columns for the new matrix |
+| m | <code>Matrix</code> | A zero matrix to copy from |
+| copyName | <code>boolean</code> | Set to `true` to copy the denotation of *m* |
 
-<a name="ZeroMatrix.isZeroMatrix"></a>
+<a name="ZeroMatrix.isIt"></a>
 
-### ZeroMatrix.isZeroMatrix(o) ⇒ <code>boolean</code>
-Checks if `o` encodes a zero matrix and returns `true` if it does.
+### ZeroMatrix.isIt(o) ⇒ <code>boolean</code>
+Checks if *o* encodes a zero matrix. An instance of `Matrix` carrying
+only zeros are also considered to be encoding a zero matrix.
 
 **Kind**: static method of [<code>ZeroMatrix</code>](#ZeroMatrix)  
-**Returns**: <code>boolean</code> - `true` if `o` is a zero matrix, `false` otherwise  
+**Returns**: <code>boolean</code> - `true` if *o* is a zero matrix, `false` otherwise  
 
 | Param | Type | Description |
 | --- | --- | --- |

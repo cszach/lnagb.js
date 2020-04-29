@@ -15,13 +15,13 @@ npm run build-docs # Build the documentation
 
 ## Index
 
-### [Math](./math)
+### [Algebra](./algebra)
 
 Concepts and operations found in Math and Linear Algebra, implemented in
 JavaScript. These are not bound to matrices and vectors, however some of them
 are used in the operations of these quantities.
 
-{% include math-index.html %}
+{% include algebra-index.html %}
 
 ### [Matrices](./matrices)
 
