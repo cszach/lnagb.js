@@ -1,4 +1,4 @@
-let components = [ 'matrices', 'math' ];
+let components = [ 'matrices', 'algebra' ];
 let exports = [];
 
 components.forEach( ( component ) => {

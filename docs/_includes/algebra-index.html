@@ -6,11 +6,11 @@
 		</tr>
 	</thead>
 	<tbody>
-		{% assign math = site.data.math | sort: "name" %}
-		{% for object in math %}
+		{% assign algebra = site.data.algebra | sort: "name" %}
+		{% for object in algebra %}
 			<tr>
 				<td style="text-align: center">
-					<a href="{{ '/docs/math' | absolute_url }}/{{ object.name }}">
+					<a href="{{ '/docs/algebra' | absolute_url }}/{{ object.name }}">
 						<code>{{ object.name }}</code>
 					</a>
 				</td>

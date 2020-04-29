@@ -18,8 +18,8 @@ const OUTPUT_DIR = process.argv[ 3 ].replace( /\/*$/gi, '' ); // Where to export
 // | OUTPUT_DIR is 'docs', then...                                           |
 // |   + 'src/script.js' -> 'docs/script.js'                                 |
 // |   + 'src/core/script.js' -> 'docs/core/script.js'                       |
-// |   + 'src/math/trigonometry/script.js' ->                                |
-// | 'docs/math/trigonometry/script.js'                                      |
+// |   + 'src/algebra/trigonometry/script.js' ->                             |
+// | 'docs/algebra/trigonometry/script.js'                                   |
 // |   + ...and so on                                                        |
 // | - jsdoc-to-markdown is used to convert JavaScript docstrings into       |
 // | Markdown documents.                                                     |

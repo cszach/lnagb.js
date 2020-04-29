@@ -29,15 +29,15 @@ The **Docs**, or documentation, documents all of lnagb.js's classes, variables,
 and methods in great details. It is divided into 3 areas according to the way
 lnagb.js approaches Linear Algebra as a math subject:
 
-- [**Math**][1], which covers fundamental and plain mathematical operations that
-  are used in the operations needed by the other areas;
+- [**Algebra**][1], which covers fundamental and plain mathematical operations
+  that are used in the operations needed by the other areas;
 - [**Matrices**][2], which covers matrices as a distinct aspect of Linear
   Algebra and thus has everything related to them and their operations; and
 - [**Vectors**][3], which are quanties somewhat similar to matrices but
   different enough to have their own dedicated space, which has everything
   related to them and their operations.
 
-[1]: docs/math
+[1]: docs/algebra
 [2]: docs/matrices
 [3]: docs/vectors
 
