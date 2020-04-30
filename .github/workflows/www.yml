@@ -41,20 +41,3 @@ jobs:
         run: npm ci
       - name: Build the Docs
         run: npm run build-docs
-
-  build-lab:
-
-    name: "Build the Lab"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Git checkout
-        uses: actions/checkout@v2
-      - name: Install Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build the Lab
-        run: npm run build-lab
