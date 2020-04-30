@@ -8,14 +8,14 @@ components.forEach( ( component ) => {
 			input: `src/${component}/index.js`,
 			output: {
 				name: "lnagbjs",
-				file: `build/components/${component}/lnagb.${component}.js`,
+				file: `build/${component}/lnagb.${component}.js`,
 				format: "umd"
 			}
 		},
 		{
 			input: `src/${component}/index.js`,
 			output: {
-				file: `build/components/${component}/lnagb.${component}.module.js`,
+				file: `build/${component}/lnagb.${component}.module.js`,
 				format: "esm"
 			}
 		}

@@ -42,5 +42,10 @@ defaults:
       path: "lab"
     values:
       area: "Lab"
+  -
+    scope:
+      path: "builds"
+    values:
+      area: "Builds"
 
 disable_disk_cache: true

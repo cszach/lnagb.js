@@ -72,7 +72,7 @@ Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
 
 	}
 
-	import * as lnagbjs from './lnagb.module.js';
+	import * as lnagbjs from '../builds/lnagb.module.js';
 
 	if ( lnagbjs ) {
 

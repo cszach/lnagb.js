@@ -53,6 +53,11 @@ soon.
 
 The **Lab** is where you can play with lnagb.js in your browser console.
 
+### [Builds](./builds/)
+
+The **Builds** section contains lnagb.js builds and a page that indexes those
+builds.
+
 ## License
 
 The code, the documents, and the materials are all licensed under

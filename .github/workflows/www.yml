@@ -8,14 +8,10 @@ on:
 
 jobs:
 
-  build-docs:
+  build:
 
-    name: "Build the Docs"
+    name: "Build lnagb.js"
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 13.x]
 
     steps:
       - name: Git checkout
@@ -23,7 +19,24 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '12.x'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build lnagb.js
+        run: npm run build-for-www
+
+  build-docs:
+
+    name: "Build the Docs"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
       - name: Install dependencies
         run: npm ci
       - name: Build the Docs
@@ -34,17 +47,13 @@ jobs:
     name: "Build the Lab"
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 13.x]
-
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
       - name: Install Node
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '12.x'
       - name: Install dependencies
         run: npm ci
       - name: Build the Lab
