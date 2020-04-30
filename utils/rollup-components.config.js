@@ -15,7 +15,7 @@ components.forEach( ( component ) => {
 		{
 			input: `src/${component}/index.js`,
 			output: {
-				file: `build/${component}/lnagb.${component}.module.js`,
+				file: `build/${component}/lnagb.${component}.esm.js`,
 				format: "esm"
 			}
 		}

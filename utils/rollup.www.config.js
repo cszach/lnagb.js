@@ -11,7 +11,7 @@ let exports = [
 	{
 		input: "src/index.js",
 		output: {
-			file: "docs/builds/lnagb.module.js",
+			file: "docs/builds/lnagb.esm.js",
 			format: "esm"
 		}
 	}
@@ -31,7 +31,7 @@ components.forEach( ( component ) => {
 		{
 			input: `src/${component}/index.js`,
 			output: {
-				file: `docs/builds/${component}/lnagb.${component}.module.js`,
+				file: `docs/builds/${component}/lnagb.${component}.esm.js`,
 				format: "esm"
 			}
 		}

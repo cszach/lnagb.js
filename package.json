@@ -4,7 +4,7 @@
   "main": "src/index.js",
   "files": [
     "build/lnagb.js",
-    "build/lnagb.module.js"
+    "build/lnagb.esm.js"
   ],
   "scripts": {
     "build": "rollup -c utils/rollup.config.js",

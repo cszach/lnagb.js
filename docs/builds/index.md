@@ -10,10 +10,10 @@ You can load the full lnagb.js library using the `script` tag:
 ```
 
 ...or using the `import` statement, but note that this time the file being
-imported ends with `.module.js`:
+imported ends with `.esm.js`:
 
 ```javascript
-import * as lnagbjs from 'https://vecma-org.github.io/lnagb.js/builds/lnagb.module.js';
+import * as lnagbjs from 'https://vecma-org.github.io/lnagb.js/builds/lnagb.esm.js';
 ```
 
 ## Standalone components
@@ -34,8 +34,8 @@ can use these links instead.
 				</a>
 			</li>
 			<li>
-				ESM: <a href="./{{ component }}/lnagb.{{ component }}.module.js">
-					https://vecma-org.github.io/builds/{{ component }}/lnagb.{{ component }}.module.js
+				ESM: <a href="./{{ component }}/lnagb.{{ component }}.esm.js">
+					https://vecma-org.github.io/builds/{{ component }}/lnagb.{{ component }}.esm.js
 				</a>
 			</li>
 		</ul>

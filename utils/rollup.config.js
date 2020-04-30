@@ -10,7 +10,7 @@ export default [
 	{
 		input: "src/index.js",
 		output: {
-			file: "build/lnagb.module.js",
+			file: "build/lnagb.esm.js",
 			format: "esm"
 		}
 	},
