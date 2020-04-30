@@ -1,5 +1,67 @@
-import { loop, sameArrays } from '../utils.js';
-import { MathUtils } from '../algebra/MathUtils.js';
+/**
+ * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
+ */
+
+/**
+ * Creates a loop that runs from 1 to *count*, executing a given function for
+ * every iteration.
+ *
+ * @param {number} count How many times the function is executed
+ * @param {function} func The function to execute in each iteration
+ * @param {object} thisArg What to use as `this` inside `func`
+ */
+let loop = function ( count, func, thisArg ) {
+
+	for ( let i = 1; i < count + 1; i ++ ) {
+
+		func.bind( thisArg )( i );
+
+	}
+
+};
+
+/**
+ * Checks if arrays `p` and `q` are the same and returns `true` if they are
+ *
+ * Two arrays are the same when...
+ * - they have the same number of elements; and
+ * - every element of this array is *strictly* the same as the element of the
+ *   other array at the same index
+ *
+ * @param {object} p A JavaScript array
+ * @param {object} q Another JavaScript array
+ * @return {boolean} `true` if arrays *p* and *q* are the same, `false`
+ * otherwise
+ */
+let sameArrays = function ( p, q ) {
+
+	return p.length === q.length && p.every( ( e, i ) => e === q[ i ] );
+
+};
+
+/**
+ * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
+ */
+
+let MathUtils = {
+
+	/**
+	 * Computes and returns the result of the linear combination of 2 sequences
+	 * of numbers. The sequences must have the same number of terms.
+	 *
+	 * This is useful in multiplying matrices.
+	 *
+	 * @param {object} p First sequence of numbers (as a JS array)
+	 * @param {object} q Second sequence of numbers (as a JS array)
+	 * @return {number} The result of the linear combination of the two sequences
+	 */
+	linearCombination: function ( p, q ) {
+
+		return p.reduce( ( result, v, i ) => result + p[ i ] * q[ i ], 0 );
+
+	}
+
+};
 
 /**
  * @author Nguyen Hoang Duong / you_create@protonmail.com
@@ -741,4 +803,612 @@ class Matrix {
 
 }
 
-export { Matrix };
+/**
+ * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
+ */
+
+/**
+ * Encodes augmented matrices in Linear Algebra.
+ *
+ * This class constructs instances similar to those of the `Matrix` class, with
+ * one difference: The `size` property has two additional properties:
+ *   - `l`: The number of columns of the matrix on the left
+ *   - `r`: The number of columns of the matrix on the right
+ *
+ * **Note**: You can freely change the value of the `name` property, but `size`
+ * and `elements` should only be changed using this class's methods.
+ */
+class AugmentedMatrix extends Matrix {
+
+	// CONSTRUCTOR
+
+	/**
+	 * Constructs an `AugmentedMatrix` instance, which encodes an augmented
+	 * matrix.
+	 *
+	 * @param {Matrix} m The matrix on the left side of the augmented matrix
+	 * @param {Matrix} n The matrix on the right side of the augmented matrix
+	 * @param {string} name The denotation for the new matrix
+	 */
+	constructor( m, n, name = null ) {
+
+		if ( m.size.rows !== n.size.rows ) {
+
+ 			console.error( "Matrices are not valid to construct an augmented matrix" );
+ 			return;
+
+ 		}
+
+		super( name );
+
+		this.size.l = m.size.columns;
+		this.size.r = n.size.columns;
+
+		loop( this.size.rows, function ( i ) {
+
+			this.elements.push( ...m.row( i ), ...n.row( i ) );
+
+		}, this );
+
+	}
+
+	// STATIC PROPERTIES / METHODS
+
+	/**
+	 * Checks if object *o* is a valid `AugmentedMatrix` instance.
+	 *
+	 * Note that methods inside the `AugmentedMatrix` class do not check if
+	 * their parameters are valid (including matrices).
+	 *
+	 * Criteria for being "valid":
+	 * - The constructor is `AugmentedMatrix`
+	 * - Has the `size` property that has
+	 *     - the `row` property being a positive integer
+	 *     - the `column` property also being a positive integer
+	 *     - the `l` and `r` properties that sum to the `column` property
+	 * - Has the `elements` property and it is a JavaScript array of numbers
+	 *   and the number of elements must equal to the product of `.size.rows`
+	 *   and `.size.columns`
+	 *
+	 * @param {object} o The object to check
+	 * @return {boolean} `true` if *o* is an `AugmentedMatrix` instance,
+	 * `false` otherwise
+	 */
+	static isIt( o ) {
+
+		return o.constructor.name === "AugmentedMatrix"
+			&& o.elements.every( ( e ) => Number.isFinite( e ) )
+			&& o.elements.length === o.numberOfElements
+			&& o.size.columns === o.size.l + o.size.r;
+
+	}
+
+	// GETTERS
+
+	/**
+	 * Obtains the matrix on the left side of this augmented matrix.
+	 *
+	 * @return {Matrix} The matrix on the left of this augmented matrix
+	 */
+	get leftMatrix() {
+
+		let result = new Matrix( this.size.rows, this.size.l );
+
+		loop( this.size.rows, function ( i ) {
+
+			result.elements.push( ...this.row( i ).slice( 0, this.size.l ) );
+
+		}, this );
+
+		return result;
+
+	}
+
+	/**
+	 * Obtains the matrix on the right side of this augmented matrix.
+	 *
+	 * @return {Matrix} The matrix on the right of this augmented matrix
+	 */
+	get rightMatrix() {
+
+		let result = new Matrix( this.size.rows, this.size.r );
+
+		loop( this.size.rows, function ( i ) {
+
+			result.elements.push( ...this.row( i ).slice( this.size.l ) );
+
+		}, this );
+
+		return result;
+
+	}
+
+	// RE-IMPLEMENT METHODS FROM THE MATRIX CLASS THAT MUST WORK DIFFERENTLY
+	// IN THIS CLASS
+
+	/**
+	 * Makes this augmented matrix the same as augmented matrix *m*.
+	 *
+	 * @param {AugmentedMatrix} m The instance to copy from
+	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
+	 * @return {AugmentedMatrix} This matrix
+	 */
+	copy( m, copyName = false ) {
+
+		this.size.rows = m.size.rows;
+		this.size.columns = m.size.columns;
+		this.size.l = m.size.l;
+		this.size.r = m.size.r;
+		this.elements = m.elements.slice();
+
+		this.name = ( copyName ) ? m.name : this.name;
+
+		return this;
+
+	}
+
+ 	/**
+	 * Creates and returns a clone of this instance.
+	 *
+	 * @return {AugmentedMatrix} A clone of this matrix
+	 */
+	clone() {
+
+		return new AugmentedMatrix().copy( this, true );
+
+	}
+
+	// DISALLOW SOME METHODS FROM THE MATRIX CLASS
+
+	sizeSwap() {
+
+		console.error( "The sizeSwap method cannot be used with instances of AugmentedMatrix" );
+		return;
+
+	}
+
+	transpose() {
+
+		console.error( "Transposition is not allowed on augmented matrices" );
+		return this;
+
+	}
+
+	add() {
+
+		console.error( "Addition is not allowed on augmented matrices" );
+		return this;
+
+	}
+
+	subtract() {
+
+		console.error( "Subtraction is not allowed on augmented matrices" );
+		return this;
+
+	}
+
+	multiply() {
+
+		console.error( "Multiplication is not allowed on augmented matrices" );
+		return this;
+
+	}
+
+	premultiply() {
+
+		console.error( "Pre-multiplication is not allowed on augmented matrices" );
+		return this;
+
+	}
+
+}
+
+/**
+ * @author Nguyen Hoang Duong / you_create@protonmail.com
+ */
+
+/**
+ * Encodes read-only (in some sense) zero matrices.
+ *
+ * Matrices instanced from this class are meant to be zero matrices at all
+ * times. Mutable methods inherited from `Matrix` no longer work on instances
+ * of `ZeroMatrix` (except for `setDimensions`, `zero`, `sizeSwap`,
+ * `transpose`).
+ */
+class ZeroMatrix extends Matrix {
+
+	/**
+	 * Constructs a `ZeroMatrix` instance.
+	 *
+	 * @param {string} name The denotation for the new matrix
+	 */
+	constructor( name = null ) {
+
+		super( name );
+
+	}
+
+	/**
+	 * Checks if *o* encodes a zero matrix. An instance of `Matrix` carrying
+	 * only zeros are also considered to be encoding a zero matrix.
+	 *
+	 * @param {object} o The object to check
+	 * @return {boolean} `true` if *o* is a zero matrix, `false` otherwise
+	 */
+	static isIt( o ) {
+
+		return Matrix.isIt( o ) && o.elements.every( ( e ) => e === 0 );
+
+	}
+
+	/**
+	 * Same as the `copy` method in the base class, the only difference is that
+	 * only zero matrices are allowed to be the first argument.
+	 *
+	 * @param {Matrix} m A zero matrix to copy from
+	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
+	 * @return {Matrix} This matrix
+	 */
+	copy( m, copyName ) {
+
+		if ( ! ZeroMatrix.isIt( m ) ) return this;
+
+		this.size.rows = m.size.rows;
+		this.size.columns = m.size.columns;
+		this.elements = m.elements.slice();
+
+		this.name = ( copyName ) ? m.name : this.name;
+
+		return this;
+
+	}
+
+	set() {
+
+		console.warn( "You cannot set elements for instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	zero() {
+
+		return this;
+
+	}
+
+	interchargeRows() {
+
+		console.warn( "Elementary operations are either useless or not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	multiplyRowByScalar() {
+
+		console.warn( "Elementary operations are either useless or not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	addRowTimesScalarToRow() {
+
+		console.warn( "Elementary operations are either useless or not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	transpose() {
+
+		this.sizeSwap();
+		return this;
+
+	}
+
+	multiplyScalar() {
+
+		console.warn( "Scalar multiplication is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	negate() {
+
+		console.warn( "Negation is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	add() {
+
+		console.warn( "Addition is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	subtract() {
+
+		console.warn( "Subtraction is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	multiply() {
+
+		console.warn( "Multiplication is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+	multiply() {
+
+		console.warn( "Pre-multiplication is not allowed on instances of ZeroMatrix" );
+		return this;
+
+	}
+
+}
+
+/**
+ * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
+ */
+
+/**
+ * Encodes square matrices.
+ *
+ * Instaces of this class only encode square matrices, and the default state
+ * is identity instead of zero like `Matrix`'s instances.
+ */
+class SquareMatrix extends Matrix {
+
+	/**
+	 * Constructs a `SquareMatrix` instance.
+	 *
+	 * The default instance starts as a 2 x 2 square identity matrix.
+	 *
+	 * @param {string} name The denotation for the new matrix
+	 */
+	constructor( name = null ) {
+
+		super( name );
+		this.setDimensions( 2 );
+
+	}
+
+	/**
+	 * Checks if *o* is a square matrix and returns `true` if it is.
+	 *
+	 * @param {object} o The object to check
+	 * @return {boolean} `true` if *o* encodes a square matrix, `false` otherwise
+	 */
+	static isIt( o ) {
+
+		return Matrix.isIt( o ) && o.size.row === o.size.column;
+
+	}
+
+	/**
+	 * Same as the `copy` method in the base class, the only difference is that
+	 * only square matrices are allowed to be the first argument.
+	 *
+	 * @param {Matrix} m A square matrix to copy from
+	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
+	 * @return {Matrix} This matrix
+	 */
+	copy( m, copyName = false ) {
+
+		if ( ! SquareMatrix.isIt( m ) ) return this;
+
+		this.size.rows = m.size.rows;
+		this.size.columns = m.size.columns;
+		this.elements = m.elements.slice();
+
+		this.name = ( copyName ) ? m.name : this.name;
+
+		return this;
+
+	}
+
+	/**
+	 * Sets the dimensions for and makes this matrix an identity matrix.
+	 *
+	 * @param {number} dimension The number of rows/columns for this matrix
+	 * @return {SquareMatrix} This matrix
+	 */
+	setDimensions( dimension ) {
+
+		this.size = { rows: dimension, columns: dimension };
+		this.elements = new Array( this.numberOfElements ).fill( 0 );
+
+		return this.identity();
+
+	}
+
+	/**
+	 * Resets this matrix back to an identity matrix.
+	 *
+	 * @return {SquareMatrix} This matrix
+	 */
+	identity() {
+
+		let dimension = this.size.rows;
+
+		for ( let i = 1; i < dimension + 1; i ++ ) {
+
+			this.elements[ i * dimension + i - dimension - 1 ] = 1;
+
+		}
+
+		return this;
+
+	}
+
+	sizeSwap() {
+
+		console.warn( "Swapping dimensions is useless on a square matrix" );
+		return;
+
+	}
+
+}
+
+/**
+ * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
+ */
+
+/**
+ * Encodes read-only identity matrices.
+ *
+ * Matrices instanced from this class are meant to be identity matrices at all
+ * times. Mutable methods inherited from `SquareMatrix` (and `Matrix`) no longer
+ * work on instances of `IdentityMatrix` (except for `setDimensions`).
+ */
+class IdentityMatrix extends SquareMatrix {
+
+	/**
+	 * Constructs an `IdentityMatrix` instance.
+	 *
+	 * The instance initially encodes a 2 x 2 identity matrix.
+	 *
+	 * @param {string} name The denotation for the new matrix
+	 */
+	constructor( name = null ) {
+
+		super( name );
+
+	}
+
+	/**
+	 * Checks if *o* encodes an identity matrix and returns `true` if it does.
+	 *
+	 * @param {object} o The object to check
+	 * @return {boolean} `true` if *o* is an identity matrix, false otherwise
+	 */
+	static isIt( o ) {
+
+		return SquareMatrix.isIt( o )
+			&& o.elements.every( function ( e, i ) {
+
+				let r = Math.floor( i / this.size.rows ) + 1; // Row number
+				return e === ( ( i === this.elementIndex( r, r ) ) ? 1 : 0 );
+
+			}, o );
+
+	}
+
+	/**
+	 * Same as the `copy` method in the base class, the only difference is that
+	 * only identity matrices are allowed to be the first argument.
+	 *
+	 * @param {Matrix} m An identity matrix to copy from
+	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
+	 * @return {Matrix} This matrix
+	 */
+	copy( m, copyName = false ) {
+
+		if ( ! IdentityMatrix.isIt( m ) ) return this;
+
+		this.size.rows = m.size.rows;
+		this.size.columns = m.size.columns;
+		this.elements = m.elements.slice();
+
+		this.name = ( copyName ) ? m.name : this.name;
+
+		return this;
+
+	}
+
+	set() {
+
+		console.warn( "You cannot set elements for instances of IdentityMatrix" );
+		return this;
+
+	}
+
+	zero() {
+
+		console.warn( "You cannot make an instance of IdentityMatrix zero" );
+		return this;
+
+	}
+
+	identity() {
+
+		console.info( "This matrix is already an identity matrix" );
+		return this;
+
+	}
+
+	interchargeRows() {
+
+		console.warn( "Elementary operations are not allowed on instances of IdentityMatrix" );
+		return this;
+
+	}
+
+	multiplyRowByScalar() {
+
+		console.warn( "Elementary operations are not allowed on instances of IdentityMatrix" );
+		return this;
+
+	}
+
+	addRowTimesScalarToRow() {
+
+		console.warn( "Elementary operations are not allowed on instances of IdentityMatrix" );
+		return this;
+
+	}
+
+	transpose() {
+
+		console.warn( "Transposition is useless on identity matrices" );
+		return this;
+
+	}
+
+	multiplyScalar() {
+
+		console.warn( "Scalar multiplication is not allowed on instances of IdentityMatrix" );
+		return this;
+
+	}
+
+	negate() {
+
+		console.warn( "Negation is not allowed on instances of IdentityMatrix" );
+		return this;
+
+	}
+
+	add() {
+
+		console.warn( "Addition is not allowed on instances of IdentityMatrix" );
+		return this;
+
+	}
+
+	subtract() {
+
+		console.warn( "Subtraction is not allowed on instances of IdentityMatrix" );
+		return this;
+
+	}
+
+	multiply() {
+
+		console.warn( "Multiplication is not allowed on instances of IdentityMatrix" );
+		return this;
+
+	}
+
+	multiply() {
+
+		console.warn( "Pre-multiplication is not allowed on instances of IdentityMatrix" );
+		return this;
+
+	}
+
+}
+
+export { AugmentedMatrix, IdentityMatrix, Matrix, SquareMatrix, ZeroMatrix };

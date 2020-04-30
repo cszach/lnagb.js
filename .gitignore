@@ -1,18 +1,2 @@
-# Project
-
-/build/
-/docs/lab/lnagb.js
-
-# npm stuff
-
-node_modules/
-
-# Jekyll stuff
-
-/docs/_site
-/docs/bundle
-
-# Media stuff
-
-/media/**/breakpoints
-/media/**/inkscape-svg
+_site
+bundle/
