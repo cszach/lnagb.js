@@ -69,4 +69,4 @@ not compulsory.
 
 This website is generated thanks to [GitHub Pages](https://pages.github.com/)
 and [Jekyll](https://jekyllrb.com/). Files that are used to compile this website
-can be browsed [here](https://github.com/vecma-org/lnagb.js/tree/master/docs).
+can be browsed [here](https://github.com/vecma-org/lnagb.js/tree/gh-pages).
