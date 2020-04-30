@@ -1,16 +1,11 @@
 # Project
 
 /build/
-/docs/lab/lnagb.js
+/docs/
 
 # npm stuff
 
 node_modules/
-
-# Jekyll stuff
-
-/docs/_site
-/docs/bundle
 
 # Media stuff
 
