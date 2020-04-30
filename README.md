@@ -18,6 +18,7 @@ Directory structure
 - `docs/`: Contains pages for the lnagb.js documentation
 - `learn/`: Contains pages for the Learning Area
 - `lab/`: Contains pages for the lnagb.js Lab
+- `builds/`: Contains lnagb.js builds and an index page
 
 ### Dev
 
