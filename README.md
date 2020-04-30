@@ -177,5 +177,5 @@ anything with it, and taking credits is not compulsory.
 
 ### Exceptions
 
-- `LICENSE`: This is the copy of The Unlicense itself
+- `UNLICENSE`: This is the copy of The Unlicense itself
 - The logo: The logo of lnagb.js and its variants are not licensed
