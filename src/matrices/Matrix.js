@@ -208,7 +208,8 @@ class Matrix {
 
 			for ( let s = 1; s < r; s ++ ) {
 
-				if ( this.row( s )[ leadingCoefPos ] !== 0 ) {
+				if ( leadingCoefPos !== Infinity
+					&& this.row( s )[ leadingCoefPos ] !== 0 ) {
 
 					return false;
 
