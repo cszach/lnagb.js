@@ -24,7 +24,7 @@ plugins:
 
 # Jekyll
 
-exclude: [bundle]
+exclude: [bundle,node_modules]
 
 defaults:
   -
