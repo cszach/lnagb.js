@@ -1,18 +1,11 @@
 # Project
 
 /build/
-/docs/lab/lnagb.js
+/docs/
 
 # npm stuff
 
-package-lock.json
 node_modules/
-
-# Jekyll stuff
-
-/docs/_site
-/docs/bundle
-Gemfile.lock
 
 # Media stuff
 

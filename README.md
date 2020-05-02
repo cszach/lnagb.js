@@ -63,7 +63,7 @@ ESM - in the `build` directory. More specifically:
 - `build/lnagb.js` uses the UMD format. This is the file which you can load
   using the `<script>` tag in HTML. If you load lnagb.js this way, all of its
   classes, variables, and functions will reside under the namespace `lnagbjs`.
-- `build/lnagb.module.js` uses the ESM format. This is the file which you can
+- `build/lnagb.esm.js` uses the ESM format. This is the file which you can
   load using the JavaScript's `import` statement.
 
 5. Use lnagb.js.
@@ -103,7 +103,7 @@ Here's the same code but lnagb.js is loaded as a JavaScript module.
     </head>
     <body>
         <script type="module">
-            import * as lnagbjs from './build/lnagb.module.js';
+            import * as lnagbjs from './build/lnagb.esm.js';
 
             let matrix = new lnagbjs.IdentityMatrix( "I" );
 
@@ -177,5 +177,5 @@ anything with it, and taking credits is not compulsory.
 
 ### Exceptions
 
-- `LICENSE`: This is the copy of The Unlicense itself
+- `UNLICENSE`: This is the copy of The Unlicense itself
 - The logo: The logo of lnagb.js and its variants are not licensed
