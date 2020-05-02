@@ -161,6 +161,15 @@ class Matrix {
 		for ( let r = 1; r <= this.size.rows; r ++ ) {
 
 			leadingCoef = this.leadingCoefficient( r );
+
+			if ( leadingCoef && leadingCoef !== 1 ) {
+
+				// If the leading coefficient is not 1, this matrix is not in
+				// row-echelon form.
+				return false;
+
+			}
+
 			leadingCoefPos = ( leadingCoef ) ? this.row( r ).indexOf( leadingCoef )
 											 : Infinity;
 
@@ -194,6 +203,15 @@ class Matrix {
 		for ( let r = 1; r <= this.size.rows; r ++ ) {
 
 			leadingCoef = this.leadingCoefficient( r );
+
+			if ( leadingCoef && leadingCoef !== 1 ) {
+
+				// If the leading coefficient is not 1, this matrix is not in
+				// reduced row-echelon form.
+				return false;
+
+			}
+
 			leadingCoefPos = ( leadingCoef ) ? this.row( r ).indexOf( leadingCoef )
 											 : Infinity;
 
