@@ -156,21 +156,28 @@ class Matrix {
 		// array. Finally, compare that array to its sorted version. If two
 		// arrays match, this matrix is in row-echelon form.
 
-		let leadingCoefsPos = [], leadingCoef;
+		let leadingCoefsPos = [], leadingCoef, leadingCoefPos;
 
-		this.forEachRow( ( row, r ) => {
+		for ( let r = 1; r <= this.size.rows; r ++ ) {
 
 			leadingCoef = this.leadingCoefficient( r );
+			leadingCoefPos = ( leadingCoef ) ? this.row( r ).indexOf( leadingCoef )
+											 : Infinity;
 
-			// Before adding, consider the value of leadingCoef. If this row
-			// is a zero row (no leading coefficient), leadingCoef is undefined.
-			// If it is undefined, add Infinity to leadingCoefsPos, so that the
-			// sorted version of the array has the zero rows indexed last.
-			leadingCoefsPos.push(
-				( leadingCoef ) ? row.indexOf( leadingCoef ) : Infinity
-			);
+			if ( leadingCoefsPos.indexOf( leadingCoefPos ) !== - 1 ) {
 
-		}, this );
+				// If a previous row's leading coefficient has the same position
+				// as this one, this matrix is not in row-echelon form because
+				// of the staircase rule.
+				return false;
+
+			} else {
+
+				leadingCoefsPos.push( leadingCoefPos );
+
+			}
+
+		}
 
 		return sameArrays( leadingCoefsPos, leadingCoefsPos.slice().sort() );
 
@@ -184,15 +191,24 @@ class Matrix {
 
 		let leadingCoefsPos = [], leadingCoef, leadingCoefPos;
 
-		this.forEachRow( ( row, r ) => {
+		for ( let r = 1; r <= this.size.rows; r ++ ) {
 
 			leadingCoef = this.leadingCoefficient( r );
-			leadingCoefPos = ( leadingCoef ) ? row.indexOf( leadingCoef )
+			leadingCoefPos = ( leadingCoef ) ? this.row( r ).indexOf( leadingCoef )
 											 : Infinity;
 
-			for ( let r = 1; r <= leadingCoefsPos; r ++ ) {
+			if ( leadingCoefsPos.indexOf( leadingCoefPos ) !== - 1 ) {
 
-				if ( this.row( r ).indexOf( leadingCoefPos ) !== 0 ) {
+				// If a previous row's leading coefficient has the same position
+				// as this one, this matrix is not in row-echelon form because
+				// of the staircase rule.
+				return false;
+
+			}
+
+			for ( let s = 1; s < r; s ++ ) {
+
+				if ( this.row( s )[ leadingCoefPos ] !== 0 ) {
 
 					return false;
 
@@ -202,7 +218,9 @@ class Matrix {
 
 			leadingCoefsPos.push( leadingCoefPos );
 
-		}, this );
+		}
+
+		return sameArrays( leadingCoefsPos, leadingCoefsPos.slice().sort() );
 
 	}
 
