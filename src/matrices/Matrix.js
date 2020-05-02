@@ -143,16 +143,68 @@ class Matrix {
 	}
 
 	/**
-	 * @return {boolean} `true` if this matrix is in row-echolon form, `false`
+	 * @return {boolean} `true` if this matrix is in row-echelon form, `false`
 	 * otherwise
 	 */
-	// get isInRowEchelonForm() {}
+	get isInRowEchelonForm() {
+
+		// METHOD
+		//
+		// Iterate through each row, starting from the first row, in this
+		// matrix. During each iteration, extract the *position* of the leading
+		// coefficient in the particular row, and store the position in an
+		// array. Finally, compare that array to its sorted version. If two
+		// arrays match, this matrix is in row-echelon form.
+
+		let leadingCoefsPos = [], leadingCoef;
+
+		this.forEachRow( ( row, r ) => {
+
+			leadingCoef = this.leadingCoefficient( r );
+
+			// Before adding, consider the value of leadingCoef. If this row
+			// is a zero row (no leading coefficient), leadingCoef is undefined.
+			// If it is undefined, add Infinity to leadingCoefsPos, so that the
+			// sorted version of the array has the zero rows indexed last.
+			leadingCoefsPos.push(
+				( leadingCoef ) ? row.indexOf( leadingCoef ) : Infinity
+			);
+
+		}, this );
+
+		return sameArrays( leadingCoefsPos, leadingCoefsPos.slice().sort() );
+
+	}
 
 	/**
-	 * @return {boolean} `true` if this matrix is in reduced row-echolon form,
+	 * @return {boolean} `true` if this matrix is in reduced row-echelon form,
 	 * `false` otherwise
 	 */
-	// get isInReducedRowEchelonForm() {}
+	get isInReducedRowEchelonForm() {
+
+		let leadingCoefsPos = [], leadingCoef, leadingCoefPos;
+
+		this.forEachRow( ( row, r ) => {
+
+			leadingCoef = this.leadingCoefficient( r );
+			leadingCoefPos = ( leadingCoef ) ? row.indexOf( leadingCoef )
+											 : Infinity;
+
+			for ( let r = 1; r <= leadingCoefsPos; r ++ ) {
+
+				if ( this.row( r ).indexOf( leadingCoefPos ) !== 0 ) {
+
+					return false;
+
+				}
+
+			}
+
+			leadingCoefsPos.push( leadingCoefPos );
+
+		}, this );
+
+	}
 
 	// METHODS
 
