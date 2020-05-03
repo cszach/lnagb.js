@@ -11,3 +11,8 @@ node_modules/
 
 /media/**/breakpoints
 /media/**/inkscape-svg
+
+# Jekyll stuff
+
+/_site
+/bundle
