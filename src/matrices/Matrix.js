@@ -134,11 +134,51 @@ class Matrix {
 	// GETTERS
 
 	/**
+	 * Returns the number of elements in this matrix.
+	 *
 	 * @return {number} The number of elements in this matrix
 	 */
 	get numberOfElements() {
 
 		return this.size.rows * this.size.columns;
+
+	}
+
+	/**
+	 * Returns the rows of this matrix in an array.
+	 *
+	 * @return {[][]} The rows in this matrix
+	 */
+	get rows() {
+
+		let rows = [];
+
+		this.forEachRow( ( row ) => {
+
+			rows.push( row );
+
+		} );
+
+		return rows;
+
+	}
+
+	/**
+	 * Returns the columns of this matrix in an array.
+	 *
+	 * @return {[][]} The columns in this matrix
+	 */
+	get columns() {
+
+		let columns = [];
+
+		this.forEachColumn( ( column ) => {
+
+			columns.push( column );
+
+		} );
+
+		return columns;
 
 	}
 
@@ -224,12 +264,21 @@ class Matrix {
 
 			}
 
-			for ( let s = 1; s < r; s ++ ) {
+			if ( leadingCoefPos !== Infinity ) {
 
-				if ( leadingCoefPos !== Infinity
-					&& this.row( s )[ leadingCoefPos ] !== 0 ) {
+				// If this row has a leading coefficient, iterate through the
+				// rows above this row and check if for each of those rows, the
+				// entry at the position of this row's leading coefficient is 0.
+				// If it is not 0, this matrix is certainly not in reduced
+				// row-echelon form.
 
-					return false;
+				for ( let s = 1; s < r; s ++ ) {
+
+					if ( this.row( s )[ leadingCoefPos ] !== 0 ) {
+
+						return false;
+
+					}
 
 				}
 
