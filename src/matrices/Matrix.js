@@ -213,7 +213,8 @@ class Matrix {
 			leadingCoefPos = ( leadingCoef ) ? this.row( r ).indexOf( leadingCoef )
 											 : Infinity;
 
-			if ( leadingCoefsPos.indexOf( leadingCoefPos ) !== - 1 ) {
+			if ( leadingCoefPos
+				&& leadingCoefsPos.indexOf( leadingCoefPos ) !== - 1 ) {
 
 				// If a previous row's leading coefficient has the same position
 				// as this one, this matrix is not in row-echelon form because
@@ -255,7 +256,8 @@ class Matrix {
 			leadingCoefPos = ( leadingCoef ) ? this.row( r ).indexOf( leadingCoef )
 											 : Infinity;
 
-			if ( leadingCoefsPos.indexOf( leadingCoefPos ) !== - 1 ) {
+			if ( leadingCoefPos
+				&& leadingCoefsPos.indexOf( leadingCoefPos ) !== - 1 ) {
 
 				// If a previous row's leading coefficient has the same position
 				// as this one, this matrix is not in row-echelon form because
