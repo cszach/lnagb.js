@@ -213,7 +213,7 @@ class Matrix {
 			leadingCoefPos = ( leadingCoef ) ? this.row( r ).indexOf( leadingCoef )
 											 : Infinity;
 
-			if ( leadingCoefPos
+			if ( leadingCoefPos !== Infinity
 				&& leadingCoefsPos.indexOf( leadingCoefPos ) !== - 1 ) {
 
 				// If a previous row's leading coefficient has the same position
@@ -256,7 +256,7 @@ class Matrix {
 			leadingCoefPos = ( leadingCoef ) ? this.row( r ).indexOf( leadingCoef )
 											 : Infinity;
 
-			if ( leadingCoefPos
+			if ( leadingCoefPos !== Infinity
 				&& leadingCoefsPos.indexOf( leadingCoefPos ) !== - 1 ) {
 
 				// If a previous row's leading coefficient has the same position
