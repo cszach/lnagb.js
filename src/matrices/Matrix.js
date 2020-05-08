@@ -294,6 +294,20 @@ class Matrix {
 
 	}
 
+	/**
+	 * Returns the rank of this matrix without reducing it in place.
+	 *
+	 * @return {number} The rank of this matrix
+	 */
+	get rank() {
+
+		return this.clone().reduce().rows.reduce(
+			( _n, row ) => (
+				( row.some( ( e ) => e !== 0 ) ? _n + 1 : _n )
+			), 0 );
+
+	}
+
 	// METHODS
 
 	/**
@@ -871,7 +885,7 @@ class Matrix {
 	 * algorithm.
 	 *
 	 * @param {boolean} canonical Set to `true` to reduce to reduced row-echelon
-	 * @return {Matrix} This matrix
+	 * @return {Matrix} This matrix after reduction
 	 */
 	reduce( canonical = false ) {
 
