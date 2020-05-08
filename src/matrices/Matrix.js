@@ -147,7 +147,7 @@ class Matrix {
 	/**
 	 * Returns the rows of this matrix in an array.
 	 *
-	 * @return {[][]} The rows in this matrix
+	 * @return {Array[]} The rows in this matrix
 	 */
 	get rows() {
 
@@ -166,7 +166,7 @@ class Matrix {
 	/**
 	 * Returns the columns of this matrix in an array.
 	 *
-	 * @return {[][]} The columns in this matrix
+	 * @return {Array[]} The columns in this matrix
 	 */
 	get columns() {
 
