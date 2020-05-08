@@ -22,6 +22,11 @@ and `elements` should only be changed using this class's methods.
     * [new Matrix(name)](#new_Matrix_new)
     * _instance_
         * [.numberOfElements](#Matrix+numberOfElements) ⇒ <code>number</code>
+        * [.rows](#Matrix+rows) ⇒ <code>Array.&lt;Array&gt;</code>
+        * [.columns](#Matrix+columns) ⇒ <code>Array.&lt;Array&gt;</code>
+        * [.isInRowEchelonForm](#Matrix+isInRowEchelonForm) ⇒ <code>boolean</code>
+        * [.isInReducedRowEchelonForm](#Matrix+isInReducedRowEchelonForm) ⇒ <code>boolean</code>
+        * [.rank](#Matrix+rank) ⇒ <code>number</code>
         * [.copy(m, copyName)](#Matrix+copy) ⇒ [<code>Matrix</code>](#Matrix)
         * [.clone()](#Matrix+clone) ⇒ [<code>Matrix</code>](#Matrix)
         * [.setDimensions(r, c)](#Matrix+setDimensions) ⇒ [<code>Matrix</code>](#Matrix)
@@ -51,6 +56,8 @@ and `elements` should only be changed using this class's methods.
         * [.multiply(m)](#Matrix+multiply) ⇒ [<code>Matrix</code>](#Matrix)
         * [.premultiply(m)](#Matrix+premultiply) ⇒ [<code>Matrix</code>](#Matrix)
         * [.isZeroRow(r)](#Matrix+isZeroRow) ⇒ <code>boolean</code>
+        * [.leadingCoefsMap()](#Matrix+leadingCoefsMap) ⇒ <code>Map</code>
+        * [.reduce(canonical)](#Matrix+reduce) ⇒ [<code>Matrix</code>](#Matrix)
     * _static_
         * [.isIt(o)](#Matrix.isIt) ⇒ <code>boolean</code>
         * [.multiplyMatrices(m, n)](#Matrix.multiplyMatrices) ⇒ [<code>Matrix</code>](#Matrix)
@@ -71,8 +78,43 @@ by using `setDimensions` and set elements for it by using `set`.
 <a name="Matrix+numberOfElements"></a>
 
 ### matrix.numberOfElements ⇒ <code>number</code>
+Returns the number of elements in this matrix.
+
 **Kind**: instance property of [<code>Matrix</code>](#Matrix)  
 **Returns**: <code>number</code> - The number of elements in this matrix  
+<a name="Matrix+rows"></a>
+
+### matrix.rows ⇒ <code>Array.&lt;Array&gt;</code>
+Returns the rows of this matrix in an array.
+
+**Kind**: instance property of [<code>Matrix</code>](#Matrix)  
+**Returns**: <code>Array.&lt;Array&gt;</code> - The rows in this matrix  
+<a name="Matrix+columns"></a>
+
+### matrix.columns ⇒ <code>Array.&lt;Array&gt;</code>
+Returns the columns of this matrix in an array.
+
+**Kind**: instance property of [<code>Matrix</code>](#Matrix)  
+**Returns**: <code>Array.&lt;Array&gt;</code> - The columns in this matrix  
+<a name="Matrix+isInRowEchelonForm"></a>
+
+### matrix.isInRowEchelonForm ⇒ <code>boolean</code>
+**Kind**: instance property of [<code>Matrix</code>](#Matrix)  
+**Returns**: <code>boolean</code> - `true` if this matrix is in row-echelon form, `false`
+otherwise  
+<a name="Matrix+isInReducedRowEchelonForm"></a>
+
+### matrix.isInReducedRowEchelonForm ⇒ <code>boolean</code>
+**Kind**: instance property of [<code>Matrix</code>](#Matrix)  
+**Returns**: <code>boolean</code> - `true` if this matrix is in reduced row-echelon form,
+`false` otherwise  
+<a name="Matrix+rank"></a>
+
+### matrix.rank ⇒ <code>number</code>
+Returns the rank of this matrix without reducing it in place.
+
+**Kind**: instance property of [<code>Matrix</code>](#Matrix)  
+**Returns**: <code>number</code> - The rank of this matrix  
 <a name="Matrix+copy"></a>
 
 ### matrix.copy(m, copyName) ⇒ [<code>Matrix</code>](#Matrix)
@@ -427,6 +469,28 @@ Checks if a row in this matrix is zero (contains only 0s)
 | Param | Type | Description |
 | --- | --- | --- |
 | r | <code>number</code> | The row to consider (1-indexed) |
+
+<a name="Matrix+leadingCoefsMap"></a>
+
+### matrix.leadingCoefsMap() ⇒ <code>Map</code>
+Returns a map of leading coefficients in this matrix for quick reference
+during matrix reduction. The keys are the positions of the coefficients
+and the values are the coefficients themselves.
+
+**Kind**: instance method of [<code>Matrix</code>](#Matrix)  
+**Returns**: <code>Map</code> - A map of leading coefficients in this matrix  
+<a name="Matrix+reduce"></a>
+
+### matrix.reduce(canonical) ⇒ [<code>Matrix</code>](#Matrix)
+Reduces this matrix to its row-echelon form in place using Gaussian
+algorithm.
+
+**Kind**: instance method of [<code>Matrix</code>](#Matrix)  
+**Returns**: [<code>Matrix</code>](#Matrix) - This matrix after reduction  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| canonical | <code>boolean</code> | <code>false</code> | Set to `true` to reduce to reduced row-echelon |
 
 <a name="Matrix.isIt"></a>
 
