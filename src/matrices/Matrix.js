@@ -859,28 +859,6 @@ class Matrix {
 	}
 
 	/**
-	 * Returns a map of leading coefficients in this matrix for quick reference
-	 * during matrix reduction. The keys are the positions of the coefficients
-	 * and the values are the coefficients themselves.
-	 *
-	 * @return {Map} A map of leading coefficients in this matrix
-	 */
-	leadingCoefsMap() {
-
-		let map = new Map();
-
-		this.forEachRow( ( row, r ) => {
-
-			let leadingCoef = this.leadingCoefficient( r );
-			map.set( row.indexOf( leadingCoef ), leadingCoef );
-
-		} );
-
-		return map;
-
-	}
-
-	/**
 	 * Reduces this matrix to its row-echelon form in place using Gaussian
 	 * algorithm.
 	 *
