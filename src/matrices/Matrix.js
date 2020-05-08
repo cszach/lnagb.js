@@ -901,7 +901,7 @@ class Matrix {
 		 *      the column's only non-zero element.
 		 */
 
-		 let i = 0; // Iterator
+		let i = 0; // Iterator
 
 		while ( ! this.isInRowEchelonForm ) { // Step 1
 
@@ -912,7 +912,8 @@ class Matrix {
 			// Constructs a reference for leading coefficients in this matrix.
 			// ref indexes columns in this matrix that contain leading
 			// coefficients. In each column indexed, even zero entries are
-			// stored.
+			// stored. ref ignores columns that have been previously working
+			// columns (see more below).
 			//
 			// For example:
 			// [ 1, 0, 3, 7                1: [ 1, 2, 3 ]
@@ -921,11 +922,11 @@ class Matrix {
 
 			let ref = new Map();
 
-			this.forEachColumn( ( column, c ) => {
+			this.columns.slice( i - 1 ).forEach( ( column, c0 ) => {
 
 				if ( ! column.every( ( e ) => e === 0 ) ) {
 
-					ref.set( c, column );
+					ref.set( c0 + 1, column );
 
 				}
 
@@ -938,16 +939,15 @@ class Matrix {
 
 			// NOTE: All indices below are 1-indexed
 
-			let workingC = Array.from( ref.keys() )[ i - 1 ]; // The index of the working column
+			let workingC = Array.from( ref.keys() )[ 0 ]; // The index of the working column
 			let workingColumn = ref.get( workingC ); // The working column itself
-			// let workingR = 1; // The index of the working row, initial value
 			let workingR = i; // The index of the working row, initial value
 
-			// while ( workingColumn[ workingR - 1 ] === 0 ) {
-			//
-			// 	workingR += 1;
-			//
-			// }
+			while ( workingColumn[ workingR - 1 ] === 0 ) {
+
+				workingR ++;
+
+			}
 
 			// Step 3
 
@@ -960,9 +960,11 @@ class Matrix {
 
 			workingColumn.forEach( ( e, r0 ) => {
 
-				if ( e === 0 || r0 + 1 <= workingR ) return;
+				let r = r0 + 1;
 
-				this.addRowTimesScalarToRow( r0 + 1, workingR, - e );
+				if ( e === 0 || r <= workingR ) return;
+
+				this.addRowTimesScalarToRow( r, workingR, - e );
 
 			}, this );
 
@@ -978,37 +980,30 @@ class Matrix {
 
 		if ( canonical ) {
 
+			let r = 2;
+
 			while ( ! this.isInReducedRowEchelonForm ) { // Step 6
+
+				if ( this.isZeroRow( r ) ) break;
 
 				// Step 7
 
-				// Recompute leading coefs' positions within their respective
-				// rows. Positions are 0-indexed.
-				let leadingCoefsPos = this.rows.reduce(
-					( a, row, r ) => {
+				let leadingCoef = this.leadingCoefficient( r );
+				let leadingCoefPos = this.row( r ).indexOf( leadingCoef );
 
-						let leadingCoef = this.leadingCoefficient( r + 1 );
+				loop( r - 1, ( s ) => {
 
-						return ( leadingCoef )
-							? [ ...a, row.indexOf( leadingCoef ) ]
-							: [ ...a ];
+					this.addRowTimesScalarToRow(
+						s,
+						r,
+						- this.row( s )[ leadingCoefPos ]
+					);
 
-					}, []
-				);
+				} );
 
-				leadingCoefsPos.slice( 1 ).forEach( ( pos, i ) => {
 
-					loop( i + 1, ( j ) => {
-
-						this.addRowTimesScalarToRow(
-							j,
-							i,
-							- this.row( j )[ pos ]
-						);
-
-					}, this );
-
-				}, this );
+				// Prevent infinite loop
+				if ( ++ r > this.size.rows ) break;
 
 			}
 
