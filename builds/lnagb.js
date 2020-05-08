@@ -400,6 +400,8 @@
 		// GETTERS
 
 		/**
+		 * Returns the number of elements in this matrix.
+		 *
 		 * @return {number} The number of elements in this matrix
 		 */
 		get numberOfElements() {
@@ -409,16 +411,168 @@
 		}
 
 		/**
-		 * @return {boolean} `true` if this matrix is in row-echolon form, `false`
-		 * otherwise
+		 * Returns the rows of this matrix in an array.
+		 *
+		 * @return {Array[]} The rows in this matrix
 		 */
-		// get isInRowEchelonForm() {}
+		get rows() {
+
+			let rows = [];
+
+			this.forEachRow( ( row ) => {
+
+				rows.push( row );
+
+			} );
+
+			return rows;
+
+		}
 
 		/**
-		 * @return {boolean} `true` if this matrix is in reduced row-echolon form,
+		 * Returns the columns of this matrix in an array.
+		 *
+		 * @return {Array[]} The columns in this matrix
+		 */
+		get columns() {
+
+			let columns = [];
+
+			this.forEachColumn( ( column ) => {
+
+				columns.push( column );
+
+			} );
+
+			return columns;
+
+		}
+
+		/**
+		 * @return {boolean} `true` if this matrix is in row-echelon form, `false`
+		 * otherwise
+		 */
+		get isInRowEchelonForm() {
+
+			// METHOD
+			//
+			// Iterate through each row, starting from the first row, in this
+			// matrix. During each iteration, extract the *position* of the leading
+			// coefficient in the particular row, and store the position in an
+			// array. Finally, compare that array to its sorted version. If two
+			// arrays match, this matrix is in row-echelon form.
+
+			let leadingCoefsPos = [], leadingCoef, leadingCoefPos;
+
+			for ( let r = 1; r <= this.size.rows; r ++ ) {
+
+				leadingCoef = this.leadingCoefficient( r );
+
+				if ( leadingCoef && leadingCoef !== 1 ) {
+
+					// If the leading coefficient is not 1, this matrix is not in
+					// row-echelon form.
+					return false;
+
+				}
+
+				leadingCoefPos = ( leadingCoef ) ? this.row( r ).indexOf( leadingCoef )
+												 : Infinity;
+
+				if ( leadingCoefPos !== Infinity
+					&& leadingCoefsPos.indexOf( leadingCoefPos ) !== - 1 ) {
+
+					// If a previous row's leading coefficient has the same position
+					// as this one, this matrix is not in row-echelon form because
+					// of the staircase rule.
+					return false;
+
+				} else {
+
+					leadingCoefsPos.push( leadingCoefPos );
+
+				}
+
+			}
+
+			return sameArrays( leadingCoefsPos, leadingCoefsPos.slice().sort() );
+
+		}
+
+		/**
+		 * @return {boolean} `true` if this matrix is in reduced row-echelon form,
 		 * `false` otherwise
 		 */
-		// get isInReducedRowEchelonForm() {}
+		get isInReducedRowEchelonForm() {
+
+			let leadingCoefsPos = [], leadingCoef, leadingCoefPos;
+
+			for ( let r = 1; r <= this.size.rows; r ++ ) {
+
+				leadingCoef = this.leadingCoefficient( r );
+
+				if ( leadingCoef && leadingCoef !== 1 ) {
+
+					// If the leading coefficient is not 1, this matrix is not in
+					// reduced row-echelon form.
+					return false;
+
+				}
+
+				leadingCoefPos = ( leadingCoef ) ? this.row( r ).indexOf( leadingCoef )
+												 : Infinity;
+
+				if ( leadingCoefPos !== Infinity
+					&& leadingCoefsPos.indexOf( leadingCoefPos ) !== - 1 ) {
+
+					// If a previous row's leading coefficient has the same position
+					// as this one, this matrix is not in row-echelon form because
+					// of the staircase rule.
+					return false;
+
+				}
+
+				if ( leadingCoefPos !== Infinity ) {
+
+					// If this row has a leading coefficient, iterate through the
+					// rows above this row and check if for each of those rows, the
+					// entry at the position of this row's leading coefficient is 0.
+					// If it is not 0, this matrix is certainly not in reduced
+					// row-echelon form.
+
+					for ( let s = 1; s < r; s ++ ) {
+
+						if ( this.row( s )[ leadingCoefPos ] !== 0 ) {
+
+							return false;
+
+						}
+
+					}
+
+				}
+
+				leadingCoefsPos.push( leadingCoefPos );
+
+			}
+
+			return sameArrays( leadingCoefsPos, leadingCoefsPos.slice().sort() );
+
+		}
+
+		/**
+		 * Returns the rank of this matrix without reducing it in place.
+		 *
+		 * @return {number} The rank of this matrix
+		 */
+		get rank() {
+
+			return this.clone().reduce().rows.reduce(
+				( _n, row ) => (
+					( row.some( ( e ) => e !== 0 ) ? _n + 1 : _n )
+				), 0 );
+
+		}
 
 		// METHODS
 
@@ -709,7 +863,7 @@
 
 			loop( this.size.columns, ( c ) => {
 
-				callback.bind( thisArg )( this.row( c ), c );
+				callback.bind( thisArg )( this.column( c ), c );
 
 			}, this );
 
@@ -966,7 +1120,7 @@
 		 */
 		isZeroRow( r ) {
 
-			return this.row( r ).reduce( ( sum, e ) => sum + e, 0 ) === 0;
+			return this.row( r ).every( ( e ) => e === 0 );
 
 		}
 
@@ -975,35 +1129,147 @@
 		 * algorithm.
 		 *
 		 * @param {boolean} canonical Set to `true` to reduce to reduced row-echelon
-		 * @return {Matrix} This matrix
+		 * @return {Matrix} This matrix after reduction
 		 */
-		// reduce( canonical = false ) {
-		//
-		// 	/*
-		// 	 * Gaussian algorithm:
-		// 	 *
-		// 	 *   1. Find a non-zero row.
-		// 	 *   2. Multiply it by 1 over the leading coefficient of that row.
-		// 	 *   3. Swap the row with another row (if necessary) such that the
-		// 	 *      leading coefficient of the row is strictly on the right of the
-		// 	 *      leading coefficient of the row above it and the same but on the
-		// 	 *      left for the row below it.
-		// 	 *   4. Check for other rows with the leading coefficients being in the
-		// 	 *      same column as the current row. Use elementary row operation
-		// 	 *      III to eliminate them.
-		// 	 *   5. Check if the matrix is in row-echelon form, if not then repeat
-		// 	 *      steps 1 to 5.
-		// 	 *
-		// 	 * In addition, if canonical = true:
-		// 	 *
-		// 	 *   5. For each row, subtract it from the rows above it such that the
-		// 	 *      column containing its leading coefficient has the coefficient as
-		// 	 *      the column's only non-zero element.
-		// 	 *   6. Check if the matrix is in reduced row-echelon form, if not then
-		// 	 *      repeat steps 5 and 6.
-		// 	 */
-		//
-		// }
+		reduce( canonical = false ) {
+
+			/*
+			 * Gaussian algorithm:
+			 *
+			 *   1. Check if the matrix is in row-echelon form, if it is then abort.
+			 *   2. Find the non-zero row with the left-most leading coefficient
+			 *      (that has not been processed yet). If there are multiple rows
+			 *      with leading coefficients being in the same column, pick any of
+			 *      them.
+			 *   3. Multiply it by 1 over the leading coefficient of that row.
+			 *   4. Check for other rows with the leading coefficients being in the
+			 *      same column as the current row. Use elementary row operation
+			 *      III to eliminate them.
+			 *   5. Swap the row with another row (if necessary) such that the
+			 *      leading coefficient of the row is strictly on the right of the
+			 *      leading coefficient of the row above it and the same but on the
+			 *      left for the row below it.
+			 *
+			 * In addition, if canonical = true:
+			 *
+			 *   6. Check if the matrix is in reduced row-echelon form, if it is
+			 *      then abort.
+			 *   7. For each row, subtract it from the rows above it such that the
+			 *      column containing its leading coefficient has the coefficient as
+			 *      the column's only non-zero element.
+			 */
+
+			let i = 0; // Iterator
+
+			while ( ! this.isInRowEchelonForm ) { // Step 1
+
+				i ++;
+
+				// Step 2
+
+				// Constructs a reference for leading coefficients in this matrix.
+				// ref indexes columns in this matrix that contain leading
+				// coefficients. In each column indexed, even zero entries are
+				// stored. ref ignores columns that have been previously working
+				// columns (see more below).
+				//
+				// For example:
+				// [ 1, 0, 3, 7                1: [ 1, 2, 3 ]
+				//   2, 0, 1, 0     -->  ref = 3: [ 3, 1, -1 ]
+				//   3, 0, -1, 3 ]             4: [ 7, 0, 3 ]
+
+				let ref = new Map();
+
+				this.columns.slice( i - 1 ).forEach( ( column, c0 ) => {
+
+					if ( ! column.every( ( e ) => e === 0 ) ) {
+
+						ref.set( c0 + 1, column );
+
+					}
+
+				} );
+
+				// In each iteration, we deal with only one row. It is important to
+				// also know what column the leading coefficient of that row is in,
+				// so that we can conduct step 4. Let us call that column the
+				// "working column", and the row the "working row".
+
+				// NOTE: All indices below are 1-indexed
+
+				let workingC = Array.from( ref.keys() )[ 0 ]; // The index of the working column
+				let workingColumn = ref.get( workingC ); // The working column itself
+				let workingR = i; // The index of the working row, initial value
+
+				while ( workingColumn[ workingR - 1 ] === 0 ) {
+
+					workingR ++;
+
+				}
+
+				// Step 3
+
+				this.multiplyRowByScalar(
+					workingR,
+					1 / workingColumn[ workingR - 1 ]
+				);
+
+				// Step 4
+
+				workingColumn.forEach( ( e, r0 ) => {
+
+					let r = r0 + 1;
+
+					if ( e === 0 || r <= workingR ) return;
+
+					this.addRowTimesScalarToRow( r, workingR, - e );
+
+				}, this );
+
+				// Step 5
+
+				this.interchargeRows( workingR, i );
+
+
+				// Prevent infinite loop
+				if ( i === this.size.columns ) break;
+
+			}
+
+			if ( canonical ) {
+
+				let r = 2;
+
+				while ( ! this.isInReducedRowEchelonForm ) { // Step 6
+
+					if ( this.isZeroRow( r ) ) break;
+
+					// Step 7
+
+					let leadingCoef = this.leadingCoefficient( r );
+					let leadingCoefPos = this.row( r ).indexOf( leadingCoef );
+
+					loop( r - 1, ( s ) => {
+
+						this.addRowTimesScalarToRow(
+							s,
+							r,
+							- this.row( s )[ leadingCoefPos ]
+						);
+
+					} );
+
+
+					// Prevent infinite loop
+					if ( ++ r > this.size.rows ) break;
+
+				}
+
+			}
+
+			return this;
+
+		}
 
 	}
 

@@ -56,7 +56,6 @@ and `elements` should only be changed using this class's methods.
         * [.multiply(m)](#Matrix+multiply) ⇒ [<code>Matrix</code>](#Matrix)
         * [.premultiply(m)](#Matrix+premultiply) ⇒ [<code>Matrix</code>](#Matrix)
         * [.isZeroRow(r)](#Matrix+isZeroRow) ⇒ <code>boolean</code>
-        * [.leadingCoefsMap()](#Matrix+leadingCoefsMap) ⇒ <code>Map</code>
         * [.reduce(canonical)](#Matrix+reduce) ⇒ [<code>Matrix</code>](#Matrix)
     * _static_
         * [.isIt(o)](#Matrix.isIt) ⇒ <code>boolean</code>
@@ -470,15 +469,6 @@ Checks if a row in this matrix is zero (contains only 0s)
 | --- | --- | --- |
 | r | <code>number</code> | The row to consider (1-indexed) |
 
-<a name="Matrix+leadingCoefsMap"></a>
-
-### matrix.leadingCoefsMap() ⇒ <code>Map</code>
-Returns a map of leading coefficients in this matrix for quick reference
-during matrix reduction. The keys are the positions of the coefficients
-and the values are the coefficients themselves.
-
-**Kind**: instance method of [<code>Matrix</code>](#Matrix)  
-**Returns**: <code>Map</code> - A map of leading coefficients in this matrix  
 <a name="Matrix+reduce"></a>
 
 ### matrix.reduce(canonical) ⇒ [<code>Matrix</code>](#Matrix)
