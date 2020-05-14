@@ -20,9 +20,9 @@ class IdentityMatrix extends SquareMatrix {
 	 *
 	 * @param {string} name The denotation for the new matrix
 	 */
-	constructor( name = null ) {
+	constructor( size, name = null ) {
 
-		super( name );
+		super( size, name );
 
 	}
 

@@ -37,14 +37,15 @@ class AugmentedMatrix extends Matrix {
 
  		}
 
-		super( name );
+		super( m.size.rows, m.size.columns + n.size.columns, name );
 
 		this.size.l = m.size.columns;
 		this.size.r = n.size.columns;
+		this.elements = new Array();
 
 		loop( this.size.rows, function ( i ) {
 
-			this.elements.push( ...m.row( i ), ...n.row( i ) );
+			this.elements.push( ...m.row( i ).concat( n.row( i ) ) );
 
 		}, this );
 
@@ -92,6 +93,8 @@ class AugmentedMatrix extends Matrix {
 
 		let result = new Matrix( this.size.rows, this.size.l );
 
+		result.elements = new Array();
+
 		loop( this.size.rows, function ( i ) {
 
 			result.elements.push( ...this.row( i ).slice( 0, this.size.l ) );
@@ -110,6 +113,8 @@ class AugmentedMatrix extends Matrix {
 	get rightMatrix() {
 
 		let result = new Matrix( this.size.rows, this.size.r );
+
+		result.elements = new Array();
 
 		loop( this.size.rows, function ( i ) {
 
@@ -152,7 +157,11 @@ class AugmentedMatrix extends Matrix {
 	 */
 	clone() {
 
-		return new AugmentedMatrix().copy( this, true );
+		return new AugmentedMatrix(
+			this.leftMatrix,
+			this.rightMatrix,
+			this.name
+		);
 
 	}
 

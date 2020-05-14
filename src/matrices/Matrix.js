@@ -26,12 +26,14 @@ class Matrix {
 	/**
 	 * Constructs a new `Matrix` instance.
 	 *
-	 * The default new matrix is a 2 x 3 zero matrix. Change its dimensions
-	 * by using `setDimensions` and set elements for it by using `set`.
+	 * The first 2 parameters are required. This matrix begins as a zero matrix.
+	 * Use `set` to set elements for this matrix.
 	 *
+	 * @param {number} rows The number of rows in the new matrix
+	 * @param {number} columns The number of columns in the new matrix
 	 * @param {string} name The denotation for the new matrix
 	 */
-	constructor( name = null ) {
+	constructor( rows, columns, name = null ) {
 
 		/*
 		 * These are the properties that every Matrix instance has.
@@ -46,7 +48,7 @@ class Matrix {
 		 */
 
 		this.name = name;
-		this.size = { rows: 2, columns: 3 };
+		this.size = { rows, columns };
 		this.elements = new Array( this.numberOfElements ).fill( 0 );
 
 	}
@@ -336,7 +338,10 @@ class Matrix {
 	 */
 	clone() {
 
-		return new Matrix().copy( this, true );
+		return new Matrix(
+			this.size.rows,
+			this.size.columns
+		).copy( this, true );
 
 	}
 
@@ -346,13 +351,13 @@ class Matrix {
 	 * Using this method will change the dimensions of this matrix and reset all
 	 * elements back to 0.
 	 *
-	 * @param {number} r Number of rows
-	 * @param {number} c Number of columns
+	 * @param {number} rows Number of rows
+	 * @param {number} columns Number of columns
 	 * @return {Matrix} This matrix
 	 */
-	setDimensions( r, c ) {
+	setDimensions( rows, columns ) {
 
-		this.size = { rows: r, columns: c };
+		this.size = { rows, columns };
 		this.elements = new Array( this.numberOfElements ).fill( 0 );
 
 		return this;
@@ -847,7 +852,7 @@ class Matrix {
 	// Matrix reduction
 
 	/**
-	 * Checks if a row in this matrix is zero (contains only 0s)
+	 * Checks if a row in this matrix is zero (contains only 0s).
 	 *
 	 * @param {number} r The row to consider (1-indexed)
 	 * @return {boolean} `true` if the row is zero, `false` otherwise

@@ -13,9 +13,9 @@ class LinearEquation {
 	/**
 	 * Constructs a `LinearEquation` instance.
 	 *
-	 * @param {string} name The name for the new instance
+	 * @param {string} name The denotation for the linear equation
 	 */
-	constructor( name = "LinearEquation" ) {
+	constructor( name ) {
 
 		this.name = name;
 		this.coefficients = [ 1 ];
@@ -64,7 +64,7 @@ class LinearEquation {
 	 */
 	set( coefficients, constant ) {
 
-		this.setCoefficients( coefficients );
+		this.setCoefficients( ...coefficients );
 		this.setConstant( constant );
 
 		return this;
