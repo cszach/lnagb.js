@@ -9,7 +9,7 @@
  * term.
  *
  * If you only need to deal with linear equations with 3 variables or fewer,
- * see [`LinearEquations`](./LinearEquations).
+ * see {@link LinearEquations `LinearEquations`}.
  */
 class LinearEquation {
 
@@ -24,8 +24,10 @@ class LinearEquation {
 	 */
 	constructor( coefficients, constant ) {
 
-		this.coefficients = coefficients || [ 1 ];
+		this.coefficients = [ 1 ]; // Default
 		this.constant = constant || 0;
+
+		if ( coefficients ) this.setCoefficientsFromArray( coefficients );
 
 	}
 
@@ -39,8 +41,8 @@ class LinearEquation {
 	 * - Has the `constant` property that is a number
 	 *
 	 * @param {object} o The object to check
-	 * @return {boolean} `true` if the object satisfies the criteria,
-	 * `false` otherwise
+	 * @return {boolean} `true` if the object satisfies the criteria, `false`
+	 * otherwise
 	 */
 	static isIt( o ) {
 
@@ -128,12 +130,10 @@ class LinearEquation {
 	 */
 	setCoefficientsFromArray( coefficients ) {
 
-		this.coefficients = [];
-		coefficients.forEach( ( coef ) => {
+		let _coefs = this.coefficients; _coefs = [];
 
-			this.coefficients.push( coef );
-
-		}, this );
+		for ( let i = 0, _length = coefficients.length; i < _length; i ++ )
+			_coefs.push( coefficients[ i ] );
 
 		return this;
 
@@ -170,10 +170,10 @@ class LinearEquation {
 
 		} else {
 
-			let tCoefs = this.coefficients;
-			let eCoefs = equation.coefficients;
+			let _coefs = this.coefficients;
+			let coefs = equation.coefficients;
 
-			for ( let i = 0; i < _n; i ++ ) tCoefs[ i ] += eCoefs[ i ];
+			for ( let i = 0; i < _n; i ++ ) _coefs[ i ] += coefs[ i ];
 			this.constant -= equation.constant;
 
 		}
@@ -198,10 +198,10 @@ class LinearEquation {
 
 		} else {
 
-			let tCoefs = this.coefficients;
-			let eCoefs = equation.coefficients;
+			let _coefs = this.coefficients;
+			let coefs = equation.coefficients;
 
-			for ( let i = 0; i < _n; i ++ ) tCoefs[ i ] -= eCoefs[ i ];
+			for ( let i = 0; i < _n; i ++ ) _coefs[ i ] -= coefs[ i ];
 			this.constant -= equation.constant;
 
 		}
@@ -218,10 +218,10 @@ class LinearEquation {
 	 */
 	multiplyScalar( k ) {
 
-		let tCoefs = this.coefficients;
 		let _n = this.numberOfVariables;
+		let _coefs = this.coefficients;
 
-		for ( let i = 0; i < _n; i ++ ) tCoefs[ i ] *= k;
+		for ( let i = 0; i < _n; i ++ ) _coefs[ i ] *= k;
 		this.constant *= k;
 
 		return this;
@@ -234,8 +234,7 @@ class LinearEquation {
 	 * Writes the coefficients and the constant term of this equation to a new
 	 * array in that order.
 	 *
-	 * @return {number[]} The array containing the coefficients and the constant
-	 * of this matrix
+	 * @return {number[]} The coefficients and the constant term of this equation
 	 */
 	toArray() {
 
@@ -247,15 +246,17 @@ class LinearEquation {
 	 * Imports the coefficients and the constant term of another linear equation
 	 * stored in an array.
 	 *
-	 * @param {number[]} a The array to import from
+	 * @param {number[]} array The array to import from
 	 * @return {LinearEquation} This linear equation
 	 */
-	fromArray( a ) {
+	fromArray( array ) {
 
-		let _nVar = a.length - 1;
+		let n = array.length - 1;
+		let _coefs = this.coefficients; _coefs = [];
+		let i;
 
-		this.setCoefficientsFromArray( a.slice( 0, _nVar ) )
-			.setConstant( a[ _nVar ] );
+		for ( i = 0; i < n; i ++ ) _coefs.push( array[ i ] );
+		this.constant = array[ i ];
 
 		return this;
 
