@@ -3,7 +3,7 @@ import { LinearEquation } from "./LinearEquation.js";
 /**
  * @fileoverview
  * These classes encode linear equations of 1, 2, and 3 variables. You should
- * use these instead of `LinearEquation` whenever possible.
+ * use these instead of {@link LinearEquation `LinearEquation`} whenever possible.
  *
  * These are all child classes of `LinearEquation`.
  *
@@ -11,37 +11,26 @@ import { LinearEquation } from "./LinearEquation.js";
  */
 
 /**
- * Encodes linear equations of 1 variable.
+ * Encodes linear equations of 1 variable. Think *ax = b*.
  */
 class LinearEquation1 extends LinearEquation {
 
 	/**
-	 * Constructs a `LinearEquation1` instance.
+	 * Constructs a `LinearEquation1` instance, which encodes a linear equation
+	 * with 1 variable.
 	 *
-	 * @param {string} name The name for the new instance
+	 * @param {number} a The coefficient that accompanies the variable
+	 * @param {number} b The constant term
 	 */
-	constructor( name = "LinearEquation1" ) {
+	constructor( a, b ) {
 
-		super( name );
+		super( [ a ], b );
 
 	}
 
 	/**
-	 * Checks if *o* properly encodes a linear equation of 1 variable.
+	 * Returns the first (and only) coefficient of this equation.
 	 *
-	 * Criteria:
-	 * - [`LinearEquation.isIt( o )`][1] returns `true`
-	 * - The `coefficients` property is an array with only 1 element
-	 *
-	 * [1]: LinearEquation#LinearEquation.isIt
-	 */
-	static isIt( o ) {
-
-		return LinearEquation.isIt( o ) && o.coefficients.length === 1;
-
-	}
-
-	/**
 	 * @return {number} The first (and only) coefficient of this equation
 	 */
 	get a() {
@@ -53,39 +42,28 @@ class LinearEquation1 extends LinearEquation {
 }
 
 /**
- * Encodes linear equations of 2 variables.
+ * Encodes linear equations of 2 variables. Think *ax + by = c*.
  */
 class LinearEquation2 extends LinearEquation {
 
 	/**
-	 * Constructs a `LinearEquation2` instance.
+	 * Constructs a `LinearEquation2` instance, which encodes a linear equation
+	 * with 2 variables.
 	 *
-	 * @param {string} name The name for the new instance
+	 * @param {number} a The first coefficient
+	 * @param {number} b The second coefficient
+	 * @param {number} c The constant term
 	 */
-	constructor( name = "LinearEquation2" ) {
+	constructor( a, b, c ) {
 
-		super( name );
-		this.coefficients = [ 1, 1 ];
+		super( [ a, b ], c );
 
 	}
 
 	/**
-	 * Checks if *o* properly encodes a linear equation of 2 variables.
+	 * Returns the first coefficient of this equation (usually denoted *a*).
 	 *
-	 * Criteria:
-	 * - [`LinearEquation.isIt( o )`][1] returns `true`
-	 * - The `coefficients` property is an array with 2 elements
-	 *
-	 * [1]: LinearEquation#LinearEquation.isIt
-	 */
-	static isIt( o ) {
-
-		return LinearEquation.isIt( o ) && o.coefficients.length === 2;
-
-	}
-
-	/**
-	 * @return {number} The first coefficient of this equation (usually denoted *a*)
+	 * @return {number} The first coefficient of this equation
 	 */
 	get a() {
 
@@ -94,7 +72,9 @@ class LinearEquation2 extends LinearEquation {
 	}
 
 	/**
-	 * @return {number} The second coefficient of this equation (usually denoted *b*)
+	 * Returns the second coefficient of this equation (usually denoted *b*).
+	 *
+	 * @return {number} The second coefficient of this equation
 	 */
 	get b() {
 
@@ -105,39 +85,29 @@ class LinearEquation2 extends LinearEquation {
 }
 
 /**
- * Encodes linear equations of 3 variables.
+ * Encodes linear equations of 3 variables. Think *ax + by + cz = d*.
  */
 class LinearEquation3 extends LinearEquation {
 
 	/**
-	 * Constructs a `LinearEquation3` instance.
+	 * Constructs a `LinearEquation3` instance, which encodes a linear equation
+	 * with 3 variables.
 	 *
-	 * @param {string} name The name for the new instance
+	 * @param {number} a The first coefficient
+	 * @param {number} b The second coefficient
+	 * @param {number} c The third coefficient
+	 * @param {number} d The constant term
 	 */
-	constructor( name = "LinearEquation3" ) {
+	constructor( a, b, c, d ) {
 
-		super( name );
-		this.coefficients = [ 1, 1, 1 ];
+		super( [ a, b, c ], d );
 
 	}
 
 	/**
-	 * Checks if *o* properly encodes a linear equation of 3 variables.
+	 * Returns the first coefficient of this equation (usually denoted *a*).
 	 *
-	 * Criteria:
-	 * - [`LinearEquation.isIt( o )`][1] returns `true`
-	 * - The `coefficients` property is an array with 3 elements
-	 *
-	 * [1]: LinearEquation#LinearEquation.isIt
-	 */
-	static isIt( o ) {
-
-		return LinearEquation.isIt( o ) && o.coefficients.length === 3;
-
-	}
-
-	/**
-	 * @return {number} The first coefficient of this equation (usually denoted *a*)
+	 * @return {number} The first coefficient of this equation
 	 */
 	get a() {
 
@@ -146,7 +116,9 @@ class LinearEquation3 extends LinearEquation {
 	}
 
 	/**
-	 * @return {number} The second coefficient of this equation (usually denoted *b*)
+	 * Returns the second coefficient of this equation (usually denoted *b*).
+	 *
+	 * @return {number} The second coefficient of this equation
 	 */
 	get b() {
 
@@ -155,7 +127,9 @@ class LinearEquation3 extends LinearEquation {
 	}
 
 	/**
-	 * @return {number} The third coefficient of this equation (usually denoted *c*)
+	 * Returns the third coefficient of this equation (usually denoted *c*).
+	 *
+	 * @return {number} The third coefficient of this equation
 	 */
 	get c() {
 
