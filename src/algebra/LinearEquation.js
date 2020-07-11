@@ -31,27 +31,6 @@ class LinearEquation {
 
 	}
 
-	/**
-	 * Checks if an object is a good instance of `LinearEquation`.
-	 *
-	 * Criteria:
-	 * - The constructor is `LinearEquation`;
-	 * - Has the `coefficients` property that is an array that stores a finite
-	 *   amount of numbers; and
-	 * - Has the `constant` property that is a number
-	 *
-	 * @param {object} o The object to check
-	 * @return {boolean} `true` if the object satisfies the criteria, `false`
-	 * otherwise
-	 */
-	static isIt( o ) {
-
-		return o.constructor.name === "LinearEquation"
-			&& o.coefficients.every( ( coef ) => Number.isFinite( coef ) )
-			&& Number.isFinite( o.constant );
-
-	}
-
 	// GETTERS
 
 	/**
