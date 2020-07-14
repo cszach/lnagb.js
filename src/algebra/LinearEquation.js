@@ -31,7 +31,7 @@ class LinearEquation {
 
 	}
 
-	// GETTERS
+	/* GETTERS */
 
 	/**
 	 * Returns the number of variables in this linear equation
@@ -44,7 +44,7 @@ class LinearEquation {
 
 	}
 
-	// COMMON METHODS
+	/* COMMON METHODS */
 
 	/**
 	 * Creates an instance of `LinearEquation` that is exactly the same as this
@@ -72,7 +72,7 @@ class LinearEquation {
 
 	}
 
-	// SETTERS
+	/* SETTERS */
 
 	/**
 	 * Sets the coefficients and the constant for this linear equation.
@@ -131,7 +131,7 @@ class LinearEquation {
 
 	}
 
-	// OPERATIONS
+	/* OPERATIONS */
 
 	/**
 	 * Adds a linear equation to this linear equation.
@@ -207,7 +207,7 @@ class LinearEquation {
 
 	}
 
-	// IMPORT & EXPORT
+	/* IMPORT & EXPORT */
 
 	/**
 	 * Writes the coefficients and the constant term of this equation to a new
