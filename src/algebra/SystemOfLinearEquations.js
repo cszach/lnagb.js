@@ -1,48 +1,33 @@
-/**
- * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
- */
-
 import { LinearEquation } from "./LinearEquation.js";
 import { Matrix } from "../matrices/Matrix.js";
 import { AugmentedMatrix } from "../matrices/AugmentedMatrix.js";
 
 /**
- * Encodes systems of linear equations by storing the following information:
- * - Equations, as the `equations` property, an array of instances of `LinearEquation`
- * - Denotation, as the `name` property (optional)
+ * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ */
+
+/**
+ * Encodes systems of linear equations by storing instances of
+ * {@link LinearEquation `LinearEquation`}s in an array.
  */
 class SystemOfLinearEquations {
 
 	/**
-	 * Constructs a new system of linear equations.
+	 * Constructs a new instance of `SystemOfLinearEquations`, which encodes a
+	 * system of linear equations.
 	 *
-	 * @param {string} name The name for this instance
+	 * Calling the constructor without any argument will create an empty system.
+	 *
+	 * @param {LinearEquation[]} equations Instances of `LinearEquation` for
+	 * the system (optional)
 	 */
-	constructor( name = null ) {
+	constructor( equations ) {
 
-		this.name = name;
-		this.equations = new Array();
+		this.setFromArray( equations );
 
 	}
 
-	/**
-	 * Checks if an object encodes a system of linear equations.
-	 *
-	 * Criteria:
-	 * - The constructor of the object is `SystemOfLinearEquations`
-	 * - Has the `equations` property that is an array of valid instances of
-	 *   `LinearEquation` (see also `LinearEquation.isIt`)
-	 *
-	 * @param {object} o The object to check
-	 * @return {boolean} `true` if the object fulfills the criteria, `false`
-	 * otherwise
-	 */
-	static isIt( o ) {
-
-		return o.constructor.name === "SystemOfLinearEquations"
-			&& o.equations.every( ( equ ) => LinearEquation.isIt( equ ) );
-
-	}
+	/* GETTERS */
 
 	/**
 	 * Returns the number of variables in this system.
@@ -73,19 +58,22 @@ class SystemOfLinearEquations {
 	 */
 	get coefficientMatrix() {
 
-		let m = new Matrix( this.numberOfVariables, this.numberOfEquations );
+		let coefficients = []; // Array of coefficients for the matrix
 
-		this.forEach( ( equation, i ) => {
+		// Cache
 
-			m.elements.splice(
-				this.numberOfVariables * i,
-				this.numberOfVariables,
-				...equation.coefficients
-			);
+		let _ = this.equations;
+		let _nVars = this.numberOfVariables;
+		let _nEqus = this.numberOfEquations;
 
-		}, this );
+		// For every equation, iterate through the equation's coefficients,
+		// adding the coefficients to the array
 
-		return m;
+		for ( let e = 0, equCoefs = _[ e ].coefficients; e < _nEqus; e ++ )
+			for ( let c = 0; c < _nVars; c ++ )
+				coefficients.push( equCoefs[ c ] );
+
+		return new Matrix( _nEqus, _nVars, coefficients );
 
 	}
 
@@ -96,26 +84,76 @@ class SystemOfLinearEquations {
 	 */
 	get constantMatrix() {
 
-		return new Matrix( this.numberOfEquations, 1 )
-			.set( ...this.equations.reduce(
-				( a, e ) => [ ...a, e.constant ], []
-			) );
+		let constants = []; // Array of constant terms for the matrix
+
+		// Cache
+
+		let _ = this.equations;
+		let _nEqus = _.length;
+
+		// For each equation, add its constant to the array
+
+		for ( let i = 0; i < _nEqus; i ++ ) constants.push( _[ i ].constant );
+
+		return new Matrix( _nEqus, 1, constants );
 
 	}
 
 	/**
 	 * Returns the augmented matrix of this system.
 	 *
-	 * @return {Matrix} The augmented matrix of this system
+	 * @return {AugmentedMatrix} The augmented matrix of this system
 	 */
 	get augmentedMatrix() {
 
+		let _ = this.equations;
+		let _nEqus = _.length;
+		let _nVars = _[ 0 ].coefficients.length;
+
+		let coefficients = [];
+		let constants = [];
+
+		for ( let i = 0, equation = _[ i ],
+			  coefs = equation.coefficients; i < _nEqus; i ++ ) {
+
+			for ( let j = 0; j < _nVars; j ++ ) coefficients.push( coefs[ j ] );
+			constants.push( equation.constant );
+
+		}
+
 		return new AugmentedMatrix(
-			this.coefficientMatrix,
-			this.constantMatrix
+			new Matrix( _nEqus, _nVars, coefficients ),
+			new Matrix( _nEqus, 1, constants )
 		);
 
 	}
+
+	/* COMMON METHODS */
+
+	/**
+	 * Makes this system the same as another system.
+	 *
+	 * @param {SystemOfLinearEquations} system The system to copy from
+	 * @return {SystemOfLinearEquations} This system
+	 */
+	copy( system ) {
+
+		return this.setFromArray( system.equations );
+
+	}
+
+	/**
+	 * Creates and returns a new instance that is the same as this instance.
+	 *
+	 * @return {SystemOfLinearEquations} A clone of this instance
+	 */
+	clone() {
+
+		return new this.constructor( this.equations, true );
+
+	}
+
+	/* SETTERS */
 
 	/**
 	 * Sets the linear equations for this system using the `push` method.
@@ -127,11 +165,11 @@ class SystemOfLinearEquations {
 	 */
 	set() {
 
-		this.equations = new Array();
+		this.equations = []; // Reset
 
-		Array.from( arguments ).forEach( ( equ ) => {
+		Array.from( arguments ).forEach( ( equation ) => {
 
-			this.push( equ );
+			this.push( equation );
 
 		}, this );
 
@@ -139,38 +177,42 @@ class SystemOfLinearEquations {
 
 	}
 
-	clone() {
+	/**
+	 * Sets this system's equations from an array of `LinearEquation`s.
+	 *
+	 * @param {LinearEquation[]} equations Array of `LinearEquation`s to set
+	 * @return {SystemOfLinearEquations} This system of linear equations
+	 */
+	setFromArray( equations ) {
 
-		return new this.constructor(
-			this.name
-		).set( ...this.equations.slice() );
+		this.equations = [];
+		let tEqu = this.equations;
+		let _ = equations;
+		let _n = equations.length;
+
+		for ( let i = 0; i < _n; i ++ ) tEqu.push( _[ i ] );
+
+		return this;
 
 	}
+
+	/* OPERATIONS */
 
 	/**
 	 * Adds a linear equation to this system by appending it to `equations`.
 	 *
-	 * @param {LinearEquation} equ A valid instance of `LinearEquation`
+	 * @param {LinearEquation} equation A good instance of `LinearEquation`
 	 * @return {SystemOfLinearEquations} This system of linear equations
 	 */
-	push( equ ) {
+	push( equation ) {
 
-		if ( ! LinearEquation.isIt( equ ) ) {
+		let _ = this.equations;
+		let _nEqus = _.length;
 
+		if ( _nEqus !== 0 && equation.numberOfVariables !== _[ 0 ].numberOfVariables )
 			console.error( "An invalid linear equation was given" );
-			return this;
-
-		}
-
-		if ( this.numberOfEquations !== 0
-			&& equ.numberOfVariables !== this.equations[ 0 ].numberOfVariables ) {
-
-			console.error( "An invalid linear equation was given" );
-			return this;
-
-		}
-
-		this.equations.push( equ );
+		else
+			_.push( equation );
 
 		return this;
 
@@ -190,7 +232,7 @@ class SystemOfLinearEquations {
 	/**
 	 * Removes a linear equation from this system of linear equations.
 	 *
-	 * @param {number} index The position of the equation in `equations` (1-indexed)
+	 * @param {number} index Equation number (1-indexed)
 	 * @return {LinearEquation} The removed equation
 	 */
 	remove( index ) {
@@ -199,54 +241,47 @@ class SystemOfLinearEquations {
 
 	}
 
-	/**
-	 * Sets this system of linear equations according to an augmented matrix.
-	 *
-	 * @param {AugmentedMatrix} m The augmented matrix to emulate
-	 * @return {SystemOfLinearEquations} This system
-	 */
-	fromAugmentedMatrix( m ) {
-
-		if ( m.size.r !== 1 ) {
-
-			console.error( "An invalid augmented matrix was given" );
-			return this;
-
-		}
-
-		this.equations = new Array();
-
-		m.forEachRow( ( row ) => {
-
-			this.push(
-				new LinearEquation().set(
-					row.slice( 0, - 1 ),
-					row.slice( - 1 )[ 0 ]
-				)
-			);
-
-		}, this );
-
-		return this;
-
-	}
+	/* ITERATORS */
 
 	/**
 	 * Executes a function for each equation in this system.
 	 *
-	 * @param {SystemOfLinearEquations~forEachCallback} callback The function to
-	 * execute per iteration
+	 * @param {SystemOfLinearEquations~forEach} callback The function to execute
+	 * per iteration
 	 * @param {object} thisArg The argument to use as `this` in the function
 	 */
 	forEach( callback, thisArg ) {
 
 		this.equations.forEach( ( equation, i ) => {
 
-			callback.bind( thisArg )( equation, i );
+			let coefficients = equation.coefficients;
+			let constant = equation.constant;
+			let index = i + 1;
+			let system = this;
 
-		} );
+			callback.bind( thisArg )(
+				equation,
+				coefficients,
+				constant,
+				index,
+				system
+			);
+
+		}, this );
 
 	}
+
+	/**
+	 * @callback SystemOfLinearEquations~forEach
+	 * @param {LinearEquation} equation The current equation being processed
+	 * @param {number[]} coefficients The coefficients of the equation
+	 * @param {number} constant The constant term of the equation
+	 * @param {number} index The 1-indexed position of `equation` in this system
+	 * @param {SystemOfLinearEquations} system The instance that this method was
+	 * called upon
+	 */
+
+	/* SOLVE */
 
 	/**
 	 * Solves this system of linear equations using Gauss-Jordan elimination and
@@ -274,7 +309,7 @@ class SystemOfLinearEquations {
 
 		// Access the rank of the augmented matrix to determine the solutions.
 
-		if ( m.leftMatrix.rank < m.rightMatrix.rank ) {
+		if ( m.leftMatrix.rank < m.rank ) {
 
 			// No solution / Inconsistent
 			return null;
@@ -294,12 +329,31 @@ class SystemOfLinearEquations {
 
 	}
 
-}
+	/* IMPORT & EXPORT */
 
-/**
- * @callback SystemOfLinearEquations~forEachCallback
- * @param {LinearEquation} equation The current equation being processed
- * @param {number} i The position of `equation` in this system
- */
+	/**
+	 * Sets this system of linear equations according to an augmented matrix.
+	 *
+	 * @param {AugmentedMatrix} matrix The augmented matrix to set from
+	 * @return {SystemOfLinearEquations} This system
+	 */
+	fromAugmentedMatrix( matrix ) {
+
+		this.equations = [];
+
+		matrix.forEachRow( ( row ) => {
+
+			this.push( new LinearEquation(
+				row.slice( 0, - 1 ),
+				row.slice( - 1 )[ 0 ] )
+			);
+
+		}, this );
+
+		return this;
+
+	}
+
+}
 
 export { SystemOfLinearEquations };
