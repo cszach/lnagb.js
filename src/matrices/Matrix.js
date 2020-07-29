@@ -1,4 +1,4 @@
-import { multiplyMatrices } from './MatrixUtils.js';
+import * as MatrixUtils from './MatrixUtils.js';
 
 /**
  * @author Nguyen Hoang Duong / <you_create@protonmail.com>
@@ -76,10 +76,8 @@ class Matrix {
 	get rows() {
 
 		let rows = [];
-		let _size = this.size;
-		let _nRows = _size.rows;
-		let _nCols = _size.columns;
 		let _ = this.elements;
+		let _size = this.size, _nRows = _size.rows, _nCols = _size.columns;
 
 		let i = 0;
 
@@ -104,16 +102,15 @@ class Matrix {
 	get columns() {
 
 		let columns = [];
-		let _size = this.size;
-		let _nRows = _size.rows;
-		let _nCols = _size.columns;
-		let _ = this.elements;
 
-		let __nRows = _nRows + 1;
+		let _ = this.elements;
+		let _size = this.size;
+		let _nRows = _size.rows, __nRows = _nRows + 1;
+		let _nCols = _size.columns, __nCols = _nCols + 1;
 
 		let p = - _nCols;
 
-		for ( let c = 1, __nCols = _nCols + 1; c < __nCols; c ++ ) {
+		for ( let c = 1; c < __nCols; c ++ ) {
 
 			let column = [];
 			let q = _nCols;
@@ -294,10 +291,7 @@ class Matrix {
 	 */
 	sameSize( matrix ) {
 
-		let _size = this.size;
-		let mSize = matrix.size;
-
-		return _size.rows === mSize.rows && _size.columns === mSize.columns;
+		return MatrixUtils.sameSize( this, matrix );
 
 	}
 
@@ -310,25 +304,7 @@ class Matrix {
 	 */
 	equals( matrix ) {
 
-		// Compare dimensions
-
-		let _size = this.size;
-		let _nRows = _size.rows;
-		let _nCols = _size.columns;
-		let mSize = matrix.size;
-
-		if ( _nRows !== mSize.rows || _nCols !== mSize.columns )
-			return false;
-
-		// Compare elements
-
-		let _ = this.elements;
-		let _n = _nRows * _nCols;
-		let m = matrix.elements;
-
-		for ( let i = 0; i < _n; i ++ ) if ( _[ i ] !== m[ i ] ) return false;
-
-		return true;
+		return MatrixUtils.equal( this, matrix );
 
 	}
 
@@ -424,8 +400,7 @@ class Matrix {
 		let _ = this.elements;
 		let _size = this.size;
 		let _nRows = _size.rows;
-		let _nCols = _size.columns;
-		let __nCols = _nCols + 1;
+		let _nCols = _size.columns, __nCols = _nCols + 1;
 		let column = [];
 
 		let end = _nRows + 1;
@@ -571,17 +546,21 @@ class Matrix {
 	 */
 	forEach( callback, thisArg ) {
 
-		let _nCols = this.size.columns; // Cache
+		let matrix = this;
+		let _ = this.elements;
+		let _n = _.length;
+		let _nCols = this.size.columns;
+		let r = 1, c = 1;
 
-		this.elements.forEach( ( entry, index ) => {
+		for ( let index = 0; index < _n; index ++ ) {
 
-			let r = Math.floor( index / _nCols ) + 1;
-			let c = ( index % _nCols ) + 1;
-			let matrix = this;
-
+			let entry = _[ index ];
 			callback.bind( thisArg )( entry, r, c, index, matrix );
+			c ++;
 
-		}, this );
+			if ( c > _nCols ) ( c = 1, r ++ );
+
+		}
 
 	}
 
@@ -602,10 +581,19 @@ class Matrix {
 	 */
 	forEachRow( callback, thisArg ) {
 
-		for ( let __nRows = this.size.rows + 1, r = 1; r < __nRows; r ++ ) {
+		// Basically the same as getter rows
 
-			let row = this.row( r );
-			let matrix = this;
+		let matrix = this;
+		let _ = this.elements;
+		let _size = this.size, _nRows = _size.rows, _nCols = _size.columns;
+
+		let i = 0;
+
+		for ( let r = 1, __nRows = _nRows + 1; r < __nRows; r ++, i ++ ) {
+
+			let row = [];
+			for ( let c = 0; c < _nCols; c ++, i ++ ) row.push( _[ i ] );
+			i --;
 
 			callback.bind( thisArg )( row, r, matrix );
 
@@ -628,12 +616,30 @@ class Matrix {
 	 */
 	forEachColumn( callback, thisArg ) {
 
-		for ( let __nCols = this.size.columns + 1, c = 1; c < __nCols; c ++ ) {
+		// Basically the same as getter columns
 
-			let column = this.column( c );
-			let matrix = this;
+		let matrix = this;
+		let _ = this.elements;
+		let _size = this.size;
+		let _nRows = _size.rows, __nRows = _nRows + 1;
+		let _nCols = _size.columns, __nCols = _nCols + 1;
+
+		let p = - _nCols;
+
+		for ( let c = 1; c < __nCols; c ++ ) {
+
+			let column = [];
+			let q = _nCols;
+
+			for ( let r = 1; r < __nRows; r ++ ) {
+
+				column.push( _[ q + p ] );
+				q += _nCols;
+
+			}
 
 			callback.bind( thisArg )( column, c, matrix );
+			p ++;
 
 		}
 
@@ -864,7 +870,7 @@ class Matrix {
 	 */
 	multiply( matrix ) {
 
-		this.elements = multiplyMatrices( this, matrix );
+		this.elements = MatrixUtils.multiplyMatrices( this, matrix );
 		this.size.columns = matrix.size.columns;
 
 		return this;
@@ -879,7 +885,7 @@ class Matrix {
 	 */
 	premultiply( matrix ) {
 
-		this.elements = multiplyMatrices( matrix, this );
+		this.elements = MatrixUtils.multiplyMatrices( matrix, this );
 		this.size.rows = matrix.size.rows;
 
 		return this;
