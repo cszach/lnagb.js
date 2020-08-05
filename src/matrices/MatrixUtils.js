@@ -12,7 +12,50 @@ import { linearCombination } from '../algebra/MathUtils.js';
  */
 
 /**
+ * Checks if two matrices have the same dimensions.
+ *
+ * @param {Matrix} m
+ * @param {Matrix} n
+ * @return {boolean} `true` if the two matrices have the same size,
+ * `false` otherwise
+ */
+function sameSize( m, n ) {
+
+	let mSize = m.size;
+	let nSize = n.size;
+
+	return mSize.rows === nSize.rows && mSize.columns === nSize.columns;
+
+}
+
+function equal( m, n ) {
+
+	// Compare dimensions
+
+	let mSize = m.size;
+	let mSizeRows = mSize.rows;
+	let mSizeCols = mSize.columns;
+	let nSize = n.size;
+
+	if ( mSizeRows !== nSize.rows || mSizeCols !== nSize.columns )
+		return false;
+
+	// Compare elements
+
+	let M = m.elements;
+	let N = n.elements;
+	let _n = mSizeRows * mSizeCols;
+
+	for ( let i = 0; i < _n; i ++ ) if ( M[ i ] !== N[ i ] ) return false;
+
+	return true;
+
+}
+
+/**
  * Multiplies 2 matrices and returns the result's entries.
+ *
+ * @todo Optimize this method for efficiency
  *
  * @param {Matrix} leftMatrix The left matrix
  * @param {Matrix} rightMatrix The right matrix
@@ -103,4 +146,4 @@ function multiplyMatrices( leftMatrix, rightMatrix, returnLeftOnError = true ) {
 
 }
 
-export { multiplyMatrices };
+export { sameSize, equal, multiplyMatrices };
