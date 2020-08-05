@@ -282,7 +282,7 @@ class IdentityMatrix {
 		let matrix = this;
 		let _size = this.size;
 		let _nCols = _size.columns;
-		let _n = _size.rows * _nCols;
+		let _n = _nCols * _nCols;
 		let r = 1, c = 1;
 
 		for ( let index = 0; index < _n; index ++ ) {
