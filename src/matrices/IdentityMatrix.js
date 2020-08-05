@@ -30,6 +30,7 @@ class IdentityMatrix {
 	constructor( size ) {
 
 		this.size = { rows: size, columns: size };
+		this.rank = size; // The rank of this matrix
 
 	}
 
@@ -95,17 +96,6 @@ class IdentityMatrix {
 	get columns() {
 
 		return this.rows;
-
-	}
-
-	/**
-	 * Returns the rank of this matrix.
-	 *
-	 * @return {number} The rank of this matrix
-	 */
-	get rank() {
-
-		return this.size.rows;
 
 	}
 

@@ -25,6 +25,7 @@ class ZeroMatrix {
 	constructor( nRows, nColumns ) {
 
 		this.size = { rows: nRows, columns: nColumns };
+		this.rank = 0; // The rank of this matrix, always 0
 
 	}
 
@@ -81,17 +82,6 @@ class ZeroMatrix {
 		return new Array( _size.columns ).fill(
 			new Array( _size.rows ).fill( 0 )
 		);
-
-	}
-
-	/**
-	 * Returns the rank of this matrix, which is 0 since this matrix is zero.
-	 *
-	 * @return {number} The rank of this matrix (0)
-	 */
-	get rank() {
-
-		return 0;
 
 	}
 
