@@ -14,6 +14,10 @@ import { sameSize, equal } from './MatrixUtils';
  * differently. The `elements` property of an `IdentityMatrix` instance only
  * serves for compatibility with other classes; `IdentityMatrix` class methods
  * don't rely on it.
+ *
+ * To avoid taking up storage space, the entries in this matrix are stored
+ * dynamically in a getter. Be sure to cache the getter's return value if you need
+ * the entries as an array.
  */
 class IdentityMatrix {
 
@@ -26,15 +30,6 @@ class IdentityMatrix {
 	constructor( size ) {
 
 		this.size = { rows: size, columns: size };
-		this.elements = new Array( size * size ).fill( 0 );
-
-		for ( let i = 0, index = 0, _ = this.elements, _size = size + 1;
-			i < size; i ++ ) {
-
-			_[ index ] = 1;
-			index += _size;
-
-		}
 
 	}
 
@@ -50,6 +45,24 @@ class IdentityMatrix {
 		let _size = this.size;
 
 		return _size.rows * _size.columns;
+
+	}
+
+	/**
+	 * Returns the entries in this matrix.
+	 *
+	 * @return {number[]} The entries in this matrix
+	 */
+	get elements() {
+
+		let size = this.size.rows;
+		let _n = size * size;
+		let elements = new Array( _n ).fill( 0 );
+
+		for ( let index = 0, _size = size + 1; index < _n; index += _size )
+			elements[ index ] = 1;
+
+		return elements;
 
 	}
 
@@ -265,14 +278,14 @@ class IdentityMatrix {
 	forEach( callback, thisArg ) {
 
 		let matrix = this;
-		let _ = this.elements;
-		let _n = _.length;
-		let _nCols = this.size.columns;
+		let _size = this.size;
+		let _nCols = _size.columns;
+		let _n = _size.rows * _nCols;
 		let r = 1, c = 1;
 
 		for ( let index = 0; index < _n; index ++ ) {
 
-			let entry = _[ index ];
+			let entry = ( r === c ) ? 1 : 0;
 			callback.bind( thisArg )( entry, r, c, index, matrix );
 			c ++;
 
