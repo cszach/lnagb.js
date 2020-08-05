@@ -464,8 +464,12 @@ class Matrix {
 		let end = r * _nCols;
 		let start = end - _nCols;
 
-		for ( let i = start, entry = _[ i ]; i < end; i ++ )
+		for ( let i = start, entry; i < end; i ++ ) {
+
+			entry = _[ i ];
 			if ( entry !== 0 ) return entry;
+
+		}
 
 		return undefined;
 
@@ -474,6 +478,9 @@ class Matrix {
 	/**
 	 * Returns the column number of the leading coefficient of a row, or
 	 * `undefined` if the row does not have a leading coefficient.
+	 *
+	 * @deprecated This will not be implemented in other matrix classes and will
+	 * likely be removed in a near future version.
 	 *
 	 * @param {number} r Row number (1-indexed)
 	 * @return {number} Column number of the row's leading coefficient
@@ -487,8 +494,12 @@ class Matrix {
 		let end = r * _nCols;
 		let start = end - _nCols;
 
-		for ( let i = start, entry = _[ i ]; i < end; i ++ )
+		for ( let i = start, entry; i < end; i ++ ) {
+
+			entry = _[ i ];
 			if ( entry !== 0 ) return ( i % _nCols ) + 1;
+
+		}
 
 		return undefined;
 
