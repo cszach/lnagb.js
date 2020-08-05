@@ -1,4 +1,4 @@
-import * as MatrixUtils from './MatrixUtils';
+import { sameSize, equal } from './MatrixUtils';
 
 /**
  * @author Nguyen Hoang Duong / <you_create@protonmail.com>
@@ -143,7 +143,7 @@ class IdentityMatrix {
 	 */
 	sameSize( matrix ) {
 
-		return MatrixUtils.sameSize( this, matrix );
+		return sameSize( this, matrix );
 
 	}
 
@@ -156,7 +156,7 @@ class IdentityMatrix {
 	 */
 	equals( matrix ) {
 
-		return MatrixUtils.equal( this, matrix );
+		return equal( this, matrix );
 
 	}
 
