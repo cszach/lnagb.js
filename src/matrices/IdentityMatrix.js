@@ -1,4 +1,3 @@
-import { Matrix } from './Matrix.js';
 import * as MatrixUtils from './MatrixUtils';
 
 /**
@@ -6,6 +5,7 @@ import * as MatrixUtils from './MatrixUtils';
  */
 
 /**
+ * @readonly
  * Encodes read-only identity matrices.
  *
  * This class is basically the same as the {@link Matrix `Matrix`} class in the
@@ -339,21 +339,6 @@ class IdentityMatrix {
 	 * @param {number} c Current column number (1-indexed)
 	 * @param {IdentityMatrix} matrix The instance that this method was called upon
 	 */
-
-	/* IMPORT & EXPORT */
-
-	/**
-	 * Returns an instance of Matrix that is the same as this identity matrix.
-	 *
-	 * @return {Matrix} This matrix as an instance of the Matrix class
-	 */
-	toMatrix() {
-
-		let _size = this.size;
-
-		return new Matrix( _size.rows, _size.columns, this.elements );
-
-	}
 
 }
 
