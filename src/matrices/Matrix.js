@@ -812,6 +812,38 @@ class Matrix {
 	}
 
 	/**
+	 * Adds a scalar to every entry of this matrix.
+	 *
+	 * @param {number} k The scalar to add to every entry
+	 * @return {Matrix} This matrix
+	 */
+	addScalar( k ) {
+
+		let _ = this.elements;
+
+		for ( let i = 0, _n = this.numberOfEntries; i < _n; i ++ ) _[ i ] += k;
+
+		return this;
+
+	}
+
+	/**
+	 * Subtracts a scalar from every entry of this matrix.
+	 *
+	 * @param {number} k The scalar to subtract from every entry
+	 * @return {Matrix} This matrix
+	 */
+	subScalar( k ) {
+
+		let _ = this.elements;
+
+		for ( let i = 0, _n = this.numberOfEntries; i < _n; i ++ ) _[ i ] -= k;
+
+		return this;
+
+	}
+
+	/**
 	 * Multiplies this matrix by a scalar.
 	 *
 	 * @param {number} k The scalar to multiply this matrix by
@@ -869,7 +901,7 @@ class Matrix {
 	 * @param {Matrix} matrix The matrix to subtract this matrix to
 	 * @return {Matrix} This matrix
 	 */
-	subtract( matrix ) {
+	sub( matrix ) {
 
 		if ( ! this.sameSize( matrix ) ) {
 
