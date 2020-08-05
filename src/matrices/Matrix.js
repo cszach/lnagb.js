@@ -269,6 +269,21 @@ class Matrix {
 	}
 
 	/**
+	 * Sets a value for an entry in this matrix.
+	 *
+	 * @param {number} r Row number (1-indexed)
+	 * @param {number} c Column number (1-indexed)
+	 * @param {number} value Value for the entry in the specified row and column
+	 * @return {Matrix} This matrix
+	 */
+	setEntry( r, c, value ) {
+
+		this.elements[ this.entryIndex( r, c ) ] = value;
+		return this;
+
+	}
+
+	/**
 	 * Makes this matrix a zero matrix.
 	 *
 	 * @return {Matrix} This matrix
