@@ -67,7 +67,7 @@ class IdentityMatrix {
 	}
 
 	/**
-	 * Returns the rows of this identity matrix in an array.
+	 * Returns the rows of this matrix in an array.
 	 *
 	 * @return {Array[]} The rows in this matrix
 	 */
@@ -88,7 +88,7 @@ class IdentityMatrix {
 	}
 
 	/**
-	 * Returns the columns of this identity matrix in an array.
+	 * Returns the columns of this matrix in an array.
 	 *
 	 * @return {Array[]} The columns in this matrix
 	 */
@@ -112,23 +112,25 @@ class IdentityMatrix {
 	/**
 	 * Returns the negative of this identity matrix.
 	 *
-	 * @return {Matrix} The negative of this matrix
+	 * @deprecated Convert to Matrix instance and negate instead
+	 * @return {IdentityMatrix} This matrix
 	 */
 	get negative() {
 
-		return this.toMatrix().negate();
+		console.error( "This getter does not work with IdentityMatrix instances; convert to Matrix instead" );
+		return this;
 
 	}
 
 	/**
 	 * Returns the transpose of this identity matrix (which equals to itself
- 	 * anyways) as an instance of `Matrix`.
+ 	 * anyways).
 	 *
-	 * @return {IdentityMatrix} The transpose of this matrix
+	 * @return {IdentityMatrix} This matrix
 	 */
 	get transpose() {
 
-		return this.toMatrix();
+		return this;
 
 	}
 
