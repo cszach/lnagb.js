@@ -1,4 +1,4 @@
-import * as MatrixUtils from './MatrixUtils.js';
+import { sameSize, equal, multiplyMatrices } from './MatrixUtils.js';
 
 /**
  * @author Nguyen Hoang Duong / <you_create@protonmail.com>
@@ -306,7 +306,7 @@ class Matrix {
 	 */
 	sameSize( matrix ) {
 
-		return MatrixUtils.sameSize( this, matrix );
+		return sameSize( this, matrix );
 
 	}
 
@@ -319,7 +319,7 @@ class Matrix {
 	 */
 	equals( matrix ) {
 
-		return MatrixUtils.equal( this, matrix );
+		return equal( this, matrix );
 
 	}
 
@@ -928,7 +928,7 @@ class Matrix {
 	 */
 	multiply( matrix ) {
 
-		this.elements = MatrixUtils.multiplyMatrices( this, matrix );
+		this.elements = multiplyMatrices( this, matrix );
 		this.size.columns = matrix.size.columns;
 
 		return this;
@@ -943,7 +943,7 @@ class Matrix {
 	 */
 	premultiply( matrix ) {
 
-		this.elements = MatrixUtils.multiplyMatrices( matrix, this );
+		this.elements = multiplyMatrices( matrix, this );
 		this.size.rows = matrix.size.rows;
 
 		return this;
