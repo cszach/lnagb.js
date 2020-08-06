@@ -9,5 +9,8 @@
  */
 
 export { Matrix } from './Matrix.js';
+export { ZeroMatrix } from './ZeroMatrix.js';
+export { IdentityMatrix } from './IdentityMatrix.js';
 export { AugmentedMatrix } from './AugmentedMatrix.js';
-export { ZeroMatrix, SquareMatrix, IdentityMatrix } from './Matrices.js';
+
+export { MatrixTranspose } from './MatrixTranspose.js';
