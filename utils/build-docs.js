@@ -36,7 +36,9 @@ function processData( data ) {
 	modules.forEach( ( module ) => {
 
 		let template = `{{#module name="${module}"}}{{>docs}}{{/module}}`;
-		jsdoc2md.render( { data, template } ).then( ( output ) => {
+		let options = { data, template, separators: true };
+
+		jsdoc2md.render( options ).then( ( output ) => {
 
 			// Post-process the output
 
