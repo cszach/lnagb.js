@@ -4,6 +4,9 @@ module.exports = {
 		"es6": true,
 		"node": true
 	},
+    "plugins": [
+        "jsdoc"
+    ],
 	"extends": "mdcs",
 	"globals": {
 		"Atomics": "readonly",
