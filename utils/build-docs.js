@@ -1,98 +1,76 @@
 "use strict";
 
+/**
+ * @description
+ *
+ * Builds the lnagb.js documentation from docstrings in its source code using
+ * jsdoc-to-markdown.
+ *
+ * @see https://github.com/jsdoc2md/jsdoc-to-markdown
+ */
+
 const jsdoc2md = require( 'jsdoc-to-markdown' );
 const fs = require( 'fs' );
 
-const INPUT_DIR = process.argv[ 2 ].replace( /\/*$/gi, '' ); // Where JavaScript source files are
-const OUTPUT_DIR = process.argv[ 3 ].replace( /\/*$/gi, '' ); // Where to export
+let files = process.argv[ 2 ].replace( /\/*$/gi, '' );
+let outputDir = process.argv[ 3 ].replace( /\/*$/gi, '' );
 
-// +-------------------------------------------------------------------------+
-// | HOW THIS SCRIPT WORKS                                                   |
-// |                                                                         |
-// | - It generates docs from files in INPUT_DIR and writes output to        |
-// | OUTPUT_DIR.                                                             |
-// | - JS files at the root of INPUT_DIR (INPUT_DIR/*.js) are ignored.       |
-// | - For other JS files, each will be exported to a Markdown file with the |
-// | same name, only the format differs (e.g. test.js -> test.md).           |
-// | - Directory structure is kept. For example, if INPUT_DIR is 'src' and   |
-// | OUTPUT_DIR is 'docs', then...                                           |
-// |   + 'src/script.js' -> 'docs/script.js'                                 |
-// |   + 'src/core/script.js' -> 'docs/core/script.js'                       |
-// |   + 'src/algebra/trigonometry/script.js' ->                             |
-// | 'docs/algebra/trigonometry/script.js'                                   |
-// |   + ...and so on                                                        |
-// | - jsdoc-to-markdown is used to convert JavaScript docstrings into       |
-// | Markdown documents.                                                     |
-// +-------------------------------------------------------------------------+
+let modules;
 
-// Create output directory
+fs.mkdirSync( outputDir, { recursive: true } );
+jsdoc2md.getTemplateData( { files, "no-cache": true } ).then( processData );
 
-fs.mkdirSync( OUTPUT_DIR, { recursive: true } );
+function processData( data ) {
 
-// Process direct sub-directories of INPUT_DIR
+	// Fetch modules
 
-let dirs = fs.readdirSync( INPUT_DIR, { withFileTypes: true } )
-	.filter( ( dirent ) => dirent.isDirectory() )
-	.map( dirent => dirent.name );
+	modules = data.reduce( ( modules, identifier ) => {
 
-dirs.forEach( function ( dir ) {
+		if ( identifier.kind === 'module' ) modules.push( identifier.name );
+		return modules;
 
-	processDirectory( dir );
+	}, [] );
 
-} );
+	// Render each module's documentation
 
-/**
- * Processes files and sub-directories in a given directory.
- *
- * @param {string} directory The path of the directory (disregarding INPUT_DIR)
- */
-function processDirectory( directory ) {
+	modules.forEach( ( module ) => {
 
-	// Create the directory
-	fs.mkdirSync( `${OUTPUT_DIR}/${directory}`, { recursive: true } );
+		let template = `{{#module name="${module}"}}{{>docs}}{{/module}}`;
+		jsdoc2md.render( { data, template } ).then( ( output ) => {
 
-	// Process source files
+			// Post-process the output
 
-	let sourceFiles = fs.readdirSync( `${INPUT_DIR}/${directory}`, { withFileTypes: true } )
-		.filter( ( dirent ) => dirent.isFile() && dirent.name.endsWith( '.js' ) )
-		.map( dirent => dirent.name );
+			// Because jsdoc2md outputs to a single file, all links of symbols
+			// point to sections within the same file. Even when we are trying to
+			// compile the documentation into multiple files, the links'
+			// behaviors still don't change. We need to prepend links that point
+			// to symbols defined outside the current module with the names of
+			// the symbols' respective files.
+			//
+			// e.g. current processing module is SystemOfLinearEquations
+			// -> Prepend all links that point to the Matrix module with
+			// './Matrix'
 
-	sourceFiles.forEach( function ( file ) {
+			let _modules = modules.slice();
+			let processedOutput = output;
 
-		writeMd( file, file.replace( /\.js$/gi, ".md" ), directory );
+			_modules.splice( modules.indexOf( module ), 1 );
+			_modules.forEach( ( _module ) => {
 
-	} );
+				let searchFor = `#module_${_module}`;
+				let replaceWith = `./${_module}` + searchFor;
+				let searchRegex = new RegExp( searchFor, 'g' );
 
-	// Recursively process sub-directories of this directory
+				processedOutput = processedOutput.replace( searchRegex, replaceWith );
 
-	let subDirs = fs.readdirSync( `${INPUT_DIR}/${directory}`, { withFileTypes: true } )
-		.filter( ( dirent ) => dirent.isDirectory() )
-		.map( dirent => directory + '/' + dirent.name );
+			} );
 
-	subDirs.forEach( function ( subDir ) {
+			// Write final output to file
 
-		processDirectory( subDir );
+			fs.writeFileSync( `${outputDir}/${module}.md`, processedOutput );
+
+		} );
 
 	} );
-
-}
-
-/**
- * Writes a Markdown document from a given JavaScript source file.
- *
- * This will overwrite the Markdown file if it already exists.
- *
- * @param {string} inputFileName The input JavaScript file's name
- * @param {string} outputFileName The output Markdown file's name
- * @param {string} directory Nested sub-directories of the input file disregarding INPUT_DIR
- */
-function writeMd( inputFileName, outputFileName, directory ) {
-
-	let data = jsdoc2md.getTemplateDataSync( {
-		files: `${INPUT_DIR}/${directory}/${inputFileName}`
-	} );
-	let output = jsdoc2md.renderSync( { data } );
-
-	fs.writeFileSync( `${OUTPUT_DIR}/${directory}/${outputFileName}`, output );
 
 }
