@@ -9,7 +9,7 @@
   "scripts": {
     "build": "rollup -c utils/rollup.config.js",
     "build-components": "rollup -c utils/rollup-components.config.js",
-    "build-docs": "node utils/build-docs.js 'src' 'docs'"
+    "build-docs": "node utils/build-docs.js 'src/**/*.js' 'docs'"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,9 @@
   },
   "homepage": "https://vecma-org.github.io/lnagb.js",
   "devDependencies": {
+    "eslint": "^7.6.0",
     "eslint-config-mdcs": "^4.2.3",
+    "eslint-plugin-jsdoc": "^30.2.1",
     "jsdoc-to-markdown": "^5.0.3",
     "node": "^13.11.0",
     "rollup": "^2.0.5"
