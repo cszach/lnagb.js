@@ -1,12 +1,16 @@
 **Welcome to the lnagb.js project's home page!**
 
-**lnagb.js** is a JavaScript library created by
-[you-create](https://github.com/you-create/) to learn how mathematical
-operations in Linear Algebra can be implemented using code. The library is meant
-to be educational. You can take the library, play around with it, learn
-something from it, but you probably should not use it in production code that is
-going to serve some real clients. If you are learning Linear Algebra, I suggest
-writing your own code, and you will be learning a lot.
+**lnagb.js** is a JavaScript library created by [Duong][you-create] to learn how 
+mathematical operations in Linear Algebra can be implemented using code. It
+features operations in Linear Algebra such as Gaussian algorithm, matrix-vector
+multiplication, linear combination, Gauss-Jordan elimination, elementary row
+operations, matrix transposition, etc. The library is meant to be educational.
+You can take the library, play around with it, learn something from it, but you 
+probably should not use it in production code that is going to serve some real
+clients. If you are learning Linear Algebra, I suggest writing your own code,
+and you will be learning a lot.
+
+[you-create]: https://github.com/you-create
 
 On this website, you can:
 - [**Browse the docs**](./docs/) to know how to use lnagb.js
