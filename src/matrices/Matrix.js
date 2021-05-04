@@ -6,6 +6,8 @@
  * Contains the {@link module:Matrix~Matrix} class, which encodes basic matrices
  * in linear algebra.
  *
+ * @see {@link module:IdentityMatrix~IdentityMatrix}
+ *
  */
 
 /**
@@ -23,7 +25,9 @@
 class Matrix {
 
 	/**
-	 * Constructs a new `Matrix` instance, which encodes a matrix.
+	 * Constructs a new `Matrix` instance, which encodes a matrix. To create a
+	 * zero matrix, leave `entries` `undefined`. To create an identity matrix,
+	 * see {@link module:IdentityMatrix~IdentityMatrix}.
 	 *
 	 * @param {number} nRows Number of rows in the new matrix.
 	 * @param {number} nColumns Number of columns in the matrix.
@@ -194,7 +198,7 @@ class Matrix {
 
 	}
 
-	/* COMMON METHODS */
+	/* BASIC METHODS */
 
 	/**
 	 * Creates and returns a clone of this matrix instance.
