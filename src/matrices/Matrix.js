@@ -209,9 +209,14 @@ class Matrix {
 
 		let _size = this.size;
 		let _nRows = _size.rows;
-		let _nColumns = _size.columns;
+		let _nCols = _size.columns;
+		let _ = this.elements;
 
-		return new this.constructor( _nRows, _nColumns ).copy( this );
+		let clone = new this.constructor( _nRows, _nCols );
+
+		for ( let i = 0, _n = _nRows * _nCols; i < _n; i ++ ) clone[ i ] = _[ i ];
+
+		return clone;
 
 	}
 
