@@ -710,7 +710,8 @@ class Matrix {
 	}
 
 	/**
-	 * Post-multiplies this matrix by another matrix.
+	 * Multiplies this matrix by another matrix. If the input matrix is not
+	 * compatible for multiplication, return this matrix unchanged.
 	 *
 	 * @param {Matrix} matrix The matrix to post-multiply this matrix to.
 	 * @return {Matrix} This matrix
@@ -750,13 +751,13 @@ class Matrix {
 
 		if ( _sizeCols !== mSizeRows ) {
 
-			console.error( "Incompatible matrices for multiplication" );
-			return ( returnLeftOnError ) ? this : matrix;
+			console.error( "Input matrix is Incompatible for multiplication" );
+			return this;
 
 		}
 
 		let left = this.elements;
-		let right = maatrix.elements;
+		let right = matrix.elements;
 
 		let __sizeRows = _sizeRows + 1;
 		let _mSizeCols = mSizeCols + 1;
@@ -796,6 +797,9 @@ class Matrix {
 					0 ) );
 
 		}
+
+		this.elements = result;
+		this.size.columns = mSizeCols;
 
 	}
 
