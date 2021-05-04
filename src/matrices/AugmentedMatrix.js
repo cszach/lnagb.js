@@ -2,7 +2,13 @@ import { loop } from '../utils.js';
 import { Matrix } from './Matrix.js';
 
 /**
- * @author Nguyen Hoang Duong / you_create@protonmail.com / GitHub: you-create
+ * @module AugmentedMatrix
+ * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @description
+ *
+ * Contains the {@link module:AugmentedMatrix~AugmentedMatrix} class, which
+ * encodes augmented matrices.
+ *
  */
 
 /**
@@ -15,6 +21,8 @@ import { Matrix } from './Matrix.js';
  *
  * **Note**: You can freely change the value of the `name` property, but `size`
  * and `elements` should only be changed using this class's methods.
+ *
+ * @extends {module:Matrix~Matrix}
  */
 class AugmentedMatrix extends Matrix {
 
@@ -77,7 +85,7 @@ class AugmentedMatrix extends Matrix {
 
 		return o.constructor.name === "AugmentedMatrix"
 			&& o.elements.every( ( e ) => Number.isFinite( e ) )
-			&& o.elements.length === o.numberOfElements
+			&& o.elements.length === o.numberOfEntries
 			&& o.size.columns === o.size.l + o.size.r;
 
 	}
@@ -91,7 +99,7 @@ class AugmentedMatrix extends Matrix {
 	 */
 	get leftMatrix() {
 
-		let result = new Matrix( this.size.rows, this.size.l );
+		let result = new Matrix().setDimensions( this.size.rows, this.size.l );
 
 		result.elements = new Array();
 
@@ -112,7 +120,7 @@ class AugmentedMatrix extends Matrix {
 	 */
 	get rightMatrix() {
 
-		let result = new Matrix( this.size.rows, this.size.r );
+		let result = new Matrix().setDimensions( this.size.rows, this.size.r );
 
 		result.elements = new Array();
 
@@ -166,13 +174,6 @@ class AugmentedMatrix extends Matrix {
 	}
 
 	// DISALLOW SOME METHODS FROM THE MATRIX CLASS
-
-	sizeSwap() {
-
-		console.error( "The sizeSwap method cannot be used with instances of AugmentedMatrix" );
-		return;
-
-	}
 
 	transpose() {
 

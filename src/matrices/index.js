@@ -8,9 +8,8 @@
  * {% include matrices-index.html %}
  */
 
-export { Matrix } from './Matrix.js';
-export { ZeroMatrix } from './ZeroMatrix.js';
-export { IdentityMatrix } from './IdentityMatrix.js';
-export { AugmentedMatrix } from './AugmentedMatrix.js';
-
-export { MatrixTranspose } from './MatrixTranspose.js';
+export * from './Matrix.js';
+export * from './ZeroMatrix.js';
+export * from './IdentityMatrix.js';
+export * from './AugmentedMatrix.js';
+export * from './MatrixTranspose.js';

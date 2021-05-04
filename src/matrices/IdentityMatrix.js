@@ -5,7 +5,6 @@ import { sameSize, equal } from './MatrixUtils';
  */
 
 /**
- * @readonly
  * Encodes read-only identity matrices.
  *
  * This class is basically the same as the {@link Matrix `Matrix`} class in the
@@ -18,6 +17,8 @@ import { sameSize, equal } from './MatrixUtils';
  * To avoid taking up storage space, the entries in this matrix are stored
  * dynamically in a getter. Be sure to cache the getter's return value if you need
  * the entries as an array.
+ *
+ * @readonly
  */
 class IdentityMatrix {
 

@@ -5,7 +5,6 @@ import { sameSize, equal } from './MatrixUtils';
  */
 
 /**
- * @readonly
  * Encodes read-only zero matrices.
  *
  * The properties only serve for compatibility with other classes. Methods
@@ -13,6 +12,7 @@ import { sameSize, equal } from './MatrixUtils';
  *
  * @see {@link IdentityMatrix `IdentityMatrix`} (for a similar read-only matrix
  * class)
+ * @readonly
  */
 class ZeroMatrix {
 

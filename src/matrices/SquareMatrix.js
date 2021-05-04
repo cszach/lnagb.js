@@ -66,7 +66,7 @@ class SquareMatrix extends Matrix {
 	setDimensions( dimension ) {
 
 		this.size = { rows: dimension, columns: dimension };
-		this.elements = new Array( this.numberOfElements ).fill( 0 );
+		this.elements = new Array( this.numberOfEntries ).fill( 0 );
 
 		return this.identity();
 
@@ -88,13 +88,6 @@ class SquareMatrix extends Matrix {
 		}
 
 		return this;
-
-	}
-
-	sizeSwap() {
-
-		console.warn( "Swapping dimensions is useless on a square matrix" );
-		return;
 
 	}
 
