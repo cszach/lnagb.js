@@ -1,54 +1,52 @@
 import { sameSize, equal, multiplyMatrices } from './MatrixUtils.js';
 
 /**
+ * @module Matrix
  * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @description
+ *
+ * Contains the {@link module:Matrix~Matrix} class, which encodes basic matrices
+ * in Linear Algebra.
+ *
  */
 
 /**
  * Low-level, speed-prioritized class that encodes matrices and their operations.
+ * A matrix is encoded by storing its elements - in **row-major** order for
+ * lnagb.js - and its dimensions (see instance properties
+ * {@link module:Matrix~Matrix#elements} and {@link module:Matrix~Matrix#size}).
  *
- * This class encodes a matrix by storing the elements of that matrix in an array.
- * Every instance of this class is an object that has the following properties:
- * - `size`: An object that has the following properties:
- *     - `rows`: The number of rows in the encoded matrix;
- *     - `columns`: The number of columns in the encoded matrix.
- * - `elements`: A JavaScript array that stores the elements of the encoded
- *    matrix in **row-major** order.
- *
- * This class prioritizes speed efficiency and is preferred for large matrices.
- * For small matrices, see {@link Matrix1 `Matrix1`}, {@link Matrix2 `Matrix2`}
- * {@link Matrix3 `Matrix3`}, {@link Matrix4 `Matrix4`},
- * {@link Matrix2x3 `Matrix2x3`}, {@link Matrix3x2 `Matrix3x2`}. In additional,
- * this class's methods do not validate arguments' types, so be careful when you
- * use it.
+ * This class should be used to work with large matrices of arbitrary dimensions.
+ * For small matrices, see {@link module:Matrix1~Matrix1},
+ * {@link module:Matrix2~Matrix2}, {@link module:Matrix3~Matrix3},
+ * {@link module:Matrix4~Matrix4}, {@link module:Matrix2x3~Matrix2x3},
+ * {@link module:Matrix3x2~Matrix3x2}.
  */
 class Matrix {
 
 	/**
 	 * Constructs a new `Matrix` instance, which encodes a matrix.
 	 *
-	 * Arguments are optional. If you give the constructor arguments, make sure
-	 * they are valid, because the constructor won't validate them. If you don't
-	 * provide arguments, a 2 x 3 zero matrix will be created.
-	 *
-	 * @param {number} nRows Number of rows in the new matrix
-	 * @param {number} nColumns Number of columns in the matrix
-	 * @param {number[]} entries Entries of the matrix in row-major order
+	 * @param {number} nRows Number of rows in the new matrix.
+	 * @param {number} nColumns Number of columns in the matrix.
+	 * @param {number[]} entries Entries of the matrix in row-major order.
 	 */
 	constructor( nRows, nColumns, entries ) {
 
-		/*
-		 * These are the properties that every Matrix instance has.
-		 *
-		 * .size.rows: The number of rows in this matrix
-		 * .size.columns: The number of columns in this matrix
-		 * .elements: Row-major-ordered array of elements in this matrix
-		 *
-		 * On the user-end, all of these properties should not be changed
-		 * directly, but using methods.
+		/**
+		 * @member {object}
+		 * @description Contains the dimensions of this matrix as an object in the
+		 * form `{ rows, columns }`.
 		 */
+		this.size = {
+			rows: nRows,
+			columns: nColumns
+		};
 
-		this.size = { rows: nRows || 2, columns: nColumns || 3 };
+		/**
+		 * @member {number[]}
+		 * @description Stores the elements of this matrix in **row-major** order.
+		 */
 		this.elements = entries || new Array( nRows * nColumns ).fill( 0 );
 
 	}
@@ -134,8 +132,8 @@ class Matrix {
 	}
 
 	/**
-	 * Returns the rank of this matrix by cloning the matrix and reducing the
-	 * clone, removing the risk of manipulating the current matrix.
+	 * Returns the rank of this matrix without manipulating it, by cloning the
+	 * matrix and reducing the clone.
 	 *
 	 * @return {number} The rank of this matrix
 	 */
@@ -186,8 +184,8 @@ class Matrix {
 	 * This method assumes the given matrix has the same dimensions as this
 	 * matrix.
 	 *
-	 * @param {Matrix} matrix The instance to copy from
-	 * @return {Matrix} This matrix
+	 * @param {Matrix} matrix The instance to copy from.
+	 * @return {Matrix} This matrix.
 	 */
 	copy( matrix ) {
 
@@ -229,8 +227,8 @@ class Matrix {
 	/**
 	 * Sets the dimensions for this matrix.
 	 *
-	 * @param {number} nRows New number of rows
-	 * @param {number} nColumns New number of columns
+	 * @param {number} nRows New number of rows.
+	 * @param {number} nColumns New number of columns.
 	 * @return {Matrix} This matrix
 	 */
 	setDimensions( nRows, nColumns ) {
@@ -271,9 +269,9 @@ class Matrix {
 	/**
 	 * Sets a value for an entry in this matrix.
 	 *
-	 * @param {number} r Row number (1-indexed)
-	 * @param {number} c Column number (1-indexed)
-	 * @param {number} value Value for the entry in the specified row and column
+	 * @param {number} r Row number (1-indexed).
+	 * @param {number} c Column number (1-indexed).
+	 * @param {number} value Value for the entry in the specified row and column.
 	 * @return {Matrix} This matrix
 	 */
 	setEntry( r, c, value ) {
@@ -300,7 +298,7 @@ class Matrix {
 	/**
 	 * Checks if this matrix has the same size as another matrix.
 	 *
-	 * @param {Matrix} matrix The matrix to check the size of this matrix against
+	 * @param {Matrix} matrix The matrix to check the size of this matrix against.
 	 * @return {boolean} `true` if the two matrices have the same size, `false`
 	 * otherwise
 	 */
@@ -313,7 +311,7 @@ class Matrix {
 	/**
 	 * Checks if this matrix and another matrix are equal.
 	 *
-	 * @param {Matrix} matrix The matrix to compare this matrix to
+	 * @param {Matrix} matrix The matrix to compare this matrix to.
 	 * @return {boolean} `true` if the two matrices are the same, `false`
 	 * otherwise
 	 */
@@ -328,8 +326,8 @@ class Matrix {
 	/**
 	 * Returns the entry in the specified row and column in this matrix.
 	 *
-	 * @param {number} r The row that contains the entry (1-indexed)
-	 * @param {number} c The column that contains the entry (1-indexed)
+	 * @param {number} r The row that contains the entry (1-indexed).
+	 * @param {number} c The column that contains the entry (1-indexed).
 	 * @return {number} The entry
 	 */
 	entry( r, c ) {
@@ -344,8 +342,8 @@ class Matrix {
 	 *
 	 * This is a low-level method and is often used internally.
 	 *
-	 * @param {number} r The row that contains the entry (1-indexed)
-	 * @param {number} c The column that contains the entry (1-indexed)
+	 * @param {number} r The row that contains the entry (1-indexed).
+	 * @param {number} c The column that contains the entry (1-indexed).
 	 * @return {number} The index of the entry in `this.elements` (0-indexed)
 	 */
 	entryIndex( r, c ) {
@@ -357,35 +355,9 @@ class Matrix {
 	}
 
 	/**
-	 * Converts a 0-based index of an element in this matrix to its 1-indexed
-	 * row number.
-	 *
-	 * @param {number} index The index to convert (0-based)
-	 * @return {number} The index's row number (1-indexed)
-	 */
-	indexToRow( index ) {
-
-		return Math.floor( index / this.size.columns ) + 1;
-
-	}
-
-	/**
-	 * Converts a 0-based index of an element in this matrix to its 1-indexed
-	 * column number.
-	 *
-	 * @param {number} index The index to convert (0-based)
-	 * @return {number} The index's column number (1-indexed)
-	 */
-	indexToColumn( index ) {
-
-		return ( index % this.size.columns ) + 1;
-
-	}
-
-	/**
 	 * Returns a row in this matrix as a JavaScript array.
 	 *
-	 * @param {number} r Row number (1-indexed)
+	 * @param {number} r Row number (1-indexed).
 	 * @return {number[]} The row's entries
 	 */
 	row( r ) {
@@ -407,7 +379,7 @@ class Matrix {
 	/**
 	 * Returns a column in this matrix as a JavaScript array.
 	 *
-	 * @param {number} c Column number (1-indexed)
+	 * @param {number} c Column number (1-indexed).
 	 * @return {number[]} The column's entries
 	 */
 	column( c ) {
@@ -468,7 +440,7 @@ class Matrix {
 	 * Returns the leading coefficient of a row, or `undefined` if the row does
 	 * not have a leading coefficient.
 	 *
-	 * @param {number} r Row number (1-indexed)
+	 * @param {number} r Row number (1-indexed).
 	 * @return {number} The leading coefficient of the row
 	 */
 	leadingCoefficient( r ) {
@@ -490,85 +462,14 @@ class Matrix {
 
 	}
 
-	/**
-	 * Returns the column number of the leading coefficient of a row, or
-	 * `undefined` if the row does not have a leading coefficient.
-	 *
-	 * @deprecated This will not be implemented in other matrix classes and will
-	 * likely be removed in a near future version.
-	 *
-	 * @param {number} r Row number (1-indexed)
-	 * @return {number} Column number of the row's leading coefficient
-	 * (1-indexed)
-	 */
-	leadingCoefficientIndex( r ) {
-
-		let _ = this.elements;
-		let _nCols = this.size.columns;
-
-		let end = r * _nCols;
-		let start = end - _nCols;
-
-		for ( let i = start, entry; i < end; i ++ ) {
-
-			entry = _[ i ];
-			if ( entry !== 0 ) return ( i % _nCols ) + 1;
-
-		}
-
-		return undefined;
-
-	}
-
-	/* ACCESSORS FOR THE TRANSPOSED */
-
-	/**
-	 * Returns the entry in the specified row and column in the transpose of this
-	 * matrix, without actually transposing it.
-	 *
-	 * Arguments should be indices of the desired element in the transpose.
-	 *
-	 * @param {number} r The row that contains the entry (1-indexed)
-	 * @param {number} c The column that contains the entry (1-indexed)
-	 * @return {number} The entry
-	 */
-	transposedEntry( r, c ) {
-
-		return this.entry( c, r );
-
-	}
-
-	/**
-	 * Returns a row in the transpose of this matrix as a JavaScript array.
-	 *
-	 * @param {number} r Row number (in the transpose) (1-indexed)
-	 * @return {number[]} The row's entries
-	 */
-	transposedRow( r ) {
-
-		return this.column( r );
-
-	}
-
-	/**
-	 * Returns a column in the transpose of this matrix as a JavaScript array.
-	 *
-	 * @param {number} c Column number (in the transpose) (1-indexed)
-	 * @return {number[]} The column's entries
-	 */
-	transposedColumn( c ) {
-
-		return this.row( c );
-
-	}
-
 	/* ITERATORS */
 
 	/**
-	 * Executes a function for each entry in this matrix.
+	 * Executes a function for each entry in this matrix. Entries are iterated in
+	 * row-major order.
 	 *
-	 * @param {Matrix~forEach} callback The function to execute per iteration
-	 * @param {object} thisArg The argument to use as `this` in the function
+	 * @param {Matrix~forEach} callback The function to execute per iteration.
+	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEach( callback, thisArg ) {
 
@@ -592,18 +493,18 @@ class Matrix {
 
 	/**
 	 * @callback Matrix~forEach
-	 * @param {number} entry The current entry being processed
-	 * @param {number} r The entry's row number (1-indexed)
-	 * @param {number} c The entry's column number (1-indexed)
-	 * @param {number} index The index of the entry in `this.elements` (0-indexed)
-	 * @param {Matrix} matrix The instance that this method was called upon
+	 * @param {number} entry The current entry being processed.
+	 * @param {number} r The entry's row number (1-indexed).
+	 * @param {number} c The entry's column number (1-indexed).
+	 * @param {number} index The index of the entry in `this.elements` (0-indexed).
+	 * @param {Matrix} matrix The instance that this method was called upon.
 	 */
 
 	/**
 	 * Executes a function for each row in this matrix.
 	 *
-	 * @param {Matrix~forEachRow} callback The function to execute per iteration
-	 * @param {object} thisArg The argument to use as `this` in the function
+	 * @param {Matrix~forEachRow} callback The function to execute per iteration.
+	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEachRow( callback, thisArg ) {
 
@@ -629,16 +530,16 @@ class Matrix {
 
 	/**
 	 * @callback Matrix~forEachRow
-	 * @param {number[]} row The current row being processed (with its entries)
-	 * @param {number} r Current row number (1-indexed)
-	 * @param {Matrix} matrix The instance that this method was called upon
+	 * @param {number[]} row The current row being processed (with its entries).
+	 * @param {number} r Current row number (1-indexed).
+	 * @param {Matrix} matrix The instance that this method was called upon.
 	 */
 
 	/**
 	 * Executes a function for each column in this matrix.
 	 *
-	 * @param {Matrix~forEachColumn} callback The function to execute per iteration
-	 * @param {object} thisArg The argument to use as `this` in the function
+	 * @param {Matrix~forEachColumn} callback The function to execute per iteration.
+	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEachColumn( callback, thisArg ) {
 
@@ -673,9 +574,9 @@ class Matrix {
 
 	/**
 	 * @callback Matrix~forEachColumn
-	 * @param {number[]} column The current column being processed (with its entries)
-	 * @param {number} c Current column number (1-indexed)
-	 * @param {Matrix} matrix The instance that this method was called upon
+	 * @param {number[]} column The current column being processed (with its entries).
+	 * @param {number} c Current column number (1-indexed).
+	 * @param {Matrix} matrix The instance that this method was called upon.
 	 */
 
 	/* ELEMENTARY ROW OPERATIONS */
@@ -683,8 +584,8 @@ class Matrix {
 	/**
 	 * Intercharges two rows in this matrix (elementary row operation type I).
 	 *
-	 * @param {number} r First row number (1-indexed)
-	 * @param {number} s Second row number (1-indexed)
+	 * @param {number} r First row number (1-indexed).
+	 * @param {number} s Second row number (1-indexed).
 	 * @return {Matrix} This matrix
 	 */
 	interchargeRows( r, s ) {
@@ -717,8 +618,8 @@ class Matrix {
 	 *
 	 * The scalar must not be 0. If it is, the row will remain the same.
 	 *
-	 * @param {number} r Row number (1-indexed)
-	 * @param {number} k The scalar to multiply the row by
+	 * @param {number} r Row number (1-indexed).
+	 * @param {number} k The scalar to multiply the row by.
 	 * @return {Matrix} This matrix
 	 */
 	multiplyRowByScalar( r, k ) {
@@ -746,10 +647,10 @@ class Matrix {
 	 * Adds multiples of a row to another row in this matrix (elementary row
  	 * operation type III).
 	 *
-	 * @param {number} r The row that gets added (1-indexed position)
+	 * @param {number} r The row that gets added (1-indexed position).
 	 * @param {number} s The row to multiply the scalar by and then add to row
-	 * `r` (1-indexed position)
-	 * @param {number} k The scalar to multiply row `s` by
+	 * `r` (1-indexed position).
+	 * @param {number} k The scalar to multiply row `s` by.
 	 * @return {Matrix} This matrix
 	 */
 	addRowTimesScalarToRow( r, s, k = 1 ) {
@@ -814,7 +715,7 @@ class Matrix {
 	/**
 	 * Adds a scalar to every entry of this matrix.
 	 *
-	 * @param {number} k The scalar to add to every entry
+	 * @param {number} k The scalar to add to every entry.
 	 * @return {Matrix} This matrix
 	 */
 	addScalar( k ) {
@@ -830,7 +731,7 @@ class Matrix {
 	/**
 	 * Subtracts a scalar from every entry of this matrix.
 	 *
-	 * @param {number} k The scalar to subtract from every entry
+	 * @param {number} k The scalar to subtract from every entry.
 	 * @return {Matrix} This matrix
 	 */
 	subScalar( k ) {
@@ -846,7 +747,7 @@ class Matrix {
 	/**
 	 * Multiplies this matrix by a scalar.
 	 *
-	 * @param {number} k The scalar to multiply this matrix by
+	 * @param {number} k The scalar to multiply this matrix by.
 	 * @return {Matrix} This matrix
 	 */
 	multiplyScalar( k ) {
@@ -873,7 +774,7 @@ class Matrix {
 	/**
 	 * Adds a matrix to this matrix.
 	 *
-	 * @param {Matrix} matrix The matrix to add to this matrix
+	 * @param {Matrix} matrix The matrix to add to this matrix.
 	 * @return {Matrix} This matrix
 	 */
 	add( matrix ) {
@@ -898,7 +799,7 @@ class Matrix {
 	/**
 	 * Subtracts a matrix from this matrix.
 	 *
-	 * @param {Matrix} matrix The matrix to subtract this matrix to
+	 * @param {Matrix} matrix The matrix to subtract this matrix to.
 	 * @return {Matrix} This matrix
 	 */
 	sub( matrix ) {
@@ -923,7 +824,7 @@ class Matrix {
 	/**
 	 * Post-multiplies this matrix by another matrix.
 	 *
-	 * @param {Matrix} matrix The matrix to post-multiply this matrix to
+	 * @param {Matrix} matrix The matrix to post-multiply this matrix to.
 	 * @return {Matrix} This matrix
 	 */
 	multiply( matrix ) {
@@ -938,7 +839,7 @@ class Matrix {
 	/**
 	 * Pre-multiplies this matrix by another matrix.
 	 *
-	 * @param {Matrix} matrix The matrix to pre-multiply this matrix to
+	 * @param {Matrix} matrix The matrix to pre-multiply this matrix to.
 	 * @return {Matrix} This matrix
 	 */
 	premultiply( matrix ) {
@@ -955,7 +856,7 @@ class Matrix {
 	 *
 	 * @todo Implement an efficient algorithm for matrix reduction
 	 *
-	 * @param {boolean} canonical Set to `true` to reduce to reduced row-echelon
+	 * @param {boolean} canonical Set to `true` to reduce to reduced row-echelon.
 	 * @return {Matrix} This matrix after reduction
 	 */
 	reduce( canonical = false ) {
