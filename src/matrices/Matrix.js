@@ -1,12 +1,10 @@
-import { sameSize, equal, multiplyMatrices } from './MatrixUtils.js';
-
 /**
  * @module Matrix
  * @author Nguyen Hoang Duong / <you_create@protonmail.com>
  * @description
  *
  * Contains the {@link module:Matrix~Matrix} class, which encodes basic matrices
- * in Linear Algebra.
+ * in linear algebra.
  *
  */
 
@@ -132,6 +130,34 @@ class Matrix {
 	}
 
 	/**
+	 * Returns the main diagonal of this matrix.
+	 *
+	 * @return {number[]} The entries in the main diagonal of this matrix
+	 */
+	get mainDiagonal() {
+
+		let _ = this.elements;
+		let _size = this.size;
+		let _nRows = _size.rows;
+		let _nCols = _size.columns;
+
+		let mainDiagonal = [];
+		let end = ( ( _nRows < _nCols ) ? _nRows : _nCols ) + 1;
+
+		let p = - 1;
+
+		for ( let i = 1; i < end; i ++ ) {
+
+			mainDiagonal.push( _[ p + i ] );
+			p += _nCols;
+
+		}
+
+		return mainDiagonal;
+
+	}
+
+	/**
 	 * Returns the rank of this matrix without manipulating it, by cloning the
 	 * matrix and reducing the clone.
 	 *
@@ -221,87 +247,7 @@ class Matrix {
 
 	}
 
-	/* SETTERS */
-
-	/**
-	 * Sets the dimensions for this matrix. All elements will be changed to 0.
-	 *
-	 * @param {number} nRows New number of rows.
-	 * @param {number} nColumns New number of columns.
-	 * @return {Matrix} This matrix
-	 */
-	setDimensions( nRows, nColumns ) {
-
-		let _size = this.size;
-
-		_size.rows = nRows;
-		_size.columns = nColumns;
-
-		this.elements = new Array( nRows * nColumns ).fill( 0 );
-
-		return this;
-
-	}
-
-	/**
-	 * Sets the elements for this matrix.
-	 *
-	 * @return {Matrix} This matrix
-	 */
-	set() {
-
-		let _n = this.numberOfEntries;
-		let elements = Array.from( arguments );
-
-		for ( let i = 0, _ = this.elements; i < _n; i ++ )
-			_[ i ] = elements[ i ];
-
-		return this;
-
-	}
-
-	/**
-	 * Sets a value for an entry in this matrix.
-	 *
-	 * @param {number} r Row number (1-indexed).
-	 * @param {number} c Column number (1-indexed).
-	 * @param {number} value Value for the entry in the specified row and column.
-	 * @return {Matrix} This matrix
-	 */
-	setEntry( r, c, value ) {
-
-		this.elements[ this.entryIndex( r, c ) ] = value;
-		return this;
-
-	}
-
-	/**
-	 * Makes this matrix a zero matrix.
-	 *
-	 * @return {Matrix} This matrix
-	 */
-	zero() {
-
-		this.elements.fill( 0 );
-		return this;
-
-	}
-
 	/* CHECKERS */
-
-	/**
-	 * Checks if this matrix has the same size (that is, same number of rows and
-     * number of columns) as another matrix.
-	 *
-	 * @param {Matrix} matrix The matrix to check the size of this matrix against.
-	 * @return {boolean} `true` if the two matrices have the same size, `false`
-	 * otherwise
-	 */
-	sameSize( matrix ) {
-
-		return sameSize( this, matrix );
-
-	}
 
 	/**
 	 * Checks if this matrix and another matrix are equal.
@@ -311,7 +257,21 @@ class Matrix {
 	 */
 	equals( matrix ) {
 
-		return equal( this, matrix );
+		let _size = this.size;
+		let _sizeRows = _size.rows;
+		let _sizeCols = _size.columns;
+		let mSize = matrix.size;
+
+		if ( _sizeRows !== mSize.rows || _sizeCols !== mSize.columns )
+			return false;
+
+		let _ = this.elements;
+		let m = matrix.elements;
+		let _n = _sizeRows * _sizeCols;
+
+		for ( let i = 0; i < _n; i ++ ) if ( _[ i ] !== m[ i ] ) return false;
+
+		return true;
 
 	}
 
@@ -326,25 +286,9 @@ class Matrix {
 	 */
 	entry( r, c ) {
 
-		return this.elements[ this.entryIndex( r, c ) ];
-
-	}
-
-	/**
-	 * Returns the 0-indexed position of the entry in the specified row and
-	 * column in `this.elements`.
-	 *
-	 * This is a low-level method and is often used internally.
-	 *
-	 * @param {number} r The row that contains the entry (1-indexed).
-	 * @param {number} c The column that contains the entry (1-indexed).
-	 * @return {number} The index of the entry in `this.elements` (0-indexed)
-	 */
-	entryIndex( r, c ) {
-
 		let _size = this.size;
 
-		return r * _size.columns + c - _size.columns - 1;
+		return this.elements[ r * _size.columns + c - _size.columns - 1 ];
 
 	}
 
@@ -399,34 +343,6 @@ class Matrix {
 		}
 
 		return column;
-
-	}
-
-	/**
-	 * Returns the main diagonal of this matrix.
-	 *
-	 * @return {number[]} The entries in the main diagonal of this matrix
-	 */
-	mainDiagonal() {
-
-		let _ = this.elements;
-		let _size = this.size;
-		let _nRows = _size.rows;
-		let _nCols = _size.columns;
-
-		let mainDiagonal = [];
-		let end = ( ( _nRows < _nCols ) ? _nRows : _nCols ) + 1;
-
-		let p = - 1;
-
-		for ( let i = 1; i < end; i ++ ) {
-
-			mainDiagonal.push( _[ p + i ] );
-			p += _nCols;
-
-		}
-
-		return mainDiagonal;
 
 	}
 
@@ -524,8 +440,8 @@ class Matrix {
 
 	/**
 	 * @callback Matrix~forEachRow
-	 * @param {number[]} row The current row being processed (with its entries).
-	 * @param {number} r Current row number (1-indexed).
+	 * @param {number[]} row The row being processed (with its entries).
+	 * @param {number} r The row's number (1-indexed).
 	 * @param {Matrix} matrix The instance that this method was called upon.
 	 */
 
@@ -568,15 +484,23 @@ class Matrix {
 
 	/**
 	 * @callback Matrix~forEachColumn
-	 * @param {number[]} column The current column being processed (with its entries).
-	 * @param {number} c Current column number (1-indexed).
+	 * @param {number[]} column The column being processed.
+	 * @param {number} c The's column number (1-indexed).
 	 * @param {Matrix} matrix The instance that this method was called upon.
 	 */
 
 	/* ELEMENTARY ROW OPERATIONS */
 
+	/*
+	 * lnagb.js supports all 3 elementary row operations:
+	 *   I. Intercharge two rows.
+	 *   II. Multiply one row by a nonzero number.
+	 *   III. Add a multiple of one row to a different row.
+	 *
+	 */
+
 	/**
-	 * Intercharges two rows in this matrix (elementary row operation type I).
+	 * Intercharges two rows in this matrix.
 	 *
 	 * @param {number} r First row number (1-indexed).
 	 * @param {number} s Second row number (1-indexed).
@@ -607,8 +531,7 @@ class Matrix {
 	}
 
 	/**
-	 * Multiplies a row in this matrix by a nonzero scalar (elementary row
-	 * operation type II).
+	 * Multiplies a row in this matrix by a nonzero scalar.
 	 *
 	 * @param {number} r Row number (1-indexed).
 	 * @param {number} k The nonzero scalar to multiply the row by.
@@ -636,8 +559,7 @@ class Matrix {
 	}
 
 	/**
-	 * Adds multiples of a row to another row in this matrix (elementary row
- 	 * operation type III).
+	 * Adds multiples of a row to another row in this matrix.
 	 *
 	 * @param {number} r The row that gets added (1-indexed position).
 	 * @param {number} s The row to multiply the scalar by and then add to row
@@ -665,7 +587,7 @@ class Matrix {
 	/* COMMON MATRIX OPERATIONS */
 
 	/**
-	 * Transposes this matrix in place.
+	 * Transposes this matrix *in place*.
 	 *
 	 * @todo Optimize this method by removing the medium
 	 *
@@ -699,38 +621,6 @@ class Matrix {
 
 		this.elements = elements;
 		[ _size.rows, _size.columns ] = [ _size.columns, _size.rows ];
-
-		return this;
-
-	}
-
-	/**
-	 * Adds a scalar to every entry of this matrix.
-	 *
-	 * @param {number} k The scalar to add to every entry.
-	 * @return {Matrix} This matrix
-	 */
-	addScalar( k ) {
-
-		let _ = this.elements;
-
-		for ( let i = 0, _n = this.numberOfEntries; i < _n; i ++ ) _[ i ] += k;
-
-		return this;
-
-	}
-
-	/**
-	 * Subtracts a scalar from every entry of this matrix.
-	 *
-	 * @param {number} k The scalar to subtract from every entry.
-	 * @return {Matrix} This matrix
-	 */
-	subScalar( k ) {
-
-		let _ = this.elements;
-
-		for ( let i = 0, _n = this.numberOfEntries; i < _n; i ++ ) _[ i ] -= k;
 
 		return this;
 
@@ -771,7 +661,10 @@ class Matrix {
 	 */
 	add( matrix ) {
 
-		if ( ! this.sameSize( matrix ) ) {
+		let _size = this.size;
+		let mSize = m.size;
+
+		if ( ! ( _size.rows === mSize.rows && _size.columns === mSize.columns ) ) {
 
 			console.error( "Incompatible matrices for addition" );
 			return this;
@@ -796,7 +689,10 @@ class Matrix {
 	 */
 	sub( matrix ) {
 
-		if ( ! this.sameSize( matrix ) ) {
+		let _size = this.size;
+		let mSize = m.size;
+
+		if ( ! ( _size.rows === mSize.rows && _size.columns === mSize.columns ) ) {
 
 			console.error( "Incompatible matrices for subtraction" );
 			return this;
@@ -821,25 +717,85 @@ class Matrix {
 	 */
 	multiply( matrix ) {
 
-		this.elements = multiplyMatrices( this, matrix );
-		this.size.columns = matrix.size.columns;
+		/*
+		 * APPROACH
+		 *
+		 * 1. Check if the matrices are compatible for matrix multiplication,
+		 *    extracting the matrices' dimensions in the process
+		 * 2. Create an array to store the elements of the result matrix
+		 * 3. Create an array to store the columns of right matrix
+		 * 4. Adds the columns of the right matrix to the array created in step 3
+		 * 5. Run a loop from 1 to the number of rows in the left matrix, in the
+		 *    loop:
+		 *   5.1. Extract the row that corresponds to the iterator of the loop
+		 *        in the left matrix and store the row's entries in an array
+		 *   5.2. Run a loop from 0 to the number of columns in the right matrix minus
+		 *        1, in the loop:
+		 *     5.2.1. Extract the column at the iterator of the loop started in 5.2
+		 *            from the matrix created in step 3
+		 *     5.2.2. Treat the row extracted in 5.1 and the column extracted in 5.2.1
+		 *            as 2 sets of numbers, compute their linear combination
+		 *     5.2.2. Appends the linear combination to the array created in step 2
+		 */
 
-		return this;
+		let _size = this.size;
+		let _sizeRows = _size.rows;
+		let _sizeCols = _size.columns;
 
-	}
+		let mSize = matrix.size;
+		let mSizeRows = mSize.rows;
+		let mSizeCols = mSize.columns;
 
-	/**
-	 * Pre-multiplies this matrix by another matrix.
-	 *
-	 * @param {Matrix} matrix The matrix to pre-multiply this matrix to.
-	 * @return {Matrix} This matrix
-	 */
-	premultiply( matrix ) {
+		// 1
 
-		this.elements = multiplyMatrices( matrix, this );
-		this.size.rows = matrix.size.rows;
+		if ( _sizeCols !== mSizeRows ) {
 
-		return this;
+			console.error( "Incompatible matrices for multiplication" );
+			return ( returnLeftOnError ) ? this : matrix;
+
+		}
+
+		let left = this.elements;
+		let right = maatrix.elements;
+
+		let __sizeRows = _sizeRows + 1;
+		let _mSizeCols = mSizeCols + 1;
+
+		let result = []; // 2
+		let mColumns = []; // 3
+
+		// 4
+
+		for ( let c = 1, column = [], q = mSizeCols, p = - q;
+			c < _mSizeCols; c ++, p ++ ) {
+
+			for ( let r = 1, _mSizeRows = mSizeRows + 1; r < _mSizeRows; r ++ ) {
+
+				column.push( right[ p + q ] );
+				q += mSizeCols;
+
+			}
+
+			mColumns.push( column );
+
+		}
+
+		for ( let r = 1; r < __sizeRows; r ++ ) { // 5
+
+			// 5.1
+
+			let row = [];
+			let rowEnd = r * _sizeCols;
+			let rowStart = rowEnd - _sizeCols;
+
+			for ( let i = rowStart; i < rowEnd; i ++ ) row.push( left[ i ] );
+
+			for ( let c = 0; c < mSizeCols; c ++ )
+				result.push( row.reduce(
+					( result, v, i ) => result + row[ i ] * mColumns[ c ][ i ],
+					0 ) );
+
+		}
 
 	}
 
