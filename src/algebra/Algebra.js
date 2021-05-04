@@ -1,5 +1,5 @@
 /**
- * @module MathUtils
+ * @module Algebra
  * @author Nguyen Hoang Duong / <you_create@protonmail.com>
  * @description
  *
@@ -7,6 +7,8 @@
  * Helpful for the lnagb.js library itself as well as potential users.
  *
  */
+
+function Algebra() {}
 
 /**
  * Computes and returns the result of the linear combination of 2 sequences
@@ -28,10 +30,10 @@
  * // ( 1 * - 9 ) + ( 2 * - 8 ) + ( 3 * - 7 ) = - 46
  * ```
  */
-function linearCombination( p, q ) {
+Algebra.linearCombination = function ( p, q ) {
 
 	return p.reduce( ( result, v, i ) => result + p[ i ] * q[ i ], 0 );
 
-}
+};
 
-export { linearCombination };
+export { Algebra };
