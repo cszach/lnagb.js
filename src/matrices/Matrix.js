@@ -42,27 +42,20 @@ class Matrix {
 		};
 
 		/**
+		 * @member {number}
+		 * @description The number of entries in this matrix.
+		 */
+		this.numberOfEntries = nRows * nColumns;
+
+		/**
 		 * @member {number[]}
 		 * @description Stores the elements of this matrix in **row-major** order.
 		 */
-		this.elements = entries || new Array( nRows * nColumns ).fill( 0 );
+		this.elements = entries || new Array( this.numberOfEntries ).fill( 0 );
 
 	}
 
 	/* GETTERS */
-
-	/**
-	 * Returns the number of entries in this matrix.
-	 *
-	 * @return {number} The number of entries in this matrix
-	 */
-	get numberOfEntries() {
-
-		let _size = this.size;
-
-		return _size.rows * _size.columns;
-
-	}
 
 	/**
 	 * Returns the rows of this matrix in an array.
@@ -204,35 +197,6 @@ class Matrix {
 	/* COMMON METHODS */
 
 	/**
-	 * Makes this instance the same as another `Matrix` instance.
-	 *
-	 * This method assumes the given matrix has the same dimensions as this
-	 * matrix.
-	 *
-	 * @param {Matrix} matrix The instance to copy from.
-	 * @return {Matrix} This matrix.
-	 */
-	copy( matrix ) {
-
-		let _ = this.elements;
-		let _size = this.size;
-		let _nRows = _size.rows;
-		let _nCols = _size.columns;
-		let _n = _nRows * _nCols;
-
-		let m = matrix.elements;
-		let mSize = matrix.size;
-
-		_size.rows = mSize.rows;
-		_size.columns = mSize.columns;
-
-		for ( let i = 0; i < _n; i ++ ) _[ i ] = m[ i ];
-
-		return this;
-
-	}
-
-	/**
 	 * Creates and returns a clone of this matrix instance.
 	 *
 	 * @return {Matrix} A clone of this instance
@@ -246,8 +210,6 @@ class Matrix {
 		return new this.constructor( _nRows, _nColumns ).copy( this );
 
 	}
-
-	/* CHECKERS */
 
 	/**
 	 * Checks if this matrix and another matrix are equal.
@@ -800,6 +762,7 @@ class Matrix {
 
 		this.elements = result;
 		this.size.columns = mSizeCols;
+		this.numberOfEntries = _sizeRows * mSizeCols;
 
 	}
 
