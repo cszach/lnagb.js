@@ -59,7 +59,7 @@ function equal( m, n ) {
  *
  * @param {Matrix} leftMatrix The left matrix
  * @param {Matrix} rightMatrix The right matrix
- * @param {boolean} returnLeftOnError Return the left matrix on error?
+ * @param {boolean} returnLeftOnError Return the left (or right) matrix on error?
  * @return {number[]} Entries of the product
  */
 function multiplyMatrices( leftMatrix, rightMatrix, returnLeftOnError = true ) {
