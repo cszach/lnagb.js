@@ -1,10 +1,6 @@
 import { linearCombination } from '../algebra/MathUtils.js';
 
 /**
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
- */
-
-/**
  * @fileoverview
  * Set of functions used by lnagb.js to perform matrix operations better.
  *
