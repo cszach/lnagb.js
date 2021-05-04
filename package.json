@@ -1,15 +1,28 @@
 {
   "name": "lnagb.js",
   "description": "Linear Algebra in a JavaScript library",
-  "main": "src/index.js",
+  "type": "module",
+  "main": "./build/lnagb.cjs",
+  "exports": {
+    "require": "./build/lnagb.cjs",
+    "import": "./build/lnagb.esm.js"
+  },
   "files": [
     "build/lnagb.js",
     "build/lnagb.esm.js"
   ],
   "scripts": {
+    "mocha": "mocha --require chai/register-expect",
+    "test": "c8 npm run mocha",
     "build": "rollup -c utils/rollup.config.js",
     "build-components": "rollup -c utils/rollup-components.config.js",
-    "build-docs": "node utils/build-docs.js 'src' 'docs'"
+    "build-docs": "node utils/build-docs.js 'src/**/*.js' 'docs'"
+  },
+  "c8": {
+    "checkCoverage": true,
+    "branches": 100,
+    "statements": 100,
+    "reporter": [ "text", "lcov" ]
   },
   "repository": {
     "type": "git",
@@ -31,8 +44,13 @@
   },
   "homepage": "https://vecma-org.github.io/lnagb.js",
   "devDependencies": {
+    "c8": "^7.7.2",
+    "chai": "^4.3.4",
+    "eslint": "^7.6.0",
     "eslint-config-mdcs": "^4.2.3",
+    "eslint-plugin-jsdoc": "^30.2.1",
     "jsdoc-to-markdown": "^5.0.3",
+    "mocha": "^8.3.2",
     "node": "^13.11.0",
     "rollup": "^2.0.5"
   }

@@ -8,7 +8,7 @@ components.forEach( ( component ) => {
 			input: `src/${component}/index.js`,
 			output: {
 				name: "lnagbjs",
-				file: `build/${component}/lnagb.${component}.js`,
+				file: `build/${component}/lnagb.${component}.cjs`,
 				format: "umd"
 			}
 		},

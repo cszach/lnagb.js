@@ -3,7 +3,7 @@ export default [
 		input: "src/index.js",
 		output: {
 			name: "lnagbjs",
-			file: "build/lnagb.js",
+			file: "build/lnagb.cjs",
 			format: "umd"
 		}
 	},

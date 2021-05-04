@@ -1,14 +1,13 @@
 // index.js
 
-// algebra
+/**
+ * @module lnagbjs
+ * @description
+ *
+ * Exports every module lnagb.js has to offer.
+ *
+ */
 
-export { MathUtils } from './algebra/MathUtils.js';
-export { LinearEquation } from './algebra/LinearEquation.js';
-
-// matrices
-
-export { Matrix } from './matrices/Matrix.js';
-export { ZeroMatrix } from './matrices/ZeroMatrix.js';
-export { SquareMatrix } from './matrices/SquareMatrix.js';
-export { IdentityMatrix } from './matrices/IdentityMatrix.js';
-export { AugmentedMatrix } from './matrices/AugmentedMatrix.js';
+export * from './algebra/index.js';
+export * from './matrices/index.js';
+export * from './vectors/index.js';

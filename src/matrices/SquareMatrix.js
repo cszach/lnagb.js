@@ -15,14 +15,11 @@ class SquareMatrix extends Matrix {
 	/**
 	 * Constructs a `SquareMatrix` instance.
 	 *
-	 * The default instance starts as a 2 x 2 square identity matrix.
-	 *
 	 * @param {string} name The denotation for the new matrix
 	 */
-	constructor( name = null ) {
+	constructor( size, name = null ) {
 
-		super( name );
-		this.setDimensions( 2 );
+		super( size, size, name );
 
 	}
 
@@ -69,7 +66,7 @@ class SquareMatrix extends Matrix {
 	setDimensions( dimension ) {
 
 		this.size = { rows: dimension, columns: dimension };
-		this.elements = new Array( this.numberOfElements ).fill( 0 );
+		this.elements = new Array( this.numberOfEntries ).fill( 0 );
 
 		return this.identity();
 
@@ -91,13 +88,6 @@ class SquareMatrix extends Matrix {
 		}
 
 		return this;
-
-	}
-
-	sizeSwap() {
-
-		console.warn( "Swapping dimensions is useless on a square matrix" );
-		return;
 
 	}
 
