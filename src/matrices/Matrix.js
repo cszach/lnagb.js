@@ -145,8 +145,7 @@ class Matrix {
 
 		while ( reduced.leadingCoefficient( r ) ) {
 
-			rank ++;
-			r ++;
+			rank ++; r ++;
 
 		}
 
@@ -225,7 +224,7 @@ class Matrix {
 	/* SETTERS */
 
 	/**
-	 * Sets the dimensions for this matrix.
+	 * Sets the dimensions for this matrix. All elements will be changed to 0.
 	 *
 	 * @param {number} nRows New number of rows.
 	 * @param {number} nColumns New number of columns.
@@ -247,8 +246,6 @@ class Matrix {
 	/**
 	 * Sets the elements for this matrix.
 	 *
-	 * Arguments are assumed to be the elements given in row-major order.
-	 *
 	 * @return {Matrix} This matrix
 	 */
 	set() {
@@ -256,11 +253,8 @@ class Matrix {
 		let _n = this.numberOfEntries;
 		let elements = Array.from( arguments );
 
-		if ( elements.length !== _n )
-			console.error( "Invalid number of arguments" );
-		else
-			for ( let i = 0, _ = this.elements; i < _n; i ++ )
-				_[ i ] = elements[ i ];
+		for ( let i = 0, _ = this.elements; i < _n; i ++ )
+			_[ i ] = elements[ i ];
 
 		return this;
 
@@ -296,7 +290,8 @@ class Matrix {
 	/* CHECKERS */
 
 	/**
-	 * Checks if this matrix has the same size as another matrix.
+	 * Checks if this matrix has the same size (that is, same number of rows and
+     * number of columns) as another matrix.
 	 *
 	 * @param {Matrix} matrix The matrix to check the size of this matrix against.
 	 * @return {boolean} `true` if the two matrices have the same size, `false`
@@ -312,8 +307,7 @@ class Matrix {
 	 * Checks if this matrix and another matrix are equal.
 	 *
 	 * @param {Matrix} matrix The matrix to compare this matrix to.
-	 * @return {boolean} `true` if the two matrices are the same, `false`
-	 * otherwise
+	 * @return {boolean} `true` if the two matrices are equal, `false` otherwise
 	 */
 	equals( matrix ) {
 
@@ -613,21 +607,19 @@ class Matrix {
 	}
 
 	/**
-	 * Multiplies a row in this matrix by a scalar (elementary row operation
-	 * type II).
-	 *
-	 * The scalar must not be 0. If it is, the row will remain the same.
+	 * Multiplies a row in this matrix by a nonzero scalar (elementary row
+	 * operation type II).
 	 *
 	 * @param {number} r Row number (1-indexed).
-	 * @param {number} k The scalar to multiply the row by.
+	 * @param {number} k The nonzero scalar to multiply the row by.
 	 * @return {Matrix} This matrix
 	 */
 	multiplyRowByScalar( r, k ) {
 
-		if ( k === 0 ) {
+		if ( k == 0 ) {
 
-			console.error( "Input scalar must not be 0" );
-			return this;
+			console.error( "Input scalar must be nonzero" );
+			return this.matrix;
 
 		}
 
@@ -673,9 +665,9 @@ class Matrix {
 	/* COMMON MATRIX OPERATIONS */
 
 	/**
-	 * Transposes this matrix in place (inefficiently).
+	 * Transposes this matrix in place.
 	 *
-	 * @todo Optimize this method by removing the need of creating a medium
+	 * @todo Optimize this method by removing the medium
 	 *
 	 * @return {Matrix} This matrix
 	 */
@@ -847,21 +839,6 @@ class Matrix {
 		this.elements = multiplyMatrices( matrix, this );
 		this.size.rows = matrix.size.rows;
 
-		return this;
-
-	}
-
-	/**
-	 * Reduces this matrix to its row-echelon form in place.
-	 *
-	 * @todo Implement an efficient algorithm for matrix reduction
-	 *
-	 * @param {boolean} canonical Set to `true` to reduce to reduced row-echelon.
-	 * @return {Matrix} This matrix after reduction
-	 */
-	reduce( canonical = false ) {
-
-		console.warn( "Matrix reduction is not yet implemented, stay tuned" );
 		return this;
 
 	}
