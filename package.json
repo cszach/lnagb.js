@@ -22,7 +22,10 @@
     "checkCoverage": true,
     "branches": 100,
     "statements": 100,
-    "reporter": [ "text", "lcov" ]
+    "reporter": [
+      "text",
+      "lcov"
+    ]
   },
   "repository": {
     "type": "git",
