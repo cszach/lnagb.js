@@ -229,15 +229,15 @@ class Matrix {
 	/**
 	 * Returns the entry in the specified row and column in this matrix.
 	 *
-	 * @param {number} r The row that contains the entry (1-indexed).
-	 * @param {number} c The column that contains the entry (1-indexed).
+	 * @param {number} i The row that contains the entry (1-indexed).
+	 * @param {number} j The column that contains the entry (1-indexed).
 	 * @return {number} The entry
 	 */
-	entry( r, c ) {
+	entry( i, j ) {
 
 		let _size = this.size;
 
-		return this.elements[ r * _size.columns + c - _size.columns - 1 ];
+		return this.elements[ i * _size.columns + j - _size.columns - 1 ];
 
 	}
 
@@ -284,8 +284,7 @@ class Matrix {
 
 		for ( let r = 1; r < end; r ++ ) {
 
-			// Same as column.push( _[ this.entryIndex( r, c ) ] )
-			// but more speed-efficient
+			// Speed-efficient entry index
 			column.push( _[ q + p ] );
 			q += _nCols;
 
@@ -336,15 +335,15 @@ class Matrix {
 		let _ = this.elements;
 		let _n = _.length;
 		let _nCols = this.size.columns;
-		let r = 1, c = 1;
+		let i = 1, j = 1;
 
 		for ( let index = 0; index < _n; index ++ ) {
 
 			let entry = _[ index ];
-			callback.bind( thisArg )( entry, r, c, index, matrix );
-			c ++;
+			callback.bind( thisArg )( entry, i, j, index, matrix );
+			j ++;
 
-			if ( c > _nCols ) ( c = 1, r ++ );
+			if ( j > _nCols ) ( j = 1, i ++ );
 
 		}
 
@@ -353,8 +352,8 @@ class Matrix {
 	/**
 	 * @callback Matrix~forEach
 	 * @param {number} entry The current entry being processed.
-	 * @param {number} r The entry's row number (1-indexed).
-	 * @param {number} c The entry's column number (1-indexed).
+	 * @param {number} i The entry's row number (1-indexed).
+	 * @param {number} j The entry's column number (1-indexed).
 	 * @param {number} index The index of the entry in `this.elements` (0-indexed).
 	 * @param {Matrix} matrix The instance that this method was called upon.
 	 */
@@ -467,11 +466,11 @@ class Matrix {
 
 		for ( let c = 1, t = 1 - __nCols; c < __nCols; c ++, t ++ ) {
 
-			let i = p + t; // Index of element in row r
-			let j = q + t; // Index of element in row s
+			let a = p + t; // Index of element in row r
+			let b = q + t; // Index of element in row s
 
 			// Swap values
-			[ _[ i ], _[ j ] ] = [ _[ j ], _[ i ] ];
+			[ _[ a ], _[ b ] ] = [ _[ b ], _[ a ] ];
 
 		}
 
@@ -750,6 +749,8 @@ class Matrix {
 		this.elements = result;
 		this.size.columns = mSizeCols;
 		this.numberOfEntries = _sizeRows * mSizeCols;
+
+		return this;
 
 	}
 
