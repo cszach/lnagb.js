@@ -9,6 +9,7 @@
  */
 
 export * from './Matrix.js';
+export * from './SquareMatrix.js';
 export * from './IdentityMatrix.js';
 export * from './AugmentedMatrix.js';
 export * from './MatrixTranspose.js';
