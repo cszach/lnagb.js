@@ -28,23 +28,6 @@ class CommonMatrix {
 
 	}
 
-	get rank() {
-
-		let reduced = this.clone().reduce();
-		let rank = 0;
-		let r = 1;
-
-		while ( reduced.leadingCoefficient( r ) ) {
-
-			rank ++;
-			r ++;
-
-		}
-
-		return rank;
-
-	}
-
 	get negative() {
 
 		return this.clone().negate();

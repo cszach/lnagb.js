@@ -155,28 +155,6 @@ class Matrix {
 	}
 
 	/**
-	 * Returns the rank of this matrix without manipulating it, by cloning the
-	 * matrix and reducing the clone.
-	 *
-	 * @return {number} The rank of this matrix
-	 */
-	get rank() {
-
-		let reduced = this.clone().reduce();
-		let rank = 0;
-		let r = 1;
-
-		while ( reduced.leadingCoefficient( r ) ) {
-
-			rank ++; r ++;
-
-		}
-
-		return rank;
-
-	}
-
-	/**
 	 * Returns the negative of this matrix.
 	 *
 	 * @return {Matrix} The negative of this matrix
