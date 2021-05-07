@@ -64,7 +64,7 @@ class Matrix {
 	/**
 	 * Returns the rows of this matrix in an array.
 	 *
-	 * @return {Array[]} The rows in this matrix
+	 * @returns {Array[]} The rows in this matrix
 	 */
 	get rows() {
 
@@ -90,7 +90,7 @@ class Matrix {
 	/**
 	 * Returns the columns of this matrix in an array.
 	 *
-	 * @return {Array[]} The columns in this matrix
+	 * @returns {Array[]} The columns in this matrix
 	 */
 	get columns() {
 
@@ -129,7 +129,7 @@ class Matrix {
 	/**
 	 * Returns the main diagonal of this matrix.
 	 *
-	 * @return {number[]} The entries in the main diagonal of this matrix
+	 * @returns {number[]} The entries in the main diagonal of this matrix
 	 */
 	get mainDiagonal() {
 
@@ -154,34 +154,12 @@ class Matrix {
 
 	}
 
-	/**
-	 * Returns the negative of this matrix.
-	 *
-	 * @return {Matrix} The negative of this matrix
-	 */
-	get negative() {
-
-		return this.clone().negate();
-
-	}
-
-	/**
-	 * Returns the transpose of this matrix.
-	 *
-	 * @return {Matrix} The transpose of this matrix
-	 */
-	get transpose() {
-
-		return this.clone().transpose();
-
-	}
-
 	/* BASIC METHODS */
 
 	/**
 	 * Creates and returns a clone of this matrix instance.
 	 *
-	 * @return {Matrix} A clone of this instance
+	 * @returns {Matrix} A clone of this instance
 	 */
 	clone() {
 
@@ -191,8 +169,9 @@ class Matrix {
 		let _ = this.elements;
 
 		let clone = new this.constructor( _nRows, _nCols );
+		let __ = clone.elements;
 
-		for ( let i = 0, _n = _nRows * _nCols; i < _n; i ++ ) clone[ i ] = _[ i ];
+		for ( let i = 0, _n = _nRows * _nCols; i < _n; i ++ ) __[ i ] = _[ i ];
 
 		return clone;
 
@@ -202,7 +181,7 @@ class Matrix {
 	 * Checks if this matrix and another matrix are equal.
 	 *
 	 * @param {Matrix} matrix The matrix to compare this matrix to.
-	 * @return {boolean} `true` if the two matrices are equal, `false` otherwise
+	 * @returns {boolean} `true` if the two matrices are equal, `false` otherwise
 	 */
 	equals( matrix ) {
 
@@ -231,7 +210,7 @@ class Matrix {
 	 *
 	 * @param {number} i The row that contains the entry (1-indexed).
 	 * @param {number} j The column that contains the entry (1-indexed).
-	 * @return {number} The entry
+	 * @returns {number} The entry
 	 */
 	entry( i, j ) {
 
@@ -245,7 +224,7 @@ class Matrix {
 	 * Returns a row in this matrix as a JavaScript array.
 	 *
 	 * @param {number} r Row number (1-indexed).
-	 * @return {number[]} The row's entries
+	 * @returns {number[]} The row's entries
 	 */
 	row( r ) {
 
@@ -267,7 +246,7 @@ class Matrix {
 	 * Returns a column in this matrix as a JavaScript array.
 	 *
 	 * @param {number} c Column number (1-indexed).
-	 * @return {number[]} The column's entries
+	 * @returns {number[]} The column's entries
 	 */
 	column( c ) {
 
@@ -299,7 +278,7 @@ class Matrix {
 	 * not have a leading coefficient.
 	 *
 	 * @param {number} r Row number (1-indexed).
-	 * @return {number} The leading coefficient of the row
+	 * @returns {number} The leading coefficient of the row
 	 */
 	leadingCoefficient( r ) {
 
@@ -452,7 +431,7 @@ class Matrix {
 	 *
 	 * @param {number} r First row number (1-indexed).
 	 * @param {number} s Second row number (1-indexed).
-	 * @return {Matrix} This matrix
+	 * @returns {Matrix} This matrix
 	 */
 	interchargeRows( r, s ) {
 
@@ -483,7 +462,7 @@ class Matrix {
 	 *
 	 * @param {number} r Row number (1-indexed).
 	 * @param {number} k The nonzero scalar to multiply the row by.
-	 * @return {Matrix} This matrix
+	 * @returns {Matrix} This matrix
 	 */
 	multiplyRowByScalar( r, k ) {
 
@@ -513,7 +492,7 @@ class Matrix {
 	 * @param {number} s The row to multiply the scalar by and then add to row
 	 * `r` (1-indexed position).
 	 * @param {number} k The scalar to multiply row `s` by.
-	 * @return {Matrix} This matrix
+	 * @returns {Matrix} This matrix
 	 */
 	addRowTimesScalarToRow( r, s, k = 1 ) {
 
@@ -539,7 +518,7 @@ class Matrix {
 	 *
 	 * @todo Optimize this method by removing the medium
 	 *
-	 * @return {Matrix} This matrix
+	 * @returns {Matrix} This matrix
 	 */
 	transpose() {
 
@@ -578,7 +557,7 @@ class Matrix {
 	 * Multiplies this matrix by a scalar.
 	 *
 	 * @param {number} k The scalar to multiply this matrix by.
-	 * @return {Matrix} This matrix
+	 * @returns {Matrix} This matrix
 	 */
 	multiplyScalar( k ) {
 
@@ -593,7 +572,7 @@ class Matrix {
 	/**
 	 * Multiplies this matrix by -1.
 	 *
-	 * @return {Matrix} This matrix
+	 * @returns {Matrix} This matrix
 	 */
 	negate() {
 
@@ -605,7 +584,7 @@ class Matrix {
 	 * Adds a matrix to this matrix.
 	 *
 	 * @param {Matrix} matrix The matrix to add to this matrix.
-	 * @return {Matrix} This matrix
+	 * @returns {Matrix} This matrix
 	 */
 	add( matrix ) {
 
@@ -633,7 +612,7 @@ class Matrix {
 	 * Subtracts a matrix from this matrix.
 	 *
 	 * @param {Matrix} matrix The matrix to subtract this matrix to.
-	 * @return {Matrix} This matrix
+	 * @returns {Matrix} This matrix
 	 */
 	sub( matrix ) {
 
@@ -662,7 +641,7 @@ class Matrix {
 	 * compatible for multiplication, return this matrix unchanged.
 	 *
 	 * @param {Matrix} matrix The matrix to post-multiply this matrix to.
-	 * @return {Matrix} This matrix
+	 * @returns {Matrix} This matrix
 	 */
 	multiply( matrix ) {
 

@@ -61,24 +61,12 @@ class IdentityMatrix {
 
 	}
 
-	/**
-	 * Returns the transpose of this identity matrix (which equals to itself
- 	 * anyways).
-	 *
-	 * @return {IdentityMatrix} This matrix
-	 */
-	get transpose() {
-
-		return this.clone();
-
-	}
-
 	/* COMMON METHODS */
 
 	/**
 	 * Creates and returns a clone of this identity matrix instance.
 	 *
-	 * @return {IdentityMatrix} A clone of this instance
+	 * @returns {IdentityMatrix} A clone of this instance
 	 */
 	clone() {
 
@@ -93,7 +81,7 @@ class IdentityMatrix {
 	 *
 	 * @param {number} r The row that contains the entry (1-indexed).
 	 * @param {number} c The column that contains the entry (1-indexed).
-	 * @return {number} The entry
+	 * @returns {number} The entry
 	 */
 	entry( r, c ) {
 
@@ -105,7 +93,7 @@ class IdentityMatrix {
 	 * Returns a row in this matrix as a JavaScript array.
 	 *
 	 * @param {number} r Row number (1-indexed).
-	 * @return {number[]} The row's entries
+	 * @returns {number[]} The row's entries
 	 */
 	row( r ) {
 
@@ -121,7 +109,7 @@ class IdentityMatrix {
 	 * Returns a column in this matrix as a JavaScript array.
 	 *
 	 * @param {number} c Column number (1-indexed).
-	 * @return {number[]} The column's entries
+	 * @returns {number[]} The column's entries
 	 */
 	column( c ) {
 
@@ -133,7 +121,7 @@ class IdentityMatrix {
 	 * Returns the main diagonal of this matrix. Since this is an identity
 	 * matrix, the main diagonal consists of only 1s.
 	 *
-	 * @return {number[]} The entries in the main diagonal of this matrix
+	 * @returns {number[]} The entries in the main diagonal of this matrix
 	 */
 	mainDiagonal() {
 
@@ -146,7 +134,7 @@ class IdentityMatrix {
 	 * an identity matrix.
 	 *
 	 * @param {number} r Row number (1-indexed) (this will be disregarded).
-	 * @return {number} The leading coefficient of the row
+	 * @returns {number} The leading coefficient of the row
 	 */
 	leadingCoefficient( r ) { // eslint-disable-line no-unused-vars
 
