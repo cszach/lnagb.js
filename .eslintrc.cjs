@@ -1,13 +1,9 @@
 module.exports = {
 	"env": {
-		"browser": true,
 		"es6": true,
-		"node": true
+		"shared-node-browser": true
 	},
-    "plugins": [
-        "jsdoc"
-    ],
-	"extends": "mdcs",
+	"extends": [ 'mdcs', 'plugin:jsdoc/recommended' ],
 	"globals": {
 		"Atomics": "readonly",
 		"SharedArrayBuffer": "readonly"
@@ -17,5 +13,16 @@ module.exports = {
 		"sourceType": "module",
 	},
 	"rules": {
-	}
+	},
+	"overrides": [
+		{
+			files: "test/**/*.tests.js",
+			"env": {
+				"mocha": true
+			},
+			globals: {
+				"assert": "readonly"
+			}
+		}
+	]
 };
