@@ -11,8 +11,8 @@
  */
 
 /**
- * @name MathUtils
- * @see {@link module:MathUtils}
+ * @name Algebra
+ * @see {@link module:Algebra}
  * @member
  * @kind export
  * @description
@@ -60,7 +60,7 @@
  *
  */
 
-export * from './MathUtils';
+export * from './Algebra.js';
 export * from './LinearEquation.js';
 export * from './LinearEquations.js';
 export * from './SystemOfLinearEquations.js';

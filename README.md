@@ -152,7 +152,6 @@ See the [Projects][gh projects] for detailed progression.
 - [x] `SystemOfLinearEquation`
 - [ ] `Vector`
 - [x] `Matrix`
-- [x] `ZeroMatrix`
 - [x] `IdentityMatrix`
 - [x] `AugmentedMatrix`
 

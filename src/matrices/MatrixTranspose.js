@@ -10,7 +10,7 @@
 
 /**
  * Encodes accessors for the transposition of a matrix and avoids the need of
- * actually computing for the transpose.
+ * actually computing the transpose's elements.
  *
  * The main purpose of this class is to make dealing with transpositions
  * syntactically clearer and to avoid using additional storage.
@@ -37,10 +37,7 @@ class MatrixTranspose {
 
 		/**
 		 * @member {matrix}
-		 * @description
-		 *
-		 * The original matrix assigned to this transpose.
-		 *
+		 * @description The original matrix assigned to this transpose.
 		 */
 		this._ = matrix;
 
@@ -60,6 +57,42 @@ class MatrixTranspose {
 			rows: _size.columns,
 			column: _size.rows
 		};
+
+	}
+
+	/**
+	 * Returns the rows of this transpose in an array, which are the columns of
+	 * the original matrix.
+	 *
+	 * @return {Array[]} The rows in this transpose
+	 */
+	get rows() {
+
+		return this._.columns;
+
+	}
+
+	/**
+	 * Returns the columns of this transpose in an array, which are the rows of
+	 * the original matrix.
+	 *
+	 * @return {Array[]} The columns in this transpose
+	 */
+	get columns() {
+
+		return this._.rows;
+
+	}
+
+	/**
+	 * Returns the main diagonal of this transpose, which is the same as the main
+	 * diagonal of the original matrix.
+	 *
+	 * @return {number[]} The entries in the main diagonal of this transpose
+	 */
+	get mainDiagonal() {
+
+		return this._.mainDiagonal;
 
 	}
 
@@ -111,8 +144,8 @@ class MatrixTranspose {
 	 * Returns the entry in the specified row and column in the transpose of the
 	 * original matrix.
 	 *
-	 * @param {number} i The row that contains the entry (1-based index).
-	 * @param {number} j The column that contains the entry (1-based index).
+	 * @param {number} i The row that contains the entry (1-indexed position).
+	 * @param {number} j The column that contains the entry (1-indexed position).
 	 * @return {number} The entry
 	 */
 	entry( i, j ) {
@@ -124,24 +157,24 @@ class MatrixTranspose {
 	/**
 	 * Returns a row in the transpose of the original matrix.
 	 *
-	 * @param {number} i Row number (1-indexed).
+	 * @param {number} r Row number (1-indexed).
 	 * @return {number[]} The row's entries
 	 */
-	row( i ) {
+	row( r ) {
 
-		return this._.column( i );
+		return this._.column( r );
 
 	}
 
 	/**
 	 * Returns a column in the transpose of the original matrix.
 	 *
-	 * @param {number} j Column number (1-indexed).
+	 * @param {number} c Column number (1-indexed).
 	 * @return {number[]} The column's entries
 	 */
-	column( j ) {
+	column( c ) {
 
-		return this._.row( j );
+		return this._.row( c );
 
 	}
 
@@ -157,13 +190,14 @@ class MatrixTranspose {
 	 * @see {@link https://en.wikipedia.org/wiki/In-place_matrix_transposition#Properties_of_the_permutation
 	 * Wikipedia, _In-place matrix transposition_, section _Properties of the permutation_}
 	 *
-	 * @param {module:Matrix~Matrix#forEach} callback The function to execute per
+	 * @param {MatrixTranspose~forEach} callback The function to execute per
 	 * iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEach( callback, thisArg ) {
 
-		let matrix = this._;
+		let transpose = this;
+		let matrix = transpose._;
 		let _ = matrix.elements;
 		let _size = matrix.size;
 		let _nRows = _size.rows, _nCols = _size.columns;
@@ -173,9 +207,9 @@ class MatrixTranspose {
 		for ( let index = 0; index < _n; index ++ ) {
 
 			// Cate & Twigg's inverse permutation, 1977
-			let c = ( index !== __n ) ? ( index * _nCols ) % __n : __n;
-			let entry = _[ c ];
-			callback.bind( thisArg )( entry, i, j, index, matrix );
+			let tIndex = ( index !== __n ) ? ( index * _nCols ) % __n : __n;
+			let entry = _[ tIndex ];
+			callback.bind( thisArg )( entry, i, j, index, transpose, matrix );
 			j ++;
 
 			if ( j > _nRows ) ( j = 1, i ++ );
@@ -185,32 +219,41 @@ class MatrixTranspose {
 	}
 
 	/**
-	 * Similar to the {@link #MatrixTranspose+forEach `forEach`} method above,
-	 * however, this method iterates through the `elements` property of the
+	 * @callback MatrixTranspose~forEach
+	 * @param {number} entry The current entry of the transpose being processed.
+	 * @param {number} r The entry's row number in the transpose (1-indexed).
+	 * @param {number} c The entry's column number in the transpose (1-indexed).
+	 * @param {number} index The 0-based index of the entry in the transpose's
+	 * array of row-major-ordered entries.
+	 * @param {MatrixTranspose} transpose The instance that this method was called
+	 * upon.
+	 * @param {module:Matrix~Matrix} matrix The original matrix.
+	 */
+
+	/**
+	 * Similar to the {@link #MatrixTranspose+forEach `forEach`} method above.
+	 * However, this method iterates through the `elements` property of the
 	 * instance. This, of course, assumes that you've called
 	 * {@link #MatrixTranspose+computeElements `computeElements`} on this
 	 * instance. Saves computational power.
 	 *
-	 * Additionally, call {@link #MatrixTranspose+updateSize `updateSize`} to make
-	 * sure the transpose's dimensions are in sync with the original matrix's.
-	 *
-	 * @see {@link #MatrixTranspose+forEach `forEach`}
-	 * @param {Matrix~forEach} callback The function to execute per iteration,
-	 * see {@link ./Matrix#Matrix..forEach Matrix~forEach}.
+	 * @param {MatrixTranspose~forEach} callback The function to execute
+	 * per iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEachComputed( callback, thisArg ) {
 
 		let transpose = this;
-		let transposeElements = this.elements;
-		let transposeSize = transposeElements.length;
+		let matrix = this._;
+		let tElements = this.elements;
+		let tSize = tElements.length;
 		let tSizeCols = this.size.columns;
 		let i = 1, j = 1;
 
-		for ( let index = 0; index < transposeSize; index ++ ) {
+		for ( let index = 0; index < tSize; index ++ ) {
 
-			let entry = transposeElements[ index ];
-			callback.bind( thisArg )( entry, i, j, index, transpose );
+			let entry = tElements[ index ];
+			callback.bind( thisArg )( entry, i, j, index, transpose, matrix );
 			j ++;
 
 			if ( j > tSizeCols ) ( j = 1, i ++ );
@@ -220,11 +263,11 @@ class MatrixTranspose {
 	}
 
 	/**
-	 * Executes a function for each row in the transpose of the original matrix.
+	 * Executes a function for each row in the transpose.
 	 *
-	 * @param {Matrix~forEachRow} callback The function to execute per iteration,
-	 * see {@link ./Matrix#Matrix..forEachRow Matrix~forEachRow}
-	 * @param {object} thisArg The argument to use as `this` in the function
+	 * @param {module:Matrix~Matrix~forEachRow} callback The function to execute
+	 * per iteration.
+	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEachRow( callback, thisArg ) {
 
@@ -233,11 +276,11 @@ class MatrixTranspose {
 	}
 
 	/**
-	 * Executes a function for each column in the transpose of the original matrix.
+	 * Executes a function for each column in the transpose.
 	 *
-	 * @param {Matrix~forEachColumn} callback The function to execute per iteration,
-	 * see {@link ./Matrix#Matrix..forEachColumn Matrix~forEachColumn}
-	 * @param {object} thisArg The argument to use as `this` in the function
+	 * @param {module:Matrix~Matrix~forEachColumn} callback The function to execute
+	 * per iteration.
+	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEachColumn( callback, thisArg ) {
 
