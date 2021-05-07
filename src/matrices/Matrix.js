@@ -589,7 +589,7 @@ class Matrix {
 	add( matrix ) {
 
 		let _size = this.size;
-		let mSize = m.size;
+		let mSize = matrix.size;
 
 		if ( ! ( _size.rows === mSize.rows && _size.columns === mSize.columns ) ) {
 
@@ -617,7 +617,7 @@ class Matrix {
 	sub( matrix ) {
 
 		let _size = this.size;
-		let mSize = m.size;
+		let mSize = matrix.size;
 
 		if ( ! ( _size.rows === mSize.rows && _size.columns === mSize.columns ) ) {
 
@@ -645,27 +645,6 @@ class Matrix {
 	 */
 	multiply( matrix ) {
 
-		/*
-		 * APPROACH
-		 *
-		 * 1. Check if the matrices are compatible for matrix multiplication,
-		 *    extracting the matrices' dimensions in the process
-		 * 2. Create an array to store the elements of the result matrix
-		 * 3. Create an array to store the columns of right matrix
-		 * 4. Adds the columns of the right matrix to the array created in step 3
-		 * 5. Run a loop from 1 to the number of rows in the left matrix, in the
-		 *    loop:
-		 *   5.1. Extract the row that corresponds to the iterator of the loop
-		 *        in the left matrix and store the row's entries in an array
-		 *   5.2. Run a loop from 0 to the number of columns in the right matrix minus
-		 *        1, in the loop:
-		 *     5.2.1. Extract the column at the iterator of the loop started in 5.2
-		 *            from the matrix created in step 3
-		 *     5.2.2. Treat the row extracted in 5.1 and the column extracted in 5.2.1
-		 *            as 2 sets of numbers, compute their linear combination
-		 *     5.2.2. Appends the linear combination to the array created in step 2
-		 */
-
 		let _size = this.size;
 		let _sizeRows = _size.rows;
 		let _sizeCols = _size.columns;
@@ -674,56 +653,33 @@ class Matrix {
 		let mSizeRows = mSize.rows;
 		let mSizeCols = mSize.columns;
 
-		// 1
-
 		if ( _sizeCols !== mSizeRows ) {
 
-			console.error( "Input matrix is Incompatible for multiplication" );
+			console.error( "Input matrix is incompatible for multiplication" );
 			return this;
 
 		}
 
-		let left = this.elements;
-		let right = matrix.elements;
+		let _ = this.elements;
+		let m = matrix.elements;
+		let result = [];
 
+		// Cache
 		let __sizeRows = _sizeRows + 1;
+		let __sizeCols = _sizeCols + 1;
 		let _mSizeCols = mSizeCols + 1;
 
-		let result = []; // 2
-		let mColumns = []; // 3
+		for ( let i = 1; i < __sizeRows; i ++ )
+			for ( let j = 1; j < _mSizeCols; j ++ ) {
 
-		// 4
+				let sum = 0;
 
-		for ( let c = 1, column = [], q = mSizeCols, p = - q;
-			c < _mSizeCols; c ++, p ++ ) {
+				for ( let k = 1; k < __sizeCols; k ++ )
+					sum += ( _[ i * _sizeCols + k - __sizeCols ] * m[ k * mSizeCols + j - _mSizeCols ] );
 
-			for ( let r = 1, _mSizeRows = mSizeRows + 1; r < _mSizeRows; r ++ ) {
-
-				column.push( right[ p + q ] );
-				q += mSizeCols;
+				result.push( sum );
 
 			}
-
-			mColumns.push( column );
-
-		}
-
-		for ( let r = 1; r < __sizeRows; r ++ ) { // 5
-
-			// 5.1
-
-			let row = [];
-			let rowEnd = r * _sizeCols;
-			let rowStart = rowEnd - _sizeCols;
-
-			for ( let i = rowStart; i < rowEnd; i ++ ) row.push( left[ i ] );
-
-			for ( let c = 0; c < mSizeCols; c ++ )
-				result.push( row.reduce(
-					( result, v, i ) => result + row[ i ] * mColumns[ c ][ i ],
-					0 ) );
-
-		}
 
 		this.elements = result;
 		this.size.columns = mSizeCols;
