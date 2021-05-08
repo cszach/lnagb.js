@@ -75,6 +75,30 @@ class IdentityMatrix {
 
 	}
 
+	/**
+	 * Checks if this matrix and another matrix are equal.
+	 *
+	 * @param {module:Matrix~Matrix} matrix The matrix to compare this matrix to.
+	 * @returns {boolean} `true` if the two matrices are equal, `false` otherwise
+	 */
+	equals( matrix ) {
+
+		let _size = this.size.rows;
+		let mSize = matrix.size;
+
+		if ( _size !== mSize.rows || _size !== mSize.columns )
+			return false;
+
+		let _ = this.elements;
+		let m = matrix.elements;
+		let _n = _size * _size;
+
+		for ( let i = 0; i < _n; i ++ ) if ( _[ i ] !== m[ i ] ) return false;
+
+		return true;
+
+	}
+
 	/* ACCESSORS */
 
 	/**
