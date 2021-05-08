@@ -58,6 +58,7 @@ class IdentityMatrix {
 		}
 
 		this.columns = this.rows.slice();
+		this.mainDiagonal = new Array( size ).fill( 1 );
 
 	}
 
@@ -118,18 +119,6 @@ class IdentityMatrix {
 	}
 
 	/**
-	 * Returns the main diagonal of this matrix. Since this is an identity
-	 * matrix, the main diagonal consists of only 1s.
-	 *
-	 * @returns {number[]} The entries in the main diagonal of this matrix
-	 */
-	mainDiagonal() {
-
-		return new Array( this.size.rows ).fill( 1 );
-
-	}
-
-	/**
 	 * Returns the leading coefficient of a row, which is always 1 since this is
 	 * an identity matrix.
 	 *
@@ -157,15 +146,15 @@ class IdentityMatrix {
 		let _size = this.size;
 		let _nCols = _size.columns;
 		let _n = _nCols * _nCols;
-		let r = 1, c = 1;
+		let i = 1, j = 1;
 
 		for ( let index = 0; index < _n; index ++ ) {
 
-			let entry = ( r === c ) ? 1 : 0;
-			callback.bind( thisArg )( entry, r, c, index, matrix );
-			c ++;
+			let entry = ( i === j ) ? 1 : 0;
+			callback.bind( thisArg )( entry, i, j, index, matrix );
+			j ++;
 
-			if ( c > _nCols ) ( c = 1, r ++ );
+			if ( j > _nCols ) ( j = 1, i ++ );
 
 		}
 
@@ -174,8 +163,8 @@ class IdentityMatrix {
 	/**
 	 * @callback IdentityMatrix~forEach
 	 * @param {number} entry The current entry being processed.
-	 * @param {number} r The entry's row number (1-indexed).
-	 * @param {number} c The entry's column number (1-indexed).
+	 * @param {number} i The entry's row number (1-indexed).
+	 * @param {number} j The entry's column number (1-indexed).
 	 * @param {number} index The index of the entry in `this.elements` (0-indexed).
 	 * @param {IdentityMatrix} matrix The instance that this method was called upon.
 	 */
