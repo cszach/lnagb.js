@@ -22,7 +22,7 @@ class MatrixTranspose {
 	 * The instance will then represent the transpose of the assigned matrix
 	 * (also referred to as the _original matrix_).
 	 *
-	 * @param {Matrix} matrix The matrix to assign
+	 * @param {module:Matrix~Matrix} matrix The matrix to assign
 	 *
 	 * @example
 	 *
@@ -47,7 +47,7 @@ class MatrixTranspose {
 	 * Returns the `size` property of the transpose of the original matrix. This
 	 * is computed dynamically.
 	 *
-	 * @return {object} An object of the form `{ rows, columns }`
+	 * @returns {object} An object of the form `{ rows, columns }`
 	 */
 	get size() {
 
@@ -55,7 +55,7 @@ class MatrixTranspose {
 
 		return {
 			rows: _size.columns,
-			column: _size.rows
+			columns: _size.rows
 		};
 
 	}
@@ -64,7 +64,7 @@ class MatrixTranspose {
 	 * Returns the rows of this transpose in an array, which are the columns of
 	 * the original matrix.
 	 *
-	 * @return {Array[]} The rows in this transpose
+	 * @returns {Array[]} The rows in this transpose
 	 */
 	get rows() {
 
@@ -76,7 +76,7 @@ class MatrixTranspose {
 	 * Returns the columns of this transpose in an array, which are the rows of
 	 * the original matrix.
 	 *
-	 * @return {Array[]} The columns in this transpose
+	 * @returns {Array[]} The columns in this transpose
 	 */
 	get columns() {
 
@@ -88,7 +88,7 @@ class MatrixTranspose {
 	 * Returns the main diagonal of this transpose, which is the same as the main
 	 * diagonal of the original matrix.
 	 *
-	 * @return {number[]} The entries in the main diagonal of this transpose
+	 * @returns {number[]} The entries in the main diagonal of this transpose
 	 */
 	get mainDiagonal() {
 
@@ -106,14 +106,13 @@ class MatrixTranspose {
 	 *
 	 * **Note**: The `elements` property, after being created for this particular
 	 * instance, won't be dynamic (e.g. it won't be in sync with the entries of
- 	 * the original matrix). After modifying the entries of the original matrix,
+	 * the original matrix). After modifying the entries of the original matrix,
 	 * call this method again should you need to compute the updated entries of
 	 * the transpose.
 	 *
-	 * @see {@link https://en.wikipedia.org/wiki/In-place_matrix_transposition#Properties_of_the_permutation
-	 * Wikipedia, _In-place matrix transposition_, section _Properties of the permutation_}
+	 * @see {@link https://en.wikipedia.org/wiki/In-place_matrix_transposition#Properties_of_the_permutation Wikipedia, _In-place matrix transposition_, section _Properties of the permutation_}
 	 *
-	 * @return {number[]} The entries of the transpose (row-major ordered)
+	 * @returns {number[]} The entries of the transpose (row-major ordered)
 	 */
 	computeElements() {
 
@@ -146,7 +145,7 @@ class MatrixTranspose {
 	 *
 	 * @param {number} i The row that contains the entry (1-indexed position).
 	 * @param {number} j The column that contains the entry (1-indexed position).
-	 * @return {number} The entry
+	 * @returns {number} The entry
 	 */
 	entry( i, j ) {
 
@@ -158,7 +157,7 @@ class MatrixTranspose {
 	 * Returns a row in the transpose of the original matrix.
 	 *
 	 * @param {number} r Row number (1-indexed).
-	 * @return {number[]} The row's entries
+	 * @returns {number[]} The row's entries
 	 */
 	row( r ) {
 
@@ -170,7 +169,7 @@ class MatrixTranspose {
 	 * Returns a column in the transpose of the original matrix.
 	 *
 	 * @param {number} c Column number (1-indexed).
-	 * @return {number[]} The column's entries
+	 * @returns {number[]} The column's entries
 	 */
 	column( c ) {
 
@@ -187,8 +186,7 @@ class MatrixTranspose {
 	 * the transposed entry itself in the original array given the entry's index
 	 * within the transposed array.
 	 *
-	 * @see {@link https://en.wikipedia.org/wiki/In-place_matrix_transposition#Properties_of_the_permutation
-	 * Wikipedia, _In-place matrix transposition_, section _Properties of the permutation_}
+	 * @see {@link https://en.wikipedia.org/wiki/In-place_matrix_transposition#Properties_of_the_permutation Wikipedia, _In-place matrix transposition_, section _Properties of the permutation_}
 	 *
 	 * @param {MatrixTranspose~forEach} callback The function to execute per
 	 * iteration.
@@ -200,29 +198,42 @@ class MatrixTranspose {
 		let matrix = transpose._;
 		let _ = matrix.elements;
 		let _size = matrix.size;
-		let _nRows = _size.rows, _nCols = _size.columns;
-		let _n = _nRows * _nCols, __n = _n - 1;
-		let i = 1, j = 1;
+		let _nRows = _size.rows,
+		    _nCols = _size.columns;
+		let _n = _nRows * _nCols,
+		    __n = _n - 1;
+		let tSizeCols = this.size.columns;
+		let boundCallback = callback.bind( thisArg );
 
-		for ( let index = 0; index < _n; index ++ ) {
+		// We run the callback for the first and last element of the matrix to avoid
+		// the Cate and Twigg's formula's condition in the for loop, saving some
+		// computational power.
+		boundCallback( _[ 0 ], 1, 1, 0, transpose, matrix );
+
+		let i = 1, j = 2;
+		let iT = 1, jT = 2;
+
+		for ( let index = 1; index < __n; index ++ ) {
 
 			// Cate & Twigg's inverse permutation, 1977
-			let tIndex = ( index !== __n ) ? ( index * _nCols ) % __n : __n;
-			let entry = _[ tIndex ];
-			callback.bind( thisArg )( entry, i, j, index, transpose, matrix );
-			j ++;
+			let entry = _[ ( index * _nCols ) % __n ];
+			boundCallback( entry, iT, jT, index, transpose, matrix );
+			j ++; jT ++;
 
-			if ( j > _nRows ) ( j = 1, i ++ );
+			if ( j > _nCols ) ( j = 1, i ++ );
+			if ( jT > tSizeCols ) ( jT = 1, iT ++ );
 
 		}
+
+		boundCallback( _[ __n ], _nCols, _nRows, __n, transpose, matrix );
 
 	}
 
 	/**
 	 * @callback MatrixTranspose~forEach
 	 * @param {number} entry The current entry of the transpose being processed.
-	 * @param {number} r The entry's row number in the transpose (1-indexed).
-	 * @param {number} c The entry's column number in the transpose (1-indexed).
+	 * @param {number} i The entry's row number in the transpose (1-indexed).
+	 * @param {number} j The entry's column number in the transpose (1-indexed).
 	 * @param {number} index The 0-based index of the entry in the transpose's
 	 * array of row-major-ordered entries.
 	 * @param {MatrixTranspose} transpose The instance that this method was called
@@ -249,11 +260,12 @@ class MatrixTranspose {
 		let tSize = tElements.length;
 		let tSizeCols = this.size.columns;
 		let i = 1, j = 1;
+		let boundCallback = callback.bind( thisArg );
 
 		for ( let index = 0; index < tSize; index ++ ) {
 
 			let entry = tElements[ index ];
-			callback.bind( thisArg )( entry, i, j, index, transpose, matrix );
+			boundCallback( entry, i, j, index, transpose, matrix );
 			j ++;
 
 			if ( j > tSizeCols ) ( j = 1, i ++ );
@@ -271,7 +283,7 @@ class MatrixTranspose {
 	 */
 	forEachRow( callback, thisArg ) {
 
-		return this._.forEachColumn( callback, thisArg );
+		this._.forEachColumn( callback, thisArg );
 
 	}
 
@@ -284,7 +296,7 @@ class MatrixTranspose {
 	 */
 	forEachColumn( callback, thisArg ) {
 
-		return this._.forEachRow( callback, thisArg );
+		this._.forEachRow( callback, thisArg );
 
 	}
 
