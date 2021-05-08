@@ -16,7 +16,7 @@
     "test": "c8 npm run mocha",
     "build": "rollup -c utils/rollup.config.js",
     "build-components": "rollup -c utils/rollup-components.config.js",
-    "build-docs": "node utils/build-docs.js 'src/**/*.js' 'docs'"
+    "build-docs": "node utils/build-docs.cjs 'src/**/*.js' 'docs'"
   },
   "c8": {
     "checkCoverage": true,
