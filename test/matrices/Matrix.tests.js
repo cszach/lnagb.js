@@ -5,18 +5,16 @@ describe( "Matrix", function () {
 	it( "Instancing", function () {
 
 		let a = new Matrix( 2, 3 );
-		let _a = a.elements;
 
 		assert.deepEqual( a.size, { rows: 2, columns: 3 } );
 		assert.strictEqual( a.numberOfEntries, 6 );
-		assert.deepEqual( _a, [ 0, 0, 0, 0, 0, 0 ] );
+		assert.deepEqual( a.elements, [ 0, 0, 0, 0, 0, 0 ] );
 
 		let b = new Matrix( 3, 2, [ 1, 2, 3, 4, 5, 6 ] );
-		let _b = b.elements;
 
 		assert.deepEqual( b.size, { rows: 3, columns: 2 } );
 		assert.strictEqual( b.numberOfEntries, 6 );
-		assert.deepEqual( _b, [ 1, 2, 3, 4, 5, 6 ] );
+		assert.deepEqual( b.elements, [ 1, 2, 3, 4, 5, 6 ] );
 
 	} );
 
@@ -36,8 +34,6 @@ describe( "Matrix", function () {
 
 		let a = new Matrix( 2, 3, [ 1, 2, 3, 4, 5, 6 ] );
 		let clone = a.clone();
-
-		clone.elements.some = undefined;
 
 		assert.instanceOf( clone, Matrix );
 		assert.deepEqual( clone.size, a.size );
