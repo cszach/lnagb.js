@@ -31,6 +31,23 @@ describe( "IdentityMatrix", function () {
 
 	} );
 
+	it( "equals", function () {
+
+		let a = new IdentityMatrix( 3 );
+		let b = new IdentityMatrix( 3 );
+		let c = new IdentityMatrix( 2 );
+		let d = {
+			size: { rows: 3, columns: 3 },
+			elements: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+		};
+
+		assert.isTrue( a.equals( b ) );
+		assert.isFalse( a.equals( c ) );
+		assert.isFalse( c.equals( a ) );
+		assert.isFalse( a.equals( d ) );
+
+	} );
+
 	it( "entry", function () {
 
 		let a = new IdentityMatrix( 3 );
