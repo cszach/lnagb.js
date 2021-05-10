@@ -168,12 +168,7 @@ class Matrix {
 		let _nCols = _size.columns;
 		let _ = this.elements;
 
-		let clone = new this.constructor( _nRows, _nCols );
-		let __ = clone.elements;
-
-		for ( let i = 0, _n = _nRows * _nCols; i < _n; i ++ ) __[ i ] = _[ i ];
-
-		return clone;
+		return new this.constructor( _nRows, _nCols, _.slice() );
 
 	}
 
