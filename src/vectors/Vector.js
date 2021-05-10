@@ -1,5 +1,3 @@
-import { MathUtils } from '../algebra/MathUtils.js';
-
 /**
  * @author Nguyen Hoang Duong / <you_create@protonmail.com>
  */
@@ -11,106 +9,71 @@ class Vector {
 
 	constructor( entries ) {
 
-		this.elements = entries
-
-	}
-
-	get numberOfEntries() {
-
-		return this.elements.length;
-
-	}
-
-	get length() {
-
-		return Math.sqrt( this.elements.reduce(
-			( total, e ) => total + e * e ), 0
-		);
-
-	}
-
-	get negative() {
-
-		return this.clone().map( ( e ) => - e );
-
-	}
-
-	copy( v, copyName = false ) {
-
-		this.elements = v.elements.slice();
-		if ( copyName && v.name ) this.name = v.name;
-
-		return this;
+		this.elements = entries;
+		this.size = { rows: entries.length, columns: 1 }; // For compatibility with matrices
+		this.numberOfEntries = entries.length;
 
 	}
 
 	clone() {
 
-		return new this.constructor().copy( this );
+		return new this.constructor( this.elements.slice() );
 
 	}
 
-	set() {
+	add( vector ) {
 
-		this.elements = Array.from( arguments );
-		return this;
+		let _n = this.numberOfEntries;
 
-	}
+		if ( _n !== vector.numberOfEntries ) {
 
-	map( callback ) {
-
-		this.elements = this.elements.map( callback );
-		return this;
-
-	}
-
-	add( v ) {
-
-		if ( this.elements.length !== v.elements.length ) {
-
-			console.error( "Vectors are incompatible for addition" );
-
-		} else {
-
-			let vE = v.elements;
-			this.map( ( e, i ) => e + vE[ i ] );
+			console.error( "Incompatible vectors for addition" );
+			return this;
 
 		}
 
+		let _ = this.elements;
+		let v = vector.elements;
+
+		for ( let i = 0; i < _n; i ++ ) _[ i ] += v[ i ];
+
 		return this;
 
 	}
 
-	addScalar( k ) {
+	subtract( vector ) {
 
-		return this.map( ( e ) => e + k );
+		let _n = this.numberOfEntries;
+
+		if ( _n !== vector.numberOfEntries ) {
+
+			console.error( "Incompatible vectors for substraction" );
+			return this;
+
+		}
+
+		let _ = this.elements;
+		let v = vector.elements;
+
+		for ( let i = 0; i < _n; i ++ ) _[ i ] -= v[ i ];
+
+		return this;
 
 	}
 
-	subtract( v ) {
+	dot( vector ) {
 
-		return this.add( v.negative() );
-
-	}
-
-	subtractScalar( k ) {
-
-		return this.addScalar( - k );
-
-	}
-
-	dot( v ) {
-
-		if ( this.numberOfEntries !== v.numberOfEntries ) {
+		if ( this.numberOfEntries !== vector.numberOfEntries ) {
 
 			console.error( "Incompatible vectors for dot product" );
-			return null;
-
-		} else {
-
-			return MathUtils.linearCombination( this.elements, v.elements );
+			return undefined;
 
 		}
+
+		let _ = this.elements;
+		let v = vector.elements;
+
+		return _.reduce( ( result, value, i ) => result + value * v[ i ], 0 );
 
 	}
 
