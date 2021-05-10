@@ -5,38 +5,16 @@ describe( "Matrix", function () {
 	it( "Instancing", function () {
 
 		let a = new Matrix( 2, 3 );
-		let aSize = a.size;
-		let aE = a.elements;
 
-		assert.strictEqual( aSize.rows, 2 );
-		assert.strictEqual( aSize.columns, 3 );
-
+		assert.deepEqual( a.size, { rows: 2, columns: 3 } );
 		assert.strictEqual( a.numberOfEntries, 6 );
-		assert.strictEqual( aE.length, 6 );
-
-		assert.strictEqual( aE[ 0 ], 0 );
-		assert.strictEqual( aE[ 1 ], 0 );
-		assert.strictEqual( aE[ 2 ], 0 );
-		assert.strictEqual( aE[ 3 ], 0 );
-		assert.strictEqual( aE[ 4 ], 0 );
-		assert.strictEqual( aE[ 5 ], 0 );
+		assert.deepEqual( a.elements, [ 0, 0, 0, 0, 0, 0 ] );
 
 		let b = new Matrix( 3, 2, [ 1, 2, 3, 4, 5, 6 ] );
-		let bSize = b.size;
-		let bE = b.elements;
 
-		assert.strictEqual( bSize.rows, 3 );
-		assert.strictEqual( bSize.columns, 2 );
-
+		assert.deepEqual( b.size, { rows: 3, columns: 2 } );
 		assert.strictEqual( b.numberOfEntries, 6 );
-		assert.strictEqual( bE.length, 6 );
-
-		assert.strictEqual( bE[ 0 ], 1 );
-		assert.strictEqual( bE[ 1 ], 2 );
-		assert.strictEqual( bE[ 2 ], 3 );
-		assert.strictEqual( bE[ 3 ], 4 );
-		assert.strictEqual( bE[ 4 ], 5 );
-		assert.strictEqual( bE[ 5 ], 6 );
+		assert.deepEqual( b.elements, [ 1, 2, 3, 4, 5, 6 ] );
 
 	} );
 

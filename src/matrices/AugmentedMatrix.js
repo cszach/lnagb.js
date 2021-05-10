@@ -1,6 +1,3 @@
-import { loop } from '../utils.js';
-import { Matrix } from './Matrix.js';
-
 /**
  * @module AugmentedMatrix
  * @author Nguyen Hoang Duong / <you_create@protonmail.com>
@@ -12,201 +9,52 @@ import { Matrix } from './Matrix.js';
  */
 
 /**
- * Encodes augmented matrices in Linear Algebra.
+ * Encodes augmented matrices and their operations in Linear Algebra.
  *
- * This class constructs instances similar to those of the `Matrix` class, with
- * one difference: The `size` property has two additional properties:
- *   - `l`: The number of columns of the matrix on the left
- *   - `r`: The number of columns of the matrix on the right
- *
- * **Note**: You can freely change the value of the `name` property, but `size`
- * and `elements` should only be changed using this class's methods.
- *
- * @extends {module:Matrix~Matrix}
  */
-class AugmentedMatrix extends Matrix {
-
-	// CONSTRUCTOR
+class AugmentedMatrix {
 
 	/**
-	 * Constructs an `AugmentedMatrix` instance, which encodes an augmented
-	 * matrix.
+	 * Constructs an `AugmentedMatrix` instance, which encodes an augmented matrix.
+	 * Input matrices are cloned and assumed to have equal number of rows.
 	 *
-	 * @param {Matrix} m The matrix on the left side of the augmented matrix
-	 * @param {Matrix} n The matrix on the right side of the augmented matrix
-	 * @param {string} name The denotation for the new matrix
+	 * @param {module:Matrix~Matrix} left The left part of the augmented matrix.
+	 * @param {module:Matrix~Matrix} right The right part of the augmented matrix.
 	 */
-	constructor( m, n, name = null ) {
+	constructor( left, right ) {
 
-		if ( m.size.rows !== n.size.rows ) {
+		/**
+		 * @member {object}
+		 * @description The left part of this augmented matrix.
+		 */
+		this.left = left.clone();
 
- 			console.error( "Matrices are not valid to construct an augmented matrix" );
- 			return;
+		/**
+		 * @member {object}
+		 * @description The right part of this augmented matrix.
+		 */
+		this.right = right.clone();
 
- 		}
+		let leftSize = left.size;
+		let rightSize = right.size;
 
-		super( m.size.rows, m.size.columns + n.size.columns, name );
+		this.size = {
+			rows: leftSize.rows,
+			columns: leftSize.columns + rightSize.columns
+		};
 
-		this.size.l = m.size.columns;
-		this.size.r = n.size.columns;
-		this.elements = new Array();
-
-		loop( this.size.rows, function ( i ) {
-
-			this.elements.push( ...m.row( i ).concat( n.row( i ) ) );
-
-		}, this );
-
-	}
-
-	// STATIC PROPERTIES / METHODS
-
-	/**
-	 * Checks if object *o* is a valid `AugmentedMatrix` instance.
-	 *
-	 * Note that methods inside the `AugmentedMatrix` class do not check if
-	 * their parameters are valid (including matrices).
-	 *
-	 * Criteria for being "valid":
-	 * - The constructor is `AugmentedMatrix`
-	 * - Has the `size` property that has
-	 *     - the `row` property being a positive integer
-	 *     - the `column` property also being a positive integer
-	 *     - the `l` and `r` properties that sum to the `column` property
-	 * - Has the `elements` property and it is a JavaScript array of numbers
-	 *   and the number of elements must equal to the product of `.size.rows`
-	 *   and `.size.columns`
-	 *
-	 * @param {object} o The object to check
-	 * @return {boolean} `true` if *o* is an `AugmentedMatrix` instance,
-	 * `false` otherwise
-	 */
-	static isIt( o ) {
-
-		return o.constructor.name === "AugmentedMatrix"
-			&& o.elements.every( ( e ) => Number.isFinite( e ) )
-			&& o.elements.length === o.numberOfEntries
-			&& o.size.columns === o.size.l + o.size.r;
-
-	}
-
-	// GETTERS
-
-	/**
-	 * Obtains the matrix on the left side of this augmented matrix.
-	 *
-	 * @return {Matrix} The matrix on the left of this augmented matrix
-	 */
-	get leftMatrix() {
-
-		let result = new Matrix().setDimensions( this.size.rows, this.size.l );
-
-		result.elements = new Array();
-
-		loop( this.size.rows, function ( i ) {
-
-			result.elements.push( ...this.row( i ).slice( 0, this.size.l ) );
-
-		}, this );
-
-		return result;
+		this.numberOfEntries = left.numberOfEntries + right.numberOfEntries;
 
 	}
 
 	/**
-	 * Obtains the matrix on the right side of this augmented matrix.
+	 * Creates and returns a clone of this augmented matrix instance.
 	 *
-	 * @return {Matrix} The matrix on the right of this augmented matrix
-	 */
-	get rightMatrix() {
-
-		let result = new Matrix().setDimensions( this.size.rows, this.size.r );
-
-		result.elements = new Array();
-
-		loop( this.size.rows, function ( i ) {
-
-			result.elements.push( ...this.row( i ).slice( this.size.l ) );
-
-		}, this );
-
-		return result;
-
-	}
-
-	// RE-IMPLEMENT METHODS FROM THE MATRIX CLASS THAT MUST WORK DIFFERENTLY
-	// IN THIS CLASS
-
-	/**
-	 * Makes this augmented matrix the same as augmented matrix *m*.
-	 *
-	 * @param {AugmentedMatrix} m The instance to copy from
-	 * @param {boolean} copyName Set to `true` to copy the denotation of *m*
-	 * @return {AugmentedMatrix} This matrix
-	 */
-	copy( m, copyName = false ) {
-
-		this.size.rows = m.size.rows;
-		this.size.columns = m.size.columns;
-		this.size.l = m.size.l;
-		this.size.r = m.size.r;
-		this.elements = m.elements.slice();
-
-		this.name = ( copyName ) ? m.name : this.name;
-
-		return this;
-
-	}
-
- 	/**
-	 * Creates and returns a clone of this instance.
-	 *
-	 * @return {AugmentedMatrix} A clone of this matrix
+	 * @returns {AugmentedMatrix} A clone of this instance
 	 */
 	clone() {
 
-		return new AugmentedMatrix(
-			this.leftMatrix,
-			this.rightMatrix,
-			this.name
-		);
-
-	}
-
-	// DISALLOW SOME METHODS FROM THE MATRIX CLASS
-
-	transpose() {
-
-		console.error( "Transposition is not allowed on augmented matrices" );
-		return this;
-
-	}
-
-	add() {
-
-		console.error( "Addition is not allowed on augmented matrices" );
-		return this;
-
-	}
-
-	subtract() {
-
-		console.error( "Subtraction is not allowed on augmented matrices" );
-		return this;
-
-	}
-
-	multiply() {
-
-		console.error( "Multiplication is not allowed on augmented matrices" );
-		return this;
-
-	}
-
-	premultiply() {
-
-		console.error( "Pre-multiplication is not allowed on augmented matrices" );
-		return this;
+		return new this.constructor( this.left, this.right );
 
 	}
 
