@@ -36,7 +36,7 @@ class MatrixTranspose {
 	constructor( matrix ) {
 
 		/**
-		 * @member {matrix}
+		 * @member {module:Matrix~Matrix}
 		 * @description The original matrix assigned to this transpose.
 		 */
 		this._ = matrix;

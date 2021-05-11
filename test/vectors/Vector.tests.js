@@ -17,9 +17,46 @@ describe( "Vector", function () {
 		let a = new Vector( [ 1, 2, 3 ] );
 		let clone = a.clone();
 
-		assert.deepEqual( clone.elements, [ 1, 2, 3 ] );
-		assert.deepEqual( clone.size, { rows: 3, columns: 1 } );
-		assert.strictEqual( clone.numberOfEntries, 3 );
+		assert.instanceOf( clone, Vector );
+		assert.deepEqual( clone.elements, a.elements );
+		assert.deepEqual( clone.size, a.size );
+		assert.strictEqual( clone.numberOfEntries, a.numberOfEntries );
+
+	} );
+
+	it( "equals", function () {
+
+		let a = new Vector( [ 1, 2, 3 ] );
+		let b = new Vector( [ - 1, 2, 3 ] );
+		let c = new Vector( [ 1, 2 ] );
+
+		assert.isFalse( a.equals( b ) );
+		assert.isFalse( b.equals( a ) );
+		assert.isFalse( a.equals( c ) );
+		assert.isFalse( c.equals( a ) );
+
+		b.elements = [ 1, 2, 3 ];
+
+		assert.isTrue( a.equals( b ) );
+		assert.isTrue( b.equals( a ) );
+
+	} );
+
+	it( "multiplyScalar", function () {
+
+		let a = new Vector( [ 1, 2, 3 ] );
+
+		a.multiplyScalar( 5 ).multiplyScalar( - 0.5 );
+		assert.deepEqual( a.elements, [ - 2.5, - 5, - 7.5 ] );
+
+	} );
+
+	it( "negate", function () {
+
+		let a = new Vector( [ 1, - 2, 3 ] );
+
+		a.negate();
+		assert.deepEqual( a.elements, [ - 1, 2, - 3 ] );
 
 	} );
 
