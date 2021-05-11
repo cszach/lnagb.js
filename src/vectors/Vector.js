@@ -57,6 +57,27 @@ class Vector {
 	}
 
 	/**
+	 * Checks if this vector and another vector are equal.
+	 *
+	 * @param {Vector} vector The vector to compare this vector to.
+	 * @returns {boolean} `true` if the two vectors are equal, `false` otherwise
+	 */
+	equals( vector ) {
+
+		let _n = this.numberOfEntries;
+
+		if ( _n !== vector.numberOfEntries ) return false;
+
+		let _ = this.elements;
+		let v = vector.elements;
+
+		for ( let i = 0; i < _n; i ++ ) if ( _[ i ] !== v[ i ] ) return false;
+
+		return true;
+
+	}
+
+	/**
 	 * Multiplies this vector by a scalar.
 	 *
 	 * @param {number} k The scalar to multiply this vector by.
