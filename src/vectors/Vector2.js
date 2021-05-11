@@ -1,34 +1,25 @@
 /**
+ * @module Vector2
  * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @description
+ *
+ * Contains the {@link module:Vector2~Vector2} class, which encodes 2-vectors.
  */
 
+/**
+ * Encodes 2-vectors, which are vectors that have 2 entries.
+ *
+ * @see {@link module:Vector3~Vector3}, {@link module:Vector4~Vector4}
+ */
 class Vector2 {
 
-	constructor( x, y ) {
+	constructor( x = 0, y = 0 ) {
 
 		this.x = x;
 		this.y = y;
-
-	}
-
-	get length() {
-
-		return Math.sqrt( this.x * this.x + this.y * this.y );
-
-	}
-
-	get negative() {
-
-		return new Vector2( - this.x, - this.y );
-
-	}
-
-	copy( v ) {
-
-		this.x = v.x;
-		this.y = v.y;
-
-		return this;
+		this.elements = [ x, y ];
+		this.size = { rows: 2, columns: 1 };
+		this.numberOfEntries = 2;
 
 	}
 
@@ -38,10 +29,63 @@ class Vector2 {
 
 	}
 
-	set( x, y ) {
+	equals( vector ) {
 
-		this.x = x;
-		this.y = y;
+		let _ = this.elements;
+		let v = vector.elements;
+
+		return this.numberOfEntries === vector.numberOfEntries
+			&& _[ 0 ] === v[ 0 ] && _[ 1 ] === v[ 1 ];
+
+	}
+
+	multiplyScalar( k ) {
+
+		let _ = this.elements;
+
+		_[ 0 ] *= k; this.x = _[ 0 ];
+		_[ 1 ] *= k; this.y = _[ 1 ];
+
+		return this;
+
+	}
+
+	negate() {
+
+		return this.multiplyScalar( - 1 );
+
+	}
+
+	add( vector ) {
+
+		let _ = this.elements;
+		let v = vector.elements;
+
+		_[ 0 ] += v[ 0 ]; this.x = _[ 0 ];
+		_[ 1 ] += v[ 1 ]; this.y = _[ 1 ];
+
+		return this;
+
+	}
+
+	subtract( vector ) {
+
+		let _ = this.elements;
+		let v = vector.elements;
+
+		_[ 0 ] -= v[ 0 ]; this.x = _[ 0 ];
+		_[ 1 ] -= v[ 1 ]; this.y = _[ 1 ];
+
+		return this;
+
+	}
+
+	dot( vector ) {
+
+		let _ = this.elements;
+		let v = vector.elements;
+
+		return _[ 0 ] * v[ 0 ] + _[ 1 ] * v[ 1 ];
 
 	}
 
