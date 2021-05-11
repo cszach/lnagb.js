@@ -10,6 +10,15 @@
     <a href="https://vecma-org.github.io/lnagb.js/learn/"><b>Learning Area</b></a>
 </p>
 
+<p align="center">
+    <a href="https://github.com/vecma-org/lnagb.js/actions/workflows/ci.yml">
+        <img alt="CI" src="https://github.com/vecma-org/lnagb.js/actions/workflows/ci.yml/badge.svg?branch=dev" />
+    </a>
+    <a href="https://github.com/vecma-org/lnagb.js/actions/workflows/codeql-analysis.yml">
+        <img alt="CodeQL" src="https://github.com/vecma-org/lnagb.js/actions/workflows/codeql-analysis.yml/badge.svg?branch=dev" />
+    </a>
+</p>
+
 ![](media/wordmark/png/wordmark-pad.png)
 
 This repository contains Linear Algebra operations implemented in JavaScript,
