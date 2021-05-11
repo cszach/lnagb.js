@@ -23,6 +23,24 @@ describe( "Vector", function () {
 
 	} );
 
+	it( "multiplyScalar", function () {
+
+		let a = new Vector( [ 1, 2, 3 ] );
+
+		a.multiplyScalar( 5 ).multiplyScalar( - 0.5 );
+		assert.deepEqual( a.elements, [ - 2.5, - 5, - 7.5 ] );
+
+	} );
+
+	it( "negate", function () {
+
+		let a = new Vector( [ 1, - 2, 3 ] );
+
+		a.negate();
+		assert.deepEqual( a.elements, [ - 1, 2, - 3 ] );
+
+	} );
+
 	it( "add", function () {
 
 		let a = new Vector( [ 1, 2, 3 ] );
