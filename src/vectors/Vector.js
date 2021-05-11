@@ -16,20 +16,52 @@
  */
 class Vector {
 
+	/**
+	 * Constructs a new `Vector` instance, which encodes a vector and its
+	 * operations.
+	 *
+	 * @param {number[]} entries Entries of the new vector.
+	 */
 	constructor( entries ) {
 
+		/**
+		 * @member {number[]}
+		 * @description Stores the entries of this vector in order.
+		 */
 		this.elements = entries;
-		this.size = { rows: entries.length, columns: 1 }; // For compatibility with matrices
+
+		/**
+		 * @member {object}
+		 * @description Contains the dimensions of this vector as an object in the
+		 * form `{ rows, columns }`. Serve for compatibility with matrix classes.
+		 */
+		this.size = { rows: entries.length, columns: 1 };
+
+		/**
+		 * @member {number}
+		 * @description The number of entries in this vector.
+		 */
 		this.numberOfEntries = entries.length;
 
 	}
 
+	/**
+	 * Creates and returns a clone of this vector instance.
+	 *
+	 * @returns {Vector} A clone of this vector
+	 */
 	clone() {
 
 		return new this.constructor( this.elements.slice() );
 
 	}
 
+	/**
+	 * Multiplies this vector by a scalar.
+	 *
+	 * @param {number} k The scalar to multiply this vector by.
+	 * @returns {Vector} This vector
+	 */
 	multiplyScalar( k ) {
 
 		let _ = this.elements;
@@ -40,12 +72,23 @@ class Vector {
 
 	}
 
+	/**
+	 * Multiplies this vector by -1.
+	 *
+	 * @returns {Vector} This vector
+	 */
 	negate() {
 
 		return this.multiplyScalar( - 1 );
 
 	}
 
+	/**
+	 * Adds a vector to this vector.
+	 *
+	 * @param {Vector} vector The vector to add to this vector.
+	 * @returns {Vector} This vector
+	 */
 	add( vector ) {
 
 		let _n = this.numberOfEntries;
@@ -66,6 +109,12 @@ class Vector {
 
 	}
 
+	/**
+	 * Subtracts a vector from this vector.
+	 *
+	 * @param {Vector} vector The vector to subtract this vector to.
+	 * @returns {Vector} This vector
+	 */
 	subtract( vector ) {
 
 		let _n = this.numberOfEntries;
@@ -86,6 +135,12 @@ class Vector {
 
 	}
 
+	/**
+	 * Returns the dot product of this vector and another vector.
+	 *
+	 * @param {Vector} vector The vector to perform a dot product with this vector.
+	 * @returns {Vector} The dot product of this vector and the given vector
+	 */
 	dot( vector ) {
 
 		if ( this.numberOfEntries !== vector.numberOfEntries ) {
