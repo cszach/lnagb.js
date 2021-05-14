@@ -108,7 +108,7 @@ class LinearEquation {
 		let q = equation.coefficients;
 
 		for ( let i = 0; i < _n; i ++ ) p[ i ] -= q[ i ];
-		this.constant += equation.constant;
+		this.constant -= equation.constant;
 
 		return this;
 
