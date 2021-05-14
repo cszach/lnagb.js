@@ -42,8 +42,6 @@ class LinearEquation {
 
 	}
 
-	/* COMMON METHODS */
-
 	/**
 	 * Returns an instance of `LinearEquation` that is exactly the same as this
 	 * instance.
@@ -53,64 +51,6 @@ class LinearEquation {
 	clone() {
 
 		return new this.constructor( this.coefficients, this.constant );
-
-	}
-
-	/* OPERATIONS */
-
-	/**
-	 * Adds a linear equation to this linear equation.
-	 *
-	 * @param {LinearEquation} equation The equation to add to this equation. Both
-	 * equations must have the same number of coefficients.
-	 * @returns {LinearEquation} This linear equation
-	 */
-	add( equation ) {
-
-		let _n = this.numberOfVariables;
-
-		if ( _n !== equation.numberOfVariables ) {
-
-			console.error( "Incompatible equations for addition" );
-			return this;
-
-		}
-
-		let p = this.coefficients;
-		let q = equation.coefficients;
-
-		for ( let i = 0; i < _n; i ++ ) p[ i ] += q[ i ];
-		this.constant += equation.constant;
-
-		return this;
-
-	}
-
-	/**
-	 * Subtracts a linear equation from this linear equation.
-	 *
-	 * @param {LinearEquation} equation The equation to subtract this equation to.
-	 * Both equations must have the same number of coefficients.
-	 * @returns {LinearEquation} This linear equation
-	 */
-	subtract( equation ) {
-
-		let _n = this.numberOfVariables;
-
-		if ( equation.numberOfVariables !== _n ) {
-
-			console.error( "Incompatible equations for subtraction" );
-			return this;
-
-		}
-
-		let p = this.coefficients;
-		let q = equation.coefficients;
-
-		for ( let i = 0; i < _n; i ++ ) p[ i ] -= q[ i ];
-		this.constant -= equation.constant;
-
-		return this;
 
 	}
 
@@ -139,6 +79,74 @@ class LinearEquation {
 	negate() {
 
 		return this.multiplyScalar( - 1 );
+
+	}
+
+	/**
+	 * Adds a linear equation to this linear equation.
+	 *
+	 * @param {LinearEquation} equation The equation to add to this equation. Both
+	 * equations must have the same number of coefficients.
+	 * @returns {LinearEquation} This linear equation
+	 */
+	add( equation ) {
+
+		let _n = this.numberOfVariables;
+
+		if ( _n !== equation.numberOfVariables ) {
+
+			console.error( "Incompatible equations for addition" );
+			return this;
+
+		}
+
+		let _ = this.coefficients;
+		let e = equation.coefficients;
+
+		for ( let i = 0; i < _n; i ++ ) _[ i ] += e[ i ];
+		this.constant += equation.constant;
+
+		return this;
+
+	}
+
+	/**
+	 * Subtracts a linear equation from this linear equation.
+	 *
+	 * @param {LinearEquation} equation The equation to subtract this equation to.
+	 * Both equations must have the same number of coefficients.
+	 * @returns {LinearEquation} This linear equation
+	 */
+	subtract( equation ) {
+
+		let _n = this.numberOfVariables;
+
+		if ( equation.numberOfVariables !== _n ) {
+
+			console.error( "Incompatible equations for subtraction" );
+			return this;
+
+		}
+
+		let _ = this.coefficients;
+		let e = equation.coefficients;
+
+		for ( let i = 0; i < _n; i ++ ) _[ i ] -= e[ i ];
+		this.constant -= equation.constant;
+
+		return this;
+
+	}
+
+	/**
+	 * Returns an array containing the coefficients from left to right and the
+	 * constant. Helpful in converting to a row or column vector.
+	 *
+	 * @returns {number[]} The array representation of this linear equation
+	 */
+	toArray() {
+
+		return [ ...this.coefficients, this.constant ];
 
 	}
 
