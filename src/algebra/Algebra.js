@@ -14,16 +14,6 @@
  * @param {number[]} p First sequence of numbers.
  * @param {number[]} q Second sequence of numbers.
  * @returns {number} The result of the linear combination of the two sequences
- *
- * @example
- * ```javascript
- * let p = [ 1, 2, 3 ]
- * let q = [ - 9, - 8, - 7 ]
- * let result = linearCombination( p, q )
- *
- * console.log( result ) // -> -46
- * // ( 1 * - 9 ) + ( 2 * - 8 ) + ( 3 * - 7 ) = - 46
- * ```
  */
 function linearCombination( p, q ) {
 
