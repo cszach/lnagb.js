@@ -62,5 +62,4 @@
 
 export * from './Algebra.js';
 export * from './LinearEquation.js';
-export * from './LinearEquations.js';
 export * from './SystemOfLinearEquations.js';

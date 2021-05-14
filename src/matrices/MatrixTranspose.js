@@ -22,16 +22,7 @@ class MatrixTranspose {
 	 * The instance will then represent the transpose of the assigned matrix
 	 * (also referred to as the _original matrix_).
 	 *
-	 * @param {module:Matrix~Matrix} matrix The matrix to assign
-	 *
-	 * @example
-	 *
-	 * ```javascript
-	 * import * as lnagbjs from './lib/lnagb.js';
-	 *
-	 * let matrix = new lnagbjs.Matrix( 2, 3, [ 1, 2, 3, 4, 5, 6 ] );
-	 * let transpose = new lnagbjs.MatrixTranspose( matrix );
-	 * ```
+	 * @param {module:Matrix~Matrix} matrix The matrix to assign.
 	 */
 	constructor( matrix ) {
 
