@@ -23,6 +23,28 @@ describe( "LinearEquation", function () {
 
 	} );
 
+	it( "multiplyScalar", function () {
+
+		let a = new LinearEquation( [ 1, 2, 3 ], 4 );
+
+		a.multiplyScalar( 5 ).multiplyScalar( - 0.5 );
+
+		assert.deepEqual( a.coefficients, [ - 2.5, - 5, - 7.5 ] );
+		assert.strictEqual( a.constant, - 10 );
+
+	} );
+
+	it( "negate", function () {
+
+		let a = new LinearEquation( [ 1, 2, 3 ], 4 );
+
+		a.negate();
+
+		assert.deepEqual( a.coefficients, [ - 1, - 2, - 3 ] );
+		assert.strictEqual( a.constant, - 4 );
+
+	} );
+
 	it( "add", function () {
 
 		let a = new LinearEquation( [ 1, 2, 3 ], 4 );
@@ -46,28 +68,6 @@ describe( "LinearEquation", function () {
 
 		assert.deepEqual( a.coefficients, [ 8, 6, 4 ] );
 		assert.strictEqual( a.constant, 2 );
-
-	} );
-
-	it( "multiplyScalar", function () {
-
-		let a = new LinearEquation( [ 1, 2, 3 ], 4 );
-
-		a.multiplyScalar( 5 ).multiplyScalar( - 0.5 );
-
-		assert.deepEqual( a.coefficients, [ - 2.5, - 5, - 7.5 ] );
-		assert.strictEqual( a.constant, - 10 );
-
-	} );
-
-	it( "negate", function () {
-
-		let a = new LinearEquation( [ 1, 2, 3 ], 4 );
-
-		a.negate();
-
-		assert.deepEqual( a.coefficients, [ - 1, - 2, - 3 ] );
-		assert.strictEqual( a.constant, - 4 );
 
 	} );
 
