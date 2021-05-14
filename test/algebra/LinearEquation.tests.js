@@ -71,4 +71,12 @@ describe( "LinearEquation", function () {
 
 	} );
 
+	it( "toArray", function () {
+
+		let a = new LinearEquation( [ 1, 2, 3 ], 4 );
+
+		assert.deepEqual( a.toArray(), [ 1, 2, 3, 4 ] );
+
+	} );
+
 } );
