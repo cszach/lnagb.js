@@ -7,9 +7,12 @@
  */
 
 /**
- * Encodes 3-vectors, which are vectors that have 3 entries.
+ * Encodes 3-vectors, which are vectors that have 3 entries. Has all the class
+ * methods of {@link module:Vector~Vector} plus a method for computing cross
+ * products. See also {@link module:Vector2~Vector2} &
+ * {@link module:Vector4~Vector4}.
  *
- * @see {@link module:Vector2~Vector2}, {@link module:Vector4~Vector4}
+ * @see {@link module:Vector~Vector} for common properties
  */
 class Vector3 {
 
@@ -93,6 +96,13 @@ class Vector3 {
 
 	}
 
+	/**
+	 * Returns the cross product of this 3-vector and another 3-vector. This
+	 * vector remains intact.
+	 *
+	 * @param {Vector3} vector The vector to perform a cross product with.
+	 * @returns {Vector3} The cross product of the 2 vectors
+	 */
 	cross( vector ) {
 
 		let _ = this.elements;

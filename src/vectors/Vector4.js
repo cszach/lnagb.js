@@ -7,9 +7,10 @@
  */
 
 /**
- * Encodes 4-vectors, which are vectors that have 4 entries.
+ * Encodes 4-vectors, which are vectors that have 4 entries. See also
+ * {@link module:Vector2~Vector2} & {@link module:Vector3~Vector3}.
  *
- * @see {@link module:Vector2~Vector2}, {@link module:Vector3~Vector3}
+ * @see {@link module:Vector~Vector} for common properties
  */
 class Vector4 {
 
