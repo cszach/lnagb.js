@@ -9,7 +9,7 @@
 /**
  * Encodes linear equations of 3 variables.
  *
- * @see {@link module:LinearEquation~LinearEquation}
+ * @see {@link module:LinearEquation~LinearEquation} for common properties
  */
 class LinearEquation3 {
 
