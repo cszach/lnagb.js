@@ -179,8 +179,8 @@ class MatrixTranspose {
 	 *
 	 * @see {@link https://en.wikipedia.org/wiki/In-place_matrix_transposition#Properties_of_the_permutation Wikipedia, _In-place matrix transposition_, section _Properties of the permutation_}
 	 *
-	 * @param {MatrixTranspose~forEach} callback The function to execute per
-	 * iteration.
+	 * @param {module:MatrixTranspose~MatrixTranspose~forEach} callback The
+	 * function to execute per iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEach( callback, thisArg ) {
@@ -221,7 +221,7 @@ class MatrixTranspose {
 	}
 
 	/**
-	 * @callback MatrixTranspose~forEach
+	 * @callback module:MatrixTranspose~MatrixTranspose~forEach
 	 * @param {number} entry The current entry of the transpose being processed.
 	 * @param {number} i The entry's row number in the transpose (1-indexed).
 	 * @param {number} j The entry's column number in the transpose (1-indexed).
@@ -239,8 +239,8 @@ class MatrixTranspose {
 	 * {@link #MatrixTranspose+computeElements `computeElements`} on this
 	 * instance. Saves computational power.
 	 *
-	 * @param {MatrixTranspose~forEach} callback The function to execute
-	 * per iteration.
+	 * @param {module:MatrixTranspose~MatrixTranspose~forEach} callback The
+	 * function to execute per iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEachComputed( callback, thisArg ) {

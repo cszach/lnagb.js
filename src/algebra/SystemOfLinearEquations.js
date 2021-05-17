@@ -178,8 +178,8 @@ class SystemOfLinearEquations {
 	/**
 	 * Executes a function for each equation in this system.
 	 *
-	 * @param {SystemOfLinearEquations~forEach} callback The function to execute
-	 * per iteration.
+	 * @param {module:SystemOfLinearEquations~SystemOfLinearEquations~forEach} callback
+	 * The function to execute per iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEach( callback, thisArg ) {
@@ -202,9 +202,9 @@ class SystemOfLinearEquations {
 }
 
 /**
- * @callback SystemOfLinearEquations~forEach
- * @memberof SystemOfLinearEquations
- * @param {LinearEquation} equation The current equation being processed.
+ * @callback module:SystemOfLinearEquations~SystemOfLinearEquations~forEach
+ * @param {module:LinearEquation~LinearEquation} equation The current equation
+ * being processed.
  * @param {number[]} coefficients The coefficients of the equation.
  * @param {number} constant The constant term of the equation.
  * @param {number} index The 0-based position of the equation in
