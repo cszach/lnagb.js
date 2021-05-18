@@ -166,9 +166,8 @@ class Matrix {
 		let _size = this.size;
 		let _nRows = _size.rows;
 		let _nCols = _size.columns;
-		let _ = this.elements;
 
-		return new this.constructor( _nRows, _nCols, _.slice() );
+		return new this.constructor( _nRows, _nCols, this.elements.slice() );
 
 	}
 
@@ -310,12 +309,13 @@ class Matrix {
 		let _ = this.elements;
 		let _n = _.length;
 		let _nCols = this.size.columns;
+		let boundCallback = callback.bind( thisArg );
 		let i = 1, j = 1;
 
 		for ( let index = 0; index < _n; index ++ ) {
 
 			let entry = _[ index ];
-			callback.bind( thisArg )( entry, i, j, index, matrix );
+			boundCallback( entry, i, j, index, matrix );
 			j ++;
 
 			if ( j > _nCols ) ( j = 1, i ++ );
@@ -347,6 +347,7 @@ class Matrix {
 		let matrix = this;
 		let _ = this.elements;
 		let _size = this.size, _nRows = _size.rows, _nCols = _size.columns;
+		let boundCallback = callback.bind( thisArg );
 
 		let i = 0;
 
@@ -356,7 +357,7 @@ class Matrix {
 			for ( let c = 0; c < _nCols; c ++, i ++ ) row.push( _[ i ] );
 			i --;
 
-			callback.bind( thisArg )( row, r, matrix );
+			boundCallback( row, r, matrix );
 
 		}
 
@@ -385,6 +386,7 @@ class Matrix {
 		let _size = this.size;
 		let _nRows = _size.rows, __nRows = _nRows + 1;
 		let _nCols = _size.columns, __nCols = _nCols + 1;
+		let boundCallback = callback.bind( thisArg );
 
 		let p = - _nCols;
 
@@ -400,7 +402,7 @@ class Matrix {
 
 			}
 
-			callback.bind( thisArg )( column, c, matrix );
+			boundCallback( column, c, matrix );
 			p ++;
 
 		}
@@ -467,7 +469,7 @@ class Matrix {
 		if ( k == 0 ) {
 
 			console.error( "Input scalar must be nonzero" );
-			return this.matrix;
+			return this;
 
 		}
 
