@@ -1,5 +1,5 @@
-import { Matrix } from '../../src/matrices/Matrix.js';
-import { MatrixTranspose } from '../../src/matrices/MatrixTranspose.js';
+import { Matrix } from '../../../src/matrices/Matrix.js';
+import { MatrixTranspose } from '../../../src/matrices/MatrixTranspose.js';
 
 describe( "MatrixTranspose", function () {
 

@@ -1,4 +1,4 @@
-import { SquareMatrix } from '../../src/matrices/SquareMatrix.js';
+import { SquareMatrix } from '../../../src/matrices/SquareMatrix.js';
 
 describe( "SquareMatrix", function () {
 

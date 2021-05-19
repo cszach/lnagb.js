@@ -1,4 +1,4 @@
-import { Matrix } from '../../src/matrices/Matrix.js';
+import { Matrix } from '../../../src/matrices/Matrix.js';
 
 describe( "Matrix", function () {
 
