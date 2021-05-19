@@ -170,12 +170,13 @@ class IdentityMatrix {
 		let _size = this.size;
 		let _nCols = _size.columns;
 		let _n = _nCols * _nCols;
+		let boundCallback = callback.bind( thisArg );
 		let i = 1, j = 1;
 
 		for ( let index = 0; index < _n; index ++ ) {
 
 			let entry = ( i === j ) ? 1 : 0;
-			callback.bind( thisArg )( entry, i, j, index, matrix );
+			boundCallback( entry, i, j, index, matrix );
 			j ++;
 
 			if ( j > _nCols ) ( j = 1, i ++ );
@@ -195,6 +196,7 @@ class IdentityMatrix {
 
 		let matrix = this;
 		let _nRows = this.size.rows;
+		let boundCallback = callback.bind( thisArg );
 
 		for ( let i = 0; i < _nRows; i ++ ) {
 
@@ -202,7 +204,7 @@ class IdentityMatrix {
 			let row = new Array( _nRows ).fill( 0 );
 			row[ i ] = 1;
 
-			callback.bind( thisArg )( row, r, matrix );
+			boundCallback( row, r, matrix );
 
 		}
 
