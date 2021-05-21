@@ -195,8 +195,7 @@ describe( "Matrix", function () {
 		let a = new Matrix( 3, 2, [ 1, 2, 3, 4, 5, 6 ] );
 
 		a.multiplyRowByScalar( 1, 3 )
-		 .multiplyRowByScalar( 2, - 2.5 )
-		 .multiplyRowByScalar( 3, 0 );
+		 .multiplyRowByScalar( 2, - 2.5 );
 
 		assert.deepEqual( a.elements, [ 3, 6, - 7.5, - 10, 5, 6 ] );
 
