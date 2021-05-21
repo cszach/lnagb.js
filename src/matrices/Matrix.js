@@ -440,16 +440,13 @@ class Matrix {
 		let __nCols = _nCols + 1;
 
 		// Cache
-		let p = r * _nCols;
-		let q = s * _nCols;
+		let p = r * _nCols + 1 - __nCols;
+		let q = s * _nCols + 1 - __nCols;
 
-		for ( let c = 1, t = 1 - __nCols; c < __nCols; c ++, t ++ ) {
-
-			let a = p + t; // Index of element in row r
-			let b = q + t; // Index of element in row s
+		for ( let c = 1; c < __nCols; c ++ ) {
 
 			// Swap values
-			[ _[ a ], _[ b ] ] = [ _[ b ], _[ a ] ];
+			[ _[ p ++ ], _[ q ++ ] ] = [ _[ q ], _[ p ] ];
 
 		}
 
@@ -465,13 +462,6 @@ class Matrix {
 	 * @returns {Matrix} This matrix
 	 */
 	multiplyRowByScalar( r, k ) {
-
-		if ( k == 0 ) {
-
-			console.error( "Input scalar must be nonzero" );
-			return this;
-
-		}
 
 		let _ = this.elements;
 		let _nCols = this.size.columns;

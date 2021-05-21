@@ -25,14 +25,20 @@ class Matrix2 {
 	get rows() {
 
 		let _ = this.elements;
-		return [[ _[ 0 ], _[ 1 ] ], [ _[ 2 ], _[ 3 ] ]];
+		return [
+			[ _[ 0 ], _[ 1 ] ],
+			[ _[ 2 ], _[ 3 ] ]
+		];
 
 	}
 
 	get columns() {
 
 		let _ = this.elements;
-		return [[ _[ 0 ], _[ 2 ] ], [ _[ 1 ], _[ 3 ] ]];
+		return [
+			[ _[ 0 ], _[ 2 ] ],
+			[ _[ 1 ], _[ 3 ] ]
+		];
 
 	}
 
@@ -58,8 +64,8 @@ class Matrix2 {
 		let _ = this.elements;
 		let m = matrix.elements;
 
-		return _[ 0 ] === m[ 0 ] && _[ 1 ] === m[ 1 ] && _[ 2 ] === m[ 2 ]
-			&& _[ 3 ] === m[ 3 ];
+		return _[ 0 ] === m[ 0 ] && _[ 1 ] === m[ 1 ]
+			&& _[ 2 ] === m[ 2 ] && _[ 3 ] === m[ 3 ];
 
 	}
 
@@ -73,7 +79,14 @@ class Matrix2 {
 
 		let _ = this.elements;
 
-		return ( r === 1 ) ? [ _[ 0 ], _[ 1 ] ] : [ _[ 2 ], _[ 3 ] ];
+		switch ( r ) {
+
+			case 1:
+				return [ _[ 0 ], _[ 1 ] ];
+			case 2:
+				return [ _[ 2 ], _[ 3 ] ];
+
+		}
 
 	}
 
@@ -81,7 +94,14 @@ class Matrix2 {
 
 		let _ = this.elements;
 
-		return ( c === 1 ) ? [ _[ 0 ], _[ 2 ] ] : [ _[ 1 ], _[ 3 ] ];
+		switch ( c ) {
+
+			case 1:
+				return [ _[ 0 ], _[ 2 ] ];
+			case 2:
+				return [ _[ 1 ], _[ 3 ] ];
+
+		}
 
 	}
 
@@ -89,9 +109,14 @@ class Matrix2 {
 
 		let _ = this.elements;
 
-		return ( r === 1 )
-			? ( ( _[ 0 ] !== 0 ) ? _[ 0 ] : ( ( _[ 1 ] !== 0 ) ? _[ 1 ] : undefined ) )
-			: ( ( _[ 2 ] !== 0 ) ? _[ 2 ] : ( ( _[ 3 ] !== 0 ) ? _[ 3 ] : undefined ) );
+		switch ( r ) {
+
+			case 1:
+				return _[ 0 ] !== 0 ? _[ 0 ] : _[ 1 ];
+			case 2:
+				return _[ 2 ] !== 0 ? _[ 2 ] : _[ 3 ];
+
+		}
 
 	}
 
@@ -127,15 +152,16 @@ class Matrix2 {
 
 	}
 
-	interchargeRows( r, s ) {
+	/**
+	 * Intercharges the two rows in this matrix.
+	 *
+	 * @returns {Matrix2} This matrix
+	 */
+	interchargeRows() {
 
-		if ( r !== s ) {
-
-			let _ = this.elements;
-			[ _[ 0 ], _[ 2 ] ] = [ _[ 2 ], _[ 0 ] ];
-			[ _[ 1 ], _[ 3 ] ] = [ _[ 3 ], _[ 1 ] ];
-
-		}
+		let _ = this.elements;
+		[ _[ 0 ], _[ 2 ] ] = [ _[ 2 ], _[ 0 ] ];
+		[ _[ 1 ], _[ 3 ] ] = [ _[ 3 ], _[ 1 ] ];
 
 		return this;
 
@@ -143,26 +169,20 @@ class Matrix2 {
 
 	multiplyRowByScalar( r, k ) {
 
-		if ( k == 0 ) {
-
-			console.error( "Input scalar must be nonzero" );
-			return this;
-
-		}
-
 		let _ = this.elements;
 
-		if ( r === 1 ) {
+		switch ( r ) {
 
-			_[ 0 ] *= k; _[ 1 ] *= k;
-
-		} else {
-
-			_[ 2 ] *= k; _[ 3 ] *= k;
+			case 1:
+				_[ 0 ] *= k; _[ 1 ] *= k;
+				return this;
+			case 2:
+				_[ 2 ] *= k; _[ 3 ] *= k;
+				return this;
+			default:
+				return this;
 
 		}
-
-		return this;
 
 	}
 
@@ -170,17 +190,11 @@ class Matrix2 {
 
 		let _ = this.elements;
 
-		if ( r === 1 ) {
+		let rStart = r * 2 - 2;
+		let sStart = s * 2 - 2;
 
-			_[ 0 ] += _[ 2 ] * k;
-			_[ 1 ] += _[ 3 ] * k;
-
-		} else {
-
-			_[ 2 ] += _[ 0 ] * k;
-			_[ 3 ] += _[ 1 ] * k;
-
-		}
+		_[ rStart ] += ( _[ sStart ] * k );
+		_[ rStart + 1 ] += ( _[ sStart + 1 ] * k );
 
 		return this;
 
@@ -199,10 +213,8 @@ class Matrix2 {
 
 		let _ = this.elements;
 
-		_[ 0 ] *= k;
-		_[ 1 ] *= k;
-		_[ 2 ] *= k;
-		_[ 3 ] *= k;
+		_[ 0 ] *= k; _[ 1 ] *= k;
+		_[ 2 ] *= k; _[ 3 ] *= k;
 
 		return this;
 
@@ -210,14 +222,7 @@ class Matrix2 {
 
 	negate() {
 
-		let _ = this.elements;
-
-		_[ 0 ] = - _[ 0 ];
-		_[ 1 ] = - _[ 1 ];
-		_[ 2 ] = - _[ 2 ];
-		_[ 3 ] = - _[ 3 ];
-
-		return this;
+		return this.multiplyScalar( - 1 );
 
 	}
 
@@ -226,10 +231,8 @@ class Matrix2 {
 		let _ = this.elements;
 		let m = matrix.elements;
 
-		_[ 0 ] += m[ 0 ];
-		_[ 1 ] += m[ 1 ];
-		_[ 2 ] += m[ 2 ];
-		_[ 3 ] += m[ 3 ];
+		_[ 0 ] += m[ 0 ]; _[ 1 ] += m[ 1 ];
+		_[ 2 ] += m[ 2 ]; _[ 3 ] += m[ 3 ];
 
 		return this;
 
@@ -240,10 +243,8 @@ class Matrix2 {
 		let _ = this.elements;
 		let m = matrix.elements;
 
-		_[ 0 ] -= m[ 0 ];
-		_[ 1 ] -= m[ 1 ];
-		_[ 2 ] -= m[ 2 ];
-		_[ 3 ] -= m[ 3 ];
+		_[ 0 ] -= m[ 0 ]; _[ 1 ] -= m[ 1 ];
+		_[ 2 ] -= m[ 2 ]; _[ 3 ] -= m[ 3 ];
 
 		return this;
 
@@ -252,7 +253,7 @@ class Matrix2 {
 	/**
 	 * Multiplies this matrix by another 2 x 2 matrix.
 	 *
-	 * @param {Matrix} matrix The 2 x 2 matrix to post-multiply this matrix to.
+	 * @param {matrix} matrix The 2 x 2 matrix to post-multiply this matrix to.
 	 * @returns {Matrix2} This matrix
 	 */
 	multiply( matrix ) {
@@ -260,15 +261,16 @@ class Matrix2 {
 		let _ = this.elements;
 		let m = matrix.elements;
 
-		let _11 = _[ 0 ];
-		let _12 = _[ 1 ];
-		let _21 = _[ 2 ];
-		let _22 = _[ 3 ];
+		let _11 = _[ 0 ], _12 = _[ 1 ],
+			_21 = _[ 2 ], _22 = _[ 3 ];
 
-		_[ 0 ] = _11 * m[ 0 ] + _12 * m[ 2 ];
-		_[ 1 ] = _11 * m[ 1 ] + _12 * m[ 3 ];
-		_[ 2 ] = _21 * m[ 0 ] + _22 * m[ 2 ];
-		_[ 3 ] = _21 * m[ 1 ] + _22 * m[ 3 ];
+		let m11 = m[ 0 ], m12 = m[ 1 ],
+			m21 = m[ 2 ], m22 = m[ 3 ];
+
+		_[ 0 ] = _11 * m11 + _12 * m21;
+		_[ 1 ] = _11 * m12 + _12 * m22;
+		_[ 2 ] = _21 * m11 + _22 * m21;
+		_[ 3 ] = _21 * m12 + _22 * m22;
 
 		return this;
 

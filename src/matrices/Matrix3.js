@@ -153,40 +153,52 @@ class Matrix3 {
 
 	interchargeRows( r, s ) {
 
-		if ( r !== s ) {
+		let _ = this.elements;
 
-			let _ = this.elements;
-			[ _[ 0 ], _[ 2 ] ] = [ _[ 2 ], _[ 0 ] ];
-			[ _[ 1 ], _[ 3 ] ] = [ _[ 3 ], _[ 1 ] ];
+		switch ( r + s ) {
+
+			case 3: // Intercharge row 1 and row 2
+				[ _[ 0 ], _[ 3 ] ] = [ _[ 3 ], _[ 0 ] ];
+				[ _[ 1 ], _[ 4 ] ] = [ _[ 4 ], _[ 1 ] ];
+				[ _[ 2 ], _[ 5 ] ] = [ _[ 5 ], _[ 2 ] ];
+
+				return this;
+			case 4: // Intercharge row 1 and row 3
+				[ _[ 0 ], _[ 6 ] ] = [ _[ 6 ], _[ 0 ] ];
+				[ _[ 1 ], _[ 7 ] ] = [ _[ 7 ], _[ 1 ] ];
+				[ _[ 2 ], _[ 8 ] ] = [ _[ 8 ], _[ 2 ] ];
+
+				return this;
+			case 5: // Intercharge row 2 and row 3
+				[ _[ 3 ], _[ 6 ] ] = [ _[ 6 ], _[ 3 ] ];
+				[ _[ 4 ], _[ 7 ] ] = [ _[ 7 ], _[ 4 ] ];
+				[ _[ 5 ], _[ 8 ] ] = [ _[ 8 ], _[ 5 ] ];
+
+				return this;
+			default:
+				return this;
 
 		}
-
-		return this;
 
 	}
 
 	multiplyRowByScalar( r, k ) {
 
-		if ( k == 0 ) {
-
-			console.error( "Input scalar must be nonzero" );
-			return this;
-
-		}
-
 		let _ = this.elements;
 
-		if ( r === 1 ) {
+		switch ( r ) {
 
-			_[ 0 ] *= k; _[ 1 ] *= k;
-
-		} else {
-
-			_[ 2 ] *= k; _[ 3 ] *= k;
+			case 1:
+				_[ 0 ] *= k; _[ 1 ] *= k; _[ 2 ] *= k;
+				return this;
+			case 2:
+				_[ 3 ] *= k; _[ 4 ] *= k; _[ 5 ] *= k;
+				return this;
+			case 3:
+				_[ 6 ] *= k; _[ 7 ] *= k; _[ 8 ] *= k;
+				return this;
 
 		}
-
-		return this;
 
 	}
 
@@ -194,17 +206,12 @@ class Matrix3 {
 
 		let _ = this.elements;
 
-		if ( r === 1 ) {
+		let rStart = r * 3 - 3;
+		let sStart = s * 3 - 3;
 
-			_[ 0 ] += _[ 2 ] * k;
-			_[ 1 ] += _[ 3 ] * k;
-
-		} else {
-
-			_[ 2 ] += _[ 0 ] * k;
-			_[ 3 ] += _[ 1 ] * k;
-
-		}
+		_[ rStart ] += ( _[ sStart ] * k );
+		_[ rStart + 1 ] += ( _[ sStart + 1 ] * k );
+		_[ rStart + 2 ] += ( _[ sStart + 2 ] * k );
 
 		return this;
 
@@ -236,13 +243,7 @@ class Matrix3 {
 
 	negate() {
 
-		let _ = this.elements;
-
-		_[ 0 ] = - _[ 0 ]; _[ 1 ] = - _[ 1 ]; _[ 2 ] = - _[ 2 ];
-		_[ 3 ] = - _[ 3 ]; _[ 4 ] = - _[ 4 ]; _[ 5 ] = - _[ 5 ];
-		_[ 6 ] = - _[ 6 ]; _[ 7 ] = - _[ 7 ]; _[ 8 ] = - _[ 8 ];
-
-		return this;
+		return this.multiplyScalar( - 1 );
 
 	}
 
@@ -275,7 +276,7 @@ class Matrix3 {
 	/**
 	 * Multiplies this matrix by another 3 x 3 matrix.
 	 *
-	 * @param {Matrix} matrix The 3 x 3 matrix to post-multiply this matrix to.
+	 * @param {matrix} matrix The 3 x 3 matrix to post-multiply this matrix to.
 	 * @returns {Matrix3} This matrix
 	 */
 	multiply( matrix ) {
@@ -283,25 +284,23 @@ class Matrix3 {
 		let _ = this.elements;
 		let m = matrix.elements;
 
-		let _11 = _[ 0 ];
-		let _12 = _[ 1 ];
-		let _13 = _[ 2 ];
-		let _21 = _[ 3 ];
-		let _22 = _[ 4 ];
-		let _23 = _[ 5 ];
-		let _31 = _[ 6 ];
-		let _32 = _[ 7 ];
-		let _33 = _[ 8 ];
+		let _11 = _[ 0 ], _12 = _[ 1 ], _13 = _[ 2 ],
+			_21 = _[ 3 ], _22 = _[ 4 ], _23 = _[ 5 ],
+			_31 = _[ 6 ], _32 = _[ 7 ], _33 = _[ 8 ];
 
-		_[ 0 ] = _11 * m[ 0 ] + _12 * m[ 3 ] + _13 * m[ 6 ];
-		_[ 1 ] = _11 * m[ 1 ] + _12 * m[ 4 ] + _13 * m[ 7 ];
-		_[ 2 ] = _11 * m[ 2 ] + _12 * m[ 5 ] + _13 * m[ 8 ];
-		_[ 3 ] = _21 * m[ 0 ] + _22 * m[ 3 ] + _23 * m[ 6 ];
-		_[ 4 ] = _21 * m[ 1 ] + _22 * m[ 4 ] + _23 * m[ 7 ];
-		_[ 5 ] = _21 * m[ 2 ] + _22 * m[ 5 ] + _23 * m[ 8 ];
-		_[ 6 ] = _31 * m[ 0 ] + _32 * m[ 3 ] + _33 * m[ 6 ];
-		_[ 7 ] = _31 * m[ 1 ] + _32 * m[ 4 ] + _33 * m[ 7 ];
-		_[ 8 ] = _31 * m[ 2 ] + _32 * m[ 5 ] + _33 * m[ 8 ];
+		let m11 = m[ 0 ], m12 = m[ 1 ], m13 = m[ 2 ],
+			m21 = m[ 3 ], m22 = m[ 4 ], m23 = m[ 5 ],
+			m31 = m[ 6 ], m32 = m[ 7 ], m33 = m[ 8 ];
+
+		_[ 0 ] = _11 * m11 + _12 * m21 + _13 * m31;
+		_[ 1 ] = _11 * m12 + _12 * m22 + _13 * m32;
+		_[ 2 ] = _11 * m13 + _12 * m23 + _13 * m33;
+		_[ 3 ] = _21 * m11 + _22 * m21 + _23 * m31;
+		_[ 4 ] = _21 * m12 + _22 * m22 + _23 * m32;
+		_[ 5 ] = _21 * m13 + _22 * m23 + _23 * m33;
+		_[ 6 ] = _31 * m11 + _32 * m21 + _33 * m31;
+		_[ 7 ] = _31 * m12 + _32 * m22 + _33 * m32;
+		_[ 8 ] = _31 * m13 + _32 * m23 + _33 * m33;
 
 		return this;
 
