@@ -70,7 +70,7 @@ class Matrix3 {
 
 	clone() {
 
-		return new this.constructor( this.elements.slice() );
+		return new this.constructor( ...this.elements );
 
 	}
 
@@ -99,10 +99,18 @@ class Matrix3 {
 
 		let _ = this.elements;
 
-		return ( r === 1 )
-			? [ _[ 0 ], _[ 1 ], _[ 2 ] ]
-			: ( r === 2 ) ? [ _[ 3 ], _[ 4 ], _[ 5 ] ]
-						  : [ _[ 6 ], _[ 7 ], _[ 8 ] ];
+		switch ( r ) {
+
+			case 1:
+				return [ _[ 0 ], _[ 1 ], _[ 2 ] ];
+			case 2:
+				return [ _[ 3 ], _[ 4 ], _[ 5 ] ];
+			case 3:
+				return [ _[ 6 ], _[ 7 ], _[ 8 ] ];
+			default:
+				return undefined;
+
+		}
 
 	}
 
@@ -110,10 +118,18 @@ class Matrix3 {
 
 		let _ = this.elements;
 
-		return ( c === 1 )
-			? [ _[ 0 ], _[ 3 ], _[ 6 ] ]
-			: ( c === 2 ) ? [ _[ 1 ], _[ 4 ], _[ 7 ] ]
-						  : [ _[ 2 ], _[ 5 ], _[ 8 ] ];
+		switch ( c ) {
+
+			case 1:
+				return [ _[ 0 ], _[ 3 ], _[ 6 ] ];
+			case 2:
+				return [ _[ 1 ], _[ 4 ], _[ 7 ] ];
+			case 3:
+				return [ _[ 2 ], _[ 5 ], _[ 8 ] ];
+			default:
+				return undefined;
+
+		}
 
 	}
 
@@ -121,11 +137,18 @@ class Matrix3 {
 
 		let _ = this.elements;
 
-		return (
-			( r === 1 ) ? [ _[ 0 ], _[ 1 ], _[ 2 ] ]
-				: ( r === 2 ) ? [ _[ 3 ], _[ 4 ], _[ 5 ] ]
-					: [ _[ 6 ], _[ 7 ], _[ 8 ] ]
-		).find( ( n ) => n !== 0 );
+		switch ( r ) {
+
+			case 1:
+				return _[ 0 ] !== 0 ? _[ 0 ] : ( _[ 1 ] !== 0 ? _[ 1 ] : ( _[ 2 ] !== 0 ? _[ 2 ] : undefined ) );
+			case 2:
+				return _[ 3 ] !== 0 ? _[ 3 ] : ( _[ 4 ] !== 0 ? _[ 4 ] : ( _[ 5 ] !== 0 ? _[ 5 ] : undefined ) );
+			case 3:
+				return _[ 6 ] !== 0 ? _[ 6 ] : ( _[ 7 ] !== 0 ? _[ 7 ] : ( _[ 8 ] !== 0 ? _[ 8 ] : undefined ) );
+			default:
+				return undefined;
+
+		}
 
 	}
 
@@ -153,7 +176,7 @@ class Matrix3 {
 
 		boundCallback( [ _[ 0 ], _[ 1 ], _[ 2 ] ], 1, this );
 		boundCallback( [ _[ 3 ], _[ 4 ], _[ 5 ] ], 2, this );
-		boundCallback( [ _[ 6 ], _[ 7 ], _[ 7 ] ], 3, this );
+		boundCallback( [ _[ 6 ], _[ 7 ], _[ 8 ] ], 3, this );
 
 	}
 
@@ -213,6 +236,8 @@ class Matrix3 {
 				return this;
 			case 3:
 				_[ 6 ] *= k; _[ 7 ] *= k; _[ 8 ] *= k;
+				return this;
+			default:
 				return this;
 
 		}
