@@ -92,16 +92,16 @@ describe( "Matrix2", function () {
 	it( "leadingCoefficient", function () {
 
 		let a = new Matrix2( 1, 2, 3, 4 );
-		let b = new Matrix2( 0, 1, 0, 2 );
+		let b = new Matrix2( 0, 2, 0, 4 );
 		let c = new Matrix2( 0, 0, 0, 0 );
 
 		assert.strictEqual( a.leadingCoefficient( 1 ), 1 );
 		assert.strictEqual( a.leadingCoefficient( 2 ), 3 );
-		assert.isUndefined( a.leadingCoefficient( 3 ) );
-		assert.strictEqual( b.leadingCoefficient( 1 ), 1 );
-		assert.strictEqual( b.leadingCoefficient( 2 ), 2 );
+		assert.strictEqual( b.leadingCoefficient( 1 ), 2 );
+		assert.strictEqual( b.leadingCoefficient( 2 ), 4 );
 		assert.isUndefined( c.leadingCoefficient( 1 ) );
 		assert.isUndefined( c.leadingCoefficient( 2 ) );
+		assert.isUndefined( c.leadingCoefficient( 3 ) );
 
 	} );
 
