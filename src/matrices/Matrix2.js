@@ -14,11 +14,22 @@
  */
 class Matrix2 {
 
-	constructor( entries ) {
+	/**
+	 * All parameters are optional and default to 0.
+	 *
+	 * @param {number} a The (1, 1)-entry of the new 2 x 2 matrix
+	 * @param {number} b The (1, 2)-entry
+	 * @param {number} c The (2, 1)-entry
+	 * @param {number} d The (2, 2)-entry
+	 */
+	constructor(
+		a = 0, b = 0,
+		c = 0, d = 0
+	) {
 
 		this.size = { rows: 2, columns: 2 };
 		this.numberOfEntries = 4;
-		this.elements = entries || new Array( 4 ).fill( 0 );
+		this.elements = [ a, b, c, d ];
 
 	}
 
@@ -51,7 +62,7 @@ class Matrix2 {
 
 	clone() {
 
-		return new this.constructor( this.elements.slice() );
+		return new this.constructor( ...this.elements );
 
 	}
 
@@ -85,6 +96,8 @@ class Matrix2 {
 				return [ _[ 0 ], _[ 1 ] ];
 			case 2:
 				return [ _[ 2 ], _[ 3 ] ];
+			default:
+				return undefined;
 
 		}
 
@@ -100,6 +113,8 @@ class Matrix2 {
 				return [ _[ 0 ], _[ 2 ] ];
 			case 2:
 				return [ _[ 1 ], _[ 3 ] ];
+			default:
+				return undefined;
 
 		}
 
@@ -112,9 +127,11 @@ class Matrix2 {
 		switch ( r ) {
 
 			case 1:
-				return _[ 0 ] !== 0 ? _[ 0 ] : _[ 1 ];
+				return _[ 0 ] !== 0 ? _[ 0 ] : ( _[ 1 ] !== 0 ? _[ 1 ] : undefined );
 			case 2:
-				return _[ 2 ] !== 0 ? _[ 2 ] : _[ 3 ];
+				return _[ 2 ] !== 0 ? _[ 2 ] : ( _[ 3 ] !== 0 ? _[ 3 ] : undefined );
+			default:
+				return undefined;
 
 		}
 

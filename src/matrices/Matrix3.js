@@ -14,11 +14,28 @@
  */
 class Matrix3 {
 
-	constructor( entries ) {
+	/**
+	 * All parameters are optional and default to 0.
+	 *
+	 * @param {number} a The (1, 1)-entry of the new 3 x 3 matrix
+	 * @param {number} b The (1, 2)-entry
+	 * @param {number} c The (1, 3)-entry
+	 * @param {number} d The (2, 1)-entry
+	 * @param {number} e The (2, 2)-entry
+	 * @param {number} f The (2, 3)-entry
+	 * @param {number} g The (3, 1)-entry
+	 * @param {number} h The (3, 2)-entry
+	 * @param {number} i The (3, 3)-entry
+	 */
+	constructor(
+		a = 0, b = 0, c = 0,
+		d = 0, e = 0, f = 0,
+		g = 0, h = 0, i = 0
+	) {
 
 		this.size = { rows: 3, columns: 3 };
 		this.numberOfEntries = 9;
-		this.elements = entries || new Array( 9 ).fill( 0 );
+		this.elements = [ a, b, c, d, e, f, g, h, i ];
 
 	}
 
