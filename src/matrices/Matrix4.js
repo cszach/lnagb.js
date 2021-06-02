@@ -80,7 +80,7 @@ class Matrix4 {
 
 	clone() {
 
-		return new this.constructor( this.elements.slice() );
+		return new this.constructor( ...this.elements );
 
 	}
 
@@ -163,6 +163,8 @@ class Matrix4 {
 			case 4:
 				row = [ _[ 12 ], _[ 13 ], _[ 14 ], _[ 15 ] ];
 				break;
+			default:
+				return undefined;
 
 		}
 
@@ -221,10 +223,10 @@ class Matrix4 {
 	interchargeRows( r, s ) {
 
 		let _ = this.elements;
-		let p = r * 4 - 2;
-		let q = s * 4 - 2;
+		let p = r * 4 - 4;
+		let q = s * 4 - 4;
 
-		for ( let c = 1; c < 3; c ++ ) {
+		for ( let c = 0; c < 4; c ++ ) {
 
 			[ _[ p ++ ], _[ q ++ ] ] = [ _[ q ], _[ p ] ];
 
@@ -269,6 +271,7 @@ class Matrix4 {
 		_[ rStart ] += ( _[ sStart ] * k );
 		_[ rStart + 1 ] += ( _[ sStart + 1 ] * k );
 		_[ rStart + 2 ] += ( _[ sStart + 2 ] * k );
+		_[ rStart + 3 ] += ( _[ sStart + 3 ] * k );
 
 		return this;
 
