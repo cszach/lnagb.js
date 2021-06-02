@@ -16,7 +16,12 @@ describe( "Matrix4", function () {
 			0, 0, 0, 0
 		] );
 
-		let b = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let b = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 
 		assert.deepEqual( b.size, { rows: 4, columns: 4 } );
 		assert.strictEqual( b.numberOfEntries, 16 );
@@ -24,13 +29,19 @@ describe( "Matrix4", function () {
 			1, 2, 3, 4,
 			5, 6, 7, 8,
 			9, 10, 11, 12,
-			13, 14, 15, 16 ] );
+			13, 14, 15, 16
+		] );
 
 	} );
 
 	it( "Getters", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 
 		assert.deepEqual( a.rows, [
 			[ 1, 2, 3, 4 ],
@@ -50,7 +61,12 @@ describe( "Matrix4", function () {
 
 	it( "clone", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 		let clone = a.clone();
 
 		assert.instanceOf( clone, Matrix4 );
@@ -72,7 +88,8 @@ describe( "Matrix4", function () {
 			- 1, 2, 3, 4,
 			5, 6, 7, 8,
 			9, 10, 11, 12,
-			13, 14, 15, 16 ] );
+			13, 14, 15, 16
+		] );
 		let c = new Matrix( 1, 16, [
 			1, 2, 3, 4,
 			5, 6, 7, 8,
@@ -98,7 +115,12 @@ describe( "Matrix4", function () {
 
 	it( "entry", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 
 		assert.strictEqual( a.entry( 1, 1 ), 1 );
 		assert.strictEqual( a.entry( 1, 2 ), 2 );
@@ -121,7 +143,12 @@ describe( "Matrix4", function () {
 
 	it( "row", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 
 		assert.deepEqual( a.row( 1 ), [ 1, 2, 3, 4 ] );
 		assert.deepEqual( a.row( 2 ), [ 5, 6, 7, 8 ] );
@@ -133,7 +160,12 @@ describe( "Matrix4", function () {
 
 	it( "column", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 
 		assert.deepEqual( a.column( 1 ), [ 1, 5, 9, 13 ] );
 		assert.deepEqual( a.column( 2 ), [ 2, 6, 10, 14 ] );
@@ -145,10 +177,30 @@ describe( "Matrix4", function () {
 
 	it( "leadingCoefficient", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
-		let b = new Matrix4( 0, 2, 0, 0, 0, 6, 0, 0, 0, 10, 0, 0, 0, 14, 0, 0 );
-		let c = new Matrix4( 0, 0, 3, 0, 0, 0, 7, 0, 0, 0, 11, 0, 0, 0, 15, 0 );
-		let d = new Matrix4( 0, 0, 0, 4, 0, 0, 0, 8, 0, 0, 0, 12, 0, 0, 0, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
+		let b = new Matrix4(
+			0, 2, 0, 0,
+			0, 6, 0, 0,
+			0, 10, 0, 0,
+			0, 14, 0, 0
+		);
+		let c = new Matrix4(
+			0, 0, 3, 0,
+			0, 0, 7, 0,
+			0, 0, 11, 0,
+			0, 0, 15, 0
+		);
+		let d = new Matrix4(
+			0, 0, 0, 4,
+			0, 0, 0, 8,
+			0, 0, 0, 12,
+			0, 0, 0, 16
+		);
 		let e = new Matrix4();
 
 		assert.strictEqual( a.leadingCoefficient( 1 ), 1 );
@@ -177,7 +229,12 @@ describe( "Matrix4", function () {
 
 	it( "forEach", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 		let entries = [], _i = [], _j = [], indices = [], matrices = [];
 
 		a.forEach( ( entry, i, j, index, matrix ) => {
@@ -190,17 +247,42 @@ describe( "Matrix4", function () {
 
 		} );
 
-		assert.deepEqual( entries, [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ] );
-		assert.deepEqual( _i, [ 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4 ] );
-		assert.deepEqual( _j, [ 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4 ] );
-		assert.deepEqual( indices, [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ] );
-		assert.deepEqual( matrices, [ a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a ] );
+		assert.deepEqual( entries, [
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		] );
+		assert.deepEqual( _i, [
+			1, 1, 1, 1,
+			2, 2, 2, 2,
+			3, 3, 3, 3,
+			4, 4, 4, 4
+		] );
+		assert.deepEqual( _j, [
+			1, 2, 3, 4,
+			1, 2, 3, 4,
+			1, 2, 3, 4,
+			1, 2, 3, 4
+		] );
+		assert.deepEqual( indices, [
+			0, 1, 2, 3,
+			4, 5, 6, 7,
+			8, 9, 10, 11,
+			12, 13, 14, 15
+		] );
+		assert.deepEqual( matrices, new Array( 16 ).fill( a ) );
 
 	} );
 
 	it( "forEachRow", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 		let rows = [], rowNumbers = [], matrices = [];
 
 		a.forEachRow( ( row, r, matrix ) => {
@@ -224,7 +306,12 @@ describe( "Matrix4", function () {
 
 	it( "forEachColumn", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 		let columns = [], columnNumbers = [], matrices = [];
 
 		a.forEachColumn( ( column, c, matrix ) => {
@@ -356,7 +443,12 @@ describe( "Matrix4", function () {
 
 	it( "multiplyRowByScalar", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 
 		a.multiplyRowByScalar( 1, 1 )
 		 .multiplyRowByScalar( 2, 2 )
@@ -398,7 +490,12 @@ describe( "Matrix4", function () {
 
 	it( "transpose", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 
 		a.transpose();
 
@@ -413,7 +510,12 @@ describe( "Matrix4", function () {
 
 	it( "multiplyScalar", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 
 		a.multiplyScalar( 2 );
 
@@ -428,7 +530,12 @@ describe( "Matrix4", function () {
 
 	it( "negate", function () {
 
-		let a = new Matrix4( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 );
+		let a = new Matrix4(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, 11, 12,
+			13, 14, 15, 16
+		);
 
 		a.negate();
 
