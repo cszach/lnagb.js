@@ -101,7 +101,7 @@ describe( "Matrix3", function () {
 		let a = new Matrix3( 1, 2, 3, 4, 5, 6, 7, 8, 9 );
 		let b = new Matrix3( 0, 2, 0, 0, 5, 0, 0, 8, 0 );
 		let c = new Matrix3( 0, 0, 3, 0, 0, 6, 0, 0, 9 );
-		let d = new Matrix3( 0, 0, 0, 0, 0, 0, 0, 0, 0 );
+		let d = new Matrix3();
 
 		assert.strictEqual( a.leadingCoefficient( 1 ), 1 );
 		assert.strictEqual( a.leadingCoefficient( 2 ), 4 );
@@ -212,7 +212,7 @@ describe( "Matrix3", function () {
 		a.multiplyRowByScalar( 1, 1 )
 		 .multiplyRowByScalar( 2, 2 )
 		 .multiplyRowByScalar( 3, 3 )
-			.multiplyRowByScalar( 4, 4 );
+		 .multiplyRowByScalar( 4, 4 );
 
 		assert.deepEqual( a.elements, [ 1, 2, 3, 8, 10, 12, 21, 24, 27 ] );
 
@@ -224,7 +224,7 @@ describe( "Matrix3", function () {
 
 		a.addRowTimesScalarToRow( 1, 2 )
 		 .addRowTimesScalarToRow( 2, 3, 2 )
-			.addRowTimesScalarToRow( 3, 1, 3 );
+		 .addRowTimesScalarToRow( 3, 1, 3 );
 
 		assert.deepEqual( a.elements, [ 5, 7, 9, 18, 21, 24, 22, 29, 36 ] );
 

@@ -93,7 +93,7 @@ describe( "Matrix2", function () {
 
 		let a = new Matrix2( 1, 2, 3, 4 );
 		let b = new Matrix2( 0, 2, 0, 4 );
-		let c = new Matrix2( 0, 0, 0, 0 );
+		let c = new Matrix2();
 
 		assert.strictEqual( a.leadingCoefficient( 1 ), 1 );
 		assert.strictEqual( a.leadingCoefficient( 2 ), 3 );
