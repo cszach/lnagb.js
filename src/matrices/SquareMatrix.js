@@ -13,7 +13,7 @@ import { Matrix } from './Matrix.js';
 /**
  * Encodes square matrices.
  *
- * @extends module:Matrix~Matrix
+ * @augments module:Matrix~Matrix
  */
 class SquareMatrix extends Matrix {
 
@@ -35,7 +35,7 @@ class SquareMatrix extends Matrix {
 	/**
 	 * Makes this square matrix an identity matrix.
 	 *
-	 * @return {SquareMatrix} This matrix
+	 * @returns {SquareMatrix} This matrix
 	 */
 	identity() {
 
