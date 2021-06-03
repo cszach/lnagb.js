@@ -1,8 +1,0 @@
-- name: MathUtils
-  description: Implements several mathematical operations used in other classes.
-- name: LinearEquation
-  description: Class that encodes linear equations.
-- name: LinearEquations
-  description: Child classes of `LinearEquation` that encodes linear equations of 1, 2, and 3 variables.
-- name: SystemOfLinearEquations
-  description: Class that encodes systems of linear equations.

@@ -1,0 +1,10 @@
+- name: LinearEquation
+  description: Contains the `LinearEquation` class, which encodes linear equations of any number of variables.
+- name: LinearEquation2
+  description: Contains the `LinearEquation2` class, which encodes linear equations with 2 variables.
+- name: LinearEquation3
+  description: Contains the `LinearEquation3` class, which encodes linear equations with 3 variables.
+- name: LinearEquation4
+  description: Contains the `LinearEquation2` class, which encodes linear equations with 4 variables.
+- name: SystemOfLinearEquations
+  description: Contains the `SystemOfLinearEquations` class, which encodes systems of linear equations.
