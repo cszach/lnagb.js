@@ -78,8 +78,8 @@ Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
 
 		window[ namespaceName ] = lnagbjs;
 
-		window.a = new lnagbjs.Matrix( 2, 3, 3, 9, - 3, 10, 9, - 8 );
-		window.b = new lnagbjs.Matrix( 3, 2, 2, - 1, - 9, 4, - 7, 6 );
+		window.a = new lnagbjs.Matrix( 2, 3, [ 1, 2, 3, 4, 5, 6 ] );
+		window.b = new lnagbjs.Matrix( 3, 2, [ 7, 8, 9, 10, 11, 12 ] );
 
 		window.a.name = "A";
 		window.b.name = "B";
@@ -88,12 +88,11 @@ Having troubles with the Lab? [Open an issue on GitHub][gh new issue] or
 
 		let suggestions = [
 
-			`new ${ namespaceName }.ZeroMatrix( 4, 5 )`,
 			"a.transpose()",
 			`new ${ namespaceName }.IdentityMatrix( 3 )`,
 			"b.multiply( a )",
-			`new ${ namespaceName }.Matrix( 2, 3, 4, 1, - 9, 7, 7, - 6 )`,
-			"a.multiplyScalar( - 1.5 )",
+			`new ${ namespaceName }.Matrix( 3, 3, [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] )`,
+			"a.multiplyScalar( 2 )",
 			"b.addRowTimesScalarToRow( 1, 2, 3 )"
 
 		];
