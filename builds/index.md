@@ -6,7 +6,7 @@ builds are served online and are ready to be loaded from.
 You can load the full lnagb.js library using the `script` tag:
 
 ```html
-<script src="https://vecma-org.github.io/lnagb.js/builds/lnagb.js"></script>
+<script src="https://vecma-org.github.io/lnagb.js/builds/lnagb.cjs"></script>
 ```
 
 ...or using the `import` statement, but note that this time the file being
@@ -18,9 +18,9 @@ import * as lnagbjs from 'https://vecma-org.github.io/lnagb.js/builds/lnagb.esm.
 
 ## Standalone components
 
-{% assign components = 'algebra,matrices' | split: ',' %}
+{% assign components = 'equations,matrices,vectors' | split: ',' %}
 
-Alternatively, if you only want to use a certain component, like _Algebra_, you
+Alternatively, if you only want to use a certain component, like _Matrices_, you
 can use these links instead.
 
 <ul>
@@ -30,7 +30,7 @@ can use these links instead.
 		<ul>
 			<li>
 				UMD: <a href="./{{ component }}/lnagb.{{ component }}.js">
-					https://vecma-org.github.io/builds/{{ component }}/lnagb.{{ component }}.js
+					https://vecma-org.github.io/builds/{{ component }}/lnagb.{{ component }}.cjs
 				</a>
 			</li>
 			<li>
