@@ -29,7 +29,7 @@ can use these links instead.
 		<b>{{ component | capitalize }}</b>:
 		<ul>
 			<li>
-				UMD: <a href="./{{ component }}/lnagb.{{ component }}.js">
+				UMD: <a href="./{{ component }}/lnagb.{{ component }}.cjs">
 					https://vecma-org.github.io/builds/{{ component }}/lnagb.{{ component }}.cjs
 				</a>
 			</li>
