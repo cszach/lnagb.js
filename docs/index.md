@@ -1,6 +1,6 @@
 **Welcome to the lnagb.js documentation!**
 
-The goal of the documentation is to provide (in great details) information on
+The goal of the documentation is to provide, in great details, information on
 how to use all of lnagb.js's functions, classes, and their methods. The pages
 in this documentation are generated from the docstrings placed along with the
 source code of lnagb.js itself using [`jsdoc-to-markdown`][gh jsdoc2md]. The
@@ -15,19 +15,35 @@ npm run build-docs # Build the documentation
 
 ## Index
 
-### [Algebra](./algebra)
+The whole lnagb.js library is composed of modules. Structurally, the library
+contains 3 modules named **Equations**, **Matrices**, and **Vectors**, along
+with minor modules such as `Functions.js`. Each of the major 3 modules contains
+sub-modules, each containing a class that encodes the properties and operations
+attributed to a mathematical symbol in linear algebra. (e.g. the `Vector`
+sub-module of `Vectors` contains the `Vector` class, which encodes the
+properties and operations of vector quantities).
 
-Concepts and operations found in Math and Linear Algebra, implemented in
-JavaScript. These are not bound to matrices and vectors, however some of them
-are used in the operations of these quantities.
+### [Equations](./Equations.html)
 
-{% include algebra-index.html %}
+This module contains sub-modules which have JavaScript classes for representing
+linear equations and linear systems.
 
-### [Matrices](./matrices)
+{% include index.html data=site.data.equations %}
 
-JavaScript classes that encode matrices and their operations.
+### [Matrices](./Matrices.html)
 
-{% include matrices-index.html %}
+This module contains sub-modules for working with matrices. Currently supported
+operations include transposition, elementary row operations, and multiplication.
+
+{% include index.html data=site.data.matrices %}
+
+### [Vectors](./Vectors.html)
+
+This module contains sub-modules that contain vector classes. Basic vector
+operations such as addition, subtraction, and dot/cross multiplication are
+implemented within these classes.
+
+{% include index.html data=site.data.vectors %}
 
 ## Report
 
