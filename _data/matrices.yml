@@ -1,10 +1,16 @@
-- name: AugmentedMatrix
-  description: Class for dealing with augmented matrices. Child class of `Matrix`.
-- name: IdentityMatrix
-  description: Class for matrices that start as identity matrices. Child class of `SquareMatrix`.
 - name: Matrix
-  description: Class that encodes matrices in general and provides most of its operations.
+  description: Contains the `Matrix` class, which encodes basic matrices of any size in linear algebra.
+- name: Matrix2
+  description: Contains the `Matrix2` class, which encodes 2 x 2 matrices in linear algebra.
+- name: Matrix3
+  description: Contains the `Matrix3` class, which encodes 3 x 3 matrices in linear algebra.
+- name: Matrix4
+  description: Contains the `Matrix4` class, which encodes 4 x 4 matrices in linear algebra.
 - name: SquareMatrix
-  description: Class for square matrices. Child class of `Matrix`.
-- name: ZeroMatrix
-  description: Class for matrices that start as zero matrices. Child class of `Matrix`.
+  description: Contains the `SquareMatrix` class, which is similar to the `Matrix` class but only encodes square matrices.
+- name: IdentityMatrix
+  description: Contains the `IdentityMatrix` class, which encodes read-only identity matrices.
+- name: AugmentedMatrix
+  description: Contains the `AugmentedMatrix` class, which encodes augmented matrices.
+- name: MatrixTranspose
+  description: Contains the `MatrixTranspose` class, which storage-efficiently encodes transpositions.
