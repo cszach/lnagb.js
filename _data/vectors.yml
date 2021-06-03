@@ -1,0 +1,8 @@
+- name: Vector
+  description: Contains the `Vector` class, which encodes vector quantities of any number of entries in linear algebra.
+- name: Vector2
+  description: Contains the `Vector2` class, which encodes 2-vectors.
+- name: Vector3
+  description: Contains the `Vector3` class, which encodes 3-vectors.
+- name: Vector4
+  description: Contains the `Vector4` class, which encodes 4-vectors.
