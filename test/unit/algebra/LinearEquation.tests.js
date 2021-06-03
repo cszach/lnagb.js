@@ -1,4 +1,4 @@
-import { LinearEquation } from '../../src/algebra/LinearEquation.js';
+import { LinearEquation } from '../../../src/algebra/LinearEquation.js';
 
 describe( "LinearEquation", function () {
 

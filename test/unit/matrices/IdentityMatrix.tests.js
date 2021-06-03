@@ -1,4 +1,4 @@
-import { IdentityMatrix } from '../../src/matrices/IdentityMatrix.js';
+import { IdentityMatrix } from '../../../src/matrices/IdentityMatrix.js';
 
 describe( "IdentityMatrix", function () {
 

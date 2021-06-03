@@ -12,7 +12,7 @@
     "build/lnagb.esm.js"
   ],
   "scripts": {
-    "mocha": "mocha --file test/setup.cjs --require chai/register-assert --recursive",
+    "mocha": "mocha --file test/unit/setup.cjs --require chai/register-assert --recursive",
     "test": "c8 npm run mocha",
     "build": "rollup -c utils/rollup.config.js",
     "build-components": "rollup -c utils/rollup-components.config.js",
@@ -47,6 +47,7 @@
   },
   "homepage": "https://vecma-org.github.io/lnagb.js",
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "c8": "^7.7.2",
     "chai": "^4.3.4",
     "eslint": "^7.26.0",

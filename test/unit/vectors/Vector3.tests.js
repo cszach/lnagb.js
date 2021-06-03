@@ -1,5 +1,5 @@
-import { Vector } from '../../src/vectors/Vector.js';
-import { Vector3 } from '../../src/vectors/Vector3.js';
+import { Vector } from '../../../src/vectors/Vector.js';
+import { Vector3 } from '../../../src/vectors/Vector3.js';
 
 describe( "Vector3", function () {
 

@@ -166,9 +166,8 @@ class Matrix {
 		let _size = this.size;
 		let _nRows = _size.rows;
 		let _nCols = _size.columns;
-		let _ = this.elements;
 
-		return new this.constructor( _nRows, _nCols, _.slice() );
+		return new this.constructor( _nRows, _nCols, this.elements.slice() );
 
 	}
 
@@ -300,7 +299,8 @@ class Matrix {
 	 * Executes a function for each entry in this matrix. Entries are iterated in
 	 * row-major order.
 	 *
-	 * @param {Matrix~forEach} callback The function to execute per iteration.
+	 * @param {module:Matrix~Matrix~forEach} callback The function to execute per
+	 * iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEach( callback, thisArg ) {
@@ -309,12 +309,13 @@ class Matrix {
 		let _ = this.elements;
 		let _n = _.length;
 		let _nCols = this.size.columns;
+		let boundCallback = callback.bind( thisArg );
 		let i = 1, j = 1;
 
 		for ( let index = 0; index < _n; index ++ ) {
 
 			let entry = _[ index ];
-			callback.bind( thisArg )( entry, i, j, index, matrix );
+			boundCallback( entry, i, j, index, matrix );
 			j ++;
 
 			if ( j > _nCols ) ( j = 1, i ++ );
@@ -324,7 +325,7 @@ class Matrix {
 	}
 
 	/**
-	 * @callback Matrix~forEach
+	 * @callback module:Matrix~Matrix~forEach
 	 * @param {number} entry The current entry being processed.
 	 * @param {number} i The entry's row number (1-indexed).
 	 * @param {number} j The entry's column number (1-indexed).
@@ -335,7 +336,8 @@ class Matrix {
 	/**
 	 * Executes a function for each row in this matrix.
 	 *
-	 * @param {Matrix~forEachRow} callback The function to execute per iteration.
+	 * @param {module:Matrix~Matrix~forEachRow} callback The function to execute
+	 * per iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEachRow( callback, thisArg ) {
@@ -345,6 +347,7 @@ class Matrix {
 		let matrix = this;
 		let _ = this.elements;
 		let _size = this.size, _nRows = _size.rows, _nCols = _size.columns;
+		let boundCallback = callback.bind( thisArg );
 
 		let i = 0;
 
@@ -354,14 +357,14 @@ class Matrix {
 			for ( let c = 0; c < _nCols; c ++, i ++ ) row.push( _[ i ] );
 			i --;
 
-			callback.bind( thisArg )( row, r, matrix );
+			boundCallback( row, r, matrix );
 
 		}
 
 	}
 
 	/**
-	 * @callback Matrix~forEachRow
+	 * @callback module:Matrix~Matrix~forEachRow
 	 * @param {number[]} row The row being processed (with its entries).
 	 * @param {number} r The row's number (1-indexed).
 	 * @param {Matrix} matrix The instance that this method was called upon.
@@ -370,7 +373,8 @@ class Matrix {
 	/**
 	 * Executes a function for each column in this matrix.
 	 *
-	 * @param {Matrix~forEachColumn} callback The function to execute per iteration.
+	 * @param {module:Matrix~Matrix~forEachColumn} callback The function to execute
+	 * per iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEachColumn( callback, thisArg ) {
@@ -382,6 +386,7 @@ class Matrix {
 		let _size = this.size;
 		let _nRows = _size.rows, __nRows = _nRows + 1;
 		let _nCols = _size.columns, __nCols = _nCols + 1;
+		let boundCallback = callback.bind( thisArg );
 
 		let p = - _nCols;
 
@@ -397,7 +402,7 @@ class Matrix {
 
 			}
 
-			callback.bind( thisArg )( column, c, matrix );
+			boundCallback( column, c, matrix );
 			p ++;
 
 		}
@@ -405,7 +410,7 @@ class Matrix {
 	}
 
 	/**
-	 * @callback Matrix~forEachColumn
+	 * @callback module:Matrix~Matrix~forEachColumn
 	 * @param {number[]} column The column being processed.
 	 * @param {number} c The's column number (1-indexed).
 	 * @param {Matrix} matrix The instance that this method was called upon.
@@ -435,16 +440,13 @@ class Matrix {
 		let __nCols = _nCols + 1;
 
 		// Cache
-		let p = r * _nCols;
-		let q = s * _nCols;
+		let p = r * _nCols + 1 - __nCols;
+		let q = s * _nCols + 1 - __nCols;
 
-		for ( let c = 1, t = 1 - __nCols; c < __nCols; c ++, t ++ ) {
-
-			let a = p + t; // Index of element in row r
-			let b = q + t; // Index of element in row s
+		for ( let c = 1; c < __nCols; c ++ ) {
 
 			// Swap values
-			[ _[ a ], _[ b ] ] = [ _[ b ], _[ a ] ];
+			[ _[ p ++ ], _[ q ++ ] ] = [ _[ q ], _[ p ] ];
 
 		}
 
@@ -460,13 +462,6 @@ class Matrix {
 	 * @returns {Matrix} This matrix
 	 */
 	multiplyRowByScalar( r, k ) {
-
-		if ( k == 0 ) {
-
-			console.error( "Input scalar must be nonzero" );
-			return this.matrix;
-
-		}
 
 		let _ = this.elements;
 		let _nCols = this.size.columns;

@@ -160,8 +160,8 @@ class IdentityMatrix {
 	/**
 	 * Executes a function for each entry in this matrix.
 	 *
-	 * @param {IdentityMatrix~forEach} callback The function to execute per
-	 * iteration.
+	 * @param {module:IdentityMatrix~IdentityMatrix~forEach} callback The function
+	 * to execute per iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEach( callback, thisArg ) {
@@ -170,12 +170,13 @@ class IdentityMatrix {
 		let _size = this.size;
 		let _nCols = _size.columns;
 		let _n = _nCols * _nCols;
+		let boundCallback = callback.bind( thisArg );
 		let i = 1, j = 1;
 
 		for ( let index = 0; index < _n; index ++ ) {
 
 			let entry = ( i === j ) ? 1 : 0;
-			callback.bind( thisArg )( entry, i, j, index, matrix );
+			boundCallback( entry, i, j, index, matrix );
 			j ++;
 
 			if ( j > _nCols ) ( j = 1, i ++ );
@@ -185,25 +186,17 @@ class IdentityMatrix {
 	}
 
 	/**
-	 * @callback IdentityMatrix~forEach
-	 * @param {number} entry The current entry being processed.
-	 * @param {number} i The entry's row number (1-indexed).
-	 * @param {number} j The entry's column number (1-indexed).
-	 * @param {number} index The index of the entry in `this.elements` (0-indexed).
-	 * @param {IdentityMatrix} matrix The instance that this method was called upon.
-	 */
-
-	/**
 	 * Executes a function for each row in this matrix.
 	 *
-	 * @param {IdentityMatrix~forEachRow} callback The function to execute per
-	 * iteration.
+	 * @param {module:IdentityMatrix~IdentityMatrix~forEachRow} callback The
+	 * function to execute per iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEachRow( callback, thisArg ) {
 
 		let matrix = this;
 		let _nRows = this.size.rows;
+		let boundCallback = callback.bind( thisArg );
 
 		for ( let i = 0; i < _nRows; i ++ ) {
 
@@ -211,24 +204,17 @@ class IdentityMatrix {
 			let row = new Array( _nRows ).fill( 0 );
 			row[ i ] = 1;
 
-			callback.bind( thisArg )( row, r, matrix );
+			boundCallback( row, r, matrix );
 
 		}
 
 	}
 
 	/**
-	 * @callback IdentityMatrix~forEachRow
-	 * @param {number[]} row The current row being processed (with its entries).
-	 * @param {number} r Current row number (1-indexed).
-	 * @param {IdentityMatrix} matrix The instance that this method was called upon.
-	 */
-
-	/**
 	 * Executes a function for each column in this matrix.
 	 *
-	 * @param {IdentityMatrix~forEachColumn} callback The function to execute per
-	 * iteration.
+	 * @param {module:IdentityMatrix~IdentityMatrix~forEachColumn} callback The
+	 * function to execute per iteration.
 	 * @param {object} thisArg The argument to use as `this` in the function.
 	 */
 	forEachColumn( callback, thisArg ) {
@@ -237,13 +223,29 @@ class IdentityMatrix {
 
 	}
 
-	/**
-	 * @callback IdentityMatrix~forEachColumn
-	 * @param {number[]} column The current column being processed (with its entries).
-	 * @param {number} c Current column number (1-indexed).
-	 * @param {IdentityMatrix} matrix The instance that this method was called upon.
-	 */
-
 }
+
+/**
+ * @callback module:IdentityMatrix~IdentityMatrix~forEach
+ * @param {number} entry The current entry being processed.
+ * @param {number} i The entry's row number (1-indexed).
+ * @param {number} j The entry's column number (1-indexed).
+ * @param {number} index The index of the entry in `this.elements` (0-indexed).
+ * @param {IdentityMatrix} matrix The instance that this method was called upon.
+ */
+
+/**
+ * @callback module:IdentityMatrix~IdentityMatrix~forEachRow
+ * @param {number[]} row The current row being processed (with its entries).
+ * @param {number} r Current row number (1-indexed).
+ * @param {IdentityMatrix} matrix The instance that this method was called upon.
+ */
+
+/**
+ * @callback module:IdentityMatrix~IdentityMatrix~forEachColumn
+ * @param {number[]} column The current column being processed (with its entries).
+ * @param {number} c Current column number (1-indexed).
+ * @param {IdentityMatrix} matrix The instance that this method was called upon.
+ */
 
 export { IdentityMatrix };

@@ -1,4 +1,4 @@
-import { Matrix } from '../../src/matrices/Matrix.js';
+import { Matrix } from '../../../src/matrices/Matrix.js';
 
 describe( "Matrix", function () {
 
@@ -101,8 +101,8 @@ describe( "Matrix", function () {
 		let b = new Matrix( 2, 3, [ 0, 1, 2, 0, 0, 0 ] );
 
 		assert.strictEqual( a.leadingCoefficient( 1 ), 1 );
-		assert.strictEqual( a.leadingCoefficient( 2 ), 4 );
 		assert.strictEqual( b.leadingCoefficient( 1 ), 1 );
+		assert.strictEqual( a.leadingCoefficient( 2 ), 4 );
 		assert.isUndefined( b.leadingCoefficient( 2 ) );
 
 	} );
@@ -192,13 +192,13 @@ describe( "Matrix", function () {
 
 	it( "multiplyRowByScalar", function () {
 
-		let a = new Matrix( 3, 2, [ 1, 2, 3, 4, 5, 6 ] );
+		let a = new Matrix( 3, 2, [ 2, 3, 5, 7, 11, 13 ] );
 
-		a.multiplyRowByScalar( 1, 3 )
-		 .multiplyRowByScalar( 2, - 2.5 )
-		 .multiplyRowByScalar( 3, 0 );
+		a.multiplyRowByScalar( 1, 1 )
+		 .multiplyRowByScalar( 2, 2 )
+		 .multiplyRowByScalar( 3, 3 );
 
-		assert.deepEqual( a.elements, [ 3, 6, - 7.5, - 10, 5, 6 ] );
+		assert.deepEqual( a.elements, [ 2, 3, 10, 14, 33, 39 ] );
 
 	} );
 
@@ -207,16 +207,17 @@ describe( "Matrix", function () {
 		let a = new Matrix( 3, 2, [ 1, 2, 3, 4, 5, 6 ] );
 
 		a.addRowTimesScalarToRow( 1, 2 )
-		 .addRowTimesScalarToRow( 3, 1, - 0.5 )
+		 .addRowTimesScalarToRow( 3, 1, 2 )
 		 .addRowTimesScalarToRow( 2, 3, 0 );
 
-	    assert.deepEqual( a.elements, [ 4, 6, 3, 4, 3, 3 ] );
+	    assert.deepEqual( a.elements, [ 4, 6, 3, 4, 13, 18 ] );
 
 	} );
 
 	it( "transpose", function () {
 
 		let a = new Matrix( 2, 3, [ 1, 2, 3, 4, 5, 6 ] );
+
 		a.transpose();
 
 		assert.deepEqual( a.size, { rows: 3, columns: 2 } );
@@ -228,55 +229,61 @@ describe( "Matrix", function () {
 
 		let a = new Matrix( 2, 3, [ 1, 2, 3, 4, 5, 6 ] );
 
-		a.multiplyScalar( 5 ).multiplyScalar( - 0.5 );
-		assert.deepEqual( a.elements, [ - 2.5, - 5, - 7.5, - 10, - 12.5, - 15 ] );
+		a.multiplyScalar( 2 );
+
+		assert.deepEqual( a.elements, [ 2, 4, 6, 8, 10, 12 ] );
 
 	} );
 
 	it( "negate", function () {
 
-		let a = new Matrix( 2, 3, [ 1, - 2, 3, - 4, 5, - 6 ] );
+		let a = new Matrix( 2, 3, [ 1, 2, 3, 4, 5, 6 ] );
 
 		a.negate();
-		assert.deepEqual( a.elements, [ - 1, 2, - 3, 4, - 5, 6 ] );
+
+		assert.deepEqual( a.elements, [ - 1, - 2, - 3, - 4, - 5, - 6 ] );
 
 	} );
 
 	it( "add", function () {
 
-		let a = new Matrix( 2, 3, [ 1, 2, 3, 4, 5, 6 ] );
-		let b = new Matrix( 2, 3, [ 6, 5, 4, 3, 2, 1 ] );
-		let c = new Matrix( 3, 2, [ 1, 2, 3, 4, 5, 6 ] );
+		let a = new Matrix( 2, 3, [ 2, 3, 5, 7, 11, 13 ] );
+		let b = new Matrix( 2, 3, [ 17, 19, 23, 29, 31, 37 ] );
+		let c = new Matrix( 3, 2, [ 41, 43, 47, 53, 59, 61 ] ); // Incompatible matrix
 
 		a.add( b ).add( c );
-		assert.deepEqual( a.elements, [ 7, 7, 7, 7, 7, 7 ] );
+
+		assert.deepEqual( a.elements, [ 19, 22, 28, 36, 42, 50 ] );
 
 	} );
 
 	it( "sub", function () {
 
-		let a = new Matrix( 2, 3, [ 1, 2, 3, 4, 5, 6 ] );
-		let b = new Matrix( 2, 3, [ - 6, - 5, - 4, - 3, - 2, - 1 ] );
-		let c = new Matrix( 3, 2, [ 1, 2, 3, 4, 5, 6 ] );
+		let a = new Matrix( 2, 3, [ 2, 3, 5, 7, 11, 13 ] );
+		let b = new Matrix( 2, 3, [ - 17, - 19, - 23, - 29, - 31, - 37 ] );
+		let c = new Matrix( 3, 2, [ 41, 43, 47, 53, 59, 61 ] ); // Incompatible matrix
 
 		a.sub( b ).sub( c );
-		assert.deepEqual( a.elements, [ 7, 7, 7, 7, 7, 7 ] );
+
+		assert.deepEqual( a.elements, [ 19, 22, 28, 36, 42, 50 ] );
 
 	} );
 
 	it( "multiply", function () {
 
-		let a = new Matrix( 2, 3, [ 1, 2, 3, 4, 5, 6 ] );
-		let b = new Matrix( 3, 2, [ 1, 2, 3, 4, 5, 6 ] );
+		let a = new Matrix( 2, 3, [ 2, 3, 5, 7, 11, 13 ] );
+		let b = new Matrix( 3, 2, [ 17, 19, 23, 29, 31, 37 ] );
 
 		a.multiply( b );
+
 		assert.deepEqual( a.size, { rows: 2, columns: 2 } );
 		assert.strictEqual( a.numberOfEntries, 4 );
-		assert.deepEqual( a.elements, [ 22, 28, 49, 64 ] );
-		assert.deepEqual( b.elements, [ 1, 2, 3, 4, 5, 6 ] );
+		assert.deepEqual( a.elements, [ 258, 310, 775, 933 ] );
+		assert.deepEqual( b.elements, [ 17, 19, 23, 29, 31, 37 ] );
 
-		a.multiply( b );
-		assert.deepEqual( a.elements, [ 22, 28, 49, 64 ] );
+		a.multiply( b ); // Now matrix b is incompatible for multiplication
+
+		assert.deepEqual( a.elements, [ 258, 310, 775, 933 ] );
 
 	} );
 

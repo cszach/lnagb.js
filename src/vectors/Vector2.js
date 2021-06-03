@@ -7,9 +7,10 @@
  */
 
 /**
- * Encodes 2-vectors, which are vectors that have 2 entries.
+ * Encodes 2-vectors, which are vectors that have 2 entries. See also
+ * {@link module:Vector3~Vector3} & {@link module:Vector4~Vector4}.
  *
- * @see {@link module:Vector3~Vector3}, {@link module:Vector4~Vector4}
+ * @see {@link module:Vector~Vector} for common properties
  */
 class Vector2 {
 
