@@ -8,6 +8,6 @@
  *
  */
 
-export * from './algebra/index.js';
+export * from './equations/index.js';
 export * from './matrices/index.js';
 export * from './vectors/index.js';

@@ -1,9 +1,9 @@
 /**
- * @module Algebra
+ * @module Functions
  * @author Nguyen Hoang Duong / <you_create@protonmail.com>
  * @description
  *
- * Contains algebraic operations and several functions for dealing with algebra.
+ * Contains basic operations and functions for dealing with algebra.
  *
  */
 

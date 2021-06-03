@@ -1,4 +1,4 @@
-import { linearCombination } from '../../../src/algebra/Algebra.js';
+import { linearCombination } from '../../src/Functions.js';
 
 describe( "Algebra", function () {
 
