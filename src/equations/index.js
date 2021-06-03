@@ -1,5 +1,5 @@
 /**
- * @module Algebra
+ * @module Equations
  * @description
  *
  * JavaScript code defined under this umbrella encodes mathematical concepts and
@@ -7,18 +7,6 @@
  * of Linear Algebra) that are not tied to matrices or vectors. However, they
  * may be used in several operations of matrices and/or vectors (linear
  * combination being an example).
- *
- */
-
-/**
- * @name Algebra
- * @see {@link module:Algebra}
- * @member
- * @kind export
- * @description
- *
- * Contains algebraic operations and several functions for dealing with algebra.
- * Helpful for the lnagb.js library itself as well as potential users.
  *
  */
 
@@ -36,7 +24,20 @@
  */
 
 /**
- * @name LinearEquations
+ * @name LinearEquation2
+ * @see {@link module:LinearEquations}
+ * @member
+ * @kind export
+ * @description
+ *
+ * Contains classes that encode linear equations of 1, 2, and 3 variables. You
+ * should use these instead of {@link module:LinearEquation~LinearEquation}
+ * whenever possible.
+ *
+ */
+
+/**
+ * @name LinearEquation3
  * @see {@link module:LinearEquations}
  * @member
  * @kind export
@@ -60,6 +61,7 @@
  *
  */
 
-export * from './Algebra.js';
 export * from './LinearEquation.js';
+export * from './LinearEquation2.js';
+export * from './LinearEquation3.js';
 export * from './SystemOfLinearEquations.js';
