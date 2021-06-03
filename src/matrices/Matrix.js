@@ -4,9 +4,7 @@
  * @description
  *
  * Contains the {@link module:Matrix~Matrix} class, which encodes basic matrices
- * in linear algebra.
- *
- * @see {@link module:IdentityMatrix~IdentityMatrix}
+ * of any size in linear algebra.
  *
  */
 

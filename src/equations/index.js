@@ -2,11 +2,8 @@
  * @module Equations
  * @description
  *
- * JavaScript code defined under this umbrella encodes mathematical concepts and
- * operations (including the ones that are not solely attributed to the subject
- * of Linear Algebra) that are not tied to matrices or vectors. However, they
- * may be used in several operations of matrices and/or vectors (linear
- * combination being an example).
+ * One of the three major components of lnagb.js. This component groups modules
+ * that contain classes of linear equations and linear systems.
  *
  */
 
@@ -18,34 +15,31 @@
  * @description
  *
  * Contains the {@link module:LinearEquation~LinearEquation} class, which encodes
- * linear equations. This class supports linear equations of any number of
- * variables. See also {@link module:LinearEquations}.
+ * linear equations of any number of variables.
  *
  */
 
 /**
  * @name LinearEquation2
- * @see {@link module:LinearEquations}
+ * @see {@link module:LinearEquation2}
  * @member
  * @kind export
  * @description
  *
- * Contains classes that encode linear equations of 1, 2, and 3 variables. You
- * should use these instead of {@link module:LinearEquation~LinearEquation}
- * whenever possible.
+ * Contains the {@link module:LinearEquation2~LinearEquation2} class, which
+ * encodes linear equations with 2 variables.
  *
  */
 
 /**
  * @name LinearEquation3
- * @see {@link module:LinearEquations}
+ * @see {@link module:LinearEquation3}
  * @member
  * @kind export
  * @description
  *
- * Contains classes that encode linear equations of 1, 2, and 3 variables. You
- * should use these instead of {@link module:LinearEquation~LinearEquation}
- * whenever possible.
+ * Contains the {@link module:LinearEquation3~LinearEquation3} class, which
+ * encodes linear equations with 3 variables.
  *
  */
 
