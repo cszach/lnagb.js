@@ -4,7 +4,7 @@
  * @description
  *
  * Contains the {@link module:Vector~Vector} class, which encodes vector
- * quantities in linear algebra.
+ * quantities of any number of entries in linear algebra.
  */
 
 /**

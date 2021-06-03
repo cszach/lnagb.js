@@ -50,13 +50,13 @@
     "benchmark": "^2.1.4",
     "c8": "^7.7.2",
     "chai": "^4.3.4",
-    "eslint": "^7.26.0",
+    "eslint": "^7.27.0",
     "eslint-config-mdcs": "^4.2.3",
     "eslint-plugin-jsdoc": "^30.7.13",
     "jsdoc-to-markdown": "^5.0.3",
     "mocha": "^8.4.0",
     "mocha-suppress-logs": "^0.2.0",
     "node": "^13.14.0",
-    "rollup": "^2.47.0"
+    "rollup": "^2.50.5"
   }
 }
