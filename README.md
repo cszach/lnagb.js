@@ -1,13 +1,19 @@
 <h1 align="center">lnagb.js</h1>
 
 <p align="center">
-    <a href="https://vecma-org.github.io/lnagb.js/"><b>Website</b></a>
+    Educational linear algebra environment powered by the Web.
+    <br/>
+    <a href="https://vecma-org.github.io/lnagb.js/tutorial"><b>Tutorial</b></a>
     &mdash;
-    <a href="https://vecma-org.github.io/lnagb.js/docs/"><b>Documentation</b></a>
+    <a href="https://vecma-org.github.io/lnagb.js/classroom"><b>Classroom</b></a>
     &mdash;
-    <a href="https://vecma-org.github.io/lnagb.js/lab/"><b>Lab</b></a>
+    <a href="https://vecma-org.github.io/lnagb.js/docs"><b>Documentation</b></a>
     &mdash;
-    <a href="https://vecma-org.github.io/lnagb.js/learn/"><b>Learning Area</b></a>
+    <a href="https://vecma-org.github.io/lnagb.js/examples"><b>Examples</b></a>
+    &mdash;
+    <a href="https://vecma-org.github.io/lnagb.js/lab"><b>Lab</b></a>
+    &mdash;
+    <a href="https://vecma-org.github.io/lnagb.js/builds"><b>Builds</b></a>
 </p>
 
 <p align="center">
@@ -21,169 +27,125 @@
 
 ![](media/wordmark/png/wordmark-pad.png)
 
-This repository contains Linear Algebra operations implemented in JavaScript,
-such as solving systems of linear equations, adding vectors, reducing matrices,
-matrix transformations, etc.
+Started out as a bunch of JavaScript files coded to learn how linear equations
+and matrices could be digitally represented, **lnagb.js** (<b>l</b>i<b>n</b>ear
+<b>a</b>l<b>g</b>e<b>b</b>ra dot JS) has now evolved into a learning ecosystem
+where math and computer science students alike can come and study linear algebra
+as well as how it can be programmed on a computer.
 
-**lnagb.js** evolves as I ([@you-create][gh yc]) learn Linear Algebra. There was
-a similar project that I worked on called [**pylnagb**][gh pylnagb], but I've
-decided to let it sit in the corner of my garage (for now) because I'm currently
-not so used to using Python.
-
-**lnagb.js** is meant to be educational. I've learned a lot from coding it and I
-will continue to work on it. If you are learning Linear Algebra, I suggest
-writing the math in the form of code as well, and you will learn a lot too.
-
-[gh yc]: https://github.com/you-create
-[gh pylnagb]: https://github.com/vecma-org/pylnagb
+The project comes bundled with the lnagb.js JavaScript library as its core along
+with detailed documentation, a step-by-step tutorial, linear algebra lectures,
+a digital playground, and more! With the JavaScript library, you can create
+linear algebra quantities (e.g. vectors, linear systems, matrices) digitally and
+perform operations with them, such as matrix-vector multiplication, Gaussian
+elimination, matrix reduction, cross multiplication, and transposition, just to
+name a few.
 
 :point_right: First steps
 -------------------------
 
-1. Clone the repository or [download the source code][dl].
+Download [the ZIP archive][download] onto your computer and extract it. You then
+have the complete lnagb.js environment which is ready to be accessed anytime,
+anywhere, even when you don't have an Internet connection. Alternatively, you
+can use Git to clone lnagb.js onto your computer:
 
-```bash
+```shell
 git clone https://github.com/vecma-org/lnagb.js.git
 ```
 
-[dl]: https://github.com/vecma-org/lnagb.js/archive/master.zip
+[download]: https://github.com/vecma-org/lnagb.js/archive/master.zip
 
-2. Move into the cloned repository.
+In the lnagb.js folder on your computer:
+- `src` contains the source code, which can be studied if you're a computer
+  science student who also wishes to create a linear algebra program.
+- `web` contains the whole website, which can normally be accessed online at
+  <https://vecma-org.github.io/lnagb.js>, but since this is on your computer,
+  you access it even without an Internet connection.
+- `web/builds` contains the lnagb.js JavaScript library.
+- `web/examples` contains example JavaScript files that use the library.
 
-```bash
-cd lnagb.js
+To access the website offline, you need to start a local server. If you have
+Python 3 installed, you can move into the `web` directory and execute:
+
+```shell
+python3 -m http.server
 ```
 
-3. Install Node dependencies.
+and then go to <http://localhost:8000> in your web browser. The website has all
+the information you need: a step-by-step tutorial to get you started, linear
+algebra lectures in _Classroom_, a live playground in _Lab_, the detailed
+documentation that helps you dive deep, and examples of the lnagb.js JavaScript
+library in use.
 
-```bash
-npm install
+:monocle_face: What's next?
+---------------------------
+
+[The website][website] has all the information you need, including...
+- a [step-by-step tutorial][Tutorial] to get you started,
+- [linear algebra lectures][Classroom],
+- detailed formal [documentation][Docs] of the lnagb.js JavaScript library,
+- [examples][Examples] of the library in use, and
+- a [playground][Lab] where you can try the library in your browser console.
+
+Remember that if you have done the installation steps in the previous section,
+you can access all of this anytime, anywhere, without an Internet connection.
+
+[website]: https://vecma-org.github.io/lnagb.js
+
+[Tutorial]: https://vecma-org.github.io/lnagb.js/tutorial
+[Classroom]: https://vecma-org.github.io/lnagb.js/classroom
+[Docs]: https://vecma-org.github.io/lnagb.js/docs
+[Examples]: https://vecma-org.github.io/lnagb.js/examples
+[Lab]: https://vecma-org.github.io/lnagb.js/lab
+
+If you have a technical question or cannot find a specific piece of information
+on the website, the [wiki][wiki] likely has the answer. If it doesn't, post your
+question in [_Issues_][issues] and add the 'question' label to your post, or
+contact the principal author by emailing to <you_create@protonmail.com>.
+
+[wiki]: https://github.com/vecma-org/lnagb.js/wiki
+[issues]: https://github.com/vecma-org/lnagb.js/issues
+
+:sparkles: Example
+------------------
+
+This is a simple example of how you can perform matrix-vector multiplication
+using lnagb.js.
+
+```javascript
+import { Matrix, Vector } from 'https://vecma-org.github.io/lnagb.js/builds/lnagb.esm.js';
+
+// Construct a 3 x 4 matrix
+let matrix = new Matrix( 3, 4, [
+    2, - 1, 3, 5,
+    0, 2, - 3, 1,
+    - 3, 4, 1, 2
+] );
+
+// Construct a vector with 4 entries
+let vector = new Vector( [
+    2,
+    1,
+    0,
+    - 2
+] );
+
+// Multiply the matrix with the vector and print the entries of the product to
+// the console
+let product = matrix.multiply( vector );
+console.log( product.elements ); // [ - 7, 0, - 6 ]
 ```
-
-4. Build lnagb.js.
-
-```bash
-npm run build
-```
-
-Doing this will build the lnagb.js library which comes in 2 formats - UMD and
-ESM - in the `build` directory. More specifically:
-
-- `build/lnagb.js` uses the UMD format. This is the file which you can load
-  using the `<script>` tag in HTML. If you load lnagb.js this way, all of its
-  classes, variables, and functions will reside under the namespace `lnagbjs`.
-- `build/lnagb.esm.js` uses the ESM format. This is the file which you can
-  load using the JavaScript's `import` statement.
-
-5. Use lnagb.js.
-
-Here's a little template for you.
-
-```html
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>lnagb.js demo</title>
-    </head>
-    <body>
-        <script src="build/lnagb.js"></script>
-        <script>
-            let matrix = new lnagbjs.IdentityMatrix( "I" );
-
-            matrix.elements.forEach( function ( element ) {
-
-                console.log( element );
-
-            } );
-        </script>
-    </body>
-</html>
-```
-
-Here's the same code but lnagb.js is loaded as a JavaScript module.
-
-```html
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>lnagb.js demo</title>
-    </head>
-    <body>
-        <script type="module">
-            import * as lnagbjs from './build/lnagb.esm.js';
-
-            let matrix = new lnagbjs.IdentityMatrix( "I" );
-
-            matrix.elements.forEach( function ( element ) {
-
-                console.log( element );
-
-            } );
-        </script>
-    </body>
-</html>
-```
-
-Be sure to [read the docs][docs] to know how to use lnagb.js. :wink:
-
-:information_source: More information
--------------------------------------
-
-- [**Browse the docs**][docs]
-- [**Learn Linear Algebra**][learn] (work in progress, not yet available)
-
-[docs]: https://vecma-org.github.io/lnagb.js/docs/
-[learn]: https://vecma-org.github.io/lnagb.js/learn/
-
-:open_file_folder: Directory structure
---------------------------------------
-
-- `docs/`: Contains source files for the lnagb.js website
-    - `docs/`: Contains Markdown files for the Documentation
-    - `lab/`: Contains files for the Lab
-    - `learn/`: Contains files for the Learning Area
-- `media/`: Contains images such as the lnagb.js logo
-- `src/`: Contains the source code of lnagb.js
-- `utils/`: Contains scripts useful in production
-
-:pushpin: TODO
---------------
-
-See the [Projects][gh projects] for detailed progression.
-
-[gh projects]: https://github.com/vecma-org/lnagb.js/projects
-
-### Code
-
-- [x] `LinearEquation`
-- [x] `SystemOfLinearEquation`
-- [ ] `Vector`
-- [x] `Matrix`
-- [x] `IdentityMatrix`
-- [x] `AugmentedMatrix`
-
-### Production
-
-- [x] Create build scripts
-- [x] Create a build script for documentation
-
-### Website
-
-- [x] Make a dedicated website
-- [x] Automate page listing and linking in the website
-- [ ] Lab 2.0
-- [ ] Initiate the Learning Area
 
 :page_with_curl: License
 ------------------------
 
-Everything (except for the exceptions noted below) is licensed under
-[The Unlicense](https://unlicense.org/). Basically, you can do
-anything with it, and taking credits is not compulsory.
+The work of lnagb.js is licensed under [The Unlicense](https://unlicense.org/).
+This means you are free to use, copy, and share lnagb.js, all without having to
+ask for permissions or taking credits (although that is very much appreciated).
+The logo of lnagb.js (found in `media/logo`, `media/repository-social-preview`,
+and `media/wordmark`) is not licensed and cannot be copied freely, however.
 
-### Exceptions
+The lnagb.js project supports the public domain and education through software
+freedom. Read about our missions [here][missions].
 
-- `UNLICENSE`: This is the copy of The Unlicense itself
-- The logo: The logo of lnagb.js and its variants are not licensed
+[missions]: https://github.com/vecma-org/lnagb.js/missions
