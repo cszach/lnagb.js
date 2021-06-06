@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>lnagb.js | Linear Algebra in a JavaScript library</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="lnagb.js" />
+<meta name="author" content="Nguyen Hoang Duong" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Linear Algebra in a JavaScript library" />
+<meta property="og:description" content="Linear Algebra in a JavaScript library" />
+<meta property="og:site_name" content="lnagb.js" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="lnagb.js" />
+<script type="application/ld+json">
+{"url":"/docs/SystemOfLinearEquations.html","author":{"@type":"Person","name":"Nguyen Hoang Duong"},"headline":"lnagb.js","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/logo.web.png"},"name":"Nguyen Hoang Duong"},"description":"Linear Algebra in a JavaScript library","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<link rel="icon" type="image/x-icon" href="//favicon.ico">
+		<link rel="icon" type="image/png" href="//favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css?v=e3cef6595df27ce80bc1cfaad0c4d58fb9f35ece">
+    </head>
+    <body>
+        <div class="container-lg px-3 my-5 markdown-body">
+
+        
+
+        <h1>
+			<a href="/">lnagb.js</a> Docs
+		</h1>
+
+        
+
+        <p><a name="module_SystemOfLinearEquations"></a></p>
+
+<h2 id="systemoflinearequations">SystemOfLinearEquations</h2>
+<p>Contains the <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations">SystemOfLinearEquations</a>
+class, which encodes systems of linear equations.</p>
+
+<p><strong>Author</strong>: Nguyen Hoang Duong / <a href="mailto:you_create@protonmail.com">you_create@protonmail.com</a></p>
+
+<ul>
+  <li><a href="#module_SystemOfLinearEquations">SystemOfLinearEquations</a>
+    <ul>
+      <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations">~SystemOfLinearEquations</a>
+        <ul>
+          <li><a href="#new_module_SystemOfLinearEquations..SystemOfLinearEquations_new">new SystemOfLinearEquations(equations)</a></li>
+          <li><em>instance</em>
+            <ul>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+equations">.equations</a> : <code>Array.&lt;LinearEquation&gt;</code></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+numberOfVariables">.numberOfVariables</a> : <code>number</code></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+numberOfEquations">.numberOfEquations</a> : <code>number</code></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+coefficientMatrix">.coefficientMatrix</a> : <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+constantMatrix">.constantMatrix</a> : <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+augmentedMatrix">.augmentedMatrix</a> : <a href="./AugmentedMatrix#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+clone">.clone()</a> ⇒ <code>SystemOfLinearEquations</code></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+computeCoefficientMatrix">.computeCoefficientMatrix()</a></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+computeConstantMatrix">.computeConstantMatrix()</a></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+computeAugmentedMatrix">.computeAugmentedMatrix()</a></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+lazyComputeAugmentedMatrix">.lazyComputeAugmentedMatrix()</a></li>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+forEach">.forEach(callback, thisArg)</a></li>
+            </ul>
+          </li>
+          <li><em>inner</em>
+            <ul>
+              <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations..forEach">~forEach</a> : <code>function</code></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations"></a></p>
+
+<h3 id="systemoflinearequationssystemoflinearequations">SystemOfLinearEquations~SystemOfLinearEquations</h3>
+<p>Encodes systems of linear equations by storing instances of
+<a href="./LinearEquation#module_LinearEquation..LinearEquation">LinearEquation</a>s in an array.</p>
+
+<p><strong>Kind</strong>: inner class of <a href="#module_SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<ul>
+  <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations">~SystemOfLinearEquations</a>
+    <ul>
+      <li><a href="#new_module_SystemOfLinearEquations..SystemOfLinearEquations_new">new SystemOfLinearEquations(equations)</a></li>
+      <li><em>instance</em>
+        <ul>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+equations">.equations</a> : <code>Array.&lt;LinearEquation&gt;</code></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+numberOfVariables">.numberOfVariables</a> : <code>number</code></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+numberOfEquations">.numberOfEquations</a> : <code>number</code></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+coefficientMatrix">.coefficientMatrix</a> : <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+constantMatrix">.constantMatrix</a> : <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+augmentedMatrix">.augmentedMatrix</a> : <a href="./AugmentedMatrix#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+clone">.clone()</a> ⇒ <code>SystemOfLinearEquations</code></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+computeCoefficientMatrix">.computeCoefficientMatrix()</a></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+computeConstantMatrix">.computeConstantMatrix()</a></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+computeAugmentedMatrix">.computeAugmentedMatrix()</a></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+lazyComputeAugmentedMatrix">.lazyComputeAugmentedMatrix()</a></li>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+forEach">.forEach(callback, thisArg)</a></li>
+        </ul>
+      </li>
+      <li><em>inner</em>
+        <ul>
+          <li><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations..forEach">~forEach</a> : <code>function</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><a name="new_module_SystemOfLinearEquations..SystemOfLinearEquations_new"></a></p>
+
+<h4 id="new-systemoflinearequationsequations">new SystemOfLinearEquations(equations)</h4>
+<p>Constructs a new instance of <code class="language-plaintext highlighter-rouge">SystemOfLinearEquations</code>, which encodes a
+system of linear equations.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>equations</td>
+      <td><code>Array.&lt;LinearEquation&gt;</code></td>
+      <td>Instances of <code class="language-plaintext highlighter-rouge">LinearEquation</code> for the system.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+equations"></a></p>
+
+<h4 id="systemoflinearequationsequations--arrayltlinearequationgt">systemOfLinearEquations.equations : <code>Array.&lt;LinearEquation&gt;</code></h4>
+<p>Array of linear equations of this system.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+numberOfVariables"></a></p>
+
+<h4 id="systemoflinearequationsnumberofvariables--number">systemOfLinearEquations.numberOfVariables : <code>number</code></h4>
+<p>The number of variables of this system.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+numberOfEquations"></a></p>
+
+<h4 id="systemoflinearequationsnumberofequations--number">systemOfLinearEquations.numberOfEquations : <code>number</code></h4>
+<p>The number of linear equations in this system.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+coefficientMatrix"></a></p>
+
+<h4 id="systemoflinearequationscoefficientmatrix--matrix">systemOfLinearEquations.coefficientMatrix : <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></h4>
+<p>The coefficient matrix of this system of linear equations, obtained by
+calling <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+computeCoefficientMatrix">computeCoefficientMatrix</a>.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+constantMatrix"></a></p>
+
+<h4 id="systemoflinearequationsconstantmatrix--matrix">systemOfLinearEquations.constantMatrix : <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></h4>
+<p>The constant matrix of this system of linear equations, obtained by
+calling <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+computeConstantMatrix">computeConstantMatrix</a>.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+augmentedMatrix"></a></p>
+
+<h4 id="systemoflinearequationsaugmentedmatrix--augmentedmatrix">systemOfLinearEquations.augmentedMatrix : <a href="./AugmentedMatrix#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a></h4>
+<p>The augmented matrix of this system of linear equations, obtained by
+calling <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+computeAugmentedMatrix">computeAugmentedMatrix</a>.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+clone"></a></p>
+
+<h4 id="systemoflinearequationsclone--systemoflinearequations">systemOfLinearEquations.clone() ⇒ <code>SystemOfLinearEquations</code></h4>
+<p>Creates and returns a new instance that is the same as this instance.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a><br />
+<strong>Returns</strong>: <code>SystemOfLinearEquations</code> - A clone of this instance</p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+computeCoefficientMatrix"></a></p>
+
+<h4 id="systemoflinearequationscomputecoefficientmatrix">systemOfLinearEquations.computeCoefficientMatrix()</h4>
+<p>Computes the coefficient matrix of this system of linear equations and
+assigns the matrix to the <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+coefficientMatrix">coefficientMatrix</a>
+property.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+computeConstantMatrix"></a></p>
+
+<h4 id="systemoflinearequationscomputeconstantmatrix">systemOfLinearEquations.computeConstantMatrix()</h4>
+<p>Computes the constant matrix of this system of linear equations and
+assigns the matrix to the <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+constantMatrix">constantMatrix</a>
+property.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+computeAugmentedMatrix"></a></p>
+
+<h4 id="systemoflinearequationscomputeaugmentedmatrix">systemOfLinearEquations.computeAugmentedMatrix()</h4>
+<p>Computes the augmented matrix of this system of linear equations and
+assigns the matrix to the <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+augmentedMatrix">augmentedMatrix</a>
+property.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+lazyComputeAugmentedMatrix"></a></p>
+
+<h4 id="systemoflinearequationslazycomputeaugmentedmatrix">systemOfLinearEquations.lazyComputeAugmentedMatrix()</h4>
+<p>Computes the augmented matrix of this system of linear equations and
+assigns the matrix to the <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations+augmentedMatrix">augmentedMatrix</a>
+property <strong>provided that</strong> the coefficient matrix and the constant matrix
+have been computed.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations+forEach"></a></p>
+
+<h4 id="systemoflinearequationsforeachcallback-thisarg">systemOfLinearEquations.forEach(callback, thisArg)</h4>
+<p>Executes a function for each equation in this system.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>callback</td>
+      <td><a href="#module_SystemOfLinearEquations..SystemOfLinearEquations..forEach"><code>forEach</code></a></td>
+      <td>The function to execute per iteration.</td>
+    </tr>
+    <tr>
+      <td>thisArg</td>
+      <td><code>object</code></td>
+      <td>The argument to use as <code class="language-plaintext highlighter-rouge">this</code> in the function.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_SystemOfLinearEquations..SystemOfLinearEquations..forEach"></a></p>
+
+<h4 id="systemoflinearequationsforeach--function">SystemOfLinearEquations~forEach : <code>function</code></h4>
+<p><strong>Kind</strong>: inner typedef of <a href="#module_SystemOfLinearEquations..SystemOfLinearEquations"><code>SystemOfLinearEquations</code></a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>equation</td>
+      <td><a href="./LinearEquation#module_LinearEquation..LinearEquation"><code>LinearEquation</code></a></td>
+      <td>The current equation being processed.</td>
+    </tr>
+    <tr>
+      <td>coefficients</td>
+      <td><code>Array.&lt;number&gt;</code></td>
+      <td>The coefficients of the equation.</td>
+    </tr>
+    <tr>
+      <td>constant</td>
+      <td><code>number</code></td>
+      <td>The constant term of the equation.</td>
+    </tr>
+    <tr>
+      <td>index</td>
+      <td><code>number</code></td>
+      <td>The 0-based position of the equation in <code class="language-plaintext highlighter-rouge">this.equations</code>.</td>
+    </tr>
+    <tr>
+      <td>system</td>
+      <td><code>SystemOfLinearEquations</code></td>
+      <td>The instance that this method was called upon.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+
+
+        
+
+        <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+            This site is open source. <a href="https://github.com/vecma-org/lnagb.js/edit/gh-pages/docs/SystemOfLinearEquations.md">Improve this page</a>.
+        </div>
+
+        
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+                integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg="
+                crossorigin="anonymous"></script>
+        <script>anchors.add();</script>
+    </body>
+</html>
