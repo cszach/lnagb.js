@@ -10,7 +10,7 @@
      xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
      inkscape:export-ydpi="384"
      inkscape:export-xdpi="384"
-     inkscape:export-filename="/home/you_create/Code/Projects/vecma-org/lnagb.js/media/logo/logo.png"
+     inkscape:export-filename="/home/you_create/Code/Projects/cgcentral/lnagb.js/media/logo/logo.png"
      sodipodi:docname="logo.svg"
      inkscape:version="1.0beta2 (unknown)"
      id="svg8"
@@ -69,7 +69,7 @@
                 </dc:creator>
                 <dc:publisher>
                     <cc:Agent>
-                        <dc:title>Vecma &lt;@vecma-org&gt;</dc:title>
+                        <dc:title>Computer Graphics Central &lt;@cgcentral&gt;</dc:title>
                     </cc:Agent>
                 </dc:publisher>
             </cc:Work>

@@ -3,7 +3,7 @@
 ## Functions
 Contains basic operations and functions for dealing with algebra.
 
-**Author**: Nguyen Hoang Duong / <you_create@protonmail.com>  
+**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
 
 * * *
 

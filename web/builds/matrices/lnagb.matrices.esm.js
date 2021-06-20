@@ -1,6 +1,6 @@
 /**
  * @module Matrix
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:Matrix~Matrix} class, which encodes basic matrices
@@ -681,7 +681,7 @@ class Matrix {
 
 /**
  * @module Matrix2
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:Matrix2~Matrix2} class, which encodes 2 x 2
@@ -689,7 +689,7 @@ class Matrix {
  */
 
 /**
- * Encodes 2 x 2 matrices. Has speed advantage over {@link module:Matrix~Matrix}.
+ * Encodes 2 x 2 matrices.
  *
  * @see {@link module:Matrix~Matrix} for common properties
  */
@@ -978,7 +978,7 @@ class Matrix2 {
 
 /**
  * @module Matrix3
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:Matrix3~Matrix3} class, which encodes 3 x 3
@@ -986,7 +986,7 @@ class Matrix2 {
  */
 
 /**
- * Encodes 3 x 3 matrices. Has speed advantage over {@link module:Matrix~Matrix}.
+ * Encodes 3 x 3 matrices.
  *
  * @see {@link module:Matrix~Matrix} for common properties
  */
@@ -1330,7 +1330,7 @@ class Matrix3 {
 
 /**
  * @module Matrix4
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:Matrix4~Matrix4} class, which encodes 4 x 4
@@ -1338,7 +1338,7 @@ class Matrix3 {
  */
 
 /**
- * Encodes 4 x 4 matrices. Has speed advantage over {@link module:Matrix~Matrix}.
+ * Encodes 4 x 4 matrices.
  *
  * @see {@link module:Matrix~Matrix} for common properties
  */
@@ -1715,7 +1715,7 @@ class Matrix4 {
 
 /**
  * @module SquareMatrix
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:SquareMatrix~SquareMatrix} class, which is similar
@@ -1766,7 +1766,7 @@ class SquareMatrix extends Matrix {
 
 /**
  * @module IdentityMatrix
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:IdentityMatrix~IdentityMatrix} class, which
@@ -1993,7 +1993,7 @@ class IdentityMatrix {
 
 /**
  * @module AugmentedMatrix
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:AugmentedMatrix~AugmentedMatrix} class, which
@@ -2102,7 +2102,7 @@ AugmentedMatrix.prototype.multiply = undefined;
  * Contains the {@link module:MatrixTranspose~MatrixTranspose} class, which
  * storage-efficiently encodes transpositions.
  *
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  */
 
 /**

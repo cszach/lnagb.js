@@ -4,7 +4,7 @@
 Contains the [SquareMatrix](#module_SquareMatrix..SquareMatrix) class, which is similar
 to the [Matrix](./Matrix#module_Matrix..Matrix) class but only encodes square matrices.
 
-**Author**: Nguyen Hoang Duong / <you_create@protonmail.com>  
+**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
 
 * [SquareMatrix](#module_SquareMatrix)
     * [~SquareMatrix](#module_SquareMatrix..SquareMatrix) ⇐ [<code>Matrix</code>](./Matrix#module_Matrix..Matrix)

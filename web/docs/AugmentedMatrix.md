@@ -4,7 +4,7 @@
 Contains the [AugmentedMatrix](#module_AugmentedMatrix..AugmentedMatrix) class, which
 encodes augmented matrices.
 
-**Author**: Nguyen Hoang Duong / <you_create@protonmail.com>  
+**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
 
 * [AugmentedMatrix](#module_AugmentedMatrix)
     * [~AugmentedMatrix](#module_AugmentedMatrix..AugmentedMatrix) ⇐ [<code>Matrix</code>](./Matrix#module_Matrix..Matrix)

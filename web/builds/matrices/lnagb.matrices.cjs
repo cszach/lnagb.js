@@ -6,7 +6,7 @@
 
 	/**
 	 * @module Matrix
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Matrix~Matrix} class, which encodes basic matrices
@@ -687,7 +687,7 @@
 
 	/**
 	 * @module Matrix2
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Matrix2~Matrix2} class, which encodes 2 x 2
@@ -695,7 +695,7 @@
 	 */
 
 	/**
-	 * Encodes 2 x 2 matrices. Has speed advantage over {@link module:Matrix~Matrix}.
+	 * Encodes 2 x 2 matrices.
 	 *
 	 * @see {@link module:Matrix~Matrix} for common properties
 	 */
@@ -984,7 +984,7 @@
 
 	/**
 	 * @module Matrix3
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Matrix3~Matrix3} class, which encodes 3 x 3
@@ -992,7 +992,7 @@
 	 */
 
 	/**
-	 * Encodes 3 x 3 matrices. Has speed advantage over {@link module:Matrix~Matrix}.
+	 * Encodes 3 x 3 matrices.
 	 *
 	 * @see {@link module:Matrix~Matrix} for common properties
 	 */
@@ -1336,7 +1336,7 @@
 
 	/**
 	 * @module Matrix4
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Matrix4~Matrix4} class, which encodes 4 x 4
@@ -1344,7 +1344,7 @@
 	 */
 
 	/**
-	 * Encodes 4 x 4 matrices. Has speed advantage over {@link module:Matrix~Matrix}.
+	 * Encodes 4 x 4 matrices.
 	 *
 	 * @see {@link module:Matrix~Matrix} for common properties
 	 */
@@ -1721,7 +1721,7 @@
 
 	/**
 	 * @module SquareMatrix
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:SquareMatrix~SquareMatrix} class, which is similar
@@ -1772,7 +1772,7 @@
 
 	/**
 	 * @module IdentityMatrix
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:IdentityMatrix~IdentityMatrix} class, which
@@ -1999,7 +1999,7 @@
 
 	/**
 	 * @module AugmentedMatrix
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:AugmentedMatrix~AugmentedMatrix} class, which
@@ -2108,7 +2108,7 @@
 	 * Contains the {@link module:MatrixTranspose~MatrixTranspose} class, which
 	 * storage-efficiently encodes transpositions.
 	 *
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 */
 
 	/**

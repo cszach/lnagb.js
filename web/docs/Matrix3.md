@@ -4,7 +4,7 @@
 Contains the [Matrix3](./Matrix#module_Matrix3..Matrix3) class, which encodes 3 x 3
 matrices in linear algebra.
 
-**Author**: Nguyen Hoang Duong / <you_create@protonmail.com>  
+**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
 
 * [Matrix3](./Matrix#module_Matrix3)
     * [~Matrix3](./Matrix#module_Matrix3..Matrix3)
@@ -17,7 +17,7 @@ matrices in linear algebra.
 <a name="module_Matrix3..Matrix3"></a>
 
 ### Matrix3~Matrix3
-Encodes 3 x 3 matrices. Has speed advantage over [Matrix](./Matrix#module_Matrix..Matrix).
+Encodes 3 x 3 matrices.
 
 **Kind**: inner class of [<code>Matrix3</code>](./Matrix#module_Matrix3)  
 **See**: [Matrix](./Matrix#module_Matrix..Matrix) for common properties  

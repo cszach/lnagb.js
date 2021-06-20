@@ -50,5 +50,5 @@ implemented within these classes.
 Found a mistake in the docs? Have questions? [Open an issue][gh new issue] or
 [send an e-mail][e-mail].
 
-[gh new issue]: https://github.com/vecma-org/lnagb.js/issues/new
+[gh new issue]: https://github.com/cgcentral/lnagb.js/issues/new
 [e-mail]: mailto:you_create@protonmail.com

@@ -3,7 +3,7 @@
 ## Vector4
 Contains the [Vector4](./Vector#module_Vector4..Vector4) class, which encodes 4-vectors.
 
-**Author**: Nguyen Hoang Duong / <you_create@protonmail.com>  
+**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
 
 * * *
 

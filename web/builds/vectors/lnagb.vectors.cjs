@@ -6,7 +6,7 @@
 
 	/**
 	 * @module Vector
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Vector~Vector} class, which encodes vector
@@ -188,7 +188,7 @@
 
 	/**
 	 * @module Vector2
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Vector2~Vector2} class, which encodes 2-vectors.
@@ -282,7 +282,7 @@
 
 	/**
 	 * @module Vector3
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Vector3~Vector3} class, which encodes 3-vectors.
@@ -402,7 +402,7 @@
 
 	/**
 	 * @module Vector4
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Vector4~Vector4} class, which encodes 4-vectors.
