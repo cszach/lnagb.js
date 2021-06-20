@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vecma-org/lnagb.js.git"
+    "url": "git+https://github.com/cgcentral/lnagb.js.git"
   },
   "keywords": [
     "linear-algebra",
@@ -42,10 +42,10 @@
   },
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/vecma-org/lnagb.js/issues",
+    "url": "https://github.com/cgcentral/lnagb.js/issues",
     "email": "you_create@protonmail.com"
   },
-  "homepage": "https://vecma-org.github.io/lnagb.js",
+  "homepage": "https://cgcentral.github.io/lnagb.js",
   "devDependencies": {
     "benchmark": "^2.1.4",
     "c8": "^7.7.2",
