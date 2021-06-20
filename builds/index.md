@@ -6,14 +6,14 @@ builds are served online and are ready to be loaded from.
 You can load the full lnagb.js library using the `script` tag:
 
 ```html
-<script src="https://vecma-org.github.io/lnagb.js/builds/lnagb.cjs"></script>
+<script src="https://cgcentral.github.io/lnagb.js/builds/lnagb.cjs"></script>
 ```
 
 ...or using the `import` statement, but note that this time the file being
 imported ends with `.esm.js`:
 
 ```javascript
-import * as lnagbjs from 'https://vecma-org.github.io/lnagb.js/builds/lnagb.esm.js';
+import * as lnagbjs from 'https://cgcentral.github.io/lnagb.js/builds/lnagb.esm.js';
 ```
 
 ## Standalone components
@@ -30,12 +30,12 @@ can use these links instead.
 		<ul>
 			<li>
 				UMD: <a href="./{{ component }}/lnagb.{{ component }}.cjs">
-					https://vecma-org.github.io/builds/{{ component }}/lnagb.{{ component }}.cjs
+					https://cgcentral.github.io/builds/{{ component }}/lnagb.{{ component }}.cjs
 				</a>
 			</li>
 			<li>
 				ESM: <a href="./{{ component }}/lnagb.{{ component }}.esm.js">
-					https://vecma-org.github.io/builds/{{ component }}/lnagb.{{ component }}.esm.js
+					https://cgcentral.github.io/builds/{{ component }}/lnagb.{{ component }}.esm.js
 				</a>
 			</li>
 		</ul>

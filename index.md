@@ -9,8 +9,13 @@ classes that encode linear algebra quantities (such as vectors and matrices) and
 their operations, such as matrix reduction, Gaussian elimination, matrix
 multiplication, elementary row operations, transposition, and more.
 
-**lnagb.js is free software.** Its source code can be browsed
-[here](https://github.com/vecma-org/lnagb.js).
+**lnagb.js is free software.** Its source code can be browsed [here][repo].
+lnagb.js is a core work of the [Division of Linear Algebra][linearalgebra] at
+the [Computer Graphics Central][cgcentral].
+
+[repo]: https://github.com/cgcentral/lnagb.js
+[linearalgebra]: https://cgcentral.github.io/linearalgebra
+[cgcentral]: https://cgcentral.github.io
 
 Table of Content
 ----------------
@@ -37,17 +42,17 @@ credits (although that is appreciated).
 About the author
 ----------------
 
-[**Duong Nguyen**](https://you-create.github.io) is an aspiring computer
+[**Duong Nguyen**](https://novakcgx.github.io) is an aspiring computer
 graphics scientist and free software advocate who is going to major in computer
 science at the University of Rochester. He loves JavaScript, the Web, and using
 software freedom to empower learning and sharing—and lnagb.js allows him to
 combine all of that together. This is currently his biggest and most invested
 personal project.
 
-You can check out his projects on GitHub [@you-create][github] or see his alter
+You can check out his projects on GitHub [@novakcgx][github] or see his alter
 ego on Instagram [@thechonkypenguin][instagram].
 
-[github]: https://github.com/you-create
+[github]: https://github.com/novakcgx
 [instagram]: https://www.instagram.com/thechonkypenguin
 
 About this website
@@ -55,4 +60,4 @@ About this website
 
 This website is generated thanks to [GitHub Pages](https://pages.github.com/)
 and [Jekyll](https://jekyllrb.com/). Files that are used to compile this website
-can be browsed [here](https://github.com/vecma-org/lnagb.js/tree/gh-pages).
+can be browsed [here](https://github.com/cgcentral/lnagb.js/tree/gh-pages).

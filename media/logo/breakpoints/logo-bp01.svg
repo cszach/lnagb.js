@@ -85,10 +85,10 @@
         </dc:creator>
         <dc:publisher>
           <cc:Agent>
-            <dc:title>Vecma</dc:title>
+            <dc:title>Computer Graphics Central</dc:title>
           </cc:Agent>
         </dc:publisher>
-        <dc:description>The logo of lnagb.js (https://vecma-org.github.io/lnagb.js/)</dc:description>
+        <dc:description>The logo of lnagb.js (https://cgcentral.github.io/lnagb.js/)</dc:description>
       </cc:Work>
       <cc:License
          rdf:about="http://creativecommons.org/licenses/by-nc/4.0/">

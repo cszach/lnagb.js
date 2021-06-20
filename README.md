@@ -1,12 +1,12 @@
 lnagb.js Website
 ================
 
-Everything required to build the `lnagb.js` website (https://vecma-org.github.io/lnagb.js/)
+Everything required to build the `lnagb.js` website (https://cgcentral.github.io/lnagb.js/)
 is here. Hosted thanks to GitHub Pages. Powered by Jekyll.
 
 See the website's progression [here][project].
 
-[project]: https://github.com/vecma-org/lnagb.js/projects/1
+[project]: https://github.com/cgcentral/lnagb.js/projects/1
 
 Directory structure
 -------------------
