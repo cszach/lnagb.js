@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>lnagb.js | Linear Algebra in a JavaScript library</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="lnagb.js" />
+<meta name="author" content="Nguyen Hoang Duong" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Linear Algebra in a JavaScript library" />
+<meta property="og:description" content="Linear Algebra in a JavaScript library" />
+<meta property="og:site_name" content="lnagb.js" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="lnagb.js" />
+<script type="application/ld+json">
+{"url":"/docs/AugmentedMatrix.html","author":{"@type":"Person","name":"Nguyen Hoang Duong"},"headline":"lnagb.js","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/logo.web.png"},"name":"Nguyen Hoang Duong"},"description":"Linear Algebra in a JavaScript library","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<link rel="icon" type="image/x-icon" href="//favicon.ico">
+		<link rel="icon" type="image/png" href="//favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css?v=e3cef6595df27ce80bc1cfaad0c4d58fb9f35ece">
+    </head>
+    <body>
+        <div class="container-lg px-3 my-5 markdown-body">
+
+        
+
+        <h1>
+			<a href="/">lnagb.js</a> Docs
+		</h1>
+
+        
+
+        <p><a name="module_AugmentedMatrix"></a></p>
+
+<h2 id="augmentedmatrix">AugmentedMatrix</h2>
+<p>Contains the <a href="#module_AugmentedMatrix..AugmentedMatrix">AugmentedMatrix</a> class, which
+encodes augmented matrices.</p>
+
+<p><strong>Author</strong>: Nguyen Hoang Duong / <a href="mailto:you_create@protonmail.com">you_create@protonmail.com</a></p>
+
+<ul>
+  <li><a href="#module_AugmentedMatrix">AugmentedMatrix</a>
+    <ul>
+      <li><a href="#module_AugmentedMatrix..AugmentedMatrix">~AugmentedMatrix</a> ⇐ <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a>
+        <ul>
+          <li><a href="#new_module_AugmentedMatrix..AugmentedMatrix_new">new AugmentedMatrix(left, right)</a></li>
+          <li><a href="#module_AugmentedMatrix..AugmentedMatrix+leftMatrix">.leftMatrix</a> ⇒ <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></li>
+          <li><a href="#module_AugmentedMatrix..AugmentedMatrix+rightMatrix">.rightMatrix</a> ⇒ <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+size">.size</a> : <code>object</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+numberOfEntries">.numberOfEntries</a> : <code>number</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+elements">.elements</a> : <code>Array.&lt;number&gt;</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+rows">.rows</a> ⇒ <code>Array.&lt;Array&gt;</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+columns">.columns</a> ⇒ <code>Array.&lt;Array&gt;</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+mainDiagonal">.mainDiagonal</a> ⇒ <code>Array.&lt;number&gt;</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+clone">.clone()</a> ⇒ <code>Matrix</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+equals">.equals(matrix)</a> ⇒ <code>boolean</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+entry">.entry(i, j)</a> ⇒ <code>number</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+row">.row(r)</a> ⇒ <code>Array.&lt;number&gt;</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+column">.column(c)</a> ⇒ <code>Array.&lt;number&gt;</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+leadingCoefficient">.leadingCoefficient(r)</a> ⇒ <code>number</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+forEach">.forEach(callback, thisArg)</a></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+forEachRow">.forEachRow(callback, thisArg)</a></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+forEachColumn">.forEachColumn(callback, thisArg)</a></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+interchargeRows">.interchargeRows(r, s)</a> ⇒ <code>Matrix</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+multiplyRowByScalar">.multiplyRowByScalar(r, k)</a> ⇒ <code>Matrix</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+addRowTimesScalarToRow">.addRowTimesScalarToRow(r, s, k)</a> ⇒ <code>Matrix</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+transpose">.transpose()</a> ⇒ <code>Matrix</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+multiplyScalar">.multiplyScalar(k)</a> ⇒ <code>Matrix</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+negate">.negate()</a> ⇒ <code>Matrix</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+add">.add(matrix)</a> ⇒ <code>Matrix</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+sub">.sub(matrix)</a> ⇒ <code>Matrix</code></li>
+          <li><a href="./Matrix#module_Matrix..Matrix+multiply">.multiply(matrix)</a> ⇒ <code>Matrix</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><a name="module_AugmentedMatrix..AugmentedMatrix"></a></p>
+
+<h3 id="augmentedmatrixaugmentedmatrix--matrix">AugmentedMatrix~AugmentedMatrix ⇐ <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></h3>
+<p>Encodes augmented matrices and their operations in Linear Algebra.</p>
+
+<p>This class inherits class methods from <a href="./Matrix#module_Matrix..Matrix">Matrix</a> with the
+exception that <code class="language-plaintext highlighter-rouge">transpose</code>, <code class="language-plaintext highlighter-rouge">add</code>, <code class="language-plaintext highlighter-rouge">sub</code>, and <code class="language-plaintext highlighter-rouge">multiply</code> cannot be used.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">size</code> property has two more elements: <code class="language-plaintext highlighter-rouge">left</code>—which is the number of
+columns of the left matrix—and <code class="language-plaintext highlighter-rouge">right</code>—that of the right matrix.</p>
+
+<p><strong>Kind</strong>: inner class of <a href="#module_AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Extends</strong>: <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a><br />
+<strong>See</strong>: <a href="./Matrix#module_Matrix..Matrix">Matrix</a> for common properties</p>
+
+<ul>
+  <li><a href="#module_AugmentedMatrix..AugmentedMatrix">~AugmentedMatrix</a> ⇐ <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a>
+    <ul>
+      <li><a href="#new_module_AugmentedMatrix..AugmentedMatrix_new">new AugmentedMatrix(left, right)</a></li>
+      <li><a href="#module_AugmentedMatrix..AugmentedMatrix+leftMatrix">.leftMatrix</a> ⇒ <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></li>
+      <li><a href="#module_AugmentedMatrix..AugmentedMatrix+rightMatrix">.rightMatrix</a> ⇒ <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+size">.size</a> : <code>object</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+numberOfEntries">.numberOfEntries</a> : <code>number</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+elements">.elements</a> : <code>Array.&lt;number&gt;</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+rows">.rows</a> ⇒ <code>Array.&lt;Array&gt;</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+columns">.columns</a> ⇒ <code>Array.&lt;Array&gt;</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+mainDiagonal">.mainDiagonal</a> ⇒ <code>Array.&lt;number&gt;</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+clone">.clone()</a> ⇒ <code>Matrix</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+equals">.equals(matrix)</a> ⇒ <code>boolean</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+entry">.entry(i, j)</a> ⇒ <code>number</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+row">.row(r)</a> ⇒ <code>Array.&lt;number&gt;</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+column">.column(c)</a> ⇒ <code>Array.&lt;number&gt;</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+leadingCoefficient">.leadingCoefficient(r)</a> ⇒ <code>number</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+forEach">.forEach(callback, thisArg)</a></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+forEachRow">.forEachRow(callback, thisArg)</a></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+forEachColumn">.forEachColumn(callback, thisArg)</a></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+interchargeRows">.interchargeRows(r, s)</a> ⇒ <code>Matrix</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+multiplyRowByScalar">.multiplyRowByScalar(r, k)</a> ⇒ <code>Matrix</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+addRowTimesScalarToRow">.addRowTimesScalarToRow(r, s, k)</a> ⇒ <code>Matrix</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+transpose">.transpose()</a> ⇒ <code>Matrix</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+multiplyScalar">.multiplyScalar(k)</a> ⇒ <code>Matrix</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+negate">.negate()</a> ⇒ <code>Matrix</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+add">.add(matrix)</a> ⇒ <code>Matrix</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+sub">.sub(matrix)</a> ⇒ <code>Matrix</code></li>
+      <li><a href="./Matrix#module_Matrix..Matrix+multiply">.multiply(matrix)</a> ⇒ <code>Matrix</code></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><a name="new_module_AugmentedMatrix..AugmentedMatrix_new"></a></p>
+
+<h4 id="new-augmentedmatrixleft-right">new AugmentedMatrix(left, right)</h4>
+<p>Constructs an <code class="language-plaintext highlighter-rouge">AugmentedMatrix</code> instance, which encodes an augmented matrix.
+Input matrices are cloned and assumed to have equal number of rows.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>left</td>
+      <td><a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></td>
+      <td>The left part of the augmented matrix.</td>
+    </tr>
+    <tr>
+      <td>right</td>
+      <td><a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></td>
+      <td>The right part of the augmented matrix.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_AugmentedMatrix..AugmentedMatrix+leftMatrix"></a></p>
+
+<h4 id="augmentedmatrixleftmatrix--matrix">augmentedMatrix.leftMatrix ⇒ <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></h4>
+<p>Returns the left matrix of this augmented matrix.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Returns</strong>: <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a> - The left matrix</p>
+
+<hr />
+
+<p><a name="module_AugmentedMatrix..AugmentedMatrix+rightMatrix"></a></p>
+
+<h4 id="augmentedmatrixrightmatrix--matrix">augmentedMatrix.rightMatrix ⇒ <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a></h4>
+<p>Returns the right matrix of this augmented matrix.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Returns</strong>: <a href="./Matrix#module_Matrix..Matrix"><code>Matrix</code></a> - The right matrix</p>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+size"></a></p>
+
+<h4 id="augmentedmatrixsize--object">augmentedMatrix.size : <code>object</code></h4>
+<p>Contains the dimensions of this matrix as an object in the
+form <code class="language-plaintext highlighter-rouge">{ rows, columns }</code>.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+size"><code>size</code></a></p>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+numberOfEntries"></a></p>
+
+<h4 id="augmentedmatrixnumberofentries--number">augmentedMatrix.numberOfEntries : <code>number</code></h4>
+<p>The number of entries in this matrix.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+numberOfEntries"><code>numberOfEntries</code></a></p>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+elements"></a></p>
+
+<h4 id="augmentedmatrixelements--arrayltnumbergt">augmentedMatrix.elements : <code>Array.&lt;number&gt;</code></h4>
+<p>Stores the elements of this matrix in <strong>row-major</strong> order.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+elements"><code>elements</code></a></p>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+rows"></a></p>
+
+<h4 id="augmentedmatrixrows--arrayltarraygt">augmentedMatrix.rows ⇒ <code>Array.&lt;Array&gt;</code></h4>
+<p>Returns the rows of this matrix in an array.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+rows"><code>rows</code></a><br />
+<strong>Returns</strong>: <code>Array.&lt;Array&gt;</code> - The rows in this matrix</p>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+columns"></a></p>
+
+<h4 id="augmentedmatrixcolumns--arrayltarraygt">augmentedMatrix.columns ⇒ <code>Array.&lt;Array&gt;</code></h4>
+<p>Returns the columns of this matrix in an array.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+columns"><code>columns</code></a><br />
+<strong>Returns</strong>: <code>Array.&lt;Array&gt;</code> - The columns in this matrix</p>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+mainDiagonal"></a></p>
+
+<h4 id="augmentedmatrixmaindiagonal--arrayltnumbergt">augmentedMatrix.mainDiagonal ⇒ <code>Array.&lt;number&gt;</code></h4>
+<p>Returns the main diagonal of this matrix.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+mainDiagonal"><code>mainDiagonal</code></a><br />
+<strong>Returns</strong>: <code>Array.&lt;number&gt;</code> - The entries in the main diagonal of this matrix</p>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+clone"></a></p>
+
+<h4 id="augmentedmatrixclone--matrix">augmentedMatrix.clone() ⇒ <code>Matrix</code></h4>
+<p>Creates and returns a clone of this matrix instance.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+clone"><code>clone</code></a><br />
+<strong>Returns</strong>: <code>Matrix</code> - A clone of this instance</p>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+equals"></a></p>
+
+<h4 id="augmentedmatrixequalsmatrix--boolean">augmentedMatrix.equals(matrix) ⇒ <code>boolean</code></h4>
+<p>Checks if this matrix and another matrix are equal.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+equals"><code>equals</code></a><br />
+<strong>Returns</strong>: <code>boolean</code> - <code class="language-plaintext highlighter-rouge">true</code> if the two matrices are equal, <code class="language-plaintext highlighter-rouge">false</code> otherwise</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>matrix</td>
+      <td><code>Matrix</code></td>
+      <td>The matrix to compare this matrix to.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+entry"></a></p>
+
+<h4 id="augmentedmatrixentryi-j--number">augmentedMatrix.entry(i, j) ⇒ <code>number</code></h4>
+<p>Returns the entry in the specified row and column in this matrix.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+entry"><code>entry</code></a><br />
+<strong>Returns</strong>: <code>number</code> - The entry</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>i</td>
+      <td><code>number</code></td>
+      <td>The row that contains the entry (1-indexed).</td>
+    </tr>
+    <tr>
+      <td>j</td>
+      <td><code>number</code></td>
+      <td>The column that contains the entry (1-indexed).</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+row"></a></p>
+
+<h4 id="augmentedmatrixrowr--arrayltnumbergt">augmentedMatrix.row(r) ⇒ <code>Array.&lt;number&gt;</code></h4>
+<p>Returns a row in this matrix as a JavaScript array.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+row"><code>row</code></a><br />
+<strong>Returns</strong>: <code>Array.&lt;number&gt;</code> - The row’s entries</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>r</td>
+      <td><code>number</code></td>
+      <td>Row number (1-indexed).</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+column"></a></p>
+
+<h4 id="augmentedmatrixcolumnc--arrayltnumbergt">augmentedMatrix.column(c) ⇒ <code>Array.&lt;number&gt;</code></h4>
+<p>Returns a column in this matrix as a JavaScript array.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+column"><code>column</code></a><br />
+<strong>Returns</strong>: <code>Array.&lt;number&gt;</code> - The column’s entries</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>c</td>
+      <td><code>number</code></td>
+      <td>Column number (1-indexed).</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+leadingCoefficient"></a></p>
+
+<h4 id="augmentedmatrixleadingcoefficientr--number">augmentedMatrix.leadingCoefficient(r) ⇒ <code>number</code></h4>
+<p>Returns the leading coefficient of a row, or <code class="language-plaintext highlighter-rouge">undefined</code> if the row does
+not have a leading coefficient.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+leadingCoefficient"><code>leadingCoefficient</code></a><br />
+<strong>Returns</strong>: <code>number</code> - The leading coefficient of the row</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>r</td>
+      <td><code>number</code></td>
+      <td>Row number (1-indexed).</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+forEach"></a></p>
+
+<h4 id="augmentedmatrixforeachcallback-thisarg">augmentedMatrix.forEach(callback, thisArg)</h4>
+<p>Executes a function for each entry in this matrix. Entries are iterated in
+row-major order.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+forEach"><code>forEach</code></a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>callback</td>
+      <td><a href="./Matrix#module_Matrix..Matrix..forEach"><code>forEach</code></a></td>
+      <td>The function to execute per iteration.</td>
+    </tr>
+    <tr>
+      <td>thisArg</td>
+      <td><code>object</code></td>
+      <td>The argument to use as <code class="language-plaintext highlighter-rouge">this</code> in the function.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+forEachRow"></a></p>
+
+<h4 id="augmentedmatrixforeachrowcallback-thisarg">augmentedMatrix.forEachRow(callback, thisArg)</h4>
+<p>Executes a function for each row in this matrix.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+forEachRow"><code>forEachRow</code></a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>callback</td>
+      <td><a href="./Matrix#module_Matrix..Matrix..forEachRow"><code>forEachRow</code></a></td>
+      <td>The function to execute per iteration.</td>
+    </tr>
+    <tr>
+      <td>thisArg</td>
+      <td><code>object</code></td>
+      <td>The argument to use as <code class="language-plaintext highlighter-rouge">this</code> in the function.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+forEachColumn"></a></p>
+
+<h4 id="augmentedmatrixforeachcolumncallback-thisarg">augmentedMatrix.forEachColumn(callback, thisArg)</h4>
+<p>Executes a function for each column in this matrix.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+forEachColumn"><code>forEachColumn</code></a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>callback</td>
+      <td><a href="./Matrix#module_Matrix..Matrix..forEachColumn"><code>forEachColumn</code></a></td>
+      <td>The function to execute per iteration.</td>
+    </tr>
+    <tr>
+      <td>thisArg</td>
+      <td><code>object</code></td>
+      <td>The argument to use as <code class="language-plaintext highlighter-rouge">this</code> in the function.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+interchargeRows"></a></p>
+
+<h4 id="augmentedmatrixinterchargerowsr-s--matrix">augmentedMatrix.interchargeRows(r, s) ⇒ <code>Matrix</code></h4>
+<p>Intercharges two rows in this matrix.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+interchargeRows"><code>interchargeRows</code></a><br />
+<strong>Returns</strong>: <code>Matrix</code> - This matrix</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>r</td>
+      <td><code>number</code></td>
+      <td>First row number (1-indexed).</td>
+    </tr>
+    <tr>
+      <td>s</td>
+      <td><code>number</code></td>
+      <td>Second row number (1-indexed).</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+multiplyRowByScalar"></a></p>
+
+<h4 id="augmentedmatrixmultiplyrowbyscalarr-k--matrix">augmentedMatrix.multiplyRowByScalar(r, k) ⇒ <code>Matrix</code></h4>
+<p>Multiplies a row in this matrix by a nonzero scalar.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+multiplyRowByScalar"><code>multiplyRowByScalar</code></a><br />
+<strong>Returns</strong>: <code>Matrix</code> - This matrix</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>r</td>
+      <td><code>number</code></td>
+      <td>Row number (1-indexed).</td>
+    </tr>
+    <tr>
+      <td>k</td>
+      <td><code>number</code></td>
+      <td>The nonzero scalar to multiply the row by.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+addRowTimesScalarToRow"></a></p>
+
+<h4 id="augmentedmatrixaddrowtimesscalartorowr-s-k--matrix">augmentedMatrix.addRowTimesScalarToRow(r, s, k) ⇒ <code>Matrix</code></h4>
+<p>Adds multiples of a row to another row in this matrix.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+addRowTimesScalarToRow"><code>addRowTimesScalarToRow</code></a><br />
+<strong>Returns</strong>: <code>Matrix</code> - This matrix</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>r</td>
+      <td><code>number</code></td>
+      <td> </td>
+      <td>The row that gets added (1-indexed position).</td>
+    </tr>
+    <tr>
+      <td>s</td>
+      <td><code>number</code></td>
+      <td> </td>
+      <td>The row to multiply the scalar by and then add to row <code class="language-plaintext highlighter-rouge">r</code> (1-indexed position).</td>
+    </tr>
+    <tr>
+      <td>k</td>
+      <td><code>number</code></td>
+      <td><code>1</code></td>
+      <td>The scalar to multiply row <code class="language-plaintext highlighter-rouge">s</code> by.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+transpose"></a></p>
+
+<h4 id="augmentedmatrixtranspose--matrix">augmentedMatrix.transpose() ⇒ <code>Matrix</code></h4>
+<p>Transposes this matrix <em>in place</em>.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+transpose"><code>transpose</code></a><br />
+<strong>Returns</strong>: <code>Matrix</code> - This matrix<br />
+<strong>Todo</strong></p>
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Optimize this method by removing the medium</li>
+</ul>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+multiplyScalar"></a></p>
+
+<h4 id="augmentedmatrixmultiplyscalark--matrix">augmentedMatrix.multiplyScalar(k) ⇒ <code>Matrix</code></h4>
+<p>Multiplies this matrix by a scalar.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+multiplyScalar"><code>multiplyScalar</code></a><br />
+<strong>Returns</strong>: <code>Matrix</code> - This matrix</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>k</td>
+      <td><code>number</code></td>
+      <td>The scalar to multiply this matrix by.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+negate"></a></p>
+
+<h4 id="augmentedmatrixnegate--matrix">augmentedMatrix.negate() ⇒ <code>Matrix</code></h4>
+<p>Multiplies this matrix by -1.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+negate"><code>negate</code></a><br />
+<strong>Returns</strong>: <code>Matrix</code> - This matrix</p>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+add"></a></p>
+
+<h4 id="augmentedmatrixaddmatrix--matrix">augmentedMatrix.add(matrix) ⇒ <code>Matrix</code></h4>
+<p>Adds a matrix to this matrix.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+add"><code>add</code></a><br />
+<strong>Returns</strong>: <code>Matrix</code> - This matrix</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>matrix</td>
+      <td><code>Matrix</code></td>
+      <td>The matrix to add to this matrix.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+sub"></a></p>
+
+<h4 id="augmentedmatrixsubmatrix--matrix">augmentedMatrix.sub(matrix) ⇒ <code>Matrix</code></h4>
+<p>Subtracts a matrix from this matrix.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+sub"><code>sub</code></a><br />
+<strong>Returns</strong>: <code>Matrix</code> - This matrix</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>matrix</td>
+      <td><code>Matrix</code></td>
+      <td>The matrix to subtract this matrix to.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix..Matrix+multiply"></a></p>
+
+<h4 id="augmentedmatrixmultiplymatrix--matrix">augmentedMatrix.multiply(matrix) ⇒ <code>Matrix</code></h4>
+<p>Multiplies this matrix by another matrix. If the input matrix is not
+compatible for multiplication, return this matrix unchanged.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_AugmentedMatrix..AugmentedMatrix"><code>AugmentedMatrix</code></a><br />
+<strong>Overrides</strong>: <a href="./Matrix#module_Matrix..Matrix+multiply"><code>multiply</code></a><br />
+<strong>Returns</strong>: <code>Matrix</code> - This matrix</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>matrix</td>
+      <td><code>Matrix</code></td>
+      <td>The matrix to post-multiply this matrix to.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+
+
+        
+
+        <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+            This site is open source. <a href="https://github.com/vecma-org/lnagb.js/edit/gh-pages/docs/AugmentedMatrix.md">Improve this page</a>.
+        </div>
+
+        
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+                integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg="
+                crossorigin="anonymous"></script>
+        <script>anchors.add();</script>
+    </body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>lnagb.js | Linear Algebra in a JavaScript library</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="lnagb.js" />
+<meta name="author" content="Nguyen Hoang Duong" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Linear Algebra in a JavaScript library" />
+<meta property="og:description" content="Linear Algebra in a JavaScript library" />
+<meta property="og:site_name" content="lnagb.js" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="lnagb.js" />
+<script type="application/ld+json">
+{"url":"/lab/","author":{"@type":"Person","name":"Nguyen Hoang Duong"},"headline":"lnagb.js","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/logo.web.png"},"name":"Nguyen Hoang Duong"},"description":"Linear Algebra in a JavaScript library","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<link rel="icon" type="image/x-icon" href="//favicon.ico">
+		<link rel="icon" type="image/png" href="//favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css?v=e3cef6595df27ce80bc1cfaad0c4d58fb9f35ece">
+    </head>
+    <body>
+        <div class="container-lg px-3 my-5 markdown-body">
+
+        
+
+        <h1>
+			<a href="/">lnagb.js</a> Lab
+		</h1>
+
+        
+
+        <p><strong>Welcome to the lnagb.js Lab!</strong></p>
+
+<p>
+	This is where you can try lnagb.js directly in your browser console.
+	<noscript>
+		However, it seems that JavaScript has been disabled in your browser,
+		which makes it impossible to load a JavaScript-based library like
+		lnagb.js. Please enable JavaScript and then try again.
+	</noscript>
+	<span id="load-failed" hidden="">
+		However, it seems that lnagb.js could not be loaded. Please follow the
+		troubleshooting steps below to resolve this problem.
+	</span>
+</p>
+
+<p id="success" hidden="">
+	lnagb.js has been loaded and is currently available on this web page under
+	the namespace <code id="namespace"></code>.<br />
+	Go ahead and play around with it in the browser console.<br />
+</p>
+
+<form id="form" action="" method="get" hidden="">
+	<label for="namespace">Use a different name for the namespace:</label>
+	<input type="text" id="namespace-input" name="namespace" size="15" required="" />
+	<button type="submit">Go!</button>
+</form>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>lnagb.js is not available in the browser console? Try these troubleshooting
+steps before reporting.</p>
+
+<ul>
+  <li>Make sure that you’ve typed the namespace’s name correctly.</li>
+  <li>If JavaScript is disabled in your browser, you have to enable it in order to
+play with lnagb.js in your browser console. Consult the web if you don’t know
+how to enable JavaScript. Additionally, check if any of your browser’s add-ons
+is disabling JavaScript (globally or site-specific).</li>
+</ul>
+
+<h2 id="report">Report</h2>
+
+<p>Having troubles with the Lab? <a href="https://github.com/vecma-org/lnagb.js/issues/new">Open an issue on GitHub</a> or
+<a href="mailto:you_create@protonmail.com">send an e-mail</a>.</p>
+
+<script>
+
+	document.getElementById( 'load-failed' ).removeAttribute( 'hidden' );
+
+</script>
+
+<script type="module">
+
+	window.a = null;
+	window.b = null;
+
+	const DEFAULT_NAMESPACE_NAME = 'lnagbjs';
+
+	let url = new URL( window.location.href );
+	let namespaceName = url.searchParams.get( 'namespace' ) || DEFAULT_NAMESPACE_NAME;
+	let matchResult = namespaceName.match( /[a-zA-Z_][0-9a-zA-Z_]*/ );
+
+	// Namespace's name validity
+
+	if ( ! matchResult || matchResult[ 0 ].length !== namespaceName.length
+		|| Object.keys( window ).some( ( key ) => key === namespaceName ) ) {
+
+		console.error( "Invalid custom name for the namespace" );
+		console.info( "Falling back to the default name..." );
+
+		namespaceName = DEFAULT_NAMESPACE_NAME;
+
+	}
+
+	import * as lnagbjs from '../builds/lnagb.esm.js';
+
+	if ( lnagbjs ) {
+
+		window[ namespaceName ] = lnagbjs;
+
+		window.a = new lnagbjs.Matrix( 2, 3, [ 1, 2, 3, 4, 5, 6 ] );
+		window.b = new lnagbjs.Matrix( 3, 2, [ 7, 8, 9, 10, 11, 12 ] );
+
+		window.a.name = "A";
+		window.b.name = "B";
+
+		document.getElementById( 'namespace' ).innerHTML = namespaceName;
+
+		let suggestions = [
+
+			"a.transpose()",
+			`new ${ namespaceName }.IdentityMatrix( 3 )`,
+			"b.multiply( a )",
+			`new ${ namespaceName }.Matrix( 3, 3, [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ] )`,
+			"a.multiplyScalar( 2 )",
+			"b.addRowTimesScalarToRow( 1, 2, 3 )"
+
+		];
+
+		console.log( `lnagb.js has been loaded as '${ namespaceName }'.` );
+		console.log( "Two example matrices are available as variables a and b." );
+		console.log( `Try typing '${ suggestions[
+			Math.floor( Math.random() * suggestions.length )
+		] }'.` );
+
+		document.getElementById( 'load-failed' ).setAttribute( 'hidden', '' );
+		document.getElementById( 'success' ).removeAttribute( 'hidden' );
+		document.getElementById( 'form' ).removeAttribute( 'hidden' );
+
+	}
+
+</script>
+
+
+
+        
+
+        <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+            This site is open source. <a href="https://github.com/vecma-org/lnagb.js/edit/gh-pages/lab/index.md">Improve this page</a>.
+        </div>
+
+        
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+                integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg="
+                crossorigin="anonymous"></script>
+        <script>anchors.add();</script>
+    </body>
+</html>
