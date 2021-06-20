@@ -4,7 +4,7 @@
 Contains the [Matrix4](./Matrix#module_Matrix4..Matrix4) class, which encodes 4 x 4
 matrices in linear algebra.
 
-**Author**: Nguyen Hoang Duong / <you_create@protonmail.com>  
+**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
 
 * [Matrix4](./Matrix#module_Matrix4)
     * [~Matrix4](./Matrix#module_Matrix4..Matrix4)
@@ -17,7 +17,7 @@ matrices in linear algebra.
 <a name="module_Matrix4..Matrix4"></a>
 
 ### Matrix4~Matrix4
-Encodes 4 x 4 matrices. Has speed advantage over [Matrix](./Matrix#module_Matrix..Matrix).
+Encodes 4 x 4 matrices.
 
 **Kind**: inner class of [<code>Matrix4</code>](./Matrix#module_Matrix4)  
 **See**: [Matrix](./Matrix#module_Matrix..Matrix) for common properties  

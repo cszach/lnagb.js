@@ -4,7 +4,7 @@
 Contains the [Matrix](#module_Matrix..Matrix) class, which encodes basic matrices
 of any size in linear algebra.
 
-**Author**: Nguyen Hoang Duong / <you_create@protonmail.com>  
+**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
 
 * [Matrix](#module_Matrix)
     * [~Matrix](#module_Matrix..Matrix)
