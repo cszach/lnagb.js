@@ -5,7 +5,7 @@
  * Contains the {@link module:LinearEquation~LinearEquation} class, which encodes
  * linear equations of any number of variables.
  *
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  */
 
 /**

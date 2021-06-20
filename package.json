@@ -38,12 +38,12 @@
   ],
   "author": {
     "name": "Nguyen Hoang Duong",
-    "email": "you_create@protonmail.com"
+    "email": "novakcgx@protonmail.com"
   },
   "license": "Unlicense",
   "bugs": {
     "url": "https://github.com/cgcentral/lnagb.js/issues",
-    "email": "you_create@protonmail.com"
+    "email": "novakcgx@protonmail.com"
   },
   "homepage": "https://cgcentral.github.io/lnagb.js",
   "devDependencies": {

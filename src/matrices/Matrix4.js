@@ -1,6 +1,6 @@
 /**
  * @module Matrix4
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:Matrix4~Matrix4} class, which encodes 4 x 4

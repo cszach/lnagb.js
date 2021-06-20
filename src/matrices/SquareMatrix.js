@@ -2,7 +2,7 @@ import { Matrix } from './Matrix.js';
 
 /**
  * @module SquareMatrix
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:SquareMatrix~SquareMatrix} class, which is similar

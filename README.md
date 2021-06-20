@@ -101,7 +101,7 @@ you can access all of this anytime, anywhere, without an Internet connection.
 If you have a technical question or cannot find a specific piece of information
 on the website, the [wiki][wiki] likely has the answer. If it doesn't, post your
 question in [_Issues_][issues] and add the 'question' label to your post, or
-contact the principal author by emailing to <you_create@protonmail.com>.
+contact the principal author by emailing to <novakcgx@protonmail.com>.
 
 [wiki]: https://github.com/cgcentral/lnagb.js/wiki
 [issues]: https://github.com/cgcentral/lnagb.js/issues
