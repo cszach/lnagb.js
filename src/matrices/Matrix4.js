@@ -8,7 +8,7 @@
  */
 
 /**
- * Encodes 4 x 4 matrices. Has speed advantage over {@link module:Matrix~Matrix}.
+ * Encodes 4 x 4 matrices.
  *
  * @see {@link module:Matrix~Matrix} for common properties
  */
