@@ -1,48 +1,98 @@
-This page indexes links to lnagb.js's builds as well as its components'. These
-builds are served online and are ready to be loaded from.
+---
+---
+<p>
+	This page indexes links to lnagb.js's builds as well as its components'. It
+	is recommended that you save the files you need on your computer and load
+	from the local files instead of ones served on GitHub. Click on the
+	clipboard icon (📋) to copy a link instantly.
+</p>
 
-## The entire library
+<p>
+	lnagb.js is distributed in UMD and ESM. If these sound new for you, please
+	read <a href="https://github.com/cgcentral/lnagb.js/wiki/Library-formats">
+	this wiki page</a>.
+</p>
 
-You can load the full lnagb.js library using the `script` tag:
+<h2>The entire library</h2>
 
-```html
-<script src="https://cgcentral.github.io/lnagb.js/builds/lnagb.cjs"></script>
-```
+The full lnagb.js library contains all 3 major components and other modules.
 
-...or using the `import` statement, but note that this time the file being
-imported ends with `.esm.js`:
+<ul>
+	<li>UMD:
+		<a id="-umd" href="https://cgcentral.github.io/lnagb.js/builds/lnagb.cjs">
+			https://cgcentral.github.io/lnagb.js/builds/lnagb.cjs
+		</a>
+		<a onclick="copyLink( '', 'umd' )">📋</a>
+	</li>
+	<li>ESM:
+		<a id="-esm" href="https://cgcentral.github.io/lnagb.js/builds/lnagb.esm.js">
+			https://cgcentral.github.io/lnagb.js/builds/lnagb.esm.js
+		</a>
+		<a onclick="copyLink( '', 'esm' )">📋</a>
+	</li>
+</ul>
 
-```javascript
-import * as lnagbjs from 'https://cgcentral.github.io/lnagb.js/builds/lnagb.esm.js';
-```
+<h2>Standalone components</h2>
 
-## Standalone components
+<p>
+	If you only want to use a specific component, refer to these links instead.
+</p>
 
 {% assign components = 'equations,matrices,vectors' | split: ',' %}
 
-Alternatively, if you only want to use a certain component, like _Matrices_, you
-can use these links instead.
+<table>
+	<thead>
+		<tr>
+			<th>UMD</th>
+			<th></th>
+			<th>ESM</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for component in components %}
+			<tr>
+				<td>
+					<a id="{{ component }}-umd" href="./{{ component }}/lnagb.{{ component }}.cjs">
+						https://cgcentral.github.io/lnagb.js/builds/{{ component }}/lnagb.{{ component }}.cjs
+					</a>
+				</td>
+				<td>
+					<a onclick="copyLink( '{{ component }}', 'umd' )">
+						📋
+					</a>
+				</td>
+				<td>
+					<a id="{{ component }}-esm" href="./{{ component }}/lnagb.{{ component }}.esm.js">
+						https://cgcentral.github.io/lnagb.js/builds/{{ component }}/lnagb.{{ component }}.esm.js
+					</a>
+				</td>
+				<td>
+					<a onclick="copyLink( '{{ component }}', 'esm' )">
+						📋
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
 
-<ul>
-{% for component in components %}
-	<li>
-		<b>{{ component | capitalize }}</b>:
-		<ul>
-			<li>
-				UMD: <a href="./{{ component }}/lnagb.{{ component }}.cjs">
-					https://cgcentral.github.io/builds/{{ component }}/lnagb.{{ component }}.cjs
-				</a>
-			</li>
-			<li>
-				ESM: <a href="./{{ component }}/lnagb.{{ component }}.esm.js">
-					https://cgcentral.github.io/builds/{{ component }}/lnagb.{{ component }}.esm.js
-				</a>
-			</li>
-		</ul>
-	</li>
-{% endfor %}
-</ul>
+<script>
 
-> **Note**: _UMD_ is a format for JavaScript modules which can be loaded using
-> the HTML `<script>` tag, or as an AMD or CommonJS module. Whereas _ESM_ is a
-> format that should be loaded using the JavaScript `import` statement.
+let clipboardButtons = document.querySelectorAll( 'a[onclick]' );
+
+clipboardButtons.forEach( ( element ) => {
+
+	element.style.cursor = 'pointer';
+
+} );
+
+function copyLink( component, format ) {
+
+	let anchor = document.getElementById( `${component}-${format}` );
+
+	navigator.clipboard.writeText( anchor.innerHTML.trim() );
+
+}
+
+</script>
