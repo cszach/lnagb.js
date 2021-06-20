@@ -57,7 +57,7 @@ The full lnagb.js library contains all 3 major components and other modules.
 						https://cgcentral.github.io/lnagb.js/builds/{{ component }}/lnagb.{{ component }}.cjs
 					</a>
 				</td>
-				<td>
+				<td style="text-align: center">
 					<a onclick="copyLink( '{{ component }}', 'umd' )">
 						📋
 					</a>
@@ -67,7 +67,7 @@ The full lnagb.js library contains all 3 major components and other modules.
 						https://cgcentral.github.io/lnagb.js/builds/{{ component }}/lnagb.{{ component }}.esm.js
 					</a>
 				</td>
-				<td>
+				<td style="text-align: center">
 					<a onclick="copyLink( '{{ component }}', 'esm' )">
 						📋
 					</a>
