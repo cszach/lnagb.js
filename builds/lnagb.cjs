@@ -11,7 +11,7 @@
 	 * Contains the {@link module:LinearEquation~LinearEquation} class, which encodes
 	 * linear equations of any number of variables.
 	 *
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 */
 
 	/**
@@ -320,7 +320,7 @@
 
 	/**
 	 * @module Matrix
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Matrix~Matrix} class, which encodes basic matrices
@@ -1001,7 +1001,7 @@
 
 	/**
 	 * @module AugmentedMatrix
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:AugmentedMatrix~AugmentedMatrix} class, which
@@ -1105,7 +1105,7 @@
 
 	/**
 	 * @module SystemOfLinearEquations
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:SystemOfLinearEquations~SystemOfLinearEquations}
@@ -1304,7 +1304,7 @@
 
 	/**
 	 * @module Matrix2
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Matrix2~Matrix2} class, which encodes 2 x 2
@@ -1312,7 +1312,7 @@
 	 */
 
 	/**
-	 * Encodes 2 x 2 matrices. Has speed advantage over {@link module:Matrix~Matrix}.
+	 * Encodes 2 x 2 matrices.
 	 *
 	 * @see {@link module:Matrix~Matrix} for common properties
 	 */
@@ -1601,7 +1601,7 @@
 
 	/**
 	 * @module Matrix3
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Matrix3~Matrix3} class, which encodes 3 x 3
@@ -1609,7 +1609,7 @@
 	 */
 
 	/**
-	 * Encodes 3 x 3 matrices. Has speed advantage over {@link module:Matrix~Matrix}.
+	 * Encodes 3 x 3 matrices.
 	 *
 	 * @see {@link module:Matrix~Matrix} for common properties
 	 */
@@ -1953,7 +1953,7 @@
 
 	/**
 	 * @module Matrix4
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Matrix4~Matrix4} class, which encodes 4 x 4
@@ -1961,7 +1961,7 @@
 	 */
 
 	/**
-	 * Encodes 4 x 4 matrices. Has speed advantage over {@link module:Matrix~Matrix}.
+	 * Encodes 4 x 4 matrices.
 	 *
 	 * @see {@link module:Matrix~Matrix} for common properties
 	 */
@@ -2338,7 +2338,7 @@
 
 	/**
 	 * @module SquareMatrix
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:SquareMatrix~SquareMatrix} class, which is similar
@@ -2389,7 +2389,7 @@
 
 	/**
 	 * @module IdentityMatrix
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:IdentityMatrix~IdentityMatrix} class, which
@@ -2621,7 +2621,7 @@
 	 * Contains the {@link module:MatrixTranspose~MatrixTranspose} class, which
 	 * storage-efficiently encodes transpositions.
 	 *
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 */
 
 	/**
@@ -2907,7 +2907,7 @@
 
 	/**
 	 * @module Vector
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Vector~Vector} class, which encodes vector
@@ -3089,7 +3089,7 @@
 
 	/**
 	 * @module Vector2
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Vector2~Vector2} class, which encodes 2-vectors.
@@ -3183,7 +3183,7 @@
 
 	/**
 	 * @module Vector3
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Vector3~Vector3} class, which encodes 3-vectors.
@@ -3303,7 +3303,7 @@
 
 	/**
 	 * @module Vector4
-	 * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+	 * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
 	 * @description
 	 *
 	 * Contains the {@link module:Vector4~Vector4} class, which encodes 4-vectors.

@@ -5,7 +5,7 @@
  * Contains the {@link module:LinearEquation~LinearEquation} class, which encodes
  * linear equations of any number of variables.
  *
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  */
 
 /**
@@ -314,7 +314,7 @@ class LinearEquation3 {
 
 /**
  * @module Matrix
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:Matrix~Matrix} class, which encodes basic matrices
@@ -995,7 +995,7 @@ class Matrix {
 
 /**
  * @module AugmentedMatrix
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:AugmentedMatrix~AugmentedMatrix} class, which
@@ -1099,7 +1099,7 @@ AugmentedMatrix.prototype.multiply = undefined;
 
 /**
  * @module SystemOfLinearEquations
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:SystemOfLinearEquations~SystemOfLinearEquations}
