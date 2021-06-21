@@ -1,7 +1,8 @@
 # Project
 
-/docs/
-/coverage/
+/doc
+/lib
+/coverage
 
 # npm stuff
 
