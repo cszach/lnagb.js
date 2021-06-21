@@ -4,7 +4,7 @@ import { AugmentedMatrix } from "../matrices/AugmentedMatrix.js";
 
 /**
  * @module SystemOfLinearEquations
- * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
+ * @author Novak / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:SystemOfLinearEquations~SystemOfLinearEquations}

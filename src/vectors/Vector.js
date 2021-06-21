@@ -1,6 +1,6 @@
 /**
  * @module Vector
- * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
+ * @author Novak / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:Vector~Vector} class, which encodes vector

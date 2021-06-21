@@ -1,6 +1,6 @@
 /**
  * @module Vector4
- * @author Nguyen Hoang Duong / <novakcgx@protonmail.com>
+ * @author Novak / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:Vector4~Vector4} class, which encodes 4-vectors.
