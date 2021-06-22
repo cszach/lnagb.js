@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>lnagb.js | Linear Algebra in a JavaScript library</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="lnagb.js" />
+<meta name="author" content="Nguyen Hoang Duong" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Linear Algebra in a JavaScript library" />
+<meta property="og:description" content="Linear Algebra in a JavaScript library" />
+<meta property="og:site_name" content="lnagb.js" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="lnagb.js" />
+<script type="application/ld+json">
+{"url":"/docs/","author":{"@type":"Person","name":"Nguyen Hoang Duong"},"headline":"lnagb.js","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/logo.web.png"},"name":"Nguyen Hoang Duong"},"description":"Linear Algebra in a JavaScript library","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<link rel="icon" type="image/x-icon" href="//favicon.ico">
+		<link rel="icon" type="image/png" href="//favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css?v=26d98a8441b7fc5d5db589896c718544882bc7f4">
+    </head>
+    <body>
+        <div class="container-lg px-3 my-5 markdown-body">
+
+        
+
+        <h1>
+			<a href="/">lnagb.js</a> Docs
+		</h1>
+
+        
+
+        <p><strong>Welcome to the lnagb.js documentation!</strong></p>
+
+<p>The goal of the documentation is to provide, in great details, information on
+how to use all of lnagb.js’s functions, classes, and their methods. The pages
+in this documentation are generated from the docstrings placed along with the
+source code of lnagb.js itself using <a href="https://github.com/jsdoc2md/jsdoc-to-markdown"><code class="language-plaintext highlighter-rouge">jsdoc-to-markdown</code></a>. The
+documentation can be generated with</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span> <span class="c"># Install dependencies</span>
+npm run build-docs <span class="c"># Build the documentation</span>
+</code></pre></div></div>
+
+<h2 id="index">Index</h2>
+
+<p>The whole lnagb.js library is composed of modules. Structurally, the library
+contains 3 modules named <strong>Equations</strong>, <strong>Matrices</strong>, and <strong>Vectors</strong>, along
+with minor modules such as <code class="language-plaintext highlighter-rouge">Functions.js</code>. Each of the major 3 modules contains
+sub-modules, each containing a class that encodes the properties and operations
+attributed to a mathematical symbol in linear algebra. (e.g. the <code class="language-plaintext highlighter-rouge">Vector</code>
+sub-module of <code class="language-plaintext highlighter-rouge">Vectors</code> contains the <code class="language-plaintext highlighter-rouge">Vector</code> class, which encodes the
+properties and operations of vector quantities).</p>
+
+<h3 id="equations"><a href="./Equations.html">Equations</a></h3>
+
+<p>This module contains sub-modules which have JavaScript classes for representing
+linear equations and linear systems.</p>
+
+<table>
+	<thead>
+		<tr>
+			<th style="text-align: center">Module</th>
+			<th style="text-align: left">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/LinearEquation">
+						LinearEquation
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">LinearEquation</code> class, which encodes linear equations of any number of variables.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/LinearEquation2">
+						LinearEquation2
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">LinearEquation2</code> class, which encodes linear equations with 2 variables.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/LinearEquation3">
+						LinearEquation3
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">LinearEquation3</code> class, which encodes linear equations with 3 variables.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/LinearEquation4">
+						LinearEquation4
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">LinearEquation2</code> class, which encodes linear equations with 4 variables.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/SystemOfLinearEquations">
+						SystemOfLinearEquations
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">SystemOfLinearEquations</code> class, which encodes systems of linear equations.
+
+				</td>
+			</tr>
+		
+	</tbody>
+</table>
+
+<h3 id="matrices"><a href="./Matrices.html">Matrices</a></h3>
+
+<p>This module contains sub-modules for working with matrices. Currently supported
+operations include transposition, elementary row operations, and multiplication.</p>
+
+<table>
+	<thead>
+		<tr>
+			<th style="text-align: center">Module</th>
+			<th style="text-align: left">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/Matrix">
+						Matrix
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">Matrix</code> class, which encodes basic matrices of any size in linear algebra.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/Matrix2">
+						Matrix2
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">Matrix2</code> class, which encodes 2 x 2 matrices in linear algebra.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/Matrix3">
+						Matrix3
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">Matrix3</code> class, which encodes 3 x 3 matrices in linear algebra.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/Matrix4">
+						Matrix4
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">Matrix4</code> class, which encodes 4 x 4 matrices in linear algebra.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/SquareMatrix">
+						SquareMatrix
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">SquareMatrix</code> class, which is similar to the <code class="language-plaintext highlighter-rouge">Matrix</code> class but only encodes square matrices.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/IdentityMatrix">
+						IdentityMatrix
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">IdentityMatrix</code> class, which encodes read-only identity matrices.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/AugmentedMatrix">
+						AugmentedMatrix
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">AugmentedMatrix</code> class, which encodes augmented matrices.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/MatrixTranspose">
+						MatrixTranspose
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">MatrixTranspose</code> class, which storage-efficiently encodes transpositions.
+
+				</td>
+			</tr>
+		
+	</tbody>
+</table>
+
+<h3 id="vectors"><a href="./Vectors.html">Vectors</a></h3>
+
+<p>This module contains sub-modules that contain vector classes. Basic vector
+operations such as addition, subtraction, and dot/cross multiplication are
+implemented within these classes.</p>
+
+<table>
+	<thead>
+		<tr>
+			<th style="text-align: center">Module</th>
+			<th style="text-align: left">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/Vector">
+						Vector
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">Vector</code> class, which encodes vector quantities of any number of entries in linear algebra.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/Vector2">
+						Vector2
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">Vector2</code> class, which encodes 2-vectors.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/Vector3">
+						Vector3
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">Vector3</code> class, which encodes 3-vectors.
+
+				</td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center">
+					<a href="/docs/Vector4">
+						Vector4
+					</a>
+				</td>
+				<td style="text-align: left">
+					Contains the <code class="language-plaintext highlighter-rouge">Vector4</code> class, which encodes 4-vectors.
+
+				</td>
+			</tr>
+		
+	</tbody>
+</table>
+
+<h2 id="report">Report</h2>
+
+<p>Found a mistake in the docs? Have questions? <a href="https://github.com/cgcentral/lnagb.js/issues/new">Open an issue</a> or
+<a href="mailto:you_create@protonmail.com">send an e-mail</a>.</p>
+
+
+
+        
+
+        <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+            This site is open source. <a href="https://github.com/vecma-org/lnagb.js/edit/gh-pages/docs/index.md">Improve this page</a>.
+        </div>
+
+        
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+                integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg="
+                crossorigin="anonymous"></script>
+        <script>anchors.add();</script>
+    </body>
+</html>

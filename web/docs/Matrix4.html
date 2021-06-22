@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>lnagb.js | Linear Algebra in a JavaScript library</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="lnagb.js" />
+<meta name="author" content="Nguyen Hoang Duong" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Linear Algebra in a JavaScript library" />
+<meta property="og:description" content="Linear Algebra in a JavaScript library" />
+<meta property="og:site_name" content="lnagb.js" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="lnagb.js" />
+<script type="application/ld+json">
+{"url":"/docs/Matrix4.html","author":{"@type":"Person","name":"Nguyen Hoang Duong"},"headline":"lnagb.js","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/logo.web.png"},"name":"Nguyen Hoang Duong"},"description":"Linear Algebra in a JavaScript library","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<link rel="icon" type="image/x-icon" href="//favicon.ico">
+		<link rel="icon" type="image/png" href="//favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css?v=26d98a8441b7fc5d5db589896c718544882bc7f4">
+    </head>
+    <body>
+        <div class="container-lg px-3 my-5 markdown-body">
+
+        
+
+        <h1>
+			<a href="/">lnagb.js</a> Docs
+		</h1>
+
+        
+
+        <p><a name="module_Matrix4"></a></p>
+
+<h2 id="matrix4">Matrix4</h2>
+<p>Contains the <a href="./Matrix#module_Matrix4..Matrix4">Matrix4</a> class, which encodes 4 x 4
+matrices in linear algebra.</p>
+
+<p><strong>Author</strong>: Nguyen Hoang Duong / <a href="mailto:novakcgx@protonmail.com">novakcgx@protonmail.com</a></p>
+
+<ul>
+  <li><a href="./Matrix#module_Matrix4">Matrix4</a>
+    <ul>
+      <li><a href="./Matrix#module_Matrix4..Matrix4">~Matrix4</a>
+        <ul>
+          <li><a href="#new_module_Matrix4..Matrix4_new">new Matrix4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p)</a></li>
+          <li><a href="./Matrix#module_Matrix4..Matrix4+multiply">.multiply(matrix)</a> ⇒ <code>Matrix4</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><a name="module_Matrix4..Matrix4"></a></p>
+
+<h3 id="matrix4matrix4">Matrix4~Matrix4</h3>
+<p>Encodes 4 x 4 matrices.</p>
+
+<p><strong>Kind</strong>: inner class of <a href="./Matrix#module_Matrix4"><code>Matrix4</code></a><br />
+<strong>See</strong>: <a href="./Matrix#module_Matrix..Matrix">Matrix</a> for common properties</p>
+
+<ul>
+  <li><a href="./Matrix#module_Matrix4..Matrix4">~Matrix4</a>
+    <ul>
+      <li><a href="#new_module_Matrix4..Matrix4_new">new Matrix4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p)</a></li>
+      <li><a href="./Matrix#module_Matrix4..Matrix4+multiply">.multiply(matrix)</a> ⇒ <code>Matrix4</code></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><a name="new_module_Matrix4..Matrix4_new"></a></p>
+
+<h4 id="new-matrix4a-b-c-d-e-f-g-h-i-j-k-l-m-n-o-p">new Matrix4(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p)</h4>
+<p>All parameters are optional and default to 0.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>a</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (1, 1)-entry of the new 4 x 4 matrix</td>
+    </tr>
+    <tr>
+      <td>b</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (1, 2)-entry</td>
+    </tr>
+    <tr>
+      <td>c</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (1, 3)-entry</td>
+    </tr>
+    <tr>
+      <td>d</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (1, 4)-entry</td>
+    </tr>
+    <tr>
+      <td>e</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (2, 1)-entry</td>
+    </tr>
+    <tr>
+      <td>f</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (2, 2)-entry</td>
+    </tr>
+    <tr>
+      <td>g</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (2, 3)-entry</td>
+    </tr>
+    <tr>
+      <td>h</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (2, 4)-entry</td>
+    </tr>
+    <tr>
+      <td>i</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (3, 1)-entry</td>
+    </tr>
+    <tr>
+      <td>j</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (3, 2)-entry</td>
+    </tr>
+    <tr>
+      <td>k</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (3, 3)-entry</td>
+    </tr>
+    <tr>
+      <td>l</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (3, 4)-entry</td>
+    </tr>
+    <tr>
+      <td>m</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (4, 1)-entry</td>
+    </tr>
+    <tr>
+      <td>n</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (4, 2)-entry</td>
+    </tr>
+    <tr>
+      <td>o</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (4, 3)-entry</td>
+    </tr>
+    <tr>
+      <td>p</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+      <td>The (4, 4)-entry</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Matrix4..Matrix4+multiply"></a></p>
+
+<h4 id="matrix4multiplymatrix--matrix4">matrix4.multiply(matrix) ⇒ <code>Matrix4</code></h4>
+<p>Multiplies this matrix by another 4 x 4 matrix.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="./Matrix#module_Matrix4..Matrix4"><code>Matrix4</code></a><br />
+<strong>Returns</strong>: <code>Matrix4</code> - This matrix</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>matrix</td>
+      <td><code>matrix</code></td>
+      <td>The 4 x 4 matrix to post-multiply this matrix to.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+
+
+        
+
+        <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+            This site is open source. <a href="https://github.com/vecma-org/lnagb.js/edit/gh-pages/docs/Matrix4.md">Improve this page</a>.
+        </div>
+
+        
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+                integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg="
+                crossorigin="anonymous"></script>
+        <script>anchors.add();</script>
+    </body>
+</html>
