@@ -1,5 +1,5 @@
-_site
-bundle/
+/_site/
+/bundle/
 /build/
-/coverage
+/coverage/
 /node_modules/
