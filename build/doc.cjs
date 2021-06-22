@@ -12,14 +12,19 @@
 const jsdoc2md = require( 'jsdoc-to-markdown' );
 const fs = require( 'fs' );
 
-let files = process.argv[ 2 ].replace( /\/*$/gi, '' );
-let outputDir = process.argv[ 3 ].replace( /\/*$/gi, '' );
+let files = 'src/**/*.js';
+let outputDir = 'doc';
 
 let modules;
 
 fs.mkdirSync( outputDir, { recursive: true } );
 jsdoc2md.getTemplateData( { files, "no-cache": true } ).then( processData );
 
+/**
+ * Process and render Markdown documents.
+ *
+ * @param {object[]} data The JSDoc data collected from files.
+ */
 function processData( data ) {
 
 	// Fetch modules
