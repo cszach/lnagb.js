@@ -11,4 +11,4 @@ Found a mistake? Something was confusing? Have questions? Want to contribute to
 the Classroom? [Open an issue][gh new issue] or [send an e-mail][e-mail].
 
 [gh new issue]: https://github.com/cgcentral/lnagb.js/issues/new
-[e-mail]: mailto:you_create@protonmail.com
+[e-mail]: mailto:novakcgx@protonmail.com
