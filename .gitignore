@@ -1,17 +1,6 @@
-# Project
-
-/coverage
-
-# npm stuff
-
+/coverage/
 node_modules/
-
-# Media stuff
-
 /media/**/breakpoints
 /media/**/inkscape-svg
-
-# Jekyll stuff
-
-/_site
-/bundle
+/_site/
+/bundle/
