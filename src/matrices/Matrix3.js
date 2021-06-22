@@ -1,6 +1,6 @@
 /**
  * @module Matrix3
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Novak / <novakcgx@protonmail.com>
  * @description
  *
  * Contains the {@link module:Matrix3~Matrix3} class, which encodes 3 x 3

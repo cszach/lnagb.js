@@ -1,22 +1,30 @@
 {
   "name": "lnagb.js",
-  "description": "Linear Algebra in a JavaScript library",
+  "description": "Educational linear algebra environment powered by the Web",
   "type": "module",
-  "main": "./build/lnagb.cjs",
+  "main": "build/lnagb.cjs",
   "exports": {
-    "require": "./build/lnagb.cjs",
-    "import": "./build/lnagb.esm.js"
+    "require": "build/lnagb.cjs",
+    "import": "build/lnagb.esm.js"
   },
   "files": [
     "build/lnagb.js",
-    "build/lnagb.esm.js"
+    "build/lnagb.esm.js",
+    "UNLICENSE",
+    "package.json",
+    "README.md",
+    "src"
   ],
+  "directories": {
+    "lib": "lib",
+    "doc": "doc",
+    "test": "test"
+  },
   "scripts": {
     "mocha": "mocha --file test/unit/setup.cjs --require chai/register-assert --recursive",
     "test": "c8 npm run mocha",
-    "build": "rollup -c utils/rollup.config.js",
-    "build-components": "rollup -c utils/rollup-components.config.js",
-    "build-docs": "node utils/build-docs.cjs 'src/**/*.js' 'docs'"
+    "build": "rollup -c build/rollup.config.js",
+    "doc": "node build/doc.cjs 'src/**/*.js' 'doc'"
   },
   "c8": {
     "checkCoverage": true,
@@ -33,17 +41,22 @@
   },
   "keywords": [
     "linear-algebra",
+    "mathematics",
+    "math",
+    "equations",
+    "vectors",
+    "matrices",
     "javascript",
     "educational"
   ],
   "author": {
-    "name": "Nguyen Hoang Duong",
-    "email": "you_create@protonmail.com"
+    "name": "Novak",
+    "email": "novakcgx@protonmail.com"
   },
   "license": "Unlicense",
   "bugs": {
     "url": "https://github.com/cgcentral/lnagb.js/issues",
-    "email": "you_create@protonmail.com"
+    "email": "novakcgx@protonmail.com"
   },
   "homepage": "https://cgcentral.github.io/lnagb.js",
   "devDependencies": {
@@ -57,6 +70,7 @@
     "mocha": "^8.4.0",
     "mocha-suppress-logs": "^0.2.0",
     "node": "^13.14.0",
-    "rollup": "^2.50.5"
+    "rollup": "^2.50.5",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }

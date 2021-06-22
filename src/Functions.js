@@ -1,6 +1,6 @@
 /**
  * @module Functions
- * @author Nguyen Hoang Duong / <you_create@protonmail.com>
+ * @author Novak / <novakcgx@protonmail.com>
  * @description
  *
  * Contains basic operations and functions for dealing with algebra.
