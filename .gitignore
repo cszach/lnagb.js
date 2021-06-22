@@ -1,7 +1,5 @@
 # Project
 
-/doc
-/lib
 /coverage
 
 # npm stuff
@@ -17,4 +15,3 @@ node_modules/
 
 /_site
 /bundle
-/web
