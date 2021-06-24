@@ -1,5 +1,3 @@
----
----
 <p>
 	This page indexes links to lnagb.js's builds as well as its components'. It
 	is recommended that you save the files you need on your computer and load

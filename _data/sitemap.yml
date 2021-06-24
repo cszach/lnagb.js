@@ -1,0 +1,12 @@
+- name: Download
+  description: Download your next linear algebra learning environment today.
+- name: Tutorial
+  description: A step-by-step introduction to lnagb.js.
+- name: Documentation
+  description: Detailed and formal documentation of the lnagb.js library.
+- name: Examples
+  description: Example code and projects that are using lnagb.js.
+- name: Classroom
+  description: Learn linear algebra from ground zero and use lnagb.js along.
+- name: Lab
+  description: Try lnagb.js in your browser.

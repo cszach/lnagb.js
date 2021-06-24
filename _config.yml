@@ -6,11 +6,11 @@ theme: jekyll-theme-primer
 
 # SEO
 
-tagline: Linear Algebra in a JavaScript library
-description: Linear Algebra in a JavaScript library
+tagline: Educational linear algebra environment powered by the Web
+description: Educational linear algebra environment powered by the Web
 logo: logo.web.png
 author:
-  name: Nguyen Hoang Duong
+  name: Novak
   email: novakcgx@protonmail.com
 social:
   name: lnagb.js
@@ -29,23 +29,23 @@ exclude: [bundle,node_modules]
 defaults:
   -
     scope:
-      path: "docs"
+      path: "doc"
     values:
-      area: "Docs"
+      section: "Documentation"
   -
     scope:
-      path: "learn"
+      path: "classroom"
     values:
-      area: "Learning Area"
+      section: "Classroom"
   -
     scope:
       path: "lab"
     values:
-      area: "Lab"
+      section: "Lab"
   -
     scope:
-      path: "builds"
+      path: "wiki"
     values:
-      area: "Builds"
+      section: "Wiki"
 
 disable_disk_cache: true

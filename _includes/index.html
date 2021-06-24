@@ -8,16 +8,16 @@
 	<tbody>
 		{% assign modules = include.data %}
 		{% for module in modules %}
-			<tr>
-				<td style="text-align: center">
-					<a href="{{ '/docs/' | absolute_url }}{{ module.name }}">
-						{{ module.name }}
-					</a>
-				</td>
-				<td style="text-align: left">
-					{{ module.description | markdownify | remove: '<p>' | remove: '</p>' }}
-				</td>
-			</tr>
+		<tr>
+			<td style="text-align: center">
+				<a href="{{ '/doc/' | absolute_url }}{{ module.name }}">
+					{{ module.name }}
+				</a>
+			</td>
+			<td style="text-align: left">
+				{{ module.description | markdownify | remove: '<p>' | remove: '</p>' }}
+			</td>
+		</tr>
 		{% endfor %}
 	</tbody>
 </table>
