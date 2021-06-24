@@ -1,3 +1,7 @@
+/lib/lnagb.equations.*js
+/lib/lnagb.matrices.*js
+/lib/lnagb.vectors.*js
+/lib/umd/
 /coverage/
 node_modules/
 /media/**/breakpoints
