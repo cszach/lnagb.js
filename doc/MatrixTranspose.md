@@ -4,7 +4,7 @@
 Contains the [MatrixTranspose](./Matrix#module_MatrixTranspose..MatrixTranspose) class, which
 storage-efficiently encodes transpositions.
 
-**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
+**Author**: Novak / <novakcgx@protonmail.com>  
 
 * [MatrixTranspose](./Matrix#module_MatrixTranspose)
     * [~MatrixTranspose](./Matrix#module_MatrixTranspose..MatrixTranspose)

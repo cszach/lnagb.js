@@ -4,7 +4,7 @@
 Contains the [Matrix3](./Matrix#module_Matrix3..Matrix3) class, which encodes 3 x 3
 matrices in linear algebra.
 
-**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
+**Author**: Novak / <novakcgx@protonmail.com>  
 
 * [Matrix3](./Matrix#module_Matrix3)
     * [~Matrix3](./Matrix#module_Matrix3..Matrix3)

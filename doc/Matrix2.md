@@ -4,7 +4,7 @@
 Contains the [Matrix2](./Matrix#module_Matrix2..Matrix2) class, which encodes 2 x 2
 matrices in linear algebra.
 
-**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
+**Author**: Novak / <novakcgx@protonmail.com>  
 
 * [Matrix2](./Matrix#module_Matrix2)
     * [~Matrix2](./Matrix#module_Matrix2..Matrix2)

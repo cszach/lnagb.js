@@ -4,7 +4,7 @@
 Contains the [IdentityMatrix](#module_IdentityMatrix..IdentityMatrix) class, which
 encodes read-only identity matrices.
 
-**Author**: Nguyen Hoang Duong / <novakcgx@protonmail.com>  
+**Author**: Novak / <novakcgx@protonmail.com>  
 
 * [IdentityMatrix](#module_IdentityMatrix)
     * [~IdentityMatrix](#module_IdentityMatrix..IdentityMatrix)
