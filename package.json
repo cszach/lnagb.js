@@ -23,8 +23,8 @@
   "scripts": {
     "mocha": "mocha --file test/unit/setup.cjs --require chai/register-assert --recursive",
     "test": "c8 npm run mocha",
-    "build": "rollup -c build/rollup.config.js",
-    "doc": "node build/doc.cjs"
+    "build": "rollup --config",
+    "doc": "node doc/compile.cjs"
   },
   "c8": {
     "checkCoverage": true,
