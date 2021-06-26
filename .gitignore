@@ -1,20 +1,10 @@
-# Project
-
-/doc
-/lib
-/coverage
-
-# npm stuff
-
+/lib/lnagb.equations.*js
+/lib/lnagb.matrices.*js
+/lib/lnagb.vectors.*js
+/lib/umd/
+/coverage/
 node_modules/
-
-# Media stuff
-
 /media/**/breakpoints
 /media/**/inkscape-svg
-
-# Jekyll stuff
-
-/_site
-/bundle
-/web
+/_site/
+/bundle/

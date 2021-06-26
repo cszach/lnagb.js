@@ -58,11 +58,12 @@ git clone https://github.com/cgcentral/lnagb.js.git
 In the lnagb.js folder on your computer:
 - `src` contains the source code, which can be studied if you're a computer
   science student who also wishes to create a linear algebra program.
+- `test/unit` contains unit tests for the library.
+- `lib` contains the compiled library, uncompressed and compressed.
+- `doc` contains the formal detailed Markdown documentation of the library.
 - `web` contains the whole website, which can normally be accessed online at
   <https://cgcentral.github.io/lnagb.js>, but since this is on your computer,
-  you access it even without an Internet connection.
-- `web/builds` contains the lnagb.js JavaScript library.
-- `web/examples` contains example JavaScript files that use the library.
+  you can access it even without an Internet connection.
 
 To access the website offline, you need to start a local server. If you have
 Python 3 installed, you can move into the `web` directory and execute:
@@ -113,7 +114,7 @@ This is a simple example of how you can perform matrix-vector multiplication
 using lnagb.js.
 
 ```javascript
-import { Matrix, Vector } from 'https://cgcentral.github.io/lnagb.js/builds/lnagb.esm.js';
+import { Matrix, Vector } from 'https://cgcentral.github.io/lnagb.js/builds/lnagb.js';
 
 // Construct a 3 x 4 matrix
 let matrix = new Matrix( 3, 4, [
