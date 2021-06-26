@@ -11,7 +11,7 @@ function copyLink( id, button ) {
 	let buttonOuterHTML = button.outerHTML;
 	navigator.clipboard.writeText( link );
 	button.innerHTML = "👍";
-	button.style.cursor = 'none';
+	button.style.cursor = 'default';
 	setTimeout( () => {
 		button.innerHTML = "📋";
 		button.style.cursor = 'pointer';
