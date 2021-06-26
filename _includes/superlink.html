@@ -1,0 +1,10 @@
+<div class="language-plaintext highlighter-rouge"
+	 oncontextmenu="copySuperLink( '{{ include.id }}', {{ include.download }} ); return false"
+	 title="Left click to {% if include.download %}download{% else %}open{% endif %}, right click to copy">
+	<div class="highlight">
+		<pre class="highlight"><code id="{{ include.id }}"><a
+			href="{{ include.link }}"
+			{% if include.download %}download{% endif %}
+			>{{ include.link }}</a></code></pre>
+	</div>
+</div>

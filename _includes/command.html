@@ -1,0 +1,8 @@
+<div class="language-{{ include.language }} highlighter-rouge"
+     onclick="copyCommand( '{{ include.id }}' )"
+	 oncontextmenu="copyCommand( '{{ include.id }}' ); return false"
+	 title="Click to copy">
+	<div class="highlight">
+		<pre class="highlight"><code id="{{ include.id }}">{{ include.code }}</code></pre>
+	</div>
+</div>
