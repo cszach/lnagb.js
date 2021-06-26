@@ -1,4 +1,5 @@
 module.exports = {
+	"plugins": [ "eslint-plugin-html" ],
 	"env": {
 		"browser": true,
 		"es6": true,
