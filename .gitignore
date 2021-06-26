@@ -1,6 +1,6 @@
 .jekyll-metadata
+/doc/compile.cjs
 /_site/
 /bundle/
-/build/
 /coverage/
 /node_modules/
