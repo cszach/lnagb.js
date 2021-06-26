@@ -29,6 +29,11 @@ exclude: [bundle,node_modules]
 defaults:
   -
     scope:
+      path: "download"
+    values:
+      section: "Download"
+  -
+    scope:
       path: "doc"
     values:
       section: "Documentation"
