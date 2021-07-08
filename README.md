@@ -25,7 +25,9 @@
     </a>
 </p>
 
-![](media/wordmark/png/wordmark-pad.png)
+
+![lnagbjs_websafe](https://user-images.githubusercontent.com/29008608/124381854-c9bf0b80-dcee-11eb-8e88-d93412d3be37.png)
+
 
 Started out as a bunch of JavaScript files coded to learn how linear equations
 and matrices could be digitally represented, **lnagb.js** (<b>l</b>i<b>n</b>ear
