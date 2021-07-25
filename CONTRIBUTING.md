@@ -202,6 +202,8 @@ There are 3 Git branches in our GitHub repository, which are
 
 ### Workflow
 
+![workflow](https://user-images.githubusercontent.com/24489228/126899295-f83cd362-02ff-4bf0-bf3f-02a398fa0e1b.png)
+
 The workflow, illustrated above, is simple enough:
 
 1. Developers work on the lnagb.js library in the dev branch. **When a new
