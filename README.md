@@ -25,13 +25,11 @@
     </a>
 </p>
 
-
-![lnagbjs_websafe](https://user-images.githubusercontent.com/29008608/124381854-c9bf0b80-dcee-11eb-8e88-d93412d3be37.png)
-
+![](media/wordmark/png/wordmark-pad.png)
 
 Started out as a bunch of JavaScript files coded to learn how linear equations
 and matrices could be digitally represented, **lnagb.js** (<b>l</b>i<b>n</b>ear
-<b>a</b>l<b>g</b>e<b>b</b>ra dot JS) has now evolved into a learning ecosystem
+<b>a</b>l<b>g</b>e<b>b</b>ra dot JS) has now evolved into a learning environment
 where math and computer science students alike can come and study linear algebra
 as well as how it can be programmed on a computer.
 
@@ -138,6 +136,26 @@ let vector = new Vector( [
 let product = matrix.multiply( vector );
 console.log( product.elements ); // [ - 7, 0, - 6 ]
 ```
+
+:dancers: Contribute to lnagb.js
+--------------------------------
+
+Join us and help build a community of linear algebraists! Whether you are a
+coder, a designer, a writer, a math lover, or a student of computer science,
+there are improvements you can help make! We do our best to surround our
+contributors with help and support, so here are resources made for you:
+
+- [Contributing guidelines](CONTRIBUTING.md)&mdash;**Read this first!** This
+  document outlines the project so you can navigate around easier. Takes 5 mins
+  to read.
+- [Project boards](https://github.com/cgcentral/lnagb.js/projects) pin specific
+  tasks you can help with by project component.
+- The [wiki](https://github.com/cgcentral/lnagb.js/wiki) has further specific
+  guidelines you should follow when making changes.
+
+![](https://user-images.githubusercontent.com/29008608/124381854-c9bf0b80-dcee-11eb-8e88-d93412d3be37.png)
+
+<sup>_Render by [HoangTheBoss](http://links.hoangtheboss.xyz/)._</sup>
 
 :page_with_curl: License
 ------------------------
