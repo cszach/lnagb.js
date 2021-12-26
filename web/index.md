@@ -11,8 +11,7 @@ multiplication, elementary row operations, transposition, and more.
 
 **lnagb.js is free software.** Its source code can be browsed [here][repo].
 
-[repo]: https://github.com/cgcentral/lnagb.js
-[linearalgebra]: https://cgcentral.github.io/linearalgebra
+[repo]: https://github.com/novakcgx/lnagb.js
 
 Site map
 --------
