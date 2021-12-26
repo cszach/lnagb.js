@@ -10,37 +10,34 @@ their operations, such as matrix reduction, Gaussian elimination, matrix
 multiplication, elementary row operations, transposition, and more.
 
 **lnagb.js is free software.** Its source code can be browsed [here][repo].
-lnagb.js is a core work of the [Division of Linear Algebra][linearalgebra] at
-the [Computer Graphics Central][cgcentral].
 
 [repo]: https://github.com/cgcentral/lnagb.js
 [linearalgebra]: https://cgcentral.github.io/linearalgebra
-[cgcentral]: https://cgcentral.github.io
 
 Site map
 --------
 
 <table>
-    <thead>
-        <tr>
-            <th style="text-align: center">Page</th>
-            <th style="text-align: left">Description</th>
-        </tr>
-    </thead>
-    <tbody>
+  <thead>
+    <tr>
+      <th style="text-align: center">Page</th>
+      <th style="text-align: left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for section in site.data.sitemap %}
-        <tr>
-            <td style="text-align: center">
-                <a href="{{ section.name | replace: ' ', '-' | downcase }}">
-                    <b>{{ section.name }}</b>
-                </a>
-            </td>
-            <td style="text-align: left">
-                {{ section.description }}
-            </td>
-        </tr>
+      <tr>
+        <td style="text-align: center">
+          <a href="{{ section.name | replace: ' ', '-' | downcase }}">
+            <b>{{ section.name }}</b>
+          </a>
+        </td>
+        <td style="text-align: left">
+          {{ section.description }}
+        </td>
+      </tr>
     {% endfor %}
-    </tbody>
+  </tbody>
 </table>
 
 License
@@ -65,7 +62,7 @@ You can check out his projects on GitHub [@novakcgx][github] or visit his
 [website][website].
 
 [github]: https://github.com/novakcgx
-[website]: https://novakcgx.github.io
+[website]: https://novakcgx.me
 
 About this website
 ------------------
