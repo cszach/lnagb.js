@@ -4,3 +4,4 @@
 /bundle/
 /coverage/
 /node_modules/
+/media/**/inkscape-svg/
