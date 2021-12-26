@@ -68,4 +68,4 @@ About this website
 
 This website is generated thanks to [GitHub Pages](https://pages.github.com/)
 and [Jekyll](https://jekyllrb.com/). Files that are used to compile this website
-can be browsed [here](https://github.com/cgcentral/lnagb.js/tree/gh-pages).
+can be browsed [here](https://github.com/novakcgx/lnagb.js/tree/gh-pages).
