@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>lnagb.js | Educational linear algebra environment powered by the Web</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="lnagb.js" />
+<meta name="author" content="Novak" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Educational linear algebra environment powered by the Web" />
+<meta property="og:description" content="Educational linear algebra environment powered by the Web" />
+<meta property="og:site_name" content="lnagb.js" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="lnagb.js" />
+<script type="application/ld+json">
+{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/logo.web.png"},"name":"Novak"},"url":"/doc/Vector.html","author":{"@type":"Person","name":"Novak"},"@type":"WebPage","headline":"lnagb.js","description":"Educational linear algebra environment powered by the Web","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<link rel="icon" type="image/x-icon" href="//favicon.ico">
+		<link rel="icon" type="image/png" href="//favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css?v=8476e638256b81d459d2f17cc144d92e6e755f9b">
+    </head>
+    <body>
+        <div class="container-lg px-3 my-5 markdown-body">
+
+        
+
+        <h1>
+			<a href="/">lnagb.js</a> Documentation
+		</h1>
+
+        
+
+        <p><a name="module_Vector"></a></p>
+
+<h2 id="vector">Vector</h2>
+<p>Contains the <a href="#module_Vector..Vector">Vector</a> class, which encodes vector
+quantities of any number of entries in linear algebra.</p>
+
+<p><strong>Author</strong>: Novak / <a href="mailto:novakcgx@protonmail.com">novakcgx@protonmail.com</a></p>
+
+<ul>
+  <li><a href="#module_Vector">Vector</a>
+    <ul>
+      <li><a href="#module_Vector..Vector">~Vector</a>
+        <ul>
+          <li><a href="#new_module_Vector..Vector_new">new Vector(entries)</a></li>
+          <li><a href="#module_Vector..Vector+elements">.elements</a> : <code>Array.&lt;number&gt;</code></li>
+          <li><a href="#module_Vector..Vector+size">.size</a> : <code>object</code></li>
+          <li><a href="#module_Vector..Vector+numberOfEntries">.numberOfEntries</a> : <code>number</code></li>
+          <li><a href="#module_Vector..Vector+clone">.clone()</a> ⇒ <code>Vector</code></li>
+          <li><a href="#module_Vector..Vector+equals">.equals(vector)</a> ⇒ <code>boolean</code></li>
+          <li><a href="#module_Vector..Vector+multiplyScalar">.multiplyScalar(k)</a> ⇒ <code>Vector</code></li>
+          <li><a href="#module_Vector..Vector+negate">.negate()</a> ⇒ <code>Vector</code></li>
+          <li><a href="#module_Vector..Vector+add">.add(vector)</a> ⇒ <code>Vector</code></li>
+          <li><a href="#module_Vector..Vector+subtract">.subtract(vector)</a> ⇒ <code>Vector</code></li>
+          <li><a href="#module_Vector..Vector+dot">.dot(vector)</a> ⇒ <code>Vector</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><a name="module_Vector..Vector"></a></p>
+
+<h3 id="vectorvector">Vector~Vector</h3>
+<p>Encodes vectors and vector operations. Compatible for use with matrices (e.g.
+for matrix-vector multiplications).</p>
+
+<p>For optimal performance, use <a href="./Vector2#module_Vector2..Vector2">Vector2</a>,
+<a href="./Vector3#module_Vector3..Vector3">Vector3</a>, <a href="./Vector4#module_Vector4..Vector4">Vector4</a> if possible.</p>
+
+<p><strong>Kind</strong>: inner class of <a href="#module_Vector"><code>Vector</code></a></p>
+
+<ul>
+  <li><a href="#module_Vector..Vector">~Vector</a>
+    <ul>
+      <li><a href="#new_module_Vector..Vector_new">new Vector(entries)</a></li>
+      <li><a href="#module_Vector..Vector+elements">.elements</a> : <code>Array.&lt;number&gt;</code></li>
+      <li><a href="#module_Vector..Vector+size">.size</a> : <code>object</code></li>
+      <li><a href="#module_Vector..Vector+numberOfEntries">.numberOfEntries</a> : <code>number</code></li>
+      <li><a href="#module_Vector..Vector+clone">.clone()</a> ⇒ <code>Vector</code></li>
+      <li><a href="#module_Vector..Vector+equals">.equals(vector)</a> ⇒ <code>boolean</code></li>
+      <li><a href="#module_Vector..Vector+multiplyScalar">.multiplyScalar(k)</a> ⇒ <code>Vector</code></li>
+      <li><a href="#module_Vector..Vector+negate">.negate()</a> ⇒ <code>Vector</code></li>
+      <li><a href="#module_Vector..Vector+add">.add(vector)</a> ⇒ <code>Vector</code></li>
+      <li><a href="#module_Vector..Vector+subtract">.subtract(vector)</a> ⇒ <code>Vector</code></li>
+      <li><a href="#module_Vector..Vector+dot">.dot(vector)</a> ⇒ <code>Vector</code></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><a name="new_module_Vector..Vector_new"></a></p>
+
+<h4 id="new-vectorentries">new Vector(entries)</h4>
+<p>Constructs a new <code class="language-plaintext highlighter-rouge">Vector</code> instance, which encodes a vector and its
+operations.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>entries</td>
+      <td><code>Array.&lt;number&gt;</code></td>
+      <td>Entries of the new vector.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Vector..Vector+elements"></a></p>
+
+<h4 id="vectorelements--arrayltnumbergt">vector.elements : <code>Array.&lt;number&gt;</code></h4>
+<p>Stores the entries of this vector in order.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_Vector..Vector"><code>Vector</code></a></p>
+
+<hr />
+
+<p><a name="module_Vector..Vector+size"></a></p>
+
+<h4 id="vectorsize--object">vector.size : <code>object</code></h4>
+<p>Contains the dimensions of this vector as an object in the
+form <code class="language-plaintext highlighter-rouge">{ rows, columns }</code>. Serve for compatibility with matrix classes.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_Vector..Vector"><code>Vector</code></a></p>
+
+<hr />
+
+<p><a name="module_Vector..Vector+numberOfEntries"></a></p>
+
+<h4 id="vectornumberofentries--number">vector.numberOfEntries : <code>number</code></h4>
+<p>The number of entries in this vector.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_Vector..Vector"><code>Vector</code></a></p>
+
+<hr />
+
+<p><a name="module_Vector..Vector+clone"></a></p>
+
+<h4 id="vectorclone--vector">vector.clone() ⇒ <code>Vector</code></h4>
+<p>Creates and returns a clone of this vector instance.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_Vector..Vector"><code>Vector</code></a><br />
+<strong>Returns</strong>: <code>Vector</code> - A clone of this vector</p>
+
+<hr />
+
+<p><a name="module_Vector..Vector+equals"></a></p>
+
+<h4 id="vectorequalsvector--boolean">vector.equals(vector) ⇒ <code>boolean</code></h4>
+<p>Checks if this vector and another vector are equal.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_Vector..Vector"><code>Vector</code></a><br />
+<strong>Returns</strong>: <code>boolean</code> - <code class="language-plaintext highlighter-rouge">true</code> if the two vectors are equal, <code class="language-plaintext highlighter-rouge">false</code> otherwise</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>vector</td>
+      <td><code>Vector</code></td>
+      <td>The vector to compare this vector to.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Vector..Vector+multiplyScalar"></a></p>
+
+<h4 id="vectormultiplyscalark--vector">vector.multiplyScalar(k) ⇒ <code>Vector</code></h4>
+<p>Multiplies this vector by a scalar.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_Vector..Vector"><code>Vector</code></a><br />
+<strong>Returns</strong>: <code>Vector</code> - This vector</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>k</td>
+      <td><code>number</code></td>
+      <td>The scalar to multiply this vector by.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Vector..Vector+negate"></a></p>
+
+<h4 id="vectornegate--vector">vector.negate() ⇒ <code>Vector</code></h4>
+<p>Multiplies this vector by -1.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_Vector..Vector"><code>Vector</code></a><br />
+<strong>Returns</strong>: <code>Vector</code> - This vector</p>
+
+<hr />
+
+<p><a name="module_Vector..Vector+add"></a></p>
+
+<h4 id="vectoraddvector--vector">vector.add(vector) ⇒ <code>Vector</code></h4>
+<p>Adds a vector to this vector.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_Vector..Vector"><code>Vector</code></a><br />
+<strong>Returns</strong>: <code>Vector</code> - This vector</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>vector</td>
+      <td><code>Vector</code></td>
+      <td>The vector to add to this vector.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Vector..Vector+subtract"></a></p>
+
+<h4 id="vectorsubtractvector--vector">vector.subtract(vector) ⇒ <code>Vector</code></h4>
+<p>Subtracts a vector from this vector.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_Vector..Vector"><code>Vector</code></a><br />
+<strong>Returns</strong>: <code>Vector</code> - This vector</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>vector</td>
+      <td><code>Vector</code></td>
+      <td>The vector to subtract this vector to.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_Vector..Vector+dot"></a></p>
+
+<h4 id="vectordotvector--vector">vector.dot(vector) ⇒ <code>Vector</code></h4>
+<p>Returns the dot product of this vector and another vector.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_Vector..Vector"><code>Vector</code></a><br />
+<strong>Returns</strong>: <code>Vector</code> - The dot product of this vector and the given vector</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>vector</td>
+      <td><code>Vector</code></td>
+      <td>The vector to perform a dot product with this vector.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+
+
+        
+
+        <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+            This site is open source. <a href="https://github.com/novakcgx/lnagb.js/edit/gh-pages/doc/Vector.md">Improve this page</a>.
+        </div>
+
+        
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+                integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg="
+                crossorigin="anonymous"></script>
+        <script>anchors.add();</script>
+    </body>
+</html>

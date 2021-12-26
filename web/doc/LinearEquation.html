@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>lnagb.js | Educational linear algebra environment powered by the Web</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="lnagb.js" />
+<meta name="author" content="Novak" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Educational linear algebra environment powered by the Web" />
+<meta property="og:description" content="Educational linear algebra environment powered by the Web" />
+<meta property="og:site_name" content="lnagb.js" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="lnagb.js" />
+<script type="application/ld+json">
+{"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/logo.web.png"},"name":"Novak"},"url":"/doc/LinearEquation.html","author":{"@type":"Person","name":"Novak"},"@type":"WebPage","headline":"lnagb.js","description":"Educational linear algebra environment powered by the Web","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+		<link rel="icon" type="image/x-icon" href="//favicon.ico">
+		<link rel="icon" type="image/png" href="//favicon.png">
+        <link rel="stylesheet" href="/assets/css/style.css?v=8476e638256b81d459d2f17cc144d92e6e755f9b">
+    </head>
+    <body>
+        <div class="container-lg px-3 my-5 markdown-body">
+
+        
+
+        <h1>
+			<a href="/">lnagb.js</a> Documentation
+		</h1>
+
+        
+
+        <p><a name="module_LinearEquation"></a></p>
+
+<h2 id="linearequation">LinearEquation</h2>
+<p>Contains the <a href="#module_LinearEquation..LinearEquation">LinearEquation</a> class, which encodes
+linear equations of any number of variables.</p>
+
+<p><strong>Author</strong>: Novak / <a href="mailto:novakcgx@protonmail.com">novakcgx@protonmail.com</a></p>
+
+<ul>
+  <li><a href="#module_LinearEquation">LinearEquation</a>
+    <ul>
+      <li><a href="#module_LinearEquation..LinearEquation">~LinearEquation</a>
+        <ul>
+          <li><a href="#new_module_LinearEquation..LinearEquation_new">new LinearEquation(coefficients, constant)</a></li>
+          <li><a href="#module_LinearEquation..LinearEquation+coefficients">.coefficients</a> : <code>Array.&lt;number&gt;</code></li>
+          <li><a href="#module_LinearEquation..LinearEquation+constant">.constant</a> : <code>number</code></li>
+          <li><a href="#module_LinearEquation..LinearEquation+numberOfVariables">.numberOfVariables</a> : <code>number</code></li>
+          <li><a href="#module_LinearEquation..LinearEquation+clone">.clone()</a> ⇒ <code>LinearEquation</code></li>
+          <li><a href="#module_LinearEquation..LinearEquation+multiplyScalar">.multiplyScalar(k)</a> ⇒ <code>LinearEquation</code></li>
+          <li><a href="#module_LinearEquation..LinearEquation+negate">.negate()</a> ⇒ <code>LinearEquation</code></li>
+          <li><a href="#module_LinearEquation..LinearEquation+add">.add(equation)</a> ⇒ <code>LinearEquation</code></li>
+          <li><a href="#module_LinearEquation..LinearEquation+subtract">.subtract(equation)</a> ⇒ <code>LinearEquation</code></li>
+          <li><a href="#module_LinearEquation..LinearEquation+toArray">.toArray()</a> ⇒ <code>Array.&lt;number&gt;</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><a name="module_LinearEquation..LinearEquation"></a></p>
+
+<h3 id="linearequationlinearequation">LinearEquation~LinearEquation</h3>
+<p>Encodes linear equations by storing coefficients in an array and the constant
+term. Coefficients are stored left-to-right.</p>
+
+<p><strong>Kind</strong>: inner class of <a href="#module_LinearEquation"><code>LinearEquation</code></a></p>
+
+<ul>
+  <li><a href="#module_LinearEquation..LinearEquation">~LinearEquation</a>
+    <ul>
+      <li><a href="#new_module_LinearEquation..LinearEquation_new">new LinearEquation(coefficients, constant)</a></li>
+      <li><a href="#module_LinearEquation..LinearEquation+coefficients">.coefficients</a> : <code>Array.&lt;number&gt;</code></li>
+      <li><a href="#module_LinearEquation..LinearEquation+constant">.constant</a> : <code>number</code></li>
+      <li><a href="#module_LinearEquation..LinearEquation+numberOfVariables">.numberOfVariables</a> : <code>number</code></li>
+      <li><a href="#module_LinearEquation..LinearEquation+clone">.clone()</a> ⇒ <code>LinearEquation</code></li>
+      <li><a href="#module_LinearEquation..LinearEquation+multiplyScalar">.multiplyScalar(k)</a> ⇒ <code>LinearEquation</code></li>
+      <li><a href="#module_LinearEquation..LinearEquation+negate">.negate()</a> ⇒ <code>LinearEquation</code></li>
+      <li><a href="#module_LinearEquation..LinearEquation+add">.add(equation)</a> ⇒ <code>LinearEquation</code></li>
+      <li><a href="#module_LinearEquation..LinearEquation+subtract">.subtract(equation)</a> ⇒ <code>LinearEquation</code></li>
+      <li><a href="#module_LinearEquation..LinearEquation+toArray">.toArray()</a> ⇒ <code>Array.&lt;number&gt;</code></li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><a name="new_module_LinearEquation..LinearEquation_new"></a></p>
+
+<h4 id="new-linearequationcoefficients-constant">new LinearEquation(coefficients, constant)</h4>
+<p>Constructs a <code class="language-plaintext highlighter-rouge">LinearEquation</code> instance, which encodes a linear equation.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>coefficients</td>
+      <td><code>Array.&lt;number&gt;</code></td>
+      <td>The coefficients of the linear equation.</td>
+    </tr>
+    <tr>
+      <td>constant</td>
+      <td><code>number</code></td>
+      <td>The constant term of the linear equation.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_LinearEquation..LinearEquation+coefficients"></a></p>
+
+<h4 id="linearequationcoefficients--arrayltnumbergt">linearEquation.coefficients : <code>Array.&lt;number&gt;</code></h4>
+<p>Array of this equation’s coefficients.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_LinearEquation..LinearEquation"><code>LinearEquation</code></a></p>
+
+<hr />
+
+<p><a name="module_LinearEquation..LinearEquation+constant"></a></p>
+
+<h4 id="linearequationconstant--number">linearEquation.constant : <code>number</code></h4>
+<p>The constant term of this linear equation.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_LinearEquation..LinearEquation"><code>LinearEquation</code></a></p>
+
+<hr />
+
+<p><a name="module_LinearEquation..LinearEquation+numberOfVariables"></a></p>
+
+<h4 id="linearequationnumberofvariables--number">linearEquation.numberOfVariables : <code>number</code></h4>
+<p>The number of variables in this linear equation.</p>
+
+<p><strong>Kind</strong>: instance property of <a href="#module_LinearEquation..LinearEquation"><code>LinearEquation</code></a></p>
+
+<hr />
+
+<p><a name="module_LinearEquation..LinearEquation+clone"></a></p>
+
+<h4 id="linearequationclone--linearequation">linearEquation.clone() ⇒ <code>LinearEquation</code></h4>
+<p>Returns an instance of <code class="language-plaintext highlighter-rouge">LinearEquation</code> that is exactly the same as this
+instance.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_LinearEquation..LinearEquation"><code>LinearEquation</code></a><br />
+<strong>Returns</strong>: <code>LinearEquation</code> - An exact copy of this instance</p>
+
+<hr />
+
+<p><a name="module_LinearEquation..LinearEquation+multiplyScalar"></a></p>
+
+<h4 id="linearequationmultiplyscalark--linearequation">linearEquation.multiplyScalar(k) ⇒ <code>LinearEquation</code></h4>
+<p>Multiplies this linear equation with a scalar.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_LinearEquation..LinearEquation"><code>LinearEquation</code></a><br />
+<strong>Returns</strong>: <code>LinearEquation</code> - This linear equation</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>k</td>
+      <td><code>number</code></td>
+      <td>The scalar to multiply this equation by.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_LinearEquation..LinearEquation+negate"></a></p>
+
+<h4 id="linearequationnegate--linearequation">linearEquation.negate() ⇒ <code>LinearEquation</code></h4>
+<p>Negates this equation.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_LinearEquation..LinearEquation"><code>LinearEquation</code></a><br />
+<strong>Returns</strong>: <code>LinearEquation</code> - This linear equation</p>
+
+<hr />
+
+<p><a name="module_LinearEquation..LinearEquation+add"></a></p>
+
+<h4 id="linearequationaddequation--linearequation">linearEquation.add(equation) ⇒ <code>LinearEquation</code></h4>
+<p>Adds a linear equation to this linear equation.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_LinearEquation..LinearEquation"><code>LinearEquation</code></a><br />
+<strong>Returns</strong>: <code>LinearEquation</code> - This linear equation</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>equation</td>
+      <td><code>LinearEquation</code></td>
+      <td>The equation to add to this equation. Both equations must have the same number of coefficients.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_LinearEquation..LinearEquation+subtract"></a></p>
+
+<h4 id="linearequationsubtractequation--linearequation">linearEquation.subtract(equation) ⇒ <code>LinearEquation</code></h4>
+<p>Subtracts a linear equation from this linear equation.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_LinearEquation..LinearEquation"><code>LinearEquation</code></a><br />
+<strong>Returns</strong>: <code>LinearEquation</code> - This linear equation</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>equation</td>
+      <td><code>LinearEquation</code></td>
+      <td>The equation to subtract this equation to. Both equations must have the same number of coefficients.</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p><a name="module_LinearEquation..LinearEquation+toArray"></a></p>
+
+<h4 id="linearequationtoarray--arrayltnumbergt">linearEquation.toArray() ⇒ <code>Array.&lt;number&gt;</code></h4>
+<p>Returns an array containing the coefficients from left to right and the
+constant. Helpful in converting to a row or column vector.</p>
+
+<p><strong>Kind</strong>: instance method of <a href="#module_LinearEquation..LinearEquation"><code>LinearEquation</code></a><br />
+<strong>Returns</strong>: <code>Array.&lt;number&gt;</code> - The array representation of this linear equation</p>
+
+<hr />
+
+
+
+        
+
+        <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+            This site is open source. <a href="https://github.com/novakcgx/lnagb.js/edit/gh-pages/doc/LinearEquation.md">Improve this page</a>.
+        </div>
+
+        
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"
+                integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg="
+                crossorigin="anonymous"></script>
+        <script>anchors.add();</script>
+    </body>
+</html>
