@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cgcentral/lnagb.js.git"
+    "url": "git+https://github.com/novakcgx/lnagb.js.git"
   },
   "keywords": [
     "linear-algebra",
@@ -55,10 +55,10 @@
   },
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/cgcentral/lnagb.js/issues",
+    "url": "https://github.com/novakcgx/lnagb.js/issues",
     "email": "novakcgx@protonmail.com"
   },
-  "homepage": "https://cgcentral.github.io/lnagb.js",
+  "homepage": "https://novakcgx.me/lnagb.js",
   "devDependencies": {
     "benchmark": "^2.1.4",
     "c8": "^7.7.2",
