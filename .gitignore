@@ -6,5 +6,7 @@
 node_modules/
 /media/**/breakpoints
 /media/**/inkscape-svg
+/web/media/**/breakpoints
+/web/media/**/inkscape-svg
 /_site/
 /bundle/
