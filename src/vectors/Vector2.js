@@ -1,6 +1,6 @@
 /**
  * @module Vector2
- * @author Novak / <novakcgx@protonmail.com>
+ * @author Zach / <cszach@proton.me>
  * @description
  *
  * Contains the {@link module:Vector2~Vector2} class, which encodes 2-vectors.

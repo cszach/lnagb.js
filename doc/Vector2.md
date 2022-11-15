@@ -3,7 +3,7 @@
 ## Vector2
 Contains the [Vector2](./Vector#module_Vector2..Vector2) class, which encodes 2-vectors.
 
-**Author**: Novak / <novakcgx@protonmail.com>  
+**Author**: Novak / <cszach@proton.me>  
 
 * * *
 

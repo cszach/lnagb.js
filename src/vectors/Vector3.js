@@ -1,6 +1,6 @@
 /**
  * @module Vector3
- * @author Novak / <novakcgx@protonmail.com>
+ * @author Zach / <cszach@proton.me>
  * @description
  *
  * Contains the {@link module:Vector3~Vector3} class, which encodes 3-vectors.

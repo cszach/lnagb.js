@@ -3,7 +3,7 @@
 ## Vector3
 Contains the [Vector3](./Vector#module_Vector3..Vector3) class, which encodes 3-vectors.
 
-**Author**: Novak / <novakcgx@protonmail.com>  
+**Author**: Novak / <cszach@proton.me>  
 
 * [Vector3](./Vector#module_Vector3)
     * [~Vector3](./Vector#module_Vector3..Vector3)

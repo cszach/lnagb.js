@@ -4,7 +4,7 @@
 Contains the [LinearEquation](#module_LinearEquation..LinearEquation) class, which encodes
 linear equations of any number of variables.
 
-**Author**: Novak / <novakcgx@protonmail.com>  
+**Author**: Novak / <cszach@proton.me>  
 
 * [LinearEquation](#module_LinearEquation)
     * [~LinearEquation](#module_LinearEquation..LinearEquation)

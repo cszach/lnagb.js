@@ -5,7 +5,7 @@
  * Contains the {@link module:MatrixTranspose~MatrixTranspose} class, which
  * storage-efficiently encodes transpositions.
  *
- * @author Novak / <novakcgx@protonmail.com>
+ * @author Zach / <cszach@proton.me>
  */
 
 /**

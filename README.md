@@ -84,7 +84,7 @@ library in use.
 [The website][website] has all the information you need, including...
 - a [step-by-step tutorial][Tutorial] to get you started,
 - [linear algebra lectures][Classroom],
-- detailed formal [documentation][Docs] of the lnagb.js JavaScript library,
+- detailed formal [documentation][Doc] of the lnagb.js JavaScript library,
 - [examples][Examples] of the library in use, and
 - a [playground][Lab] where you can try the library in your browser console.
 
@@ -95,7 +95,7 @@ you can access all of this anytime, anywhere, without an Internet connection.
 
 [Tutorial]: https://cszach.github.io/lnagb.js/tutorial
 [Classroom]: https://cszach.github.io/lnagb.js/classroom
-[Docs]: https://cszach.github.io/lnagb.js/docs
+[Doc]: https://cszach.github.io/lnagb.js/doc
 [Examples]: https://cszach.github.io/lnagb.js/examples
 [Lab]: https://cszach.github.io/lnagb.js/lab
 

@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/novakcgx/lnagb.js.git"
+    "url": "git+https://github.com/cszach/lnagb.js.git"
   },
   "keywords": [
     "linear-algebra",
@@ -50,15 +50,15 @@
     "educational"
   ],
   "author": {
-    "name": "Novak",
-    "email": "novakcgx@protonmail.com"
+    "name": "Zach",
+    "email": "cszach@proton.me"
   },
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/novakcgx/lnagb.js/issues",
-    "email": "novakcgx@protonmail.com"
+    "url": "https://github.com/cszach/lnagb.js/issues",
+    "email": "cszach@proton.me"
   },
-  "homepage": "https://novakcgx.me/lnagb.js",
+  "homepage": "https://cszach.github.io/lnagb.js",
   "devDependencies": {
     "benchmark": "^2.1.4",
     "c8": "^7.7.2",
@@ -66,8 +66,8 @@
     "eslint": "^7.27.0",
     "eslint-config-mdcs": "^4.2.3",
     "eslint-plugin-jsdoc": "^30.7.13",
-    "jsdoc-to-markdown": "^5.0.3",
-    "mocha": "^8.4.0",
+    "jsdoc-to-markdown": "^7.1.1",
+    "mocha": "^10.1.0",
     "mocha-suppress-logs": "^0.2.0",
     "node": "^13.14.0",
     "rollup": "^2.50.5",

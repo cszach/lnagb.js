@@ -4,7 +4,7 @@
 Contains the [SystemOfLinearEquations](#module_SystemOfLinearEquations..SystemOfLinearEquations)
 class, which encodes systems of linear equations.
 
-**Author**: Novak / <novakcgx@protonmail.com>  
+**Author**: Novak / <cszach@proton.me>  
 
 * [SystemOfLinearEquations](#module_SystemOfLinearEquations)
     * [~SystemOfLinearEquations](#module_SystemOfLinearEquations..SystemOfLinearEquations)

@@ -1,8 +1,8 @@
 Hello there, splendid! :wave:
 =============================
 
-[new issue]: https://github.com/novakcgx/lnagb.js/issues/new/choose
-[new pr]: https://github.com/novakcgx/lnagb.js/compare
+[new issue]: https://github.com/cszach/lnagb.js/issues/new/choose
+[new pr]: https://github.com/cszach/lnagb.js/compare
 
 Yes, that's what you are!
 
@@ -29,7 +29,7 @@ already:
 3. **Familiarize yourself with the basics of Git and GitHub** such as pull
    requests, issues, branches, etc.
 
-[readme]: https://github.com/novakcgx/lnagb.js#readme
+[readme]: https://github.com/cszach/lnagb.js#readme
 
 Content
 -------
@@ -87,11 +87,11 @@ you should work on one component at a time.
 |   Unit tests   |[`/test/unit`][unit]          |Unit tests for the modules.                                       |
 |Benchmark suites|[`/test/benchmark`][benchmark]|Speed benchmark suites useful for testing different algorithms.   |
 
-[dev]: https://github.com/novakcgx/lnagb.js/tree/dev
-[src]: https://github.com/novakcgx/lnagb.js/tree/dev/src
-[extras]: https://github.com/novakcgc/lnagb.js/tree/dev/extras
-[unit]: https://github.com/novakcgx/lnagb.js/tree/dev/test/unit
-[benchmark]: https://github.com/novakcgx/lnagb.js/tree/dev/test/benchmark
+[dev]: https://github.com/cszach/lnagb.js/tree/dev
+[src]: https://github.com/cszach/lnagb.js/tree/dev/src
+[extras]: https://github.com/cszach/lnagb.js/tree/dev/extras
+[unit]: https://github.com/cszach/lnagb.js/tree/dev/test/unit
+[benchmark]: https://github.com/cszach/lnagb.js/tree/dev/test/benchmark
 
 ### The website
 
@@ -108,11 +108,11 @@ integrable with the website.
 |   Lab   |[`/lab`][lab]            |An interactive playground for the library.                         |
 |  Wiki   |[_Wiki_][wiki]           |In-depth materials for code contributors.                          |
 
-[gh-pages]: https://github.com/novakcgx/lnagb.js/tree/gh-pages
-[tutorial]: https://github.com/novakcgx/lnagb.js/tree/gh-pages/tutorial
-[classroom]: https://github.com/novakcgx/lnagb.js/tree/gh-pages/classroom
-[lab]: https://github.com/novakcgx/lnagb.js/tree/gh-pages/lab
-[wiki]: https://github.com/novakcgx/lnagb.js/wiki
+[gh-pages]: https://github.com/cszach/lnagb.js/tree/gh-pages
+[tutorial]: https://github.com/cszach/lnagb.js/tree/gh-pages/tutorial
+[classroom]: https://github.com/cszach/lnagb.js/tree/gh-pages/classroom
+[lab]: https://github.com/cszach/lnagb.js/tree/gh-pages/lab
+[wiki]: https://github.com/cszach/lnagb.js/wiki
 
 What you can contribute as
 --------------------------
@@ -163,7 +163,7 @@ columns, which from left to right are:
    they are being worked on; and
 3. _Done_, where completed tasks reside.
 
-[boards]: https://github.com/novakcgx/lnagb.js/projects
+[boards]: https://github.com/cszach/lnagb.js/projects
 
 **Each project component has a project board.** There are also several more
 project boards for other goals which speak for themselves. **Using project
@@ -193,8 +193,8 @@ There are 3 Git branches in our GitHub repository, which are
 - [**gh-pages**][gh-pages], where web developers, designers, and writers work
   on the website as well as the content on it.
 
-[master]: https://github.com/novakcgx/lnagb.js/tree/master
-[dev]: https://github.com/novakcgx/lnagb.js/tree/dev
+[master]: https://github.com/cszach/lnagb.js/tree/master
+[dev]: https://github.com/cszach/lnagb.js/tree/dev
 
 ### Workflow
 
@@ -238,7 +238,7 @@ Labels
 ------
 
 **Our project uses labels to categorize issues and pull requests.** You can take
-a look through them [here](https://github.com/novakcgx/lnagb.js/labels). Labels
+a look through them [here](https://github.com/cszach/lnagb.js/labels). Labels
 are not hard to use; we have generic labels (such as _bug_, _enhancement_, and
 _good first issue_), one label for each component of the project, the _design_
 label to label issues that designers can tackle, and the _learner question_

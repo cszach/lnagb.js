@@ -40,7 +40,7 @@ function processData( data ) {
 
 	modules.forEach( ( module ) => {
 
-		let template = `{{#module name="${module}"}}{{>docs}}{{/module}}`;
+		let template = `{{#module name="${module}"}}{{>doc}}{{/module}}`;
 		let options = { data, template, separators: true };
 
 		jsdoc2md.render( options ).then( ( output ) => {

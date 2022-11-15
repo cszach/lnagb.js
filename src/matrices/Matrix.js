@@ -1,6 +1,6 @@
 /**
  * @module Matrix
- * @author Novak / <novakcgx@protonmail.com>
+ * @author Zach / <cszach@proton.me>
  * @description
  *
  * Contains the {@link module:Matrix~Matrix} class, which encodes basic matrices

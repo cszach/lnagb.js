@@ -1,6 +1,6 @@
 /**
  * @module IdentityMatrix
- * @author Novak / <novakcgx@protonmail.com>
+ * @author Zach / <cszach@proton.me>
  * @description
  *
  * Contains the {@link module:IdentityMatrix~IdentityMatrix} class, which

@@ -1,6 +1,6 @@
 /**
  * @module Vector
- * @author Novak / <novakcgx@protonmail.com>
+ * @author Zach / <cszach@proton.me>
  * @description
  *
  * Contains the {@link module:Vector~Vector} class, which encodes vector

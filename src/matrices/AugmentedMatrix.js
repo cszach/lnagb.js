@@ -2,7 +2,7 @@ import { Matrix } from './Matrix.js';
 
 /**
  * @module AugmentedMatrix
- * @author Novak / <novakcgx@protonmail.com>
+ * @author Zach / <cszach@proton.me>
  * @description
  *
  * Contains the {@link module:AugmentedMatrix~AugmentedMatrix} class, which

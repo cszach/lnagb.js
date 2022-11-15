@@ -1,6 +1,6 @@
 /**
  * @module Matrix2
- * @author Novak / <novakcgx@protonmail.com>
+ * @author Zach / <cszach@proton.me>
  * @description
  *
  * Contains the {@link module:Matrix2~Matrix2} class, which encodes 2 x 2
