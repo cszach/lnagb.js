@@ -3,25 +3,25 @@
 <p align="center">
     Educational linear algebra environment powered by the Web.
     <br/>
-    <a href="https://novakcgx.me/lnagb.js/tutorial"><b>Tutorial</b></a>
+    <a href="https://cszach.github.io/lnagb.js/tutorial"><b>Tutorial</b></a>
     &mdash;
-    <a href="https://novakcgx.me/lnagb.js/classroom"><b>Classroom</b></a>
+    <a href="https://cszach.github.io/lnagb.js/classroom"><b>Classroom</b></a>
     &mdash;
-    <a href="https://novakcgx.me/lnagb.js/docs"><b>Documentation</b></a>
+    <a href="https://cszach.github.io/lnagb.js/doc"><b>Documentation</b></a>
     &mdash;
-    <a href="https://novakcgx.me/lnagb.js/examples"><b>Examples</b></a>
+    <a href="https://cszach.github.io/lnagb.js/examples"><b>Examples</b></a>
     &mdash;
-    <a href="https://novakcgx.me/lnagb.js/lab"><b>Lab</b></a>
+    <a href="https://cszach.github.io/lnagb.js/lab"><b>Lab</b></a>
     &mdash;
-    <a href="https://novakcgx.me/lnagb.js/builds"><b>Builds</b></a>
+    <a href="https://cszach.github.io/lnagb.js/builds"><b>Builds</b></a>
 </p>
 
 <p align="center">
-    <a href="https://github.com/novakcgx/lnagb.js/actions/workflows/ci.yml">
-        <img alt="CI" src="https://github.com/novakcgx/lnagb.js/actions/workflows/ci.yml/badge.svg?branch=dev" />
+    <a href="https://github.com/cszach/lnagb.js/actions/workflows/ci.yml">
+        <img alt="CI" src="https://github.com/cszach/lnagb.js/actions/workflows/ci.yml/badge.svg?branch=dev" />
     </a>
-    <a href="https://github.com/novakcgx/lnagb.js/actions/workflows/codeql-analysis.yml">
-        <img alt="CodeQL" src="https://github.com/novakcgx/lnagb.js/actions/workflows/codeql-analysis.yml/badge.svg?branch=dev" />
+    <a href="https://github.com/cszach/lnagb.js/actions/workflows/codeql-analysis.yml">
+        <img alt="CodeQL" src="https://github.com/cszach/lnagb.js/actions/workflows/codeql-analysis.yml/badge.svg?branch=dev" />
     </a>
 </p>
 
@@ -50,10 +50,10 @@ anywhere, even when you don't have an Internet connection. Alternatively, you
 can use Git to clone lnagb.js onto your computer:
 
 ```shell
-git clone https://github.com/novakcgx/lnagb.js.git
+git clone https://github.com/cszach/lnagb.js.git
 ```
 
-[download]: https://github.com/novakcgx/lnagb.js/archive/master.zip
+[download]: https://github.com/cszach/lnagb.js/archive/master.zip
 
 In the lnagb.js folder on your computer:
 - `src` contains the source code, which can be studied if you're a computer
@@ -62,7 +62,7 @@ In the lnagb.js folder on your computer:
 - `lib` contains the compiled library, uncompressed and compressed.
 - `doc` contains the formal detailed Markdown documentation of the library.
 - `web` contains the whole website, which can normally be accessed online at
-  <https://novakcgx.me/lnagb.js>, but since this is on your computer,
+  <https://cszach.github.io/lnagb.js>, but since this is on your computer,
   you can access it even without an Internet connection.
 
 To access the website offline, you need to start a local server. If you have
@@ -91,21 +91,21 @@ library in use.
 Remember that if you have done the installation steps in the previous section,
 you can access all of this anytime, anywhere, without an Internet connection.
 
-[website]: https://novakcgx.me/lnagb.js
+[website]: https://cszach.github.io/lnagb.js
 
-[Tutorial]: https://novakcgx.me/lnagb.js/tutorial
-[Classroom]: https://novakcgx.me/lnagb.js/classroom
-[Docs]: https://novakcgx.me/lnagb.js/docs
-[Examples]: https://novakcgx.me/lnagb.js/examples
-[Lab]: https://novakcgx.me/lnagb.js/lab
+[Tutorial]: https://cszach.github.io/lnagb.js/tutorial
+[Classroom]: https://cszach.github.io/lnagb.js/classroom
+[Docs]: https://cszach.github.io/lnagb.js/docs
+[Examples]: https://cszach.github.io/lnagb.js/examples
+[Lab]: https://cszach.github.io/lnagb.js/lab
 
 If you have a technical question or cannot find a specific piece of information
 on the website, the [wiki][wiki] likely has the answer. If it doesn't, post your
 question in [_Issues_][issues] and add the 'question' label to your post, or
-contact the principal author by emailing to <novakcgx@protonmail.com>.
+contact the principal author by emailing to <cszach@proton.me>.
 
-[wiki]: https://github.com/novakcgx/lnagb.js/wiki
-[issues]: https://github.com/novakcgx/lnagb.js/issues
+[wiki]: https://github.com/cszach/lnagb.js/wiki
+[issues]: https://github.com/cszach/lnagb.js/issues
 
 :sparkles: Example
 ------------------
@@ -114,7 +114,7 @@ This is a simple example of how you can perform matrix-vector multiplication
 using lnagb.js.
 
 ```javascript
-import { Matrix, Vector } from 'https://novakcgx.me/lnagb.js/builds/lnagb.js';
+import { Matrix, Vector } from 'https://cszach.github.io/lnagb.js/builds/lnagb.js';
 
 // Construct a 3 x 4 matrix
 let matrix = new Matrix( 3, 4, [
@@ -148,9 +148,9 @@ contributors with help and support, so here are resources made for you:
 - [Contributing guidelines](CONTRIBUTING.md)&mdash;**Read this first!** This
   document outlines the project so you can navigate around easier. Takes 5 mins
   to read.
-- [Project boards](https://github.com/novakcgx/lnagb.js/projects) pin specific
+- [Project boards](https://github.com/cszach/lnagb.js/projects) pin specific
   tasks you can help with by project component.
-- The [wiki](https://github.com/novakcgx/lnagb.js/wiki) has further specific
+- The [wiki](https://github.com/cszach/lnagb.js/wiki) has further specific
   guidelines you should follow when making changes.
 
 ![](https://user-images.githubusercontent.com/29008608/124381854-c9bf0b80-dcee-11eb-8e88-d93412d3be37.png)
