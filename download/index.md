@@ -18,7 +18,7 @@ environment using Git:
 {% include command.html
 	language='shell'
 	id='clone-repo'
-	code='git clone https://github.com/novakcgx/lnagb.js'
+	code='git clone https://github.com/cszach/lnagb.js'
 %}
 
 If you don't want to download using Git, you can download the ZIP files instead.
@@ -29,13 +29,13 @@ download, right click to copy.
 {% include superlink.html
 	id="master"
 	download=true
-	link="https://github.com/novakcgx/lnagb.js/archive/refs/heads/master.zip"
+	link="https://github.com/cszach/lnagb.js/archive/refs/heads/master.zip"
 %}
 
 {% include superlink.html
 	id="gh-pages"
 	download=true
-	link="https://github.com/novakcgx/lnagb.js/archive/refs/heads/gh-pages.zip"
+	link="https://github.com/cszach/lnagb.js/archive/refs/heads/gh-pages.zip"
 %}
 
 The `master.zip` file contains the `master` branch, which contains the source
@@ -52,13 +52,13 @@ compressed (minified) format. Left click to download, right click to copy.
 {% include superlink.html
 	id="full"
 	download=true
-	link="https://novakcgx.me/lnagb.js/lib/lnagb.js"
+	link="https://cszach.github.io/lnagb.js/lib/lnagb.js"
 %}
 
 {% include superlink.html
 	id="full-min"
 	download=true
-	link="https://novakcgx.me/lnagb.js/lib/lnagb.min.js"
+	link="https://cszach.github.io/lnagb.js/lib/lnagb.min.js"
 %}
 
 > Being "uncompressed" means the code is readable and can be inspected, and is
@@ -124,14 +124,14 @@ for project contributors. To download the wiki, clone it using Git:
 {% include command.html
 	language='shell'
 	id='clone-wiki'
-	code='git clone https://github.com/novakcgx/lnagb.js.wiki.git'
+	code='git clone https://github.com/cszach/lnagb.js.wiki.git'
 %}
 
 Legacy lnagb.js
 ---------------
 
 The lnagb.js library used to be distributed in ESM and UMD. However, the project
-[dropped support for UMD](https://github.com/novakcgx/lnagb.js/pull/56) on June
+[dropped support for UMD](https://github.com/cszach/lnagb.js/pull/56) on June
 22, 2021. This was done to encourage the use of ESM—a more portable, convenient,
 and modern format. However, the project still builds lnagb.js into UMD for those
 interested.
@@ -139,16 +139,16 @@ interested.
 {% include superlink.html
 	id="full-umd"
 	download=true
-	link="https://novakcgx.me/lnagb.js/lib/umd/lnagb.js"
+	link="https://cszach.github.io/lnagb.js/lib/umd/lnagb.js"
 %}
 
 {% include superlink.html
 	id="full-min-umd"
 	download=true
-	link="https://novakcgx.me/lnagb.js/lib/umd/lnagb.min.js"
+	link="https://cszach.github.io/lnagb.js/lib/umd/lnagb.min.js"
 %}
 
 > For more information on library formats, see
-> [this wiki page](https://github.com/novakcgx/lnagb.js/wiki/Library-formats).
+> [this wiki page](https://github.com/cszach/lnagb.js/wiki/Library-formats).
 
 <script src="{{ '/assets/js/copy.js' | absolute_url }}"></script>

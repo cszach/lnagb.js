@@ -9,12 +9,12 @@ tagline: Educational linear algebra environment powered by the Web
 description: Educational linear algebra environment powered by the Web
 logo: logo.web.png
 author:
-  name: Novak
-  email: novakcgx@protonmail.com
+  name: Zach
+  email: cszach@proton.me
 social:
   name: lnagb.js
   links:
-    - https://novakcgx.me/lnagb.js
+    - https://cszach.github.io/lnagb.js
 
 # Plugins
 

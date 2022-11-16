@@ -11,7 +11,7 @@ multiplication, elementary row operations, transposition, and more.
 
 **lnagb.js is free software.** Its source code can be browsed [here][repo].
 
-[repo]: https://github.com/novakcgx/lnagb.js
+[repo]: https://github.com/cszach/lnagb.js
 
 Site map
 --------
@@ -50,22 +50,22 @@ credits (although that is appreciated).
 About the principal author
 --------------------------
 
-[**Novak**](https://novakcgx.github.io) is an aspiring computer graphics
+[**Zach**](https://cszach.github.io) is an aspiring computer graphics
 scientist and free software advocate who is going to major in computer science
 at the University of Rochester. He loves JavaScript, the Web, and using software
 freedom to empower learning and sharing—and lnagb.js allows him to combine all
 of that together. This is currently his biggest and most invested personal
 project.
 
-You can check out his projects on GitHub [@novakcgx][github] or visit his
+You can check out his projects on GitHub [@cszach][github] or visit his
 [website][website].
 
-[github]: https://github.com/novakcgx
-[website]: https://novakcgx.me
+[github]: https://github.com/cszach
+[website]: https://cszach.github.io
 
 About this website
 ------------------
 
 This website is generated thanks to [GitHub Pages](https://pages.github.com/)
 and [Jekyll](https://jekyllrb.com/). Files that are used to compile this website
-can be browsed [here](https://github.com/novakcgx/lnagb.js/tree/gh-pages).
+can be browsed [here](https://github.com/cszach/lnagb.js/tree/gh-pages).

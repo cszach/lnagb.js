@@ -4,7 +4,7 @@
 Contains the [Vector](#module_Vector..Vector) class, which encodes vector
 quantities of any number of entries in linear algebra.
 
-**Author**: Novak / <novakcgx@protonmail.com>  
+**Author**: Zach / <cszach@proton.me>  
 
 * [Vector](#module_Vector)
     * [~Vector](#module_Vector..Vector)

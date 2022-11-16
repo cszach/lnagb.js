@@ -10,5 +10,5 @@ to learn from, so stay tuned!
 Found a mistake? Something was confusing? Have questions? Want to contribute to
 the Classroom? [Open an issue][gh new issue] or [send an e-mail][e-mail].
 
-[gh new issue]: https://github.com/novakcgx/lnagb.js/issues/new
-[e-mail]: mailto:novakcgx@protonmail.com
+[gh new issue]: https://github.com/cszach/lnagb.js/issues/new
+[e-mail]: mailto:cszach@proton.me

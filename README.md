@@ -1,12 +1,12 @@
 lnagb.js Website
 ================
 
-Everything required to build the lnagb.js website (https://novakcgx.me/lnagb.js)
+Everything required to build the lnagb.js website (https://cszach.github.io/lnagb.js)
 is here. Hosted thanks to GitHub Pages. Powered by Jekyll.
 
 See the website's progression [here][project].
 
-[project]: https://github.com/novakcgx/lnagb.js/projects/1
+[project]: https://github.com/cszach/lnagb.js/projects/1
 
 Directory structure
 -------------------

@@ -3,7 +3,7 @@
 ## Functions
 Contains basic operations and functions for dealing with algebra.
 
-**Author**: Novak / <novakcgx@protonmail.com>  
+**Author**: Zach / <cszach@proton.me>  
 
 * * *
 

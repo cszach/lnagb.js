@@ -53,5 +53,5 @@ implemented within these classes.
 Found a mistake in the docs? Have questions? [Open an issue][gh new issue] or
 [send an e-mail][e-mail].
 
-[gh new issue]: https://github.com/novakcgx/lnagb.js/issues/new
-[e-mail]: mailto:novakcgx@protonmail.com
+[gh new issue]: https://github.com/cszach/lnagb.js/issues/new
+[e-mail]: mailto:cszach@proton.me
